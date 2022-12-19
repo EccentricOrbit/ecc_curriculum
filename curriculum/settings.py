@@ -30,6 +30,10 @@ ALLOWED_HOSTS = []
 
 STATIC_ROOT = 'static'
 
+# change to (localhost:8080, tunepad.com, or tunepad.space)
+TUNEPAD_DOMAIN = 'tunepad.space'
+TUNEPAD_PROTOCOL = 'https'
+
 # Application definition
 INSTALLED_APPS = [
     'home.apps.HomeConfig',
@@ -66,6 +70,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'home.context_processors.deploy_values',
             ],
         },
     },
