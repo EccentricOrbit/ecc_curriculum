@@ -1,11 +1,45 @@
 from django.conf import settings
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.template import loader
+from django.views.generic import DetailView
 
 from .forms import ImageForm
 from home.forms import SimpleForm, PostForm
-from home.models import Post
+from home.models import Post, PlaylistNode
+
+
+# Resolves playlist slugs
+class PlaylistDetailView(DetailView):
+    model = PlaylistNode
+    template_name = "landing.html"
+
+    def get_context_data(self, **kwargs):
+        tree = PlaylistNode.get_tree()
+        context = super().get_context_data(**kwargs)
+        node = context['object']
+        context['annotated_list'] = PlaylistNode.get_annotated_list()
+        context['children'] = node.get_children()
+        context['next'] = node.get_next_sibling()
+        context['prev'] = node.get_prev_sibling()
+        return context
+
+
+def landing_view(request):
+    template = loader.get_template('landing.html')
+    tree = PlaylistNode.get_tree()
+    node = tree[0]
+    annotated_list = PlaylistNode.get_annotated_list()
+    context = {
+        'object' : PlaylistNode.get_tree()[0],
+        'annotated_list' : annotated_list,
+        'children' : node.get_children(),
+        'next' : node.get_next_sibling(),
+        'prev' : node.get_prev_sibling()
+    }
+    return HttpResponse(template.render(context, request))
 
 
 def home_redirect_view(request):
