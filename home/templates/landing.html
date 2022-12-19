@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>TunePad: {{ object.desc }}</title>
+    <title>TunePad: {{ object.title }}</title>
 
     <meta property="og:title" content="TunePad Learn">
     <meta property=”og:type” content=”website”>
@@ -13,11 +13,11 @@
     <meta name="title" content="TunePad">
     <meta name="description" content="TunePad is a free online platform for creating music with the Python programming language. Our step-by-step tutorials are perfect for beginners, and our advanced production tools power music making for experienced users.">
     <meta property="og:description" content="TunePad is a free online platform for creating music with the Python programming language. Our step-by-step tutorials are perfect for beginners, and our advanced production tools power music making for experienced users.">
-    <meta property="og:image" content="https://tunepad.com/assets/images/email_logo.png">
-    <meta property="og:url" content="https://tunepad.com/">
+    <meta property="og:image" content="{{ TUNEPAD_HOME }}/assets/images/email_logo.png">
+    <meta property="og:url" content="{{ TUNEPAD_HOME }}">
     <meta property="og:site_name" content="TunePad">
     <meta name="twitter:card" content="summary_large_image">
-    <link href="https://tunepad.com/assets/images/favicon.ico" rel="icon">
+    <link href="{{ TUNEPAD_HOME }}/assets/images/favicon.ico" rel="icon">
     <link href="{% static 'css/fontawesome.all.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/landing.css' %}" rel="stylesheet">
     <script>
@@ -42,15 +42,15 @@ function toggleMenu() {
     <div class="top-nav-wrapper">
       <i class="fas fa-bars" id="burger" onclick="toggleMenu()"></i>
       <div class="top-nav-logo-wrapper">
-        <a class="home-logo" href="https://tunepad.com"></a>
-        <a class="btn home-link" href="https://learn.tunepad.com">Learn TunePad</a>
+        <a class="home-logo" href="{{ TUNEPAD_HOME }}"></a>
+        <a class="btn home-link" href="{{ TUNEPAD_LEARN }}">Learn TunePad</a>
       </div>
       <div class="expander"></div>
       <div class="top-buttons">
-        <a class="btn" href="https://tunepad.com">Home</a>
-        <a class="btn about-link" href="https://tunepad.com/about">About</a>
-        <a class="btn learn-link" href="https://learn.tunepad.com">Learn</a>
-        <a class="btn community-link" href="https://community.tunepad.com">Community</a>
+        <a class="btn" href="{{ TUNEPAD_HOME }}">Home</a>
+        <a class="btn about-link" href="{{ TUNEPAD_HOME }}/about">About</a>
+        <a class="btn learn-link" href="{{ TUNEPAD_LEARN }}">Learn</a>
+        <a class="btn community-link" href="{{ TUNEPAD_COMMUNITY }}">Community</a>
       </div>
     </div>
   </nav>
@@ -78,7 +78,7 @@ function toggleMenu() {
       {% if object.url %}
       <iframe id="content-frame" width="100%" src="{{ object.url }}" style="padding: 2em;"></iframe>
       {% elif object.project_id %}
-      <iframe id="content-frame" width="100%" src="http://localhost:8080/project/{{ object.project_id }}?embedded=true"></iframe>
+      <iframe id="content-frame" width="100%" src="{{ TUNEPAD_HOME }}/project/{{ object.project_id }}?embedded=true"></iframe>
       {% else %}
       <div class="overview">
         {{ object.text | safe_markdown }}
