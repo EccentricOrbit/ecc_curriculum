@@ -1,0 +1,95 @@
+{% load static %}
+{% load martortags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>TunePad: {{ object.desc }}</title>
+
+    <meta property="og:title" content="TunePad Learn">
+    <meta property=”og:type” content=”website”>
+    <meta property="description" content="TunePad is a free online platform for creating music with the Python programming language. Our step-by-step tutorials are perfect for beginners, and our advanced production tools power music making for experienced users.">
+    <meta name="title" content="TunePad">
+    <meta name="description" content="TunePad is a free online platform for creating music with the Python programming language. Our step-by-step tutorials are perfect for beginners, and our advanced production tools power music making for experienced users.">
+    <meta property="og:description" content="TunePad is a free online platform for creating music with the Python programming language. Our step-by-step tutorials are perfect for beginners, and our advanced production tools power music making for experienced users.">
+    <meta property="og:image" content="https://tunepad.com/assets/images/email_logo.png">
+    <meta property="og:url" content="https://tunepad.com/">
+    <meta property="og:site_name" content="TunePad">
+    <meta name="twitter:card" content="summary_large_image">
+    <link href="https://tunepad.com/assets/images/favicon.ico" rel="icon">
+    <link href="{% static 'css/fontawesome.all.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/landing.css' %}" rel="stylesheet">
+    <script>
+function toggleMenu() {
+  const btn = document.querySelector('#burger');
+  const menu = document.querySelector('.left-nav');
+  if (menu.classList.contains('show')) {
+    btn.classList.add('fa-bars');
+    btn.classList.remove('fa-times');
+    menu.classList.remove('show');
+  } else {
+    btn.classList.remove('fa-bars');
+    btn.classList.add('fa-times');
+    menu.classList.add('show');
+  }
+}
+    </script>
+</head>
+
+<body>
+  <nav class="top-nav">
+    <div class="top-nav-wrapper">
+      <i class="fas fa-bars" id="burger" onclick="toggleMenu()"></i>
+      <div class="top-nav-logo-wrapper">
+        <a class="home-logo" href="https://tunepad.com"></a>
+        <a class="btn home-link" href="https://learn.tunepad.com">Learn TunePad</a>
+      </div>
+      <div class="expander"></div>
+      <div class="top-buttons">
+        <a class="btn" href="https://tunepad.com">Home</a>
+        <a class="btn about-link" href="https://tunepad.com/about">About</a>
+        <a class="btn learn-link" href="https://learn.tunepad.com">Learn</a>
+        <a class="btn community-link" href="https://community.tunepad.com">Community</a>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <nav class="left-nav">
+      <div class="toc">
+        {% for item, info in annotated_list %}
+        <a href="{{ item.slug }}" class="toc-item level-{{ info.level }}{% if item == object %} current{% endif %}">{{ item.title }}</a>
+        {% endfor %}
+      </div>
+      <nav class="page-nav">
+        {% if prev %}
+        <div class="prev-link">
+          <a href="{{ prev.slug }}" title="{{ prev.title }}">◂&nbsp;Previous</a>
+        </div>
+        {% endif %}
+        {% if next %}
+        <div class="next-link">
+          <a href="{{ next.slug }}" title="{{ next.title }}">Next&nbsp;▸</a>
+        </div>
+        {% endif %}
+      </nav>
+    </nav>
+    <div class="content">
+      {% if object.url %}
+      <iframe id="content-frame" width="100%" src="{{ object.url }}" style="padding: 2em;"></iframe>
+      {% elif object.project_id %}
+      <iframe id="content-frame" width="100%" src="http://localhost:8080/project/{{ object.project_id }}?embedded=true"></iframe>
+      {% else %}
+      <div class="overview">
+        {{ object.text | safe_markdown }}
+        <ol>
+          {% for item in children %}
+          <li><a href="{{ item.slug }}">{{ item.title }}</a></li>
+          {% endfor %}
+        </ol>
+      </div>
+      {% endif %}
+    </div>
+  </main>
+</body>
+</html>
