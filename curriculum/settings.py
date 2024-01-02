@@ -31,8 +31,8 @@ ALLOWED_HOSTS = []
 STATIC_ROOT = 'static'
 
 # change to (localhost:8080, tunepad.com, or tunepad.space)
-TUNEPAD_DOMAIN = 'tunepad.space'
-TUNEPAD_PROTOCOL = 'https'
+TUNEPAD_DOMAIN = 'localhost:8080'
+TUNEPAD_PROTOCOL = 'http'
 
 # Application definition
 INSTALLED_APPS = [
