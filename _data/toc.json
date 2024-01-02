@@ -1,0 +1,92 @@
+{
+    "contents" : [
+        {
+            "title" : "Quick Start Guide",
+            "url" : "/activities/quickstart/",
+            "type" : "Guide"
+        },
+        {
+            "title" : "Learn Python",
+            "url" : "/python/",
+            "type" : "Curriculum",
+            "contents" : [
+                {
+                    "title" : "Warmup - Chicago House Beat",
+                    "url" : "/activities/house-beat/",
+                    "type" : "Activity"
+                },
+                {
+                    "title" : "Rhythm and Tempo",
+                    "url" : "/python/rhythm-tempo/",
+                    "type" : "Topic"
+                },
+                {
+                    "title" : "Rhythm Notation",
+                    "url" : "/python/rhythm-notation/",
+                    "type" : "Topic"
+                },
+                {
+                    "title" : "Percussion Instruments",
+                    "url" : "/python/percussion/",
+                    "type" : "Topic"
+                }
+            ]
+        },
+        {
+            "title" : "Learn Music",
+            "url" : "/music/",
+            "type" : "curriculum",
+            "collection" : "music",
+            "contents" : [
+                {
+                    "title" : "Why Music and Code?",
+                    "url" : "/music/why-code/",
+                    "type" : "Topic"
+                },
+                {
+                    "title" : "Warmup - Interstellar Theme",
+                    "url" : "/music/interstellar/",
+                    "type" : "Activity"
+                },
+                {
+                    "title" : "Rhythm and Tempo",
+                    "url" : "/music/rhythm-tempo/",
+                    "type" : "Topic"
+                },
+                {
+                    "title" : "Rhythm Notation",
+                    "url" : "/music/rhythm-notation/",
+                    "type" : "Topic"
+                },
+                {
+                    "title" : "Percussion Instruments",
+                    "url" : "/music/percussion/",
+                    "type" : "Topic"
+                }
+            ]
+        },
+        {
+            "title" : "Tutorials",
+            "url" : "/tutorials/",
+            "type" : "curriculum",
+            "collection" : "tutorials",
+            "contents": [
+                {
+                    "title" : "Interstellar Theme",
+                    "url" : "/tutorials/interstellar/",
+                    "type" : "Activity"
+                },
+                {
+                    "title" : "Chicago House Beat",
+                    "url" : "/tutorials/chicago-house/",
+                    "type" : "Activity"
+                }
+            ]
+        },
+        {
+            "title" : "TunePad Documentation",
+            "url" : "/docs/",
+            "type" : "Docs"
+        }
+    ]
+}
