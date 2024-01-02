@@ -1,0 +1,61 @@
+---
+title: TunePad Beat Composer
+description: Drum step sequencer for experimenting with drum sounds
+splash: /images/rock-drums.png
+---
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="{{ title }}">
+    <meta property=”og:type” content="article">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:image" content="https://learn.tunepad.com{{ splash }}">
+    <meta property="og:url" content="https://learn.tunepad.com{{ page.url }}">
+    <meta property="og:site_name" content="Learn TunePad">
+    <meta property="og:locale" content="en_US" />
+    <meta name="title" content="{{ title }}">
+    <meta name="description" content="{{ description }}">
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="/css/composer.css">
+    <link rel="stylesheet" href="/css/fontawesome.all.min.css">
+    <title>{{ title }}</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <!-- TUNEPAD App -->
+    <script defer src="/js/composer.js"></script>
+</head>
+
+
+<body>
+  <div class="instrument" id="drums">
+    <div class="buttons">
+      <div class="gadget-icon drums"></div>
+      <button class="play-button" title="Play"><i class="fas fa-play"></i></button>
+      <button class="pause-button hidden" title="Pause"><i class="fas fa-pause"></i></button>
+      <button class="stop-button" title="Stop"><i class="fas fa-square"></i></button>
+      <div class="expander"></div>
+      <button class="clear-button">CLEAR</button>
+      <div class="expander"></div>
+      <button class="increment-button" title="Add Measure"> + </button>
+      <button class="decrement-button" title="Remove Measure"> - </button>
+      
+      <div class="expander"></div>
+      <div class="voice-selector">
+        <span class="voice-name">808 Drumkit</span>
+        <i class="fa fa-angle-down"></i>
+        <ul class='voice-menu drop-menu hidden'>
+          <li class='menu-item' data-key="0"><i class="fas"></i>808 Drumkit</li>
+          <li class='menu-item' data-key="1"><i class="fas"></i>Rock Drumkit</li>
+        </ul>
+      </div>
+    </div>
+    <div class="scroll-container"><svg class="sequencer" version="1.1" viewBox="0 0 1800 400"></svg></div>
+    <div class="code-hint-container">
+      <button class="code-button"><i class="fas fa-code" id="display-code-icon"></i></button>
+      <div class="code-hint"></div>
+    </div>
+  </div>
+</body>
+</html>
