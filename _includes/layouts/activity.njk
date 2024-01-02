@@ -1,0 +1,35 @@
+---
+title: TunePad Learn
+description: TunePad is a free online platform for creating music with the Python programming language.
+splash: /images/learn-splash.png
+---
+{% extends "layouts/base.njk" %}
+
+{% block resources %}
+    <div class="info-box">
+        <div>
+            <h3>Level</h3>
+            {{ level }}
+        </div>
+        <div>
+            <h3>Time</h3>
+            {{ time }}
+        </div>
+        <div class="license">
+            <a href="https://creativecommons.org/licenses/{{license}}/4.0/" title="Creative Commons License ({{license}})">
+            <img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/{{license}}.png" height="40"></a>
+        </div>
+    </div>
+    {% if disclaimer %}
+    <aside class="disclaimer">{{ disclaimer }}</aside>
+    {% endif %}
+    <div class="resource-box">
+        <button title="Print this ativity" onclick="window.print();"><i class="fa fa-print"></i>Print</button>
+        {% if video %}
+        <a href="{{ video }}" class="button" target="_blank" title="Walkthough video"><i class="fas fa-film"></i>Video</a>
+        {% endif %}
+        {% if slides %}
+        <a href="{{ slides }}" class="button" target="_blank" title="Overview slides"><i class="far fa-file-powerpoint"></i>Slides</a>
+        {% endif %}
+    </div>
+{% endblock %}

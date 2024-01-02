@@ -1,0 +1,62 @@
+---
+title: TunePad Documentation
+description: TunePad Python documentation
+splash: /images/docs.png
+---
+{% extends "layouts/base.njk" %}
+{% block header %}
+    {{ super() }}
+    <style>
+        main {
+            max-width: unset;
+        }
+        code {
+            color: var(--theme-color);
+            font-weight: bold;
+        }
+        .api p {
+            line-height: 150%;
+        }
+        .api h1, .api h2, .api h4 {
+            font-size: 16px;
+            border-top: 1px solid #0009;
+            font-weight: bold;
+            padding-top: 0.75em;
+            margin-top: 3em;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .api h1::before {
+            content: "Module ";
+        }
+        .api h1 {
+            font-size: 22px;
+        }
+        .api {
+            display: flex;
+        }
+        code .highlight-line {
+            padding-left: 1em;
+        }
+        code .highlight-line:before {
+            display: none;
+        }
+        .toc {
+            width: 240px;
+            min-width: 240px;
+            position: relative;
+            top: -3em;
+        }
+        .toc ul li  { font-weight: bold; }
+        .toc ul ul { padding: 0; }
+        .toc ul ul li { font-weight: normal; }
+        .toc h1::before { content: none; }
+        .toc h1 { display: none; }
+
+    </style>
+{% endblock %}
+
+{% block body %}
+<div data-pagefind-body class="api">
+    {{ content | safe }}
+</div>
+{% endblock %}

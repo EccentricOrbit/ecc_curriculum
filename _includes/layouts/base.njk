@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        {% block header %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:title" content="{{ title }}">
+        <meta property=”og:type” content="article">
+        <meta property="og:description" content="{{ description }}">
+        <meta property="og:image" content="https://learn.tunepad.com{{ splash }}">
+        <meta property="og:url" content="https://learn.tunepad.com{{ page.url }}">
+        <meta property="og:site_name" content="Learn TunePad">
+        <meta property="og:locale" content="en_US" />
+        <meta name="title" content="{{ title }}">
+        <meta name="description" content="{{ description }}">
+        <link rel="icon" href="/images/favicon.ico">
+        <link rel="stylesheet" href="/css/activity.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.5.0/prism-coldark-cold.min.css">
+        <link rel="stylesheet" href="/css/fontawesome.all.min.css">
+        <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+        <title>{{ title }}</title>
+        <script>
+            function showMenu() {
+                document.querySelector(".menu-row").classList.toggle('visible');
+            }
+        </script>
+        {% endblock %}
+    </head>
+  <body>
+    <nav class="top-nav">
+        <div class="logo-row">
+            <a class="top-logo-small" title="Learn TunePad" href="/" aria-label="Home">
+                <img src="/images/learn-logo-small.svg" alt="Learn TunePad" width="100%">
+            </a>
+            <a class="top-logo" title="Learn TunePad" href="/" aria-label="Home">
+                <img src="/images/learn-logo.svg" alt="Learn TunePad" width="100%">
+            </a>
+            <div class="expander"></div>
+            <div id="search" class="search"></div>
+            <button class="show-menu" aria-label="Menu" onclick="showMenu()"><i class="fas fa-bars"></i></button>
+        </div>
+        <div class="menu-row">
+            <ul>
+                <li><a href="/activities/quickstart">Quick Start</a></li>
+                <li><a href="/python">Learn Python</a></li>
+                <li><a href="/music">Learn Music</a></li>
+                <li><a href="/tutorials">Tutorials</a></li>
+                <li><a href="/curriculum">Curriculum</a></li>
+                <li><a href="/docs">TunePad Docs</a></li>
+                <li class="expander"></li>
+            </ul>
+        </div>
+    </nav>
+    <main>
+        {% set nextPage = false %}
+        {% set prevPage = false %}
+
+        {% if showtoc %}
+        <nav class="toc">
+            {% for item in toc.contents %}
+                <h1><a href="{{ item.url }}">{{ item.title }}</a></h1>
+                {% if item.contents %}
+                <ul>
+                    {% for subitem in item.contents %}
+                        {% if subitem.url == page.url %}
+                            {% set i = loop.index0 %}
+                            {% set nextPage = item.contents[i + 1] %}
+                            {% set prevPage = item.contents[i - 1] %}
+                        {% endif %} 
+                    <li{% if subitem.url == page.url %} class="highlight"{% endif %}>
+                    <a href="{{ subitem.url }}">{{ subitem.title }}</a></li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            {% endfor %}
+        </nav>
+        {% endif %}
+
+        <article>
+            <header>
+                {% block banner %}
+                <div class="splash-image" style="background-image: url('{{ splash }}')"></div>
+                <div class="logo-nugget"></div>
+                {% endblock %}
+            </header>
+            <h1 data-pagefind-meta="title" class="page-title">{{ title }}</h1>
+            {% if subtitle %}
+            <h2 class="page-subtitle">{{ subtitle }}</h2>
+            {% endif %}
+            {% if authors %}
+            <div class="authors">
+                By {{ authors }}
+            </div>
+            {% endif %}
+            {% block resources %}
+            {% endblock %}
+            <div data-pagefind-body class="contents">
+                {% block body %}
+                {{ content | safe }}
+                {% endblock %}
+            </div>
+
+            <nav class="prev-next">
+                {% if prevPage %}
+                <a href="{{ prevPage.url }}">
+                    <i class="fas fa-arrow-left"></i>
+                    <div class="stacker">
+                        <h3>Previous {{ prevPage.type }}</h3>
+                        {{ prevPage.title }}
+                    </div>
+                </a>
+                </div>
+                {% endif %}
+                <div class="spacer"></div>
+                {% if nextPage %}
+                <a href="{{ nextPage.url }}">
+                    <div class="stacker">
+                        <h3>Next {{ nextPage.type }}</h3>
+                        {{ nextPage.title }}
+                    </div>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                {% endif %}
+            </nav>
+
+            <footer>
+                {% block footer %}
+                TunePad was created by the TIDAL Lab at Northwestern University. This project was made possible with funding from the National Science Foundation (grants DRL-1612619, DRL‐1451762, and DRL-1837661) and the Verizon Foundation. Any findings or recommendations expressed in this project are those of the authors and do not necessarily reflect the views of our funders.
+                {% endblock %}
+            </footer>
+        </article>
+    </main>
+  </body>
+    <script src="/pagefind/pagefind-ui.js" onload="new PagefindUI({ element: '#search', showImages: false });"></script>  
+</html>
