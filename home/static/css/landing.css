@@ -190,3 +190,10 @@ iframe {
   }
   .top-buttons { display: none; }
 }
+
+
+@media print {
+  nav.left-nav { display: none; }
+  nav.top-nav { display: none; }
+  iframe { height: 100%; }
+}
