@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   sodipodi:docname="error.svg"
+   inkscape:version="1.0 (4035a4f, 2020-05-01)"
+   id="svg2"
+   viewBox="0 0 100 100"
+   y="0px"
+   x="0px"
+   version="1.1">
+  <metadata
+     id="metadata12">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs10" />
+  <sodipodi:namedview
+     inkscape:document-rotation="0"
+     inkscape:current-layer="svg2"
+     inkscape:window-maximized="0"
+     inkscape:window-y="23"
+     inkscape:window-x="106"
+     inkscape:cy="40.497285"
+     inkscape:cx="33.389586"
+     inkscape:zoom="1.668772"
+     showgrid="false"
+     id="namedview8"
+     inkscape:window-height="717"
+     inkscape:window-width="1085"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     guidetolerance="10"
+     gridtolerance="10"
+     objecttolerance="10"
+     borderopacity="1"
+     bordercolor="#666666"
+     pagecolor="#ffffff" />
+  <text
+     id="text4164"
+     y="224.64255"
+     x="35.954582"
+     style="font-style:normal;font-variant:normal;font-weight:600;font-stretch:normal;line-height:0%;font-family:'Adobe Fan Heiti Std';-inkscape-font-specification:'Adobe Fan Heiti Std Semi-Bold';text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     xml:space="preserve"><tspan
+       style="font-size:80px;line-height:1.25"
+       y="224.64255"
+       x="63.298332"
+       id="tspan4166"
+       sodipodi:role="line"> </tspan></text>
+  <g
+     id="g4234"
+     data-name="Calque 4"
+     transform="translate(48.165858,147.37889)" />
+  <g
+     transform="matrix(1.5515854,0,0,1.5515854,-30.471921,-27.521422)"
+     style="font-size:59.212px;line-height:1.25;font-family:sans-serif;word-spacing:0px;stroke-width:1.4803"
+     id="text847"
+     aria-label="!">
+    <path
+       sodipodi:nodetypes="cccccssscscsss"
+       id="path849"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:78.9493px;font-family:Monaco;-inkscape-font-specification:Monaco;fill:#ffffff;stroke-width:1.4803"
+       d="M 48.440995,61.864816 45.968,19.07491 h 10.96 l -2.511838,42.789906 z m 3.315254,18.850688 c -1.516279,0 -2.826961,-0.552542 -3.932045,-1.657627 -1.079385,-1.079385 -1.619078,-2.377217 -1.619078,-3.893496 0,-1.516279 0.539693,-2.814111 1.619078,-3.893496 1.105084,-1.079385 2.415766,-1.619078 3.932045,-1.619078 1.490579,0 2.775561,0.539693 3.854946,1.619078 1.105085,1.053685 1.657627,2.351517 1.657627,3.893496 0,1.541979 -0.552542,2.85266 -1.657627,3.932045 -1.105085,1.079385 -2.390067,1.619078 -3.854946,1.619078 z" />
+  </g>
+</svg>
