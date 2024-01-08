@@ -43,18 +43,14 @@ splash: /images/rock-drums.png
       
       <div class="expander"></div>
       <div class="voice-selector">
-        <span class="voice-name">808 Drumkit</span>
-        <i class="fa fa-angle-down"></i>
-        <ul class='voice-menu drop-menu hidden'>
-          <li class='menu-item' data-key="0"><i class="fas"></i>808 Drumkit</li>
-          <li class='menu-item' data-key="1"><i class="fas"></i>Rock Drumkit</li>
-        </ul>
+        <select class="voice-menu" id="voice-menu"></select>
       </div>
     </div>
-    <div class="scroll-container"><svg class="sequencer" version="1.1" viewBox="0 0 1800 400"></svg></div>
+    <div class="scroll-container"><svg class="sequencer" version="1.1"></svg></div>
+
     <div class="code-hint-container">
-      <button class="code-button"><i class="fas fa-code" id="display-code-icon"></i></button>
-      <div class="code-hint"></div>
+        <button class="code-button"><i class="fas fa-code" id="display-code-icon"></i></button>
+        <pre class="code-hint"></pre>
     </div>
   </div>
 </body>
