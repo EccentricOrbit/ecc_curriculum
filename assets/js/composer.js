@@ -1,10 +1,11 @@
 /*
 TODO: Config object in HTML instead of here
-Different velocity values for drum sounds
 Pass config to Sequencer
 Tempo change
 Save state identifier comes from REQUEST
 Cue sounds when adding new note if isPlaying
+Pause restart
+Gain in configs for snare
 */
 
 
@@ -15,11 +16,12 @@ const drum_configs = {
         {
             'name' : '808 Drumkit',
             'tracks' : [
-                { 'name' : 'tom', 'note' : 7, 'track' : 0, 'sound' : '/sounds/voices/808-drums/tom2' },
-                { 'name' : 'clap', 'note' : 10, 'track' : 1, 'sound' : '/sounds/voices/808-drums/clap' },
-                { 'name' : 'hat', 'note' : 4, 'track' : 2, 'sound' : '/sounds/voices/808-drums/hihat' },
-                { 'name' : 'snare', 'note' : 2, 'track' : 3, 'sound' : '/sounds/voices/808-drums/snare1' },
-                { 'name' : 'kick', 'note' : 0, 'track' : 4, 'sound' : '/sounds/voices/808-drums/kick2' }
+                { 'name' : 'Tom', 'note' : 7, 'track' : 0, 'sound' : '/sounds/voices/808-drums/tom2' },
+                { 'name' : 'Clap', 'note' : 10, 'track' : 1, 'sound' : '/sounds/voices/808-drums/clap' },
+                { 'name' : 'Closed Hat', 'note' : 4, 'track' : 2, 'sound' : '/sounds/voices/808-drums/hihat' },
+                { 'name' : 'Open Hat', 'note' : 5, 'track' : 3, 'sound' : '/sounds/voices/808-drums/openhat' },
+                { 'name' : 'Snare', 'note' : 2, 'track' : 4, 'gain' : 0.6, 'sound' : '/sounds/voices/808-drums/snare1' },
+                { 'name' : 'Kick', 'note' : 0, 'track' : 5, 'sound' : '/sounds/voices/808-drums/kick2' }
             ]
         },
         {
@@ -28,8 +30,9 @@ const drum_configs = {
                 { 'name' : 'tom', 'note' : 7, 'track' : 0, 'sound' : '/sounds/voices/909-drums/mid_tom' },
                 { 'name' : 'clap', 'note' : 10, 'track' : 1, 'sound' : '/sounds/voices/909-drums/clap' },
                 { 'name' : 'hat', 'note' : 4, 'track' : 2, 'sound' : '/sounds/voices/909-drums/hat1' },
-                { 'name' : 'snare', 'note' : 2, 'track' : 3, 'sound' : '/sounds/voices/909-drums/snare1' },
-                { 'name' : 'kick', 'note' : 0, 'track' : 4, 'sound' : '/sounds/voices/909-drums/kick2' }
+                { 'name' : 'open_hat', 'note' : 5, 'track' : 3, 'sound' : '/sounds/voices/909-drums/open_hat' },
+                { 'name' : 'snare', 'note' : 2, 'track' : 4, 'sound' : '/sounds/voices/909-drums/snare1' },
+                { 'name' : 'kick', 'note' : 0, 'track' : 5, 'sound' : '/sounds/voices/909-drums/kick2' }
             ]
         },
         {
@@ -38,8 +41,9 @@ const drum_configs = {
                 { 'name' : 'tom', 'note' : 7, 'track' : 0, 'sound' : '/sounds/voices/rock-drums/midTom' },
                 { 'name' : 'clap', 'note' : 10, 'track' : 1, 'sound' : '/sounds/voices/rock-drums/clap' },
                 { 'name' : 'hat', 'note' : 4, 'track' : 2, 'sound' : '/sounds/voices/rock-drums/closedHat' },
-                { 'name' : 'snare', 'note' : 2, 'track' : 3, 'sound' : '/sounds/voices/rock-drums/snare1' },
-                { 'name' : 'kick-y', 'note' : 0, 'track' : 4, 'sound' : '/sounds/voices/rock-drums/kick' }
+                { 'name' : 'open_hat', 'note' : 5, 'track' : 3, 'sound' : '/sounds/voices/rock-drums/openHat' },
+                { 'name' : 'snare', 'note' : 2, 'track' : 4, 'sound' : '/sounds/voices/rock-drums/snare1' },
+                { 'name' : 'kick', 'note' : 0, 'track' : 5, 'sound' : '/sounds/voices/rock-drums/kick' }
             ]
         }
     ]
@@ -64,6 +68,7 @@ class Composer {
 
         // start the audio context on the first click
         document.addEventListener("click", (e) => { this.initAudio(); }, {once : true});
+        setTimeout(() => { this.initAudio(); }, 100);
     }
 
     get currentBeat() {
@@ -223,7 +228,7 @@ class DrumCell {
         if (!this.sequencer.isPlaying) {
             this.cancelSound();
             if  (this.audioCtx != null) {
-                let when = this.audioCtx.currentTime + 0.25;
+                let when = this.audioCtx.currentTime;
                 this.playSound(this.audioCtx.destination, when);
             }
         }
@@ -231,6 +236,7 @@ class DrumCell {
 
     playSound(dest = null, when = 0) {
         let sound = this.sequencer.trackBuffer(this.track);
+        const gain = this.sequencer.trackGain(this.track);
         const ctx = this.audioCtx;
         if (ctx == null) return;
         if (dest == null) dest = this.audioCtx.destination;
@@ -240,7 +246,7 @@ class DrumCell {
         if (when == 0) when = ctx.currentTime;
         let duration = Math.max(0, (this.end - this.start + 1)) * 0.25 * 60 / this.sequencer.bpm;
         this._gain = ctx.createGain();
-        this._gain.gain.value = (this.velocity / 150);
+        this._gain.gain.value = (this.velocity / 120) * gain;
         this._gain.gain.setTargetAtTime(0, when + duration, 0.33 * R);
 
         const source = ctx.createBufferSource();
@@ -291,6 +297,7 @@ class Drum {
         this.note = config['note'];
         this.track = config['track'];
         this.sound = config['sound'];
+        this.gain = ('gain' in config) ? config['gain'] : 1.0;
         this.group = document.createElementNS("http://www.w3.org/2000/svg", 'g');
         this.text = document.createElementNS("http://www.w3.org/2000/svg", 'text');
         this.text.setAttribute('x', `${sequencer.headerWidth - 15}`);
@@ -345,7 +352,7 @@ class Sequencer {
         this.tracks = [ ];   // List<Drum>();
         this.sounds = { };   // Map<String?, AudioBuffer>();
         this.loadState();
-        this.loadTracks();
+        this.loadTracks(false);
         this.redraw();
         this.setPlayhead(0);
 
@@ -359,7 +366,15 @@ class Sequencer {
         // Drag to paint notes
         this.dragging = false;
         this.parent.addEventListener('pointerdown', (e) => { this.dragging = true; });
-        document.addEventListener('pointerup', (e) => { this.dragging = false; });
+        document.addEventListener('pointerup', (e) => { 
+            this.dragging = false;
+            setTimeout(() => { 
+                if (this.updated) {
+                    this.updated = false;
+                    this.updateCodeHint();
+                }
+             }, 1000);
+        });
 
         addEventListener('resize', (e) => { this.redraw() });
 
@@ -371,6 +386,9 @@ class Sequencer {
             let opt = document.createElement('option');
             opt.innerHTML = c['name'];
             opt.setAttribute("data-index", `${index}`);
+            if (index === this.voiceIndex) {
+                opt.setAttribute("selected", "true");
+            }
             index++;
             menu.appendChild(opt);     
         }
@@ -388,6 +406,8 @@ class Sequencer {
         this.container.querySelector('.clear-button').addEventListener('click', (e) => this.clear());
         this.container.querySelector('.increment-button').addEventListener('click', (e) => this.incrementMeasures());
         this.container.querySelector('.decrement-button').addEventListener('click', (e) => this.decrementMeasures());
+
+        this.updateCodeHint();
     }
 
 
@@ -415,6 +435,7 @@ class Sequencer {
             this.stop();
             this.redraw();
             this.saveState();
+            this.updateCodeHint();
         }
     }
 
@@ -424,13 +445,14 @@ class Sequencer {
             this.stop();
             this.redraw();
             this.saveState();
+            this.updateCodeHint();
         }
     }
 
     changeVoice(index) {
         this.stop();
         this.voiceIndex = Math.max(0, Math.min(index, this.config['configs'].length));
-        this.loadTracks();
+        this.loadTracks(true);
         this.redraw();
         this.saveState();
     }
@@ -443,14 +465,14 @@ class Sequencer {
         this.cells.forEach(cell => cell.reposition());
     }
 
-    async loadTracks() {
+    async loadTracks(loadAudio) {
         this.tracks = [];
         this.trackGroup.innerHTML = '';
         for (let t of this.voice['tracks']) {
             let drum = new Drum(t, this);
             this.trackGroup.append(drum.group);
-            this.tracks.push(drum);
-            drum.buffer = await this.loadAudioBuffer(drum.sound);
+            this.tracks.push(drum)
+            if (loadAudio) drum.buffer = await this.loadAudioBuffer(drum.sound);
         }
     }
 
@@ -534,6 +556,10 @@ class Sequencer {
 
     trackBuffer(track) {
         return this.tracks[track].buffer;
+    }
+
+    trackGain(track) {
+        return this.tracks[track].gain;
     }
 
     setPlayhead(beats) {
@@ -657,13 +683,13 @@ class Sequencer {
     addNote(step, track) {
         let cell = new DrumCell(this, step, track);
         this.cells.push(cell);
-        this.updateCodeHint();
         cell.previewSound();
         this.cellGroup.append(cell.group);
         if (this.isPlaying && this.master != null) {
             cell.cueSound(this.master, 0, this.composer.currentBeat % this.totalBeats);
         }
         this.saveState();
+        this.updated = true;
     }
 
 
@@ -679,6 +705,7 @@ class Sequencer {
         this.cells = this.cells.filter(c => c !== cell);
         cell.cancelSound();
         this.saveState();
+        this.updated = true;
     }
 
 
@@ -698,19 +725,23 @@ class Sequencer {
         // super inefficient!!
         for (let row = 0; row < this.trackCount; row++) {
             let rest = 0;
+
+            code += "<code># " + this.tracks[row].name + "</code>\n";
+            code += "<code>moveTo(0)</code>\n";
             for (let col = 0; col < this.steps; col++) {
                 for (let cell of this.cells) {
                     if (cell.track === row && cell.start === col) {
-                        if (rest > 0) code += `rest(${rest})\n`;
-                        rest = 0;
-                        code += cell.codeHint() + "\n";
+                        if (rest > 0) code += `<code>rest(${rest})</code>\n`;
+                        rest = -0.25;
+                        code += '<code>' + cell.codeHint() + "</code>\n";
                     }
                 }
                 rest += 0.25;
             }
-            code += "moveTo(0)\n\n";
+            code += "<code> </code>\n";
         }
         this.codeHint.innerHTML = code;
+        Prism.highlightAll();
     }
 
 
