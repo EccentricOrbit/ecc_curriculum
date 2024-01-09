@@ -99,7 +99,6 @@ nav.top-nav h1 {
   height: 300px;
   border-left: 2px solid #414252;
   border-right: 2px solid #414252;
-  padding-right: 4px;
   background-color: #2e303f;
 }
 
@@ -159,21 +158,18 @@ nav.top-nav h1 {
   width: 64px !important;
 }
 
-.code-hint-container {
-  font-family: monospace;
-  display: inline-flex;
-  width: 100%;
-  min-height: 35px;
-  color: #ccc;
-  background-color: #535563;
-  user-select: text !important;
-  border-bottom-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  border-top: 2px solid #667;
-  border-bottom: 2px solid #667;
-  border-left: 2px solid #414252;
-  border-right: 2px solid #414252;
-  
+.instrument .gutter {
+    height: 1em;
+    background: #535563;
+    border-left: 2px solid #414252;
+    border-right: 2px solid #414252;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top: 2px solid #667;
+}
+
+.code-hint-container h2 {
+    margin-top: 2em;
 }
 
 .code-button {
@@ -181,6 +177,7 @@ nav.top-nav h1 {
 }
 
 .code-hint {
+  border-radius: 1.5em;
   padding: 8px 0px;
   /*margin-bottom: 30px;*/
   font-size: 15px;
