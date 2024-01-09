@@ -20,6 +20,8 @@ splash: /images/rock-drums.png
     <link rel="icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="/css/composer.css">
     <link rel="stylesheet" href="/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="/css/prism.css">
+
     <title>{{ title }}</title>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
@@ -47,11 +49,15 @@ splash: /images/rock-drums.png
       </div>
     </div>
     <div class="scroll-container"><svg class="sequencer" version="1.1"></svg></div>
+    <div class="gutter"></div>
 
     <div class="code-hint-container">
-        <button class="code-button"><i class="fas fa-code" id="display-code-icon"></i></button>
-        <pre class="code-hint"></pre>
+        <!-- <button class="code-button"><i class="fas fa-code" id="display-code-icon"></i></button> -->
+        <h2>Python Code</h2>
+        <pre class="code-hint line-numbers language-python">
+        </pre>
     </div>
   </div>
+  <script src="/js/prism.js" data-manual></script>
 </body>
 </html>
