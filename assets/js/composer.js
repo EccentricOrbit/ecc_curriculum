@@ -1,81 +1,64 @@
 /*
-TODO: Config object in HTML instead of here
-Pass config to Sequencer
-Tempo change
-Save state identifier comes from REQUEST
-Cue sounds when adding new note if isPlaying
-Pause restart
-Gain in configs for snare
+TODO:
+Load correct voice on refresh
 */
-
-
-const drum_configs = {
-    'instrument' : 'drums',
-    'note-class' : 'drum',
-    'configs': [ 
-        {
-            'name' : '808 Drumkit',
-            'tracks' : [
-                { 'name' : 'Tom', 'note' : 7, 'track' : 0, 'sound' : '/sounds/voices/808-drums/tom2' },
-                { 'name' : 'Clap', 'note' : 10, 'track' : 1, 'sound' : '/sounds/voices/808-drums/clap' },
-                { 'name' : 'Closed Hat', 'note' : 4, 'track' : 2, 'sound' : '/sounds/voices/808-drums/hihat' },
-                { 'name' : 'Open Hat', 'note' : 5, 'track' : 3, 'sound' : '/sounds/voices/808-drums/openhat' },
-                { 'name' : 'Snare', 'note' : 2, 'track' : 4, 'gain' : 0.6, 'sound' : '/sounds/voices/808-drums/snare1' },
-                { 'name' : 'Kick', 'note' : 0, 'track' : 5, 'sound' : '/sounds/voices/808-drums/kick2' }
-            ]
-        },
-        {
-            'name' : '909 Drumkit',
-            'tracks' : [
-                { 'name' : 'tom', 'note' : 7, 'track' : 0, 'sound' : '/sounds/voices/909-drums/mid_tom' },
-                { 'name' : 'clap', 'note' : 10, 'track' : 1, 'sound' : '/sounds/voices/909-drums/clap' },
-                { 'name' : 'hat', 'note' : 4, 'track' : 2, 'sound' : '/sounds/voices/909-drums/hat1' },
-                { 'name' : 'open_hat', 'note' : 5, 'track' : 3, 'sound' : '/sounds/voices/909-drums/open_hat' },
-                { 'name' : 'snare', 'note' : 2, 'track' : 4, 'sound' : '/sounds/voices/909-drums/snare1' },
-                { 'name' : 'kick', 'note' : 0, 'track' : 5, 'sound' : '/sounds/voices/909-drums/kick2' }
-            ]
-        },
-        {
-            'name' : 'Rock Drumkit',
-            'tracks' : [
-                { 'name' : 'tom', 'note' : 7, 'track' : 0, 'sound' : '/sounds/voices/rock-drums/midTom' },
-                { 'name' : 'clap', 'note' : 10, 'track' : 1, 'sound' : '/sounds/voices/rock-drums/clap' },
-                { 'name' : 'hat', 'note' : 4, 'track' : 2, 'sound' : '/sounds/voices/rock-drums/closedHat' },
-                { 'name' : 'open_hat', 'note' : 5, 'track' : 3, 'sound' : '/sounds/voices/rock-drums/openHat' },
-                { 'name' : 'snare', 'note' : 2, 'track' : 4, 'sound' : '/sounds/voices/rock-drums/snare1' },
-                { 'name' : 'kick', 'note' : 0, 'track' : 5, 'sound' : '/sounds/voices/rock-drums/kick' }
-            ]
-        }
-    ]
-};
-
-
-window.onload = (e) => { new Composer(); };
-
 
 /**
  * This class synchronizes and manages all of the sequencers on the page.
+ * Add data-state attribute to HTML 
  */
 class Composer {
 
-    constructor() {
+    constructor(container, config) {
         this.bpm = 100;
         this.context = null;
+        this.stateId = container.getAttribute('data-state');
         this.start_time = 0;
+        this.start_beat = 0;
         this.sequencers = [];
-        this.sequencers.push(new Sequencer(this, 'drums', drum_configs));
+        container.querySelectorAll('.instrument').forEach((i) => {
+            this.sequencers.push(new Sequencer(this, i, config));
+        });
         this.loadState();
+        this.sequencers.forEach(s => s.redraw());
 
         // start the audio context on the first click
         document.addEventListener("click", (e) => { this.initAudio(); }, {once : true});
         setTimeout(() => { this.initAudio(); }, 100);
     }
 
+    /**
+     * How many beats have elapsed since the last time STOP was pressed
+     */
     get currentBeat() {
-        return (this.context.currentTime - this.start_time) * this.bpm / 60.0;
+        let b = (this.context.currentTime - this.start_time) * this.bpm / 60.0;
+        return b + this.start_beat;
     }
 
+    
+    sequencerPlayed() {
+        // if no sequencers are already playing
+        if (!this.isPlaying) {
+            this.start_time = this.context.currentTime;
+        }
+    }
+    
+    // called from a local sequencer
+    sequencerPaused() {
+        // if all sequencers have stopped
+        if (!this.isPlaying) {
+            this.start_beat = this.currentBeat;
+        }
+    }
+    
+    stopAll() {
+        this.start_beat = 0;
+        this.sequencers.forEach(s => s.stopped());
+    }
+
+
     get isPlaying() {
+        if (this.context === null) return false;
         for (let s of this.sequencers) {
             if (s.isPlaying) return true;
         }
@@ -83,80 +66,55 @@ class Composer {
     }
 
     saveState() {
-        window.localStorage.setItem('bpm', `${this.bpm}`);
+        let state = {
+            'bpm' : `${this.bpm}`,
+            'sequencers' : { }
+        };
+        for (let s of this.sequencers) {
+            state['sequencers'][s.stateId] = s.save();
+        }
+        localStorage.setItem(this.stateId, JSON.stringify(state));
     }
     
     loadState() {
-        let tempo = window.localStorage.getItem('bpm');
-        if (isNaN(tempo)) {
-            this.setTempo(100);
-        } else {
-            this.setTempo(parseInt(tempo));
+        const s = localStorage.getItem(this.stateId);
+        if (s !== null) {
+            const state = JSON.parse(s);
+            console.log('Load:');
+            console.log(state);
+            if (state instanceof Object && state['sequencers'] instanceof Object)  {
+                let tempo = state['bpm'];
+                if (isNaN(tempo)) {
+                    this.setTempo(100);
+                } else {
+                    this.setTempo(parseInt(tempo));
+                }
+                for (let seq of this.sequencers) {
+                    console.log(state['sequencers'][seq.stateId]);
+                    if (state['sequencers'][seq.stateId] instanceof Object) {
+                        seq.load(state['sequencers'][seq.stateId]);
+                    }
+                }
+            }
         }
     }
     
     initAudio() {
         if (this.context === null) {
             this.context = new AudioContext();
-            for (let s of this.sequencers) {
-                s.initAudio(this.context);
-            }
-        }
-    }
-    
-    play() {
-        if (!this.isPlaying) {
-            this.start_time = this.context.currentTime;
-        }
-    }
-    
-    pause() {
-        if (this.isPlaying) {
-            this.pauseAll();
-        }
-    }
-    
-    pauseAll() {
-        for (let sequencer of this.sequencers) {
-            sequencer.pause();
-        }
-    }
-    
-    stop() {
-        for (let sequencer of this.sequencers) {
-            sequencer.stop();
+            this.sequencers.forEach(s => s.initAudio(this.context));
         }
     }
 
     setTempo(newBPM) {
-        newBPM = Math.min(999, Math.max(newBPM, 5));
-        if (this.isPlaying && this.context != null) {
-            let last_beats = (this.context.currentTime - this.start_time) * this.bpm / 60;
-            this.start_time = this.context.currentTime - last_beats * 60 / newBPM;
+        newBPM = Math.min(300, Math.max(newBPM, 5));
+        if (this.isPlaying) {
+            this.start_beat = this.currentBeat;
+            this.start_time = this.context.currentTime;
         }
         this.bpm = newBPM;
         this.sequencers.forEach((s) => { s.tempoChange(); });
-        let bpmField = document.querySelector('#tempo-field');
-        if (bpmField) { bpmField.value = `${newBPM}`; }
-        this.saveState();
     }
-    
-
-/*
-    /// bind tempo button event handlers
-    _bindSpinnerButton(querySelector('#tempo-up') as ButtonElement?, () { setTempo(bpm + 1); }, () {});
-    _bindSpinnerButton(querySelector('#tempo-down') as ButtonElement?, () { setTempo(bpm - 1); }, () {});
-
-    InputElement? f = querySelector('#tempo-field') as InputElement?;
-    if (f != null) {
-      f.onKeyPress.listen((e) { if (e.keyCode == 13) f.blur(); });
-      f.onBlur.listen((e) { setTempo(toInt(f.value, 120)); });
-      f.onInput.listen((e) { f.value = f.value!.replaceAll(RegExp(r'[^0-9]'), ''); });
-      f.innerHTML = '$bpm';
-    }
-  }
-*/
-
 }
 
 
@@ -214,10 +172,14 @@ class DrumCell {
     cueSound(dest, delayBeats, offsetBeats) {
         if (dest !== null) {
             let when = this.audioCtx.currentTime;
-            if (delayBeats > 0 || this.startBeat == 0) {
+            if (this.startBeat === 0 && delayBeats === 0 && offsetBeats === 0) {
+                this.playSound(dest, when);
+            }
+            else if (delayBeats > 0) {
                 when = when + (this.startBeat + delayBeats) * 60 / this.sequencer.bpm;
                 this.playSound(dest, when);
-            } else if (offsetBeats >= 0 && this.startBeat > offsetBeats) {
+            } 
+            else if (offsetBeats >= 0 && this.startBeat > offsetBeats) {
                 when = when + (this.startBeat - offsetBeats) * 60 / this.sequencer.bpm;
                 this.playSound(dest, when);
             }
@@ -225,12 +187,10 @@ class DrumCell {
     }
 
     previewSound() {
-        if (!this.sequencer.isPlaying) {
-            this.cancelSound();
-            if  (this.audioCtx != null) {
-                let when = this.audioCtx.currentTime;
-                this.playSound(this.audioCtx.destination, when);
-            }
+        this.cancelSound();
+        if  (this.audioCtx != null) {
+            let when = this.audioCtx.currentTime;
+            this.playSound(this.audioCtx.destination, when);
         }
     }
 
@@ -316,16 +276,16 @@ class Drum {
  */
 class Sequencer {
 
-    constructor(composer, container_id, config) {
-        this.container = document.getElementById(container_id);
-
-        this.composer = composer;   /// main composer object that maintains clock and Tempo
-        this.steps = 16;            /// how many steps in the sequence (columns)
+    constructor(composer, container, config) {
+        this.container = container;
+        this.composer = composer;       // main composer object that maintains clock and Tempo
         this.config = config;
-        this.stateId = "demo-sequencer"; // TODO make this come from the URL request
-        this.voiceIndex = 0;        /// selects which voice
+        this.stateId = this.container.getAttribute('data-state');
 
-        this.master = null;   // GainNode
+        this.steps = 16;                // how many steps in the sequence (columns)
+        this.voiceIndex = 0;            // selects which voice
+
+        this.master = null;             // GainNode
         this.parent = this.container.querySelector('.sequencer'); // SVGSVGElement
 
         this.cellGroup = document.createElementNS("http://www.w3.org/2000/svg", 'g');
@@ -351,15 +311,12 @@ class Sequencer {
         this.cells = [ ];    // List<DrumCell>
         this.tracks = [ ];   // List<Drum>();
         this.sounds = { };   // Map<String?, AudioBuffer>();
-        this.loadState();
+
         this.loadTracks(false);
         this.redraw();
         this.setPlayhead(0);
 
         this.isPlaying = false;
-
-        this.context = null;  // AudioContext
-    
         this.looped = false;
         this.last_beat = 0;
 
@@ -382,7 +339,7 @@ class Sequencer {
         // Build the instrument select menu
         const menu = this.container.querySelector('#voice-menu');
         let index = 0;
-        for (let c of drum_configs['configs']) {
+        for (let c of this.config['voices']) {
             let opt = document.createElement('option');
             opt.innerHTML = c['name'];
             opt.setAttribute("data-index", `${index}`);
@@ -402,15 +359,31 @@ class Sequencer {
         // Activate buttons
         this.container.querySelector('.play-button').addEventListener('click', (e) => this.play());
         this.container.querySelector('.pause-button').addEventListener('click', (e) => this.pause());
-        this.container.querySelector('.stop-button').addEventListener('click', (e) => this.stopAll());
+        this.container.querySelector('.stop-button').addEventListener('click', (e) => this.composer.stopAll());
         this.container.querySelector('.clear-button').addEventListener('click', (e) => this.clear());
-        this.container.querySelector('.increment-button').addEventListener('click', (e) => this.incrementMeasures());
-        this.container.querySelector('.decrement-button').addEventListener('click', (e) => this.decrementMeasures());
+        this.container.querySelector('.bars-up').addEventListener('click', (e) => this.incrementMeasures());
+        this.container.querySelector('.bars-down').addEventListener('click', (e) => this.decrementMeasures());
+        this.container.querySelector('.copy-code-button').addEventListener('click', (e) => this.copyCode());
+        bindSpinnerButton(this.container.querySelector('.tempo-up'),
+                            () => this.increaseTempo(),
+                            () => this.mute(),
+                            () => { this.unmute(); this.composer.saveState(); });
+        bindSpinnerButton(this.container.querySelector('.tempo-down'), 
+                            () => this.decreaseTempo(),
+                            () => this.mute(),
+                            () => { this.unmute(); this.composer.saveState(); });
 
+        this.container.querySelector('.tempo .value').addEventListener('blur', (e) => {
+            let t = parseInt(e.target.innerHTML);
+            this.composer.setTempo( isNaN(t) ? this.bpm : t );
+        });
+        this.container.querySelector('.tempo .value').addEventListener('keypress', (e) => {
+            if (e.charCode === 13) e.target.blur();
+        });
         this.updateCodeHint();
     }
 
-
+    get context() { return this.composer.context; }
     get bpm() { return this.composer.bpm; }
     get measures() { return Math.round(this.steps / this.stepsPerMeasure); }
     get stepsPerBeat() { return 4; }
@@ -419,7 +392,7 @@ class Sequencer {
     get maxMeasures() { return 3; }
     get width() { return this.container.getBoundingClientRect().width; }
     get height() { return 300; }
-    get voice() { return this.config['configs'][this.voiceIndex]; }
+    get voice() { return this.config['voices'][this.voiceIndex]; }
     get trackCount() { return this.voice['tracks'].length; }
     get headerWidth() { return 150; }
     get headerHeight() { return 40; }
@@ -432,9 +405,9 @@ class Sequencer {
     incrementMeasures() {
         if (this.measures < this.maxMeasures) {
             this.steps = (this.measures + 1) * this.stepsPerMeasure;
-            this.stop();
+            this.composer.stopAll();
             this.redraw();
-            this.saveState();
+            this.composer.saveState();
             this.updateCodeHint();
         }
     }
@@ -442,27 +415,36 @@ class Sequencer {
     decrementMeasures() {
         if (this.measures > 1) {
             this.steps = (this.measures - 1) * this.stepsPerMeasure;
-            this.stop();
+            this.composer.stopAll();
             this.redraw();
-            this.saveState();
+            this.composer.saveState();
             this.updateCodeHint();
         }
     }
 
+    increaseTempo() {
+        this.composer.setTempo(this.bpm + 1);
+    }
+
+    decreaseTempo() {
+        this.composer.setTempo(this.bpm - 1);
+    }
+
     changeVoice(index) {
-        this.stop();
-        this.voiceIndex = Math.max(0, Math.min(index, this.config['configs'].length));
+        this.voiceIndex = Math.max(0, Math.min(index, this.config['voices'].length));
         this.loadTracks(true);
         this.redraw();
-        this.saveState();
+        this.composer.saveState();
     }
 
     redraw() {
         this.parent.setAttribute("viewBox", `0 0 ${this.width} ${this.height}`);
-        console.log
         this.buildTimeline();
         this.drawGrid();
         this.cells.forEach(cell => cell.reposition());
+        this.container.querySelector(".bars .value").innerHTML = `${this.measures}`;
+        this.container.querySelector(".bars .units").innerHTML = this.measures > 1 ? "bars" : "bar";
+        this.container.querySelector(".tempo .value").innerHTML = `${this.bpm}`;
     }
 
     async loadTracks(loadAudio) {
@@ -499,37 +481,33 @@ class Sequencer {
         }
     }
 
-    saveState() {
+    save() {
         let state = [ ];
         for (let cell of this.cells) { state.push(cell.save()); }
         let config_state = {};
         config_state['steps'] = this.steps;
         config_state['cells'] = state;
         config_state['voiceIndex'] = this.voiceIndex;
-        localStorage.setItem(this.stateId, JSON.stringify(config_state));
+        return config_state;
     }
 
-    loadState() {
-        const s = localStorage.getItem(this.stateId);
-        if (s !== null) {
-            const state = JSON.parse(s);
-            if (state instanceof Object && state['cells'] instanceof Array)  {
-                this.steps = parseInt(state['steps']);
-                this.voiceIndex = parseInt(state['voiceIndex']);
-                if (isNaN(this.steps)) this.steps = 16;
-                if (isNaN(this.voiceIndex)) this.voiceIndex  = 0;
+    load(state) {
+        if (state instanceof Object && state['cells'] instanceof Array)  {
+            this.steps = parseInt(state['steps']);
+            this.voiceIndex = parseInt(state['voiceIndex']);
+            if (isNaN(this.steps)) this.steps = 16;
+            if (isNaN(this.voiceIndex)) this.voiceIndex  = 0;
 
-                this.cellGroup.innerHTML = '';
-                this.cells = [ ];
-                for (let m of state['cells']) {
-                    let cell = new DrumCell(this, 0, 0);
-                    cell.load(m);
+            this.cellGroup.innerHTML = '';
+            this.cells = [ ];
+            for (let m of state['cells']) {
+                let cell = new DrumCell(this, 0, 0);
+                cell.load(m);
 
-                    if (cell.start+1 > this.steps) continue;
-                    if (cell.track >= this.trackCount) continue;
-                    this.cells.push(cell);
-                    this.cellGroup.append(cell.group);
-                }
+                if (cell.start+1 > this.steps) continue;
+                if (cell.track >= this.trackCount) continue;
+                this.cells.push(cell);
+                this.cellGroup.append(cell.group);
             }
         }
     }
@@ -572,61 +550,76 @@ class Sequencer {
 
     play() {
         if (!this.isPlaying && this.context !== null) {
-            this.composer.play();
+            this.composer.sequencerPlayed();
             this.isPlaying = true;
             this.container.querySelector('.play-button').classList.add('hidden');
             this.container.querySelector('.pause-button').classList.remove('hidden');
             this.looped = false;
             this.last_beat = this.composer.currentBeat % this.totalBeats;
-
             this.setPlayhead(this.last_beat);
-            this.animate();
+
             if (this.master) this.master.disconnect();
             this.master = null;
             this.master = this.context.createGain();
             this.master.gain.value = 1.0;
             this.master.connect(this.context.destination);
-            this.cueSounds(0, this.last_beat);
+
+            if (this.last_beat < (this.totalBeats - 0.5)) {
+                this.cueSounds(0, this.last_beat);
+            }
+            this.animate();
         }
     }
 
     pause() {
-        if (this.isPlaying && this.context !== null) {
-            this.container.querySelector('.play-button').classList.remove('hidden');
-            this.container.querySelector('.pause-button').classList.add('hidden');
-            this.isPlaying = false;
-            this.master.gain.setValueAtTime(0.0, 0.1);
-            this.composer.pause();
-        }
+        this.isPlaying = false;
+        this.composer.sequencerPaused();
+        this.container.querySelector('.play-button').classList.remove('hidden');
+        this.container.querySelector('.pause-button').classList.add('hidden');
+        this.master.gain.setValueAtTime(0.0, 0.1);
     }
 
-    stop() {
+    stopped() {
+        this.isPlaying = false;
         this.pause();
         this.setPlayhead(0);
         this.container.querySelector('.scroll-container').scrollTo(0, 0);
     }
 
     clear() {
-        this.stop();
         for (let cell of this.cells) {
             cell.stopSound();
             cell.group.remove();
         }
         this.cells = [];
-        this.saveState();
+        this.composer.saveState();
     }
 
-    stopAll() {
-        this.composer.stop();
+    mute() {
+        if (this.master !== null) {
+            this.master.gain.setValueAtTime(0.0, 0.1);
+        }
+    }
+
+    unmute() {
+        if (this.master !== null) {
+            this.master.gain.setValueAtTime(1.0, 0.1);
+        }
     }
 
     tempoChange() {
         if (this.isPlaying && this.master !== null) {
-            this.cells.forEach((cell) => {
-                cell.stopSound();
-                cell.cueSound(this.master, 0, this.composer.currentBeat % this.totalBeats);
-            });
+            this.cells.forEach(cell => cell.stopSound());
+
+            let beat = this.composer.currentBeat % this.totalBeats;
+            if (beat < (this.totalBeats - 0.5)) {
+                this.cueSounds(0, this.last_beat);
+            }
+            else {
+                this.cueSounds(this.totalBeats - beat, 0);
+            }
         }
+        this.container.querySelector(".tempo .value").innerHTML = `${this.bpm}`;
     }
 
     cueSounds(delayBeats, offsetBeats) {
@@ -688,7 +681,7 @@ class Sequencer {
         if (this.isPlaying && this.master != null) {
             cell.cueSound(this.master, 0, this.composer.currentBeat % this.totalBeats);
         }
-        this.saveState();
+        this.composer.saveState();
         this.updated = true;
     }
 
@@ -704,7 +697,7 @@ class Sequencer {
         cell.group.remove();
         this.cells = this.cells.filter(c => c !== cell);
         cell.cancelSound();
-        this.saveState();
+        this.composer.saveState();
         this.updated = true;
     }
 
@@ -718,36 +711,56 @@ class Sequencer {
         }
     }
 
-
-    updateCodeHint() {
+    generateCode() {
         let code = "";
 
         // super inefficient!!
         for (let row = 0; row < this.trackCount; row++) {
             let rest = 0;
+            let header = false;
 
-            code += "<code># " + this.tracks[row].name + "</code>\n";
-            code += "<code>moveTo(0)</code>\n";
             for (let col = 0; col < this.steps; col++) {
                 for (let cell of this.cells) {
                     if (cell.track === row && cell.start === col) {
-                        if (rest > 0) code += `<code>rest(${rest})</code>\n`;
+                        if (!header) {
+                            code += "# " + this.tracks[row].name + "\n";
+                            code += "moveTo(0)\n";
+                            header = true;
+                        }
+
+                        if (rest > 0) code += `rest(${rest})\n`;
                         rest = -0.25;
-                        code += '<code>' + cell.codeHint() + "</code>\n";
+                        code += cell.codeHint() + "\n";
                     }
                 }
                 rest += 0.25;
             }
-            code += "<code> </code>\n";
+            code += " \n";
+        }
+        return code;
+    }
+
+    updateCodeHint() {
+        let code = this.generateCode();
+        let lines = code.split('\n');
+        code = '';
+        for (let line of lines) {
+            code += '<code>' + line + '<\code>\n';
         }
         this.codeHint.innerHTML = code;
+        this.container.querySelector('.copy-code-button').innerHTML = 'Copy to Clipboard';
         Prism.highlightAll();
+    }
+
+    copyCode() {
+        let code = this.generateCode();
+        navigator.clipboard.writeText(code);
+        this.container.querySelector('.copy-code-button').innerHTML = 'Copied';
     }
 
 
     async initAudio(ac) {
         if (ac != null) {
-            this.context = ac;
             for (let drum of this.tracks) {
                 drum.buffer = await this.loadAudioBuffer(drum.sound);
             }
@@ -803,5 +816,46 @@ class Sequencer {
         xform.x = sx;
         xform.y = sy;
         return xform.matrixTransform(this.parent.getScreenCtm());
+    }
+}
+
+
+function bindSpinnerButton(button, spinAction, pressAction, releaseAction) {
+    if (button != null) {
+        let down = false;
+        let hold = null;
+        let spin = null;
+
+        button.addEventListener('pointerup', (e) => {
+            if (down) releaseAction();
+            down = false;
+            clearTimeout(hold);
+            clearInterval(spin);
+        });
+        button.addEventListener('pointerleave', (e) => {
+            if (down) releaseAction();
+            down = false;
+            clearTimeout(hold);
+            clearInterval(spin);
+        });
+
+        button.addEventListener('pointerdown', (e) => {
+            clearTimeout(hold);
+            clearInterval(spin);
+
+            if (!down) pressAction();
+            spinAction();
+            down = true;
+
+            hold = setTimeout(() => {
+                spin = setInterval(() => {
+                    if (down) {
+                        spinAction();
+                    } else {
+                        clearInterval(spin);
+                    }
+                }, 50);
+            }, 500);
+        });
     }
 }

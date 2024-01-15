@@ -40,49 +40,6 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-nav.top-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 55px;
-  color: #414251;
-  background-color: #fdfdfd;
-  z-index: 100;
-  box-shadow: 0px 3px 3px rgb(0 0 0 / 10%);
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  box-sizing: border-box;
-  padding: 8px 20px 8px 80px;
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-}
-
-nav.top-nav .logo {
-  width: 35px;
-  height: 35px;
-  margin: 0 15px 0 0;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-image: url('../images/logo_headphones.svg');
-  background-size: contain;
-}
-
-nav.top-nav h1 {
-  flex: 1;
-  font-family: var(--main-font);
-  font-size: 16px;
-  font-weight: 700;
-  color: #414251;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  padding: 5px;
-  margin: 0;
-}
-
 .instrument {
   min-width: 660px;
   box-sizing: border-box;
@@ -118,6 +75,7 @@ nav.top-nav h1 {
   border-right: 2px solid #414252;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  padding-right: 1.5em;
 }
 
 .buttons .expander { flex: 1; }
@@ -127,14 +85,6 @@ nav.top-nav h1 {
   margin: 0;
 }
 .instrument button {
-  outline: none;
-  background-color: transparent;
-  border: none;
-  width: 30px;
-  height: 30px;
-  font-size: 110%;
-}
-.buttons button {
   outline: none;
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: rgba(255, 255, 255, 0.75);
@@ -151,11 +101,34 @@ nav.top-nav h1 {
 .instrument button:active { opacity: 0.5; }
 .instrument button:hover { color: var(--active-color); }
 .instrument button.hidden { display: none; }
-.instrument .clear-button {
-  font-size: 90%;
-  margin-left: 15px;
-  margin-right: 15px;
-  width: 64px !important;
+.instrument .clear-button { margin-left: 20px; }
+.instrument button.spinner {
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+    font-size: 16px;
+    font-weight: bold;
+    width: unset;
+}
+
+.tempo-controls, .bars-controls {
+    display: flex;
+    font-family: var(--main-font);
+}
+.tempo, .bars {
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 30px;
+    margin: 0 0.25em;
+    display: flex;
+}
+.tempo .value, .bars .value {
+    font-size: 20px;
+    font-weight: bold;
+}
+.units {
+    font-size: 14px;
+    font-weight: normal;
+    margin-left: 0.25em;
 }
 
 .instrument .gutter {
@@ -168,12 +141,24 @@ nav.top-nav h1 {
     border-top: 2px solid #667;
 }
 
+.code-hint-container {
+    position: relative;
+}
+
 .code-hint-container h2 {
     margin-top: 2em;
 }
 
-.code-button {
-  width: 90px !important;
+button.copy-code-button {
+    position: absolute;
+    top: 4em;
+    right: 2em;
+    color: #0009;
+    padding: 0 1.5em;
+    font-size: 15px;
+    border: 1px solid #0004;
+    z-index: 100;
+    width: auto;
 }
 
 .code-hint {
@@ -234,7 +219,6 @@ nav.top-nav h1 {
   fill: white;
   fill-opacity: 0.7;
   font-size: 17px;
-  dominant-baseline: middle;
   text-anchor: end;
   user-select: none;
   /* text-decoration: underline; */
@@ -245,7 +229,6 @@ nav.top-nav h1 {
   fill: white;
   fill-opacity: 0.7;
   font-size: 15px;
-  dominant-baseline: middle;
   text-anchor: middle;
   user-select: none;
 }
@@ -255,90 +238,14 @@ nav.top-nav h1 {
   stroke-width: 4;
 }
 
-.tempo-widget {
-  display: flex;
-  margin-right: 100px;
-}
-
-.tempo-widget h2 {
-  margin: 0 15px 0 0;
-  font-size: 15px;
-  font-family: var(--main-font);
-  font-weight: normal;
-  line-height: 35px;
-}
-
-#tempo-up, #tempo-down {
-  background-color: transparent;
-  border: none;
-  outline: none;
-  width: 30px;
-  height: 38px;
-}
-
-#tempo-up:hover, #tempo-down:hover {
-  opacity: 0.8;
-}
-
-#tempo-field {
-  width: 5em;
-  height: 2.5em;
-  border-radius: 7px;
-  outline: none;
-  border: 2px solid #ccc;
-  font-size: 90%;
-  padding: 0.5em;
-  text-align: center;
-  margin: 0 0.5em;
-}
-
-.menu-button {
-  color: #999;
-  font-size: 14px;
-  font-family: var(--main-font);
-  font-weight: 600;
-  margin: 0 7px;
-  padding: 8px 14px;
-  border-radius: 5px;
-  line-height: 100%;
-}
-
-#change-bpm:hover,
-#change-time-signature:hover,
-#change-key:hover {
-  text-decoration: underline;
-}
-
-#change-bpm:active,
-#change-time-signature:active,
-#change-key:active {
-  color: #2f9af0;
-  /* text-decoration: underline; */
-}
-
-#change-bpm:active #bpm,
-#change-time-signature:active #time-signature,
-#change-key:active #key-base {
-  color: #2f9af0;
-}
-
-#key-base {
-  color: #414251;
-  font-size: 18px;
-}
-
-
-
-
 .voice-selector {
   outline: none;
   font-family: var(--main-font);
   font-size: 12px;
-  text-align: center;
+  text-align: right;
   white-space: nowrap;
   flex: 1;
   box-sizing: border-box;
-  display: flex;
   position: relative;
 }
 .voice-menu {
