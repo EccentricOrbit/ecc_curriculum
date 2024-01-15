@@ -31,33 +31,97 @@ splash: /images/rock-drums.png
 
 
 <body>
-  <div class="instrument" id="drums">
-    <div class="buttons">
-      <div class="gadget-icon drums"></div>
-      <button class="play-button" title="Play"><i class="fas fa-play"></i></button>
-      <button class="pause-button hidden" title="Pause"><i class="fas fa-pause"></i></button>
-      <button class="stop-button" title="Stop"><i class="fas fa-square"></i></button>
-      <div class="expander"></div>
-      <button class="clear-button">CLEAR</button>
-      <div class="expander"></div>
-      <button class="increment-button" title="Add Measure"> + </button>
-      <button class="decrement-button" title="Remove Measure"> - </button>
-      
-      <div class="expander"></div>
-      <div class="voice-selector">
-        <select class="voice-menu" id="voice-menu"></select>
-      </div>
-    </div>
-    <div class="scroll-container"><svg class="sequencer" version="1.1"></svg></div>
-    <div class="gutter"></div>
+    <div id="composer" data-state="composer0">
+        <div class="instrument" data-state="drums0">
+            <div class="buttons">
+            <div class="gadget-icon drums"></div>
+            <button class="play-button" title="Play"><i class="fas fa-play"></i></button>
+            <button class="pause-button hidden" title="Pause"><i class="fas fa-pause"></i></button>
+            <button class="stop-button" title="Stop"><i class="fas fa-square"></i></button>
+            <button class="clear-button" title="Clear"><i class="fas fa-trash"></i></button>
+            <div class="expander"></div>
+            <div class="tempo-controls">
+                <button class="spinner tempo-up" title="Faster Tempo"><i class="fas fa-plus"></i></button>
+                <div class="tempo">
+                    <div class="value" contenteditable>90</div>
+                    <div class="units">bpm</div>
+                </div>
+                <button class="spinner tempo-down" title="Slower Tempo"><i class="fas fa-minus"></i></button>
+            </div>
+            <div class="expander"></div>
+            <div class="bars-controls">
+                <button class="spinner bars-up" title="Increase Measures"><i class="fas fa-plus"></i></button>
+                <div class="bars">
+                    <div class="value">1</div>
+                    <div class="units">bar</div>
+                </div>
+                <button class="spinner bars-down" title="Decrease Measures"><i class="fas fa-minus"></i></button>
+            </div>
+            
+            <div class="expander"></div>
+            <div class="voice-selector">
+                <select class="voice-menu" id="voice-menu"></select>
+            </div>
+            </div>
+            <div class="scroll-container"><svg class="sequencer" version="1.1"></svg></div>
+            <div class="gutter"></div>
 
-    <div class="code-hint-container">
-        <!-- <button class="code-button"><i class="fas fa-code" id="display-code-icon"></i></button> -->
-        <h2>Python Code</h2>
-        <pre class="code-hint line-numbers language-python">
-        </pre>
+            <div class="code-hint-container">
+                <!-- <button class="code-button"><i class="fas fa-code" id="display-code-icon"></i></button> -->
+                <h2>Python Code</h2>
+                <button class="copy-code-button">Copy to Clipboard</button>
+                <pre class="code-hint line-numbers language-python"></pre>
+            </div>
+        </div>
     </div>
-  </div>
   <script src="/js/prism.js" data-manual></script>
+  <script>
+
+    const drum_config = {
+        'instrument' : 'drums',
+        'note-class' : 'drum',
+        'voices': [ 
+            {
+                'name' : '808 Drumkit',
+                'tracks' : [
+                    { 'name' : 'Tom', 'note' : 7, 'track' : 0, 'sound' : '/sounds/voices/808-drums/tom2' },
+                    { 'name' : 'Clap', 'note' : 10, 'track' : 1, 'sound' : '/sounds/voices/808-drums/clap' },
+                    { 'name' : 'Closed Hat', 'note' : 4, 'track' : 2, 'sound' : '/sounds/voices/808-drums/hihat' },
+                    { 'name' : 'Open Hat', 'note' : 5, 'track' : 3, 'sound' : '/sounds/voices/808-drums/openhat' },
+                    { 'name' : 'Snare', 'note' : 2, 'track' : 4, 'gain' : 0.6, 'sound' : '/sounds/voices/808-drums/snare1' },
+                    { 'name' : 'Kick', 'note' : 0, 'track' : 5, 'sound' : '/sounds/voices/808-drums/kick2' }
+                ]
+            },
+            {
+                'name' : '909 Drumkit',
+                'tracks' : [
+                    { 'name' : 'tom', 'note' : 7, 'track' : 0, 'sound' : '/sounds/voices/909-drums/mid_tom' },
+                    { 'name' : 'clap', 'note' : 10, 'track' : 1, 'sound' : '/sounds/voices/909-drums/clap' },
+                    { 'name' : 'hat', 'note' : 4, 'track' : 2, 'sound' : '/sounds/voices/909-drums/hat1' },
+                    { 'name' : 'open_hat', 'note' : 5, 'track' : 3, 'sound' : '/sounds/voices/909-drums/open_hat' },
+                    { 'name' : 'snare', 'note' : 2, 'track' : 4, 'gain' : 0.85, 'sound' : '/sounds/voices/909-drums/snare1' },
+                    { 'name' : 'kick', 'note' : 0, 'track' : 5, 'sound' : '/sounds/voices/909-drums/kick2' }
+                ]
+            },
+            {
+                'name' : 'Rock Drumkit',
+                'tracks' : [
+                    { 'name' : 'tom', 'note' : 7, 'track' : 0, 'sound' : '/sounds/voices/rock-drums/midTom' },
+                    { 'name' : 'clap', 'note' : 10, 'track' : 1, 'sound' : '/sounds/voices/rock-drums/clap' },
+                    { 'name' : 'hat', 'note' : 4, 'track' : 2, 'sound' : '/sounds/voices/rock-drums/closedHat' },
+                    { 'name' : 'open_hat', 'note' : 5, 'track' : 3, 'sound' : '/sounds/voices/rock-drums/openHat' },
+                    { 'name' : 'snare', 'note' : 2, 'track' : 4, 'sound' : '/sounds/voices/rock-drums/snare1' },
+                    { 'name' : 'kick', 'note' : 0, 'track' : 5, 'sound' : '/sounds/voices/rock-drums/kick' }
+                ]
+            }
+        ]
+    };
+
+    window.onload = (e) => { 
+        const container = document.getElementById('composer');
+        new Composer(container, drum_config);
+    };
+
+  </script>
 </body>
 </html>
