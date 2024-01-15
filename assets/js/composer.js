@@ -1,8 +1,3 @@
-/*
-TODO:
-Load correct voice on refresh
-*/
-
 /**
  * This class synchronizes and manages all of the sequencers on the page.
  * Add data-state attribute to HTML 
@@ -21,6 +16,8 @@ class Composer {
         });
         this.loadState();
         this.sequencers.forEach(s => s.redraw());
+        this.sequencers.forEach(s => s.loadTracks(false));
+        this.sequencers.forEach(s => s.updateCodeHint());
 
         // start the audio context on the first click
         document.addEventListener("click", (e) => { this.initAudio(); }, {once : true});
@@ -80,8 +77,6 @@ class Composer {
         const s = localStorage.getItem(this.stateId);
         if (s !== null) {
             const state = JSON.parse(s);
-            console.log('Load:');
-            console.log(state);
             if (state instanceof Object && state['sequencers'] instanceof Object)  {
                 let tempo = state['bpm'];
                 if (isNaN(tempo)) {
@@ -90,7 +85,6 @@ class Composer {
                     this.setTempo(parseInt(tempo));
                 }
                 for (let seq of this.sequencers) {
-                    console.log(state['sequencers'][seq.stateId]);
                     if (state['sequencers'][seq.stateId] instanceof Object) {
                         seq.load(state['sequencers'][seq.stateId]);
                     }
@@ -337,7 +331,7 @@ class Sequencer {
 
 
         // Build the instrument select menu
-        const menu = this.container.querySelector('#voice-menu');
+        const menu = this.container.querySelector('.voice-menu');
         let index = 0;
         for (let c of this.config['voices']) {
             let opt = document.createElement('option');
@@ -430,13 +424,6 @@ class Sequencer {
         this.composer.setTempo(this.bpm - 1);
     }
 
-    changeVoice(index) {
-        this.voiceIndex = Math.max(0, Math.min(index, this.config['voices'].length));
-        this.loadTracks(true);
-        this.redraw();
-        this.composer.saveState();
-    }
-
     redraw() {
         this.parent.setAttribute("viewBox", `0 0 ${this.width} ${this.height}`);
         this.buildTimeline();
@@ -456,6 +443,23 @@ class Sequencer {
             this.tracks.push(drum)
             if (loadAudio) drum.buffer = await this.loadAudioBuffer(drum.sound);
         }
+    }
+
+    updateVoiceMenu() {
+        this.container.querySelectorAll('.voice-menu option').forEach((opt) => {
+            if (opt.getAttribute("data-index") === `${this.voiceIndex}`) {
+                opt.setAttribute("selected", "true");
+            } else {
+                opt.removeAttribute('selected');
+            }
+        });
+    }
+
+    changeVoice(index) {
+        this.voiceIndex = Math.max(0, Math.min(index, this.config['voices'].length));
+        this.loadTracks(true);
+        this.redraw();
+        this.composer.saveState();
     }
 
     drawGrid() {
@@ -494,9 +498,14 @@ class Sequencer {
     load(state) {
         if (state instanceof Object && state['cells'] instanceof Array)  {
             this.steps = parseInt(state['steps']);
-            this.voiceIndex = parseInt(state['voiceIndex']);
+            let vi = parseInt(state['voiceIndex']);
+            if (isNaN(vi)) vi = 0;
+            if (vi != this.voiceIndex) {
+                this.voiceIndex = vi;
+                this.updateVoiceMenu();
+                this.loadTracks(true);
+            }
             if (isNaN(this.steps)) this.steps = 16;
-            if (isNaN(this.voiceIndex)) this.voiceIndex  = 0;
 
             this.cellGroup.innerHTML = '';
             this.cells = [ ];
@@ -735,7 +744,7 @@ class Sequencer {
                 }
                 rest += 0.25;
             }
-            code += " \n";
+            if (header) code += " \n";
         }
         return code;
     }
