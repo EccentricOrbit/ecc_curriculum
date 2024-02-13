@@ -26,8 +26,7 @@ The first cell is programmed to play four notes on the piano keyboard.
 Press the ▶ button below to hear how it sounds.
 
 <iframe src="{{ project }}?embedded=true" class="tunepad-iframe" scrolling="no" style="height: 4300px"></iframe>
-
-[Open this project in TunePad]({{project}})
+<a href="{{project}}" target="_blank">Open this project in TunePad</a>
 
 # What's Next?
 To start creating your own music, go to [tunepad.com](https://tunepad.com) and log in with a gmail account or 
