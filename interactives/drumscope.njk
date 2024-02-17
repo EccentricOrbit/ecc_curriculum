@@ -1,0 +1,115 @@
+---
+title: TunePad Drum Scope
+description: Try different drum types and see their waveforms
+splash: /images/rock-drums.png
+---
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="{{ title }}">
+    <meta property=”og:type” content="article">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:image" content="https://learn.tunepad.com{{ splash }}">
+    <meta property="og:url" content="https://learn.tunepad.com{{ page.url }}">
+    <meta property="og:site_name" content="Learn TunePad">
+    <meta property="og:locale" content="en_US" />
+    <meta name="title" content="{{ title }}">
+    <meta name="description" content="{{ description }}">
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="/css/drumscope.css">
+    <link rel="stylesheet" href="/css/fontawesome.all.min.css">
+    <title>{{ title }}</title>
+    <script defer src="/js/drumscope.js"></script>
+</head>
+
+
+<body>
+    <nav class="controls">
+        <button class="play-button" title="Play"><i class="fas fa-play"></i></button>
+        <button class="pause-button hidden" title="Pause"><i class="fas fa-pause"></i></button>
+        <button class="stop-button" title="Stop"><i class="fas fa-square"></i></button>
+        <button class="clear-button" title="Clear"><i class="fas fa-trash"></i></button>
+        <div class="expander"></div>
+        <div class="tempo-controls">
+            <button class="spinner tempo-up" title="Faster Tempo"><i class="fas fa-plus"></i></button>
+            <div class="tempo">
+                <div class="value" contenteditable>80</div>
+                <div class="units">bpm</div>
+            </div>
+            <button class="spinner tempo-down" title="Slower Tempo"><i class="fas fa-minus"></i></button>
+        </div>
+        <div class="expander"></div>
+        <div class="combo">
+            <input type="checkbox" id="quantize-check" value="true" checked>
+            <label for="quantize-check">Quantize</label>
+        </div>
+        <div class="combo">
+            <input type="checkbox" id="record-check" value="true" checked>
+            <label for="record-check">Record</label>
+        </div>
+        <div class="combo">
+            <input type="checkbox" id="midi-check" value="true" checked>
+            <label for="midi-check">MIDI</label>
+        </div>
+                
+    </nav>
+    <main id="drumscope">
+        <svg id="timeline"></svg>
+        <div class="timeline-manipulator">BEATS</div>
+        <div class="tracks">
+            <div class="drum-pads">
+                <button data-drum="kick" data-trigger="k" data-note="0">
+                    <div class="drum-name">Kick</div>
+                    <div class="trigger">k</div>
+                    <div class="note">0</div>
+                </button>
+                <button data-drum="snare1" data-trigger="s" data-note="2">
+                    <div class="drum-name">Snare</div>
+                    <div class="trigger">s</div>
+                    <div class="note">2</div>
+                </button>
+                <button data-drum="closedHat" data-trigger="h" data-note="4">
+                    <div class="drum-name">Closed Hat</div>
+                    <div class="trigger">h</div>
+                    <div class="note">4</div>
+                </button>
+                <button data-drum="openHat" data-trigger="o" data-note="5">
+                    <div class="drum-name">Open Hat</div>
+                    <div class="trigger">o</div>
+                    <div class="note">5</div>
+                </button>
+                <button data-drum="floorTom" data-trigger="t" data-note="8">
+                    <div class="drum-name">Tom</div>
+                    <div class="trigger">t</div>
+                    <div class="note">8</div>
+                </button>
+                <button data-drum="clap" data-trigger="c" data-note="10">
+                    <div class="drum-name">Clap</div>
+                    <div class="trigger">c</div>
+                    <div class="note">10</div>
+                </button>
+            </div>
+            <div class="drum-tracks">
+                <div class="track" data-drum="kick"><canvas></canvas></div>
+                <div class="track" data-drum="snare1"><canvas></canvas></div>
+                <div class="track" data-drum="closedHat"><canvas></canvas></div>
+                <div class="track" data-drum="openHat"><canvas></canvas></div>
+                <div class="track" data-drum="floorTom"><canvas></canvas></div>
+                <div class="track" data-drum="clap"><canvas></canvas></div>
+            </div>
+        </div>
+        <div class="code-hint-container">
+            <!-- <button class="code-button"><i class="fas fa-code" id="display-code-icon"></i></button> -->
+            <h2>Python Code</h2>
+            <button class="copy-code-button">Copy to Clipboard</button>
+            <pre class="code-hint line-numbers language-python"></pre>
+        </div>
+    </main>
+    <script src="/js/prism.js" data-manual></script>
+    <script>
+    window.onload = (e) => { new DrumScope(); };
+    </script>
+</body>
+</html>
