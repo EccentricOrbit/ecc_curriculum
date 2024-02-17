@@ -26,6 +26,7 @@ Reference: https://niklasrosenstein.github.io/pydoc-markdown/
 * Page aliases
 * Cannot GET /activities/play-chord
 * Scrollbar in search results
+* Pulldown in composer is invisible on chromebooks; one of the drums isn't working
 
 * Spanish translations?
 * Pagefind index title, subtitle, description of page
