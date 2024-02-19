@@ -20,6 +20,7 @@ splash: /images/rock-drums.png
     <link rel="icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="/css/drumscope.css">
     <link rel="stylesheet" href="/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="/css/prism.css">
     <title>{{ title }}</title>
     <script defer src="/js/drumscope.js"></script>
 </head>
@@ -92,21 +93,21 @@ splash: /images/rock-drums.png
                 </button>
             </div>
             <div class="drum-tracks">
-                <div class="track" data-drum="kick"><canvas></canvas></div>
-                <div class="track" data-drum="snare1"><canvas></canvas></div>
-                <div class="track" data-drum="closedHat"><canvas></canvas></div>
-                <div class="track" data-drum="openHat"><canvas></canvas></div>
-                <div class="track" data-drum="floorTom"><canvas></canvas></div>
-                <div class="track" data-drum="clap"><canvas></canvas></div>
+                <div class="track" data-drum="kick" data-note="0" data-name="kick"><canvas></canvas></div>
+                <div class="track" data-drum="snare1" data-note="2" data-name="snare"><canvas></canvas></div>
+                <div class="track" data-drum="closedHat" data-note="4" data-name="hat"><canvas></canvas></div>
+                <div class="track" data-drum="openHat" data-note="5" data-name="open_hat"><canvas></canvas></div>
+                <div class="track" data-drum="floorTom" data-note="8" data-name="tom"><canvas></canvas></div>
+                <div class="track" data-drum="clap" data-note="10" data-name="clap"><canvas></canvas></div>
             </div>
         </div>
-        <div class="code-hint-container">
-            <!-- <button class="code-button"><i class="fas fa-code" id="display-code-icon"></i></button> -->
-            <h2>Python Code</h2>
-            <button class="copy-code-button">Copy to Clipboard</button>
-            <pre class="code-hint line-numbers language-python"></pre>
-        </div>
     </main>
+    <div class="code-hint-container">
+        <!-- <button class="code-button"><i class="fas fa-code" id="display-code-icon"></i></button> -->
+        <h2>Python Code</h2>
+        <button class="copy-code-button">Copy to Clipboard</button>
+        <pre class="code-hint line-numbers language-python"></pre>
+    </div>
     <script src="/js/prism.js" data-manual></script>
     <script>
     window.onload = (e) => { new DrumScope(); };
