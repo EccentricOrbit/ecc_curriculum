@@ -201,3 +201,38 @@ nav.controls {
     left: 5px;
     right: unset;
 }
+
+
+.code-hint-container {
+    position: relative;
+    margin: 2rem;
+}
+
+.code-hint-container h2 {
+    margin-top: 2em;
+    font-family: var(--main-font);
+}
+
+button.copy-code-button {
+    position: absolute;
+    top: 4em;
+    right: 2em;
+    color: #0009;
+    padding: 0 1.5em;
+    font-size: 15px;
+    border: 1px solid #0004;
+    z-index: 100;
+    width: auto;
+}
+
+.code-hint {
+  border-radius: 1.5em;
+  padding: 8px 0px;
+  /*margin-bottom: 30px;*/
+  font-size: 15px;
+}
+
+.code-hint.indented {
+  padding: 8px 90px;
+  min-height: 30px;
+}

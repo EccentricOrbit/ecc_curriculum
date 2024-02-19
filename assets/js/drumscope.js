@@ -1,6 +1,5 @@
 /**
- * TODO
- *   generate code
+ * 
  */
 class DrumScope {
 
@@ -15,9 +14,11 @@ class DrumScope {
         this.looped = false;
         this.quantize = true;
         this.recording = true;
-        this.midi = truue;
+        this.midi = true;
         this.last_beat = 0;
         this.timeline = new Timeline(this);
+        this._needsUpdate = false;
+
 
         this.tracks = { };          // audio tracks draw waveform trace
         document.querySelectorAll(".drum-tracks .track").forEach((el) => {
@@ -29,13 +30,23 @@ class DrumScope {
         document.querySelector(".pause-button").addEventListener('click', e => this.pause());
         document.querySelector(".stop-button").addEventListener('click', e => this.stop());
         document.querySelector(".clear-button").addEventListener('click', e => this.clear());
+        document.querySelector('.copy-code-button').addEventListener('click', (e) => this.copyCode());
+        
 
         // start the audio context on the first click
         //document.addEventListener("click", (e) => { this.initAudio(); }, {once : true});
         setTimeout(() => { 
             this.initAudio();
             this.initDrumPads()
+            this.updateCodeHint();
         }, 100);
+
+        setInterval(() => {
+            if (this._needsUpdate) {
+                this._updateCodeHint();
+                this._needsUpdate = false;
+            }
+        }, 500);
 
         addEventListener('resize', (e) => { this.timeline.resize() });
 
@@ -149,6 +160,7 @@ class DrumScope {
         document.querySelector('.pause-button').classList.add('hidden');
         document.querySelector('.play-button').classList.remove('hidden');
         this.stopSounds();
+        this.updateCodeHint();
     }
     
     stop() {
@@ -167,6 +179,7 @@ class DrumScope {
         this.master = this.context.createGain();
         this.master.gain.value = 1.0;
         this.master.connect(this.context.destination);
+        this.updateCodeHint();
     }
 
     mute() {
@@ -294,6 +307,7 @@ class DrumScope {
     playSound(drumName, velocity = 100) {
         if (drumName in this.tracks) {
             this.tracks[drumName].playSound(this.currentBeat % this.totalBeats, velocity);
+            this.updateCodeHint();
         }
     }
 
@@ -342,22 +356,31 @@ class DrumScope {
         return code;
     }
 
-    updateCodeHint() {
+    _updateCodeHint() {
+        this._needsUpdate = false;
         let code = this.generateCode();
         let lines = code.split('\n');
         code = '';
+        if (lines.length < 10) {
+            for (let i=0; i<10; i++) lines.push('');
+        }
         for (let line of lines) {
             code += '<code>' + line + '<\code>\n';
         }
-        this.codeHint.innerHTML = code;
-        this.container.querySelector('.copy-code-button').innerHTML = 'Copy to Clipboard';
+        const codeHint = document.querySelector('.code-hint');
+        if (codeHint) codeHint.innerHTML = code;
+        document.querySelector('.copy-code-button').innerHTML = 'Copy to Clipboard';
         Prism.highlightAll();
+    }
+
+    updateCodeHint() {
+        this._needsUpdate = true;
     }
 
     copyCode() {
         let code = this.generateCode();
         navigator.clipboard.writeText(code);
-        this.container.querySelector('.copy-code-button').innerHTML = 'Copied';
+        document.querySelector('.copy-code-button').innerHTML = 'Copied';
     }
 }
 
@@ -475,6 +498,8 @@ class AudioTrack {
         this.scope = scope;
         this.container = container;
         this.drum = container.getAttribute("data-drum");
+        this.name = container.getAttribute("data-name");
+        this.note = container.getAttribute("data-note");
         this.canvas = container.querySelector("canvas");
         this.ctx = this.canvas.getContext('2d');
         this.hits = [ ]; // when drum hits are triggered
@@ -498,6 +523,7 @@ class AudioTrack {
                 this.cueSound();
             }
             this.draw();
+            this.scope.updateCodeHint();
         });
     }
 
@@ -589,15 +615,27 @@ class AudioTrack {
     generateCode() {
         let code = "";
         if (this.hits.length > 0) {
-            code += "# DRUM\n";
+            code += `# ${this.name}\n`;
+            code += `${this.name} = ${this.note}\n`;
             code += "moveTo(0)\n";
         }
+        let playhead = 0;
         for (let el of this.hits) {
             const hit = el[0];
             const vel = el[1];
-            code += `playNote(${this.drum}, beats=0.25, velocity=${vel})\n`;
+            if (hit > playhead) {
+                code += `rest(${(hit - playhead).toFixed(2)})\n`;
+            } else if (hit < playhead) {
+                code += `rewind(${(playhead - hit).toFixed(2)})\n`;
+            }
+            if (vel !== 100) {
+                code += `playNote(${this.drum}, beats=0.5, velocity=${vel})\n`;
+            } else {
+                code += `playNote(${this.drum}, beats=0.5)\n`;
+            }
+            playhead = hit + 0.5;
         }
-        return code;
+        return code + "\n\n";
     }
 
     clear() {
