@@ -19,14 +19,23 @@ Reference: https://niklasrosenstein.github.io/pydoc-markdown/
 
 
 # Notes
-* Splash images have to be 1200 x 630 or larger with a 1.91:1 ratio
+* NY Times uses 600 x 400. Seems much more reasonable. 1.5 ratio
+* Splash images have to be 600 x 400 or larger with a 1.5 ratio
 
 # Todo
+* Puzzlers
+* Three tutorials
+* Include the variables and loops sheets from Still DRE somewhere
+* Landing Page
+* TunePad library
+* New layout fix
+* More... option in top menu
 * Collection / curriculum pages
 * Page aliases
 * Cannot GET /activities/play-chord
 * Scrollbar in search results
 * Pulldown in composer is invisible on chromebooks; one of the drums isn't working
+* Tutorial videos
 
 * Spanish translations?
 * Pagefind index title, subtitle, description of page
