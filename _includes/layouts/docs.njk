@@ -1,7 +1,7 @@
 ---
 title: TunePad Documentation
-description: TunePad Python documentation
-splash: /images/docs.png
+description: Python documentation for built-in TunePad functions and modules
+splash: /images/splash/docs-splash.png
 ---
 {% extends "layouts/base.njk" %}
 {% block header %}
@@ -41,10 +41,9 @@ splash: /images/docs.png
             display: none;
         }
         .toc {
+            margin-top: 1.5rem;
             width: 240px;
             min-width: 240px;
-            position: relative;
-            top: -3em;
         }
         .toc ul li  { font-weight: bold; }
         .toc ul ul { padding: 0; }
@@ -53,6 +52,10 @@ splash: /images/docs.png
         .toc h1 { display: none; }
 
     </style>
+{% endblock %}
+
+{% block resources %}
+    <div class="logo-nugget"></div>
 {% endblock %}
 
 {% block body %}

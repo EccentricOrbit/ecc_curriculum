@@ -15,14 +15,8 @@ splash: /images/learn-splash.png
             <h3>Time</h3>
             {{ time }}
         </div>
-        <div class="license">
-            <a href="https://creativecommons.org/licenses/{{license}}/4.0/" title="Creative Commons License ({{license}})">
-            <img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/{{license}}.png" height="40"></a>
-        </div>
     </div>
-    {% if disclaimer %}
-    <aside class="disclaimer">{{ disclaimer }}</aside>
-    {% endif %}
+
     <div class="resource-box">
         <button title="Print this ativity" onclick="window.print();"><i class="fa fa-print"></i>Print</button>
         {% if video %}

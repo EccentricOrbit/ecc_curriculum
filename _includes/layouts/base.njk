@@ -14,42 +14,37 @@
         <meta name="title" content="{{ title }}">
         <meta name="description" content="{{ description }}">
         <link rel="icon" href="/images/favicon.ico">
-        <link rel="stylesheet" href="/css/activity.css">
+        <link rel="stylesheet" href="/css/base.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.5.0/prism-coldark-cold.min.css">
         <link rel="stylesheet" href="/css/fontawesome.all.min.css">
         <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
         <title>{{ title }}</title>
         <script>
             function showMenu() {
-                document.querySelector(".menu-row").classList.toggle('visible');
+                document.querySelector(".top-menu").classList.toggle('visible');
             }
         </script>
         {% endblock %}
     </head>
   <body>
     <nav class="top-nav">
-        <div class="logo-row">
-            <a class="top-logo-small" title="Learn TunePad" href="/" aria-label="Home">
-                <img src="/images/learn-logo-small.svg" alt="Learn TunePad" width="100%">
-            </a>
-            <a class="top-logo" title="Learn TunePad" href="/" aria-label="Home">
-                <img src="/images/learn-logo.svg" alt="Learn TunePad" width="100%">
-            </a>
-            <div class="expander"></div>
-            <div id="search" class="search"></div>
-            <button class="show-menu" aria-label="Menu" onclick="showMenu()"><i class="fas fa-bars"></i></button>
-        </div>
-        <div class="menu-row">
-            <ul>
+        <a class="logo" title="Learn TunePad" href="/" aria-label="Home">
+            <img src="/images/learn-logo-small.svg" alt="Learn TunePad" width="100%">
+        </a>
+        <div class="top-menu-wrapper">
+            <h1>Learn&nbsp;TunePad</h1>
+            <ul class="top-menu">
                 <li><a href="/activities/quickstart">Quick Start</a></li>
-                <li><a href="/python">Learn Python</a></li>
-                <li><a href="/music">Learn Music</a></li>
+                <li><a href="/learn">Learn TunePad</a></li>
                 <li><a href="/tutorials">Tutorials</a></li>
-                <li><a href="/curriculum">Curriculum</a></li>
-                <li><a href="/docs">TunePad Docs</a></li>
+                <li><a href="/interactives">Interactives</a></li>
+                <!-- <li><a href="/curriculum">Curriculum</a></li> -->
+                <li><a href="/docs">Docs</a></li>
                 <li class="expander"></li>
             </ul>
         </div>
+        <div id="search" class="search"></div>
+        <button class="show-menu" aria-label="Menu" onclick="showMenu()"><i class="fas fa-bars"></i></button>
     </nav>
     <main>
         {% set nextPage = false %}
@@ -77,27 +72,46 @@
         {% endif %}
 
         <article>
+
+            <!-- HEADER -->
             <header>
                 {% block banner %}
-                <div class="splash-image" style="background-image: url('{{ splash }}')"></div>
-                <div class="logo-nugget"></div>
+                <div class="splash-container">
+                    {% if audio %}
+                    <button class="audio-button">
+                        <i class="fas fa-play"></i>
+                        <audio src="{{ audio }}" class="audio-preview"></audio>
+                    </button>
+                    {% endif %}
+                    <img class="splash-image" height="400" width="600" src="{{ splash }}" alt="{{ description }}">
+                </div>
+                <div class="title-container">
+                    <h1 data-pagefind-meta="title" class="page-title">{{ title }}</h1>
+                    {% if subtitle %}
+                    <h2 class="page-subtitle">{{ subtitle }}</h2>
+                    {% endif %}
+                    {% if description %}
+                    <p>{{ description }}</p>
+                    {% endif %}
+                    {% if authors %}
+                    <div class="authors">{{ authors }}</div>
+                    {% endif %}
+                    {% block resources %}
+                    {% endblock %}
+                    {% if disclaimer %}
+                    <aside class="disclaimer">{{ disclaimer }}</aside>
+                    {% endif %}
+                </div>
                 {% endblock %}
             </header>
-            <h1 data-pagefind-meta="title" class="page-title">{{ title }}</h1>
-            {% if subtitle %}
-            <h2 class="page-subtitle">{{ subtitle }}</h2>
-            {% endif %}
-            {% if authors %}
-            <div class="authors">
-                By {{ authors }}
-            </div>
-            {% endif %}
-            {% block resources %}
-            {% endblock %}
-            <div data-pagefind-body class="contents">
-                {% block body %}
-                {{ content | safe }}
-                {% endblock %}
+
+            <!-- CONTENT -->
+            <div class="content-wrapper">
+                <section data-pagefind-body class="content">
+                    {% block body %}
+                    {{ content | safe }}
+                    {% endblock %}
+                </section>
             </div>
 
             <nav class="prev-next">
@@ -123,13 +137,56 @@
                 {% endif %}
             </nav>
 
-            <footer>
-                {% block footer %}
-                TunePad was created by the TIDAL Lab at Northwestern University. This project was made possible with funding from the National Science Foundation (grants DRL-1612619, DRL‐1451762, and DRL-1837661) and the Verizon Foundation. Any findings or recommendations expressed in this project are those of the authors and do not necessarily reflect the views of our funders.
-                {% endblock %}
-            </footer>
+
+            <!--  FOOTER -->
+            <div class="footer-wrapper">
+                <footer>
+                    {% block footer %}
+                    TunePad was created by the TIDAL Lab at Northwestern University. This project was made possible with funding from the National Science Foundation (grants DRL-1612619, DRL‐1451762, and DRL-1837661) and the Verizon Foundation. Any findings or recommendations expressed in this project are those of the authors and do not necessarily reflect the views of our funders.
+                    {% endblock %}
+                </footer>
+            </div>
         </article>
     </main>
   </body>
-    <script src="/pagefind/pagefind-ui.js" onload="new PagefindUI({ element: '#search', showImages: false });"></script>  
+    <script src="/pagefind/pagefind-ui.js" onload="new PagefindUI({ element: '#search', showImages: false });"></script>
+    <script>
+        document.querySelectorAll(".card").forEach((el) => {
+            let url = el.getAttribute('data-url');
+            el.addEventListener('click', (e) => {
+                window.open(url);
+            });
+        });
+        document.querySelectorAll(".audio-button, .card-audio-button").forEach((el) => {
+            el.addEventListener('click', (e) => {
+                e.stopImmediatePropagation();
+                playPausePreview(el);
+            });
+        });
+
+        function playPreview(audio, icon) {
+            icon.classList.remove("fa-play");
+            icon.classList.add("fa-pause");
+            audio.play();
+            audio.addEventListener("ended", e => {
+                icon.classList.remove("fa-pause");
+                icon.classList.add("fa-play");
+            }, {once : true});
+        }
+
+        function pausePreview(audio, icon) {
+            icon.classList.remove("fa-pause");
+            icon.classList.add("fa-play");
+            audio.pause();
+        }
+
+        function playPausePreview(el) {
+            //event.sstopImmediatePropagation();
+            const audio = el.querySelector(".audio-preview");
+            const icon = el.querySelector("i.fas");
+            if (audio && icon) {
+                (audio.paused || audio.ended) ? playPreview(audio, icon) : pausePreview(audio, icon);
+            }
+        }
+    </script> 
 </html>
