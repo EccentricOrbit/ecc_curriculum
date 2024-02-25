@@ -1,7 +1,8 @@
 ---
 title: Interactive Drum Kit
-description: Learn drum names and experiment with drum sounds
-splash: /images/rock-drums.png
+description: Learn the names and sounds of percussion instruments in a drum kit. Get the TunePad command to play different drum sounds.
+splash: /images/splash/drumkit-splash.png
+tags: interactive
 ---
 
 <!doctype html>
@@ -520,17 +521,26 @@ function initDrumkit() {
 //----------------------------------------------------
 function animateDrum(name) {
     const drum_names = {
-    "snare1" : "Snare (2)",
-    "floorTom" : "Floor Tom (8)",
-    "closedHat" : "Hi-Hat (4)",
-    "midTom" : "Mid Tom (7)",
-    "highTom" : "High Tom (6)",
-    "kick" : "Kick Drum (0)",
-    "crash" : "Crash Cymbal (9)"
-  };
+        "snare1" : "# Snare",
+        "floorTom" : "# Floor Tom",
+        "closedHat" : "# Hi-Hat",
+        "midTom" : "# Mid Tom",
+        "highTom" : "# High Tom",
+        "kick" : "# Kick Drum",
+        "crash" : "# Crash Cymbal"
+    };
+    const drum_commands = {
+        "snare1" : "playNote(2, beats = 1)",
+        "floorTom" : "playNote(8, beats = 1)",
+        "closedHat" : "playNote(4, beats = 1)",
+        "midTom" : "playNote(7, beats = 1)",
+        "highTom" : "playNote(6, beats = 1)",
+        "kick" : "playNote(0, beats = 1)",
+        "crash" : "playNote(9, beats = 1)"
+    };
 
     playDrumSound(name);
-    $('.drum-hint').html(drum_names[name]);
+    $('.drum-hint').html("<i>" + drum_names[name] + "</i><br>" + drum_commands[name]);
     if (drum_animations[name]) {
         let timeline = drum_animations[name];
         timeline.restart();
