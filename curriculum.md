@@ -1,9 +1,8 @@
 ---
-layout: layouts/base.njk
+layout: layouts/collection.njk
 title: TunePad Curriculum
 subtitle: Curriculum resources for learning music and Python programming
-splash: /images/learn-splash.png
-showtoc: true
+splash: /images/splash/learn-splash.png
 ---
 # Coming soon...
 

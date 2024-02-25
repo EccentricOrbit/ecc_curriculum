@@ -42,15 +42,12 @@ These 8 lines of Python code tell TunePad to play a pattern of kick drums, snare
 Most of the lines are `playNote` instructions, and, as you might have guessed, those instructions tell TunePad to play musical sounds indicated by the numbers inside of the parentheses. This example also includes something called a loop on line 6. Don’t worry too much about the details yet, but the loop is an easy way to repeat a set of actions over and over again. In this case, the loop tells Python to repeat lines 7 and 8 four times in a row. You can try out the example for yourself with this link: [https://tunepad.com/examples/roses](https://tunepad.com/examples/roses)
 
 # Learn Music
-{%- for item in toc.contents %}
-    {%- if item.collection == "music" %}
-        {%- for subitem  in item.contents %}
-* [{{ subitem.title}}]({{subitem.url}})
-        {%- endfor %}
-    {%- endif %}
-{%- endfor %}
+{% for item in collections.music %}
+* [{{ item.data.title}}]({{item.url}})
+{%- endfor -%}
 
-
+<br>
+# TTODO
 * Learning note names
 * Note timing
 * Playing chords
