@@ -5,6 +5,16 @@ splash: /images/learn-splash.png
 ---
 {% extends "layouts/base.njk" %}
 
+
+{% block header %}
+    {{ super() }}
+<style>
+    section.content {
+        border-top: 1px solid #0005;
+    }
+</style>
+{% endblock %}
+
 {% block resources %}
     <div class="info-box">
         <div>

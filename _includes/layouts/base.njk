@@ -34,10 +34,11 @@
         <div class="top-menu-wrapper">
             <h1>Learn&nbsp;TunePad</h1>
             <ul class="top-menu">
-                <li><a href="/activities/quickstart">Quick Start</a></li>
+                <li><a href="/tutorials/quickstart">Quick Start</a></li>
                 <li><a href="/learn">Learn TunePad</a></li>
                 <li><a href="/tutorials">Tutorials</a></li>
                 <li><a href="/interactives">Interactives</a></li>
+                <li><a href="/puzzlers">Puzzlers</a></li>
                 <!-- <li><a href="/curriculum">Curriculum</a></li> -->
                 <li><a href="/docs">Docs</a></li>
                 <li class="expander"></li>
@@ -77,15 +78,23 @@
             <header>
                 {% block banner %}
                 <div class="splash-container">
-                    {% if audio %}
-                    <button class="audio-button">
-                        <i class="fas fa-play"></i>
-                        <audio src="{{ audio }}" class="audio-preview"></audio>
-                    </button>
+                    <div class="splash-image-wrapper">
+                        {% if audio %}
+                        <button class="audio-button">
+                            <i class="fas fa-play"></i>
+                            <audio src="{{ audio }}" class="audio-preview"></audio>
+                        </button>
+                        {% endif %}
+                        <img class="splash-image" height="400" width="600" src="{{ splash }}" alt="{{ description }}">
+                    </div>
+                    {% if disclaimer %}
+                    <aside class="disclaimer">{{ disclaimer }}</aside>
                     {% endif %}
-                    <img class="splash-image" height="400" width="600" src="{{ splash }}" alt="{{ description }}">
                 </div>
                 <div class="title-container">
+                    {% if category %}
+                    <h3>{{ category }}</h3>
+                    {% endif %}
                     <h1 data-pagefind-meta="title" class="page-title">{{ title }}</h1>
                     {% if subtitle %}
                     <h2 class="page-subtitle">{{ subtitle }}</h2>
@@ -98,9 +107,6 @@
                     {% endif %}
                     {% block resources %}
                     {% endblock %}
-                    {% if disclaimer %}
-                    <aside class="disclaimer">{{ disclaimer }}</aside>
-                    {% endif %}
                 </div>
                 {% endblock %}
             </header>
