@@ -522,12 +522,21 @@ iframe.tunepad-iframe {
     border-radius: 8px;
     font-size: 10px;
     color: white;
-    right: 8px;
-    bottom: 8px;
+    left: 250px;
+    bottom: 12px;
     padding: unset;
     margin: 0 auto;
     border: none;
     outline: none;
+}
+.card .level-badge {
+    position: absolute;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 11px;
+    bottom: 12px;
+    right: 15px;
+    color: var(--theme-color);
 }
 
 @media screen and (max-width: 900px) {
