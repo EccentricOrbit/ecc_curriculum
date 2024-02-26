@@ -1,6 +1,6 @@
 ---
 layout: layouts/activity.njk
-tags: activity
+tags: learn
 category: Activity
 title: Syntax Errors
 description: Practice finding and fixing syntax errors in Python code

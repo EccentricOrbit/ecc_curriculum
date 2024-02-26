@@ -1,6 +1,6 @@
 ---
 layout: layouts/activity.njk
-tags: tutorials
+tags: [ 'tutorials', 'learn' ]
 category: Tutorial
 title: Chicago House Beat
 description: In this warmup activity create a Chicago House beat with Python code.
