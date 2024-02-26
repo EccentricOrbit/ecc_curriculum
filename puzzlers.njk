@@ -1,0 +1,27 @@
+---
+layout: layouts/collection.njk
+title: TunePad Puzzlers
+description: Challenge yourself with these interactive games and puzzles that will develop your skills in music and code.
+splash: /images/splash/puzzlers-splash.png
+---
+{% block body %}
+<div class="cards">
+{%- for demo in collections.puzzles -%}
+    <div class="card" data-url="{{ demo.url }}">
+        <div class="card-image">
+            <img src="{{ demo.data.splash }}" alt="{{ demo.data.title }}">
+        </div>
+        <div class="card-info">
+            <h1>{{ demo.data.title }}</h1>
+            {{ demo.data.description }}
+        </div>
+        {% if demo.data.audio %}
+        <button class="card-audio-button">
+            <i class="fas fa-play"></i>
+            <audio src="{{ demo.data.audio }}" class="audio-preview"></audio>
+        </button>
+        {% endif %}
+    </div>
+{%- endfor -%}
+</div>
+{% endblock %}

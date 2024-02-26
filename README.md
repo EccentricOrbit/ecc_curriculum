@@ -23,9 +23,11 @@ Reference: https://niklasrosenstein.github.io/pydoc-markdown/
 * Splash images have to be 600 x 400 or larger with a 1.5 ratio
 
 # Todo
+* Add Roses tutorial
+* Home link in top menu
 * Separate tutorial categories (e.g. Activities, Tutorials)
 * Badges for card layout
-* 
+* Test responsive and print layouts
 * Puzzlers
 * Three tutorials
 * Include the variables and loops sheets from Still DRE somewhere
