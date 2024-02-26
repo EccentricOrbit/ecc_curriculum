@@ -1,6 +1,7 @@
 ---
 layout: layouts/activity.njk
 tags: tutorials
+category: Tutorial
 title: Chicago House Beat
 description: In this warmup activity create a Chicago House beat with Python code.
 level: Beginner

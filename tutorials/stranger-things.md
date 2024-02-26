@@ -1,6 +1,7 @@
 ---
 layout: layouts/activity.njk
 tags: tutorials
+category: Tutorial
 title: "Stranger Things Theme"
 description: Learn about arpeggios in music and loops in Python by recreating the Stranger Things theme in TunePad
 level: Beginner
@@ -11,7 +12,7 @@ video: https://drive.google.com/file/d/1Er4rBmwG3Jj7FyCdDEIc8GfMkdx-Nuav/view?us
 slides: https://docs.google.com/document/d/1GJFpag52fC_8d6yRB6AliR6dF6JXxbo4yqCQENfbcxI/edit?usp=sharing
 project: https://tunepad.com/project/27933
 audio: https://api.tunepad.com/api/projects/27933/audio/
-disclaimer: For educational purposes only. The Stranger Things theme was composed by Kyle Dixon and Michael Stein, Stranger Things Volume 1 Soundtrack (2016), Lakeshore and Invada Records.
+disclaimer: For educational purposes only. Based on Stranger Things Volume 1 by Kyle Dixon and Michael Stein (2016), Lakeshore and Invada Records.
 ---
 
 # Step 1: Create a new Project

@@ -1,6 +1,7 @@
 ---
 layout: layouts/activity.njk
 tags: tutorials
+category: Tutorial
 title: Stay Remix
 subtitle: The Kid Laroi (ft. Justin Bieber)
 authors: Remix by Helen Feng

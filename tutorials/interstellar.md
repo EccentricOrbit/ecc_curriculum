@@ -1,6 +1,7 @@
 ---
 layout: layouts/activity.njk
 tags: tutorials
+category: Tutorial
 title: Interstellar Theme
 subtitle: Hans Zimmer
 description: Recreate the iconic melody from the movie, Interstellar.

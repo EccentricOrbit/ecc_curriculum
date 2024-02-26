@@ -2,6 +2,7 @@
 layout: layouts/activity.njk
 tags: tutorials
 title: Halloween Theme
+category: Tutorial
 subtitle: John Carpenter
 description: Practice using functions and parameters in Python to play repeated patterns. Practice with variables, lists, and operators
 level: Intermediate

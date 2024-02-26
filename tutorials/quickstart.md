@@ -1,6 +1,7 @@
 ---
 layout: layouts/activity.njk
-tags: tutorials
+tags: activity
+category: Activity
 title: "Quick Start Guide"
 description: Get started creating music with code. This guide walks through the basics of coding music with Python in TunePad
 level: Beginner

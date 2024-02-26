@@ -1,6 +1,7 @@
 ---
 layout: layouts/activity.njk
 tags: tutorials
+category: Tutorial
 title: Still D.R.E.
 subtitle: Dr. Dre (ft. Snoop Dogg)
 description: Learn to use variables in Python to make your code more readable. Use loops to create repeated musical elements.

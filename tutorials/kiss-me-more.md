@@ -1,6 +1,7 @@
 ---
 layout: layouts/activity.njk
 tags: tutorials
+category: Tutorial
 title: Kiss Me More
 subtitle: Doja Cat (ft. SZA)
 description: Recreate Kiss Me More by Doja Cat (ft SZA). Practice using variables, loops, and simple arithmetic operators in Python.
