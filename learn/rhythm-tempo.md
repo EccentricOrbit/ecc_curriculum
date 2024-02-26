@@ -1,14 +1,14 @@
 ---
-layout: layouts/base.njk
+layout: layouts/activity.njk
+category: Lesson
+tags: learn
 title: "Rhythm and Tempo"
 subtitle:  Beat, tempo and the foundations of rhythm
 description: Learn about beat, tempo and the foundations of rhythm
 level: Beginner
 time: 20 minutes
 license: by-nc-sa
-splash: /images/rhythm-tempo-splash.jpg
-showtoc: true
-tags: music
+splash: /images/splash/tempo-splash.png
 date: 2024-01-03
 ---
 # Beat and Tempo

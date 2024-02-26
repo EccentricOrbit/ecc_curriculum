@@ -1,14 +1,13 @@
 ---
 layout: layouts/activity.njk
+category: Lesson
+tags: learn
 title: "Rhythm Notation"
-subtitle:  A review of Western rhythm notation
 description: A review of Western rhythm notation and how it relates to Python code
 level: Beginner
 time: 20 minutes
 license: by-nc-sa
-splash: /images/rhythm-tempo-splash.jpg
-showtoc: true
-tags: music
+splash: /images/splash/rhythm-splash.jpg
 date: 2024-01-04
 ---
 This section will review a standard musical notation system that has roots in European musical traditions. 

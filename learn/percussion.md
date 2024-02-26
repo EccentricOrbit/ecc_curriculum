@@ -1,15 +1,14 @@
 ---
 layout: layouts/activity.njk
+tags: learn
+category: Lesson
 title: "Percusion Sounds and Instruments"
-subtitle:  A summary of common percussion instruments and sounds
 description: A summary of common percussion instruments and sounds
 level: Beginner
 time: 20 minutes
 license: by-nc-sa
-splash: /images/rhythm-tempo-splash.jpg
-showtoc: true
+splash: /images/splash/drumkit-splash.png
 authors: Melanie West and Cameron Roberts
-tags: music
 date: 2024-01-05
 ---
 Working with rhythm, you’ll come across lots of terminology for different percussion instruments and sounds. 

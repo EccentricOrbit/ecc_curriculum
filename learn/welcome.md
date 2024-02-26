@@ -1,56 +1,52 @@
 ---
 layout: layouts/activity.njk
+tags: learn
+category: Lesson
 title: "Welcome to TunePad"
-subtitle: Get started creating music with Python code
-description: This quick start guide walks through the basics of coding music with Python in TunePad
+description: What is TunePad? What is Python? And why would I want to make music with code?
 level: Beginner
 time: 15-20 minutes
 license: by-nc-sa
-splash: /images/welcome.png
-project: https://tunepad.com/project/67954
-tags: 
+splash: /images/splash/welcome-splash.png
 date: 2024-01-01
 ---
-This quick start guide introduces the TunePad platform and walks through the basics of creating 
-music with Python code.
+# What is TunePad?
 
-### Objectives
-* Log in to TunePad
-* Learn how to play notes
-* Learn how to play drum sounds
-* Learn how to combine musical parts into a larger composition
-
-### Materials
-* Chromebook, iPad, laptop, or desktop computer
-* Headphones (recommended)
-* Printout (optional)
-
-<div class="page-break"></div>
-
-# Welcome to TunePad
-
-people who love music and are interested in the intersection of music and coding. Maybe you’re an aspiring musician who wants to know more about coding and what it can do. Or maybe you already know a little about coding, and you want to expand your creative musical horizon. Or maybe you’re a total beginner in both. Regardless of your starting point, TunePad is designed for you to learn about music and coding as mutually reinforcing skills. Code gives us an elegant language to think about musical ideas, and music gives us a context within which code makes sense and is immediately useful. Together they form a powerful new way to create music that will be interconnected with digital production tools of the future. 
-
-Here are two important things to know before we get started:
-
-* TunePad is free for everyone to use. It was created at Northwestern University with funding from the National Science Foundation.
-* TunePad does **not** make money from advertising, and it will **never** sell your data or information.
+TunePad is a free, online platform for creating music using Python code. TunePad was developed at Northwestern University with funding from the National Science Foundation. TunePad is free for everyone to use.
 
 # What is Python?
-With TunePad you’ll learn how to create your own music using a computer programming language called [Python](https://www.python.org). Python is a general purpose language first released in the 1990s that is now one of the most widely-used languages in the world. Python is designed to be easy to read and write, which makes it a popular choice for beginners. It’s also fully featured and powerful, making it a good choice for professionals working in fields as diverse as data science, AI, web development, the arts, and video game development. Because Python has been around for decades, it runs on every major computer operating system. TunePad even uses a version of Python that runs directly inside of your web browser without the need for any special software installation.
 
-Unlike many other common beginner programming languages, Python is “text-based”, which means that you type code into an editor instead of dragging code blocks on the computer screen. This makes Python a little harder to learn than other beginner languages, but it also greatly expands what you can do.
+* Python is one of the most widely-used languages in the world.
+* Python is designed to be easy to read and write, which makes it a popular choice for beginners. 
+* It’s also fully featured and powerful, making it a good choice for professionals.
+* Python is used for data science, machine learning, web development, the arts, and video game development. 
+* Python is a “text-based” language, which means that you type code into an editor instead of dragging code blocks on the computer screen.
 
-# Writing Your First Program
-In TunePad you can program different musical instruments using Python code. The program below plays four notes on a piano keyboard. Press the ▶ button below to hear how it sounds. Code in TunePad is interactive, which means that you can change the code even while music is playing.
+# A Quick Example
+Here’s a quick example of what coding music in Python looks like. This program runs in TunePad to create a simple beat pattern used in thousands of songs.
 
+```python
+kick = 1      # define variable for kick drum sounds
+snare = 2     # define variable for snare drum sounds
+hat = 4       # define variable for hi-hat sounds
 
-# Practice with a Mystery Melody
-Time to practice fixing syntax errors.
-See if you can fix all of the syntax errors in this project to reveal the mystery melody.
-[{{ project }}]({{project}})
+playNote(kick)   # play a kick drum sound
+playNote(snare)  # play a snare drum sound
+playNote(kick)
+playNote(snare)
+rewind(4)        # rewind 4 beats
+for i in range(4):
+    rest(0.5)
+    playNote(hat, beats = 0.5)   # play a hi-hat for half a beat
+```
 
-<a href="{{ project }}" target="_blank">
-<img src="/images/mystery-melody-1.png" alt="Image of a cartoon shark" width="300px"></a>
+* All the Python code on this site will have line numbers on the left side for easy reference. 
+* Python generally runs code from top to bottom. 
+* There are special notes called comments that come after a hashtag symbol (#) on some lines. 
+* Comments are like sticky notes that programmers use to help people understand their code.
 
+# Why Music and Coding?
 
+More and more code will be used to produce music, to compose music, and even to [perform music for live audiences](https://www.nytimes.com/2019/10/04/style/live-code-music.html). Digital production tools such as Logic, Reason, Pro Tools, FL Studio, and Ableton Live are complex software applications created with millions of lines of code written by huge teams of software engineers. With all of these tools you can write code to create custom plugins and effects. Beyond production tools, live coding is an emerging form of musical performance art in which Information Age DJs write computer code to generate music in real time for live audiences.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/JiQHclg_648?si=hpSDBN5DYNjxyFDw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
