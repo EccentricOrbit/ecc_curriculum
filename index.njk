@@ -1,0 +1,173 @@
+---
+title: Learn TunePad
+subtitle: TunePad is a free, online platform for creating digital music with Python code. This page provides learning resources including curriculum, tutorials, games, puzzles, interactive learning tools, and more. This materials is designed for learners who are new to both music and coding.
+splash: /images/splash/landing-splash.png
+---
+{% extends "layouts/base.njk" %}
+{% block header %}
+    {{ super() }}
+<style>
+    article .content-wrapper {
+        padding: 1rem 2rem 3rem 2rem;
+        background-color: #f6f6f9; 
+        margin: 0;
+    }
+    section.highlights {
+        border-bottom: 1px solid #0002;
+    }
+    .logo-nugget {
+        background-image: url('/images/quickstart.svg');
+        width: 100px;
+        height: 100px;
+    }
+</style>
+{% endblock %}
+
+{% block resources %}
+    <div class="logo-nugget"></div>
+{% endblock %}
+
+{% block body %}
+
+<section class="highlights">
+    <img src="/images/logo-black.svg" alt="TunePad logo" style="width: 130px; float: right; position: relative; top: -2rem;">
+
+    <h1>What is TunePad?</h1>
+    <ul>
+        <li><a href="https://tunepad.com" target="_blank">TunePad</a> a free, online learning platform for creating music using Python code. </li>
+        <li>TunePad was developed at Northwestern University with funding from the National Science Foundation and the Verizon Foundation.</li>
+        <li>TunePad is <b>free for everyone</b> to use. We don't make money from advertising, and we will never sell your personal information.</li>
+    </ul>
+
+    <h1>What is Python?</h1>
+    <img src="/images/python-logo.svg" alt="Python logo" style="width: 130px; float: right; position: relative; top: -2rem;">
+    <ul>
+        <li><a href="https://www.python.org/" target="_blank">Python</a> is one of the most widely-used languages in the world.</li>
+        <li>Python is designed to be easy to read and write, which makes it a popular choice for beginners.</li>
+        <li>It’s also fully featured and powerful, making it a good choice for professionals.</li>
+        <li>Python is used for data science, machine learning, web development, the arts, and video game development.</li>
+        <li>Python is a “text-based” language, which means that you type code into an editor instead of dragging code blocks on the computer screen.</li>
+    </ul>
+</section>
+
+<section class="highlights">
+    <h1><a href="/learn/">Getting Started</a></h1>
+    <p>Our <a href="/learn/">learn TunePad</a> curriculum is designed for beginners who are new to both music and Python programming.</p>
+    <div class="cards">
+        {%- for demo in collections.learn | limit(4) -%}
+        <div class="vcard" data-url="{{ demo.url }}">
+            <div class="card-image">
+                <img src="{{ demo.data.splash }}" alt="{{ demo.data.title }}">
+            </div>
+            <div class="card-info">
+                <h1>{{ demo.data.title }}</h1>
+                {{ demo.data.description }}
+            </div>
+            {% if demo.data.audio %}
+            <button class="card-audio-button">
+                <i class="fas fa-play"></i>
+                <audio src="{{ demo.data.audio }}" class="audio-preview"></audio>
+            </button>
+            {% endif %}
+            <div class="level-badge">{{ demo.data.level }}</div>
+        </div>
+        {%- endfor -%}
+        <a class="more-info" href="/learn/">Browse all {{ collections.learn.length }} lessons and activities &#8680;</a>
+    </div>
+</section>
+
+
+
+
+<section class="highlights">
+    <h1><a href="/tutorials/">TunePad Tutorials and Covers</a></h1>
+    <p>TunePad <a href="/tutorials/">tutorials</a> give step-by-step instructions for recreating popular songs.</p>
+    <div class="cards">
+        {%- for demo in collections.tutorials | limit(4) -%}
+        <div class="vcard" data-url="{{ demo.url }}">
+            <div class="card-image">
+                <img src="{{ demo.data.splash }}" alt="{{ demo.data.title }}">
+            </div>
+            <div class="card-info">
+                <h1>{{ demo.data.title }}</h1>
+                {{ demo.data.description }}
+            </div>
+            {% if demo.data.audio %}
+            <button class="card-audio-button">
+                <i class="fas fa-play"></i>
+                <audio src="{{ demo.data.audio }}" class="audio-preview"></audio>
+            </button>
+            {% endif %}
+            <div class="level-badge">{{ demo.data.level }}</div>
+        </div>
+        {%- endfor -%}
+        <a class="more-info" href="/tutorials/">Browse all {{ collections.tutorials.length }} tutorials &#8680;</a>
+    </div>
+</section>
+
+
+
+
+<section class="highlights">
+    <h1><a href="/puzzlers/">TunePad Puzzlers</a></h1>
+    <p>TunePad <a href="/puzzlers/">puzzlers</a> are games and challenges designed to sharpen your music+coding skills.</p>
+    <div class="cards">
+        {%- for demo in collections.puzzles | limit(4) -%}
+        <div class="vcard" data-url="{{ demo.url }}">
+            <div class="card-image">
+                <img src="{{ demo.data.splash }}" alt="{{ demo.data.title }}">
+            </div>
+            <div class="card-info">
+                <h1>{{ demo.data.title }}</h1>
+                {{ demo.data.description }}
+            </div>
+            {% if demo.data.audio %}
+            <button class="card-audio-button">
+                <i class="fas fa-play"></i>
+                <audio src="{{ demo.data.audio }}" class="audio-preview"></audio>
+            </button>
+            {% endif %}
+            <div class="level-badge">{{ demo.data.level }}</div>
+        </div>
+        {%- endfor -%}
+        <a class="more-info" href="/learn/">Browse all {{ collections.puzzles.length }} puzzlers &#8680;</a>
+    </div>
+</section>
+
+
+
+
+<section class="highlights">
+    <h1><a href="/interactives/">TunePad Interactives</a></h1>
+    <p>TunePad <a href="/interactives/">interactives</a> are tools to help explore the connections between music and code.</p>
+    <div class="cards">
+        {%- for demo in collections.interactive | limit(4) -%}
+        <div class="vcard" data-url="{{ demo.url }}">
+            <div class="card-image">
+                <img src="{{ demo.data.splash }}" alt="{{ demo.data.title }}">
+            </div>
+            <div class="card-info">
+                <h1>{{ demo.data.title }}</h1>
+                {{ demo.data.description }}
+            </div>
+            {% if demo.data.audio %}
+            <button class="card-audio-button">
+                <i class="fas fa-play"></i>
+                <audio src="{{ demo.data.audio }}" class="audio-preview"></audio>
+            </button>
+            {% endif %}
+            <div class="level-badge">{{ demo.data.level }}</div>
+        </div>
+        {%- endfor -%}
+        <a class="more-info" href="/learn/">Browse all {{ collections.interactive.length }} interactives &#8680;</a>
+    </div>
+</section>
+
+
+<section class="highlights">
+    <img src="/images/splash/docs-splash.png" width="300px" style="float: right; margin: 1rem" alt="">
+    <h1><a href="/docs/">TunePad Documentation</a></h1>
+    <p>Read the <a href="/docs/">documentation</a> for all of the TunePad functions and modules. are tools to help explore the connections between music and code.</p>
+    <br clear="all">
+</section>
+{% endblock %}
