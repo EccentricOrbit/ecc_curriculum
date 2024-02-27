@@ -1,6 +1,6 @@
 ---
 layout: layouts/activity.njk
-tags: [ 'tutorials', 'learn' ]
+tags:
 category: Tutorial
 title: Three Hip-Hop Beats
 description: "Build three basic hip-hop beats using Python code. Use loops to repeat sounds multiple times."

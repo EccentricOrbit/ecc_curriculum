@@ -3,7 +3,7 @@ layout: layouts/activity.njk
 tags: learn
 category: Lesson
 title: "Why Music and Code?"
-description: Why would I want to make music with Python code? Why should I learn how to code?
+description: Why would anyone want to make music with Python code?
 level: Beginner
 time: 15-20 minutes
 license: by-nc-sa
