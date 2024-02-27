@@ -46,6 +46,13 @@ nav.top-nav {
     font-family: var(--header-font);
     margin: 0 1rem 0.75rem 0;
 }
+.top-menu-wrapper h1 a {
+    color: black;
+    text-decoration: none;
+}
+.top-menu-wrapper h1 a:hover {
+    text-decoration: underline;
+}
 
 ul.top-menu {
     list-style: none;
@@ -327,6 +334,13 @@ article .content h1 {
     margin-top: 1.5rem;
     margin-bottom: 0.5em;
 }
+article .content h1 a {
+    color: black;
+    text-decoration: none;
+}
+article .content h1 a:hover {
+    text-decoration: underline;
+}
 
 article .content h2 {
     font-family: var(--header-font);
@@ -337,6 +351,7 @@ article .content h2 {
 
 article p {
     margin-top: 0;
+    font-size: 17px;
 }
 
 article img {
@@ -476,10 +491,8 @@ iframe.tunepad-iframe {
 .cards {
     text-align: center;
 }
-.card {
+.card, .vcard {
     display: inline-block;
-    width: 480px;
-    height: 175px;
     margin: 2rem 20px 0 0;
     padding: 1em;
     border: 1px solid #0002;
@@ -488,28 +501,55 @@ iframe.tunepad-iframe {
     cursor: pointer;
     position: relative;
 }
-.card:hover {
+.card {
+    width: 480px;
+    height: 175px;
+}
+.vcard {
+    width: 225px;
+    height: 300px;
+    padding: 0;
+    margin: 1rem 20px 0 0;
+}
+.card:hover, .vcard:hover {
     box-shadow: 4px 4px 4px #0002;
 }
-.card-image, .card-info {
+.card .card-image, .card-info {
     height: 100%;
     display: inline-block;
     max-width: 220px;
     vertical-align: top;
     text-align: left;
 }
-.card-image img {
+.card .card-image img {
     margin: 0;
     max-width: unset;
     height: 100%;
 }
+.vcard .card-image, .vcard .card-info {
+    width: 100%;
+    display: block;
+    text-align: left;
+}
+.vcard .card-image img {
+    width: 100%;
+    max-width: unset;
+    margin: 0;
+}
 .card-info {
     padding-left: 1em;
+}
+.vcard .card-info {
+    padding: 1rem;
+    font-size: 13px;
 }
 .card .card-info h1 {
     margin: 8px 0;
     font-size: 15px;
-    text-decoration: none;
+}
+.vcard .card-info h1 {
+    margin: 4px 0;
+    font-size: 15px;
 }
 .card-audio-button {
     position: absolute;
@@ -529,7 +569,11 @@ iframe.tunepad-iframe {
     border: none;
     outline: none;
 }
-.card .level-badge {
+.vcard .card-audio-button {
+    left: 15px;
+    bottom: 10px;
+}
+.card .level-badge, .vcard .level-badge {
     position: absolute;
     font-weight: bold;
     text-transform: uppercase;
@@ -537,6 +581,22 @@ iframe.tunepad-iframe {
     bottom: 12px;
     right: 15px;
     color: var(--theme-color);
+}
+
+a.more-info {
+    display: block;
+    text-align: right;
+    margin: 1rem 5rem;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+a.more-info:hover {
+    text-decoration: underline;
+}
+
+section.highlights {
+    /* border-bottom: 1px solid black; */
 }
 
 @media screen and (max-width: 900px) {
