@@ -102,11 +102,13 @@ ul.top-menu {
 .pagefind-ui__drawer {
     position: absolute !important;
     border: 1px solid #0003 !important;
-    padding: 2em !important;
+    padding: 0 2em 2em 2em !important;
     background-color: #fefefe !important;
     width: 500px !important;
     right: 0 !important;
     border-radius: 1em !important;
+    max-height: 85vh !important;
+    overflow-y: auto !important;
 }
 
 main {

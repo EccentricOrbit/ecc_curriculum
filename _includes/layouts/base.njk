@@ -154,7 +154,7 @@
         </article>
     </main>
   </body>
-    <script src="/pagefind/pagefind-ui.js" onload="new PagefindUI({ element: '#search', showImages: false });"></script>
+    <script src="/pagefind/pagefind-ui.js" onload="new PagefindUI({ element: '#search', pageSize : 4, showImages: true });"></script>
     <script>
         document.querySelectorAll(".card, .vcard").forEach((el) => {
             let url = el.getAttribute('data-url');
