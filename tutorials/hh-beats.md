@@ -2,16 +2,14 @@
 layout: layouts/activity.njk
 tags: [ 'tutorials', 'learn' ]
 category: Tutorial
-title: Chicago House Beat
-description: In this warmup activity create a Chicago House beat with Python code.
+title: Three Hip-Hop Beats
+description: "Build three basic hip-hop beats using Python code. Use loops to repeat sounds multiple times."
 level: Beginner
 time: 15-20 minutes
 license: by-nc-sa
-splash: /images/splash/house-splash.png
-video: https://drive.google.com/file/d/1kh1PQuBkzeFNUHGiLBEbGjcIfXW7QE40/view?usp=sharing
-project: https://tunepad.com/project/67934
-audio: https://api.tunepad.com/api/projects/67934/audio/
-date: 2024-01-02
+splash: /images/splash/hhbeats-splash.jpg
+project: https://tunepad.com/project/75601
+audio: https://api.tunepad.com/api/projects/75601/audio/
 ---
 In this activity you’ll get started using TunePad by creating a short Chicago House style beat.
 

@@ -3,7 +3,7 @@ layout: layouts/activity.njk
 tags: puzzles
 category: Puzzler
 title: Suspenseful Mystery Melody
-description: See if you can fix all of the syntax errors to reveal the mystery melody! This puzzle focuses on loops in Python.
+description: See if you can fix all of the syntax errors to reveal the mystery melody!
 level: Intermediate
 time: 15 minutes
 license: by-nc-sa

@@ -1,6 +1,6 @@
 ---
 layout: layouts/activity.njk
-tags: activity
+tags: [ 'learn', 'activity' ]
 category: Activity
 title: "Quick Start Guide"
 description: Get started creating music with code. This guide walks through the basics of coding music with Python in TunePad
@@ -9,6 +9,7 @@ time: 15-20 minutes
 license: by-nc-sa
 splash: /images/splash/quick-start.png
 project: https://tunepad.com/project/67954
+date: 2023-12-31
 ---
 
 # Welcome to TunePad
