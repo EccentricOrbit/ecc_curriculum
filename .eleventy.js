@@ -14,6 +14,11 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.on('eleventy.after', () => {
         execSync(`npx pagefind --site _site --glob \"**/*.html\"`, { encoding: 'utf-8' })
     });
+
+    // limit filter
+    eleventyConfig.addFilter("limit", function(array, limit) {
+        return array.slice(0, limit);
+    });
 };
 
 async function wait(delay = 2000) {
