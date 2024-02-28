@@ -5,9 +5,9 @@
 > npx @11ty/eleventy --serve
 
 # To install 11ty
-npm install @11ty/eleventy --save-dev  
-npm install @11ty/eleventy-plugin-syntaxhighlight --save-dev  
-npm install --save-dev pagefind
+`npm install @11ty/eleventy --save-dev`  
+`npm install @11ty/eleventy-plugin-syntaxhighlight --save-dev`  
+`npm install --save-dev pagefind`
 
 # To generate markdown from pydocs
 pipx install pydoc-markdown
