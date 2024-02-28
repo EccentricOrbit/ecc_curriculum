@@ -1,0 +1,40 @@
+{% extends "layouts/base.njk" %}
+
+{% block header %}
+    {{ super() }}
+<style>
+    section.content {
+        border-top: 1px solid #0005;
+        padding-top: 1.5rem;
+    }
+    .info-link {
+        color: var(--theme-color);
+        text-decoration: none;
+        font-weight: bold;
+        line-height: 60px;
+        text-transform: uppercase;
+    }
+    .info-link:hover { text-decoration: underline; }
+    .info-img { margin: 0; }
+</style>
+{% endblock %}
+
+{% block resources %}
+    <div class="info-box">
+        <div>
+            <img class="info-img" src="/images/logo-black.svg" width="60px" alt="TunePad Logo">
+        </div>
+        <div style="flex: 2">
+            <a class="info-link" href="{{ project }}" target="_blank">Open in TunePad</a>
+        </div>
+    </div>
+
+    <div class="resource-box">
+        {% if video %}
+        <a href="{{ video }}" class="button" target="_blank" title="Walkthough video"><i class="fas fa-film"></i>Video</a>
+        {% endif %}
+        {% if slides %}
+        <a href="{{ slides }}" class="button" target="_blank" title="Overview slides"><i class="far fa-file-powerpoint"></i>Slides</a>
+        {% endif %}
+    </div>
+{% endblock %}
