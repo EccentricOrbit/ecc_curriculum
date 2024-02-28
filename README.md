@@ -1,21 +1,21 @@
 # To generate static site
-> npx @11ty/eleventy
+`npx @11ty/eleventy`
 
 # To run dev server
-> npx @11ty/eleventy --serve
+`npx @11ty/eleventy --serve`
 
 # To install 11ty
-> npm install @11ty/eleventy --save-dev
-> npm install @11ty/eleventy-plugin-syntaxhighlight --save-dev
-> npm install --save-dev pagefind
+`npm install @11ty/eleventy --save-dev`  
+`npm install @11ty/eleventy-plugin-syntaxhighlight --save-dev`  
+`npm install --save-dev pagefind`  
 
 # To generate markdown from pydocs
 Note this should only be done when changes are made to the TunePad python documentation.
 
-> pipx install pydoc-markdown
+`pipx install pydoc-markdown`
 
 Then run the command:
-> ./pydocmd.sh
+`./pydocmd.sh`
 
 Reference: https://niklasrosenstein.github.io/pydoc-markdown/
 
