@@ -36,7 +36,7 @@ with gain([1.5, 0.5, 1.5, 5], beats = 4):
     rewind(4)
     playNote([25, 29], beats = 4, velocity = 50)
 ```
-Check out the full project here:
+Take a look at the full project here:
 <a href="{{ project }}" target="_blank">
 {{ project }}<br><img src="{{ screenshot }}" width="100%"></a>
 
