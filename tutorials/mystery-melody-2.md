@@ -10,30 +10,19 @@ license: by-nc-sa
 splash: /images/splash/halloween-splash.jpg
 project: https://tunepad.com/project/6241
 ---
-## Objectives
-* See example syntax errors in Python
-* Practice fixing errors
+# Try It
+See if you can fix all of the **syntax errors** in this project to reveal the mystery melody. Make sure to hit the **REMIX** button so that your changes are saved.
 
-## Materials
-* Chromebook, iPad, laptop, or desktop computer
-* Headphones (recommended)
-* Printout (optional)
+<a href="{{ project }}" target="_blank" style="margin: 2rem; font-size: 120%">{{ project }}</a>
 
-# Syntax Errors
-* When you make a mistake writing code, you might get a syntax error. 
-* A syntax error means that Python can't understand what you typed.
-* Error messages can be confusing, but they give you hints about how to fix mistakes. 
-* A syntax error usually includes a line number showing where the problem is.
 
-# Mystery Melody!
-Ready to practice fixing syntax errors?  
-See if you can fix all of the syntax errors in this project to reveal the mystery melody.  
-[{{ project }}]({{project}})
 
-<a href="{{ project }}" target="_blank">
-<img src="/images/splash/halloween-splash.jpg" alt="Image of a halloween jack-o-lantern" width="300px" style="margin: 2rem 1rem"></a>
+# What is a Syntax Error?
+When you make a mistake writing code, you might get a syntax error. That means Python can't understand what you typed.
+These error messages can be confusing, but they also give you hints about how to fix mistakes. 
+A syntax error usually has a line number showing where the problem is.
 
-# Help! How do I fix syntax errors?
+# How do I fix syntax errors?
 Here's a quick example of a common syntax error in a TunePad project.  
 
 ```python
