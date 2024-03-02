@@ -1,0 +1,30 @@
+---
+title: TunePad Learn
+description: TunePad is a free online platform for creating music with the Python programming language.
+---
+{% extends "layouts/base.njk" %}
+
+
+{% block header %}
+    {{ super() }}
+<style>
+    header { display: none; }
+    article .content-wrapper { margin-bottom: 5rem; }
+    article .content { max-width: 800px; }
+</style>
+{% endblock %}
+
+{% block banner %}
+<div class="title-container">
+    <h1 data-pagefind-meta="title" class="page-title">{{ title }}</h1>
+    {% if subtitle %}
+    <h2 class="page-subtitle">{{ subtitle }}</h2>
+    {% endif %}
+    {% if description %}
+    <p>{{ description }}</p>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block resources %}
+{% endblock %}
