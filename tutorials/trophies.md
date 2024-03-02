@@ -6,7 +6,7 @@ title: Trophies
 description: Drake (2014), Cash Money Records
 authors: Remix by Josh
 level: Advaced
-splash: /images/splash/trophies-splash.jpeg
+splash: /images/splash/trophies-splash.jpg
 screenshot: /images/screenshots/trophies.png
 project: https://tunepad.com/project/42
 audio: https://api.tunepad.com/api/projects/42/audio/

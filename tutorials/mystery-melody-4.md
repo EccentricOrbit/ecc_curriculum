@@ -23,7 +23,7 @@ These error messages can be confusing, but they also give you hints about how to
 A syntax error usually has a line number showing where the problem is.
 
 # How do I fix syntax errors?
-Here's a quick example of a common syntax error in a TunePad project. This one’s tricky because the problem is actually on line 1 even though the syntax error says line 2. The actual problem is a missing right parenthesis on line 1.
+Here's a quick example of a common syntax error in a TunePad project. This one’s tricky because the problem is actually on line 1 even though the syntax error says line 2. The problem is a missing right parenthesis on line 1.
 
 ```python
 playNote(60

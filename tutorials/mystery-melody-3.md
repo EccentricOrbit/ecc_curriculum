@@ -19,11 +19,9 @@ See if you can fix all of the **syntax errors** in this project to reveal the my
 
 # What is a Syntax Error?
 When you make a mistake writing code, you might get a syntax error. That means Python can't understand what you typed.
-These error messages can be confusing, but they also give you hints about how to fix mistakes. 
 A syntax error usually has a line number showing where the problem is.
 
-# How do I fix syntax errors?
-Here's a quick example of a common syntax error in a TunePad project. This one’s tricky because the problem is actually on line 1 even though the syntax error says line 2. The actual problem is a missing right parenthesis on line 1.
+Here's a quick example. This one’s tricky because the problem is actually on line 1 even though the syntax error says line 2. The actual problem is a missing right parenthesis on line 1.
 
 ```python
 playNote(60
