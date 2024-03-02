@@ -62,9 +62,7 @@ The primary goal is minimal movement of each note or **voice**. The first thing 
 # Applying Voice Leading In TunePad
 Let’s apply voice leading to our chord progression between the I and V chords. We are unable to change the bass note, as that is given by the Roman numeral. Looking at the other voices, we can see that E5 is a common tone- let's keep that constant for the V chord (luckily, it already stays in place). With no common tones left, let's adjust our other voices. Starting with B4, we can see that it is pretty high up and not close to the other voices; let's move it down to B3. Similarly, let's move Gs4 down to Gs3. We have finished voice leading the V chord!
 
-**Add image for before voice leading**
-
-**Add image for after voice leading**
+<img src="/images/voice-leading.png">
 
 Here is the complete voice leading:
 
