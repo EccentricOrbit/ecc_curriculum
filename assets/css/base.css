@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,700&display=swap');
-
+/* @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Inter:wght@100..900&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
 :root {
     --pagefind-ui-scale: 0.7 !important;
     --theme-color: #791791;
@@ -231,7 +231,7 @@ h1.page-title {
 
 h2.page-subtitle {
     font-family: var(--body-font);
-    font-size: 18px;
+    font-size: 16px;
     margin: 0 0 0.5rem 0;
     font-weight: normal;
     text-align: center;
@@ -353,10 +353,10 @@ article .content h2 {
 
 article p {
     margin-top: 0;
-    font-size: 16px;
+    font-size: 15px;
 }
 article li {
-    font-size: 16px;
+    font-size: 15px;
 }
 
 article img {
@@ -409,7 +409,7 @@ article pre[class*="language-python"] {
     margin-bottom: 2em;
 }
 
-code .highlight-line:before {
+pre[class*="language-python"] code .highlight-line:before {
     user-select: none;
     border-right: 1px solid #404040;
     color: #858585;
@@ -462,6 +462,7 @@ nav.prev-next .stacker {
     font-size: 13px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     margin: 1em;
+    max-width: 600px;
 }
 .error-name {
     font-weight: 200;
@@ -476,11 +477,12 @@ nav.prev-next .stacker {
 }
 .error-description {
     background-color: #f9e4e5;
-    padding: 15px 20px;
+    padding: 15px;
     font-family: monospace;
     color: #444;
     margin-top: 12px;
     line-height: 150%;
+    font-size: 12px;
 }
 
 iframe.tunepad-iframe {
@@ -634,13 +636,17 @@ section.highlights {
     .resource-box { display: none; }
     article .content { padding: 0 0 0 0.25in; }
     article .content h1 { font-size: 18px; margin-top: 1.5rem; }
+    article p { font-size: 12px; font-weight: lighter; }
+    article li { font-size: 12px; font-weight: lighter; }
     article .footer-wrapper { background-color: transparent; border-top: 1px solid black; margin-top: 1.5rem; }
-    article footer { color: black; }
-    article pre[class*="language-python"] { font-size: 12px; }
+    article footer { color: black; font-size: 11px; }
+    article pre[class*="language-python"] { font-size: 12px; border: 1px solid #0009; max-width: 600px; }
+    section.content { border-top: none !important; }
     nav.top-nav { display: none; }
     main { margin-top: 1rem; }
     header .title-container { max-width: 400px; padding: 0.5rem; }
     header .splash-container { max-width: 300px; }
+    .splash-container .audio-button { display: none; }
     aside.disclaimer { margin: 0.5rem auto; font-size: 11px; }
     .info-box { margin: 0 auto 1em auto; max-width: 350px;}
     .info-box div { font-size: 15px; }
