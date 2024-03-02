@@ -514,7 +514,7 @@ class Sequencer {
                 cell.load(m);
 
                 if (cell.start+1 > this.steps) continue;
-                if (cell.track >= this.trackCount) continue;
+                if (isNaN(cell.track) || cell.track < 0 || cell.track >= this.trackCount) continue;
                 this.cells.push(cell);
                 this.cellGroup.append(cell.group);
             }
