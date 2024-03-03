@@ -595,7 +595,7 @@ iframe.tunepad-iframe {
     width: 225px;
     height: 300px;
     padding: 0;
-    margin: 1rem 20px 0 0;
+    margin: 1rem 20px 1rem 0;
 }
 .card:hover, .vcard:hover {
     box-shadow: 4px 4px 4px #0002;

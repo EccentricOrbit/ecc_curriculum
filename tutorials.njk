@@ -7,9 +7,9 @@ splash: /images/splash/tutorials-splash.jpg
 {% block body %}
 <section class="highlights">
     <h1>Song Tutorials</h1>
-    <div class="cards">
+    <div class="vcards">
     {%- for demo in collections.tutorials -%}
-        <div class="card" data-url="{{ demo.url }}">
+        <div class="vcard" data-url="{{ demo.url }}">
             <div class="card-image">
                 <img src="{{ demo.data.splash }}" alt="{{ demo.data.title }}">
             </div>
