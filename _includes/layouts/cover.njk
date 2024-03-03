@@ -1,10 +1,4 @@
----
-title: TunePad Learn
-description: TunePad is a free online platform for creating music with the Python programming language.
-splash: /images/learn-splash.png
----
 {% extends "layouts/base.njk" %}
-
 
 {% block header %}
     {{ super() }}
@@ -13,31 +7,34 @@ splash: /images/learn-splash.png
         border-top: 1px solid #0005;
         padding-top: 1.5rem;
     }
+    .info-link {
+        color: var(--theme-color);
+        text-decoration: none;
+        font-weight: bold;
+        line-height: 60px;
+        text-transform: uppercase;
+    }
+    .info-link:hover { text-decoration: underline; }
+    .info-img { margin: 0; }
 </style>
 {% endblock %}
 
 {% block resources %}
     <div class="info-box">
         <div>
-            <h3>Level</h3>
-            {{ level }}
+            <img class="info-img" src="/images/logo-black.svg" width="60px" alt="TunePad Logo">
         </div>
-        <div>
-            <h3>Time</h3>
-            {{ time }}
+        <div style="flex: 2">
+            <a class="info-link" href="{{ project }}" target="_blank">Open in TunePad</a>
         </div>
     </div>
 
     <div class="resource-box">
-        <button title="Print this ativity" onclick="window.print();"><i class="fa fa-print"></i>Print</button>
         {% if video %}
         <a href="{{ video }}" class="button" target="_blank" title="Walkthough video"><i class="fas fa-film"></i>Video</a>
         {% endif %}
         {% if slides %}
         <a href="{{ slides }}" class="button" target="_blank" title="Overview slides"><i class="far fa-file-powerpoint"></i>Slides</a>
-        {% endif %}
-        {% if project %}
-        <a href="{{ project }}" class="button" target="_blank" title="TunePad Project"><i class="fas fa-music"></i>Try It</a>
         {% endif %}
     </div>
 {% endblock %}
