@@ -44,7 +44,7 @@ playNote(45, beats = 0.25)
 3. Then try to *refactor* the code so that it sounds the same but is shorter and easier to understand.  
 There's no one right way to do this, and there are many possible improvements you can make.
 
-4. If you're not familiar *Someone Like You* by Adele, you can watch the music video here.
+4. If you're not familiar with *Someone Like You* by Adele, you can watch the music video here.
 
 <br>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/hLQl3WQQoQ0?si=b4HCCSVvrazshkXx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
