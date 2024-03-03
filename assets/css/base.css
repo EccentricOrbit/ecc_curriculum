@@ -309,7 +309,8 @@ article .content-wrapper {
 }
 article .footer-wrapper {
     padding: 2rem 1rem;
-    background-color: #000c;
+    background-color: #333;
+    color: #fff9;
 }
 
 article .content,
@@ -318,8 +319,7 @@ article footer {
     margin: 0 auto 2rem auto;
 }
 
-article footer {
-    color: white;
+article footer.license {
     font-size: 12px;
     font-family: var(--body-font);
     padding-right: 135px;
@@ -329,6 +329,85 @@ article footer {
     background-size: 120px;
     background-position: center right;
 }
+
+article footer.menu {
+    display: flex;
+    flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+}
+
+footer .affiliates {
+	min-width: 360px;
+    flex: 0;
+	background-image: url('/images/affiliates.svg');
+	background-size: contain;
+	background-position: top;
+	background-repeat: no-repeat;
+	min-height: 75px;
+    margin-right: 6rem;
+    margin-bottom: 3rem;
+}
+
+footer .section-wrapper {
+	display: flex;
+	flex-direction: row;
+	min-width: 250px;
+}
+
+footer section {
+	font-size: 14px;
+	flex: 1;
+	color: #fff9;
+	padding: 0;
+	display: block;
+	margin-right: 2em;
+	min-width: 90px;
+}
+footer section p {
+	margin: 5px 0;
+	font-size: 12px;
+	font-weight: 400;
+}
+
+footer section h3 {
+	margin: 0;
+    color: #fffc;
+}
+
+footer section a {
+	color: #EEE;
+	text-decoration: none;
+}
+
+footer section a:hover {
+	text-decoration: underline;
+	color: #FFF;
+}
+
+footer section a:visited {
+	color: inherit;
+	text-decoration: none;
+}
+
+footer section a.footlink {
+	color: #fff7;
+	display: block;
+	margin: 5px 0;
+	text-decoration: none;
+	font-weight: 400;
+}
+
+footer section a.footlink:hover {
+	color: white;
+	text-decoration: underline;
+}
+
+footer section a.footlink.contribute {
+    color: #EA738D;
+    font-weight: 700;
+}
+
 
 article .content h1 {
     font-family: var(--header-font);
@@ -602,10 +681,6 @@ a.more-info:hover {
     text-decoration: underline;
 }
 
-section.highlights {
-    /* border-bottom: 1px solid black; */
-}
-
 @media screen and (max-width: 900px) {
     nav.top-nav { padding: 1rem; }
     .top-nav button.show-menu { display: block; }
@@ -640,6 +715,7 @@ section.highlights {
     article li { font-size: 12px; font-weight: lighter; }
     article .footer-wrapper { background-color: transparent; border-top: 1px solid black; margin-top: 1.5rem; }
     article footer { color: black; font-size: 11px; }
+    article footer.menu { display: none; }
     article pre[class*="language-python"] { font-size: 12px; border: 1px solid #0009; max-width: 600px; }
     section.content { border-top: none !important; }
     nav.top-nav { display: none; }
