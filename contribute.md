@@ -8,7 +8,7 @@ description: This page provides information on how to contribute lessons, activi
 # How to contribute a TunePad Tutorial
 
 We welcome your contributions!   
-Please feel free to [email us](mailto:michael-horn@northwestern.edu) for more information on publishing your lessons, activities, videos, covers, and original music on [learn.tunepad.com](https://learn.tunepad.com).   
+Please feel free to [email us](mailto:support@tunepad.com) for more information on publishing your lessons, activities, videos, covers, and original music on [learn.tunepad.com](https://learn.tunepad.com).   
 
 If you’re feeling adventurous, you can also contribute directly to our open source repository by following the instructions below.
 
@@ -75,7 +75,7 @@ disclaimer: For educational purposes only. Based on <mark>song</mark> by <mark>a
 * You can proofread your edits by navigating to http://localhost:8080/tutorials/<mark>my-tutorial</mark>/
 
 ## Step 8: Publish your TunePad project
-Open your project in TunePad and click on the **Share** button and select **Sharing & Collaboration**
+Open your project in TunePad and click on **Share** -> **Sharing & Collaboration**
 1. Add project artwork
 2. Set your project to **View Only**
 3. Add a short description
