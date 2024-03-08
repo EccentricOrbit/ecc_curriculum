@@ -4,6 +4,20 @@ title: Contribute to Learn TunePad
 description: This page provides information on how to contribute lessons, activities, videos, tutorials, covers, and more to https://learn.tunepad.com
 ---
 
+# How to submit your original TunePad project
+1. Open your project in TunePad
+2. Click on the **Share** button and select **Sharing & Collaboration**
+3. Add project artwork by clicking on the image button (please avoid copyrighted images)
+4. Click on the **Preview** button to generate an audio preview of your project
+5. Add a short description of your project along with your Author information
+6. Finally, make sure your project is set to **View Only**
+
+When you're done, [send us](mailto:support@tunepad.com) us your project URL with the Subject **TunePad original submission**.
+
+**Note** if you're creating a cover or remix of an existing song, please also include this disclaimer in your project description:
+<pre style="margin: 1rem; background-color: #e3e9f2; font-size: 13px; padding: 1rem; line-height: 150%;">
+This project is based on <mark>TITLE</mark> by <mark>ARTISTS</mark> (<mark>YEAR</mark>), <mark>record label</mark>. For educational purposes only.
+</pre>
 
 # How to contribute a TunePad Tutorial
 
@@ -45,6 +59,7 @@ layout: layouts/activity.njk
 tags: tutorials
 category: Tutorial
 title: <mark>"My Tutorial Title"</mark>
+subtitle: <mark>Artist's name</mark>
 description: <mark>Description of my tutorial and what people will learn</mark>
 authors: by <mark>My name and optional contact info</mark>
 level: <mark>Beginner, Intermediate, or Expert</mark>
