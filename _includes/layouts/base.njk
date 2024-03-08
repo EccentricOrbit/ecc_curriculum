@@ -183,7 +183,9 @@
         document.querySelectorAll(".card, .vcard").forEach((el) => {
             let url = el.getAttribute('data-url');
             el.addEventListener('click', (e) => {
-                window.open(url, "_self");
+                let target = el.getAttribute('data-target');
+                if (!target) target = "_self";
+                window.open(url, target);
             });
         });
         document.querySelectorAll(".audio-button, .card-audio-button").forEach((el) => {
