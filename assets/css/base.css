@@ -434,7 +434,7 @@ article p {
     margin-top: 0;
     font-size: 15px;
 }
-article p code {
+article p code, article li code {
     color: var(--theme-color);
     font-weight: 700;
 }
