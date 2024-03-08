@@ -1,0 +1,32 @@
+---
+title: TunePad Interactives
+splash: /images/splash/curriculum-splash2.png
+---
+{% extends "layouts/base.njk" %}
+{% block header %}
+    {{ super() }}
+<style>
+    main {
+        margin: 4rem auto 0 auto;
+    }
+    article .content-wrapper {
+        padding: 1rem 2rem 3rem 2rem;
+        background-color: #f3f3f3; 
+        margin: 0;
+    }
+    header {
+        max-width: 1500px;
+        width: 100%;
+        height: 360px;
+        background-image: url('{{ splash }}');
+        background-size: cover;
+        background-repeat: no-repeat;
+        margin: 0 auto;
+    }
+</style>
+{% endblock %}
+{% block banner %}
+{% endblock %}
+
+{% block resources %}
+{% endblock %}
