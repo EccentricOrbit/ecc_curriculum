@@ -10,7 +10,7 @@ time: 30 minutes
 license: by-nc-sa
 splash: /images/splash/another-mm-splash.jpg
 project: https://tunepad.com/project/74732
-disclaimer: For educational purposes only. Based on work by Michael Giacchino(2009).
+#disclaimer: For educational purposes only. Based on work by Michael Giacchino(2009).
 ---
 # Try It
 See if you can fix all of the **syntax errors** in this project to reveal the mystery melody. Make sure to hit the **REMIX** button so that your changes are saved.
