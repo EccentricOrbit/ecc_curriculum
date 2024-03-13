@@ -1,6 +1,6 @@
 ---
 layout: layouts/activity.njk
-tags: tutorials
+tags: learn
 category: Tutorial
 title: "Hats Off"
 description: In this tutorial you'll use for-loops to create hi-hat patterns.
@@ -19,7 +19,7 @@ Log in and create a new TunePad project at [tunepad.com](https://tunepad.com). N
 # STEP 2: Hi-Hat Patterns
 In this tutorial we'll experiment with Python loops to create hi-hat patterns.
 ## Loops
-In both coding and music there are many times we want to repeat something over and over again. For example, say we wanted to play a run of eighth notes (♪) on the hi-hat. We could just type in 8 playNote instructions for 0.5 beats each. Create a new Drum cell in TunePad, and use this code:
+In both coding and music there are many times we want to repeat something over and over again. For example, say we wanted to play a run of eighth notes (♪) on the hi-hat. We could just type in 8 `playNote` instructions for 0.5 beats each. Create a new **Drum** cell in TunePad, and use this code:
 
 ```python
 playNote(4, beats=0.5)
@@ -33,13 +33,13 @@ playNote(4, beats=0.5)
 ```
 
 
-
 # STEP 3: Doing it Better
 So, what's wrong with this?
 
 1. We had to do a lot of copying and pasting to enter our code.
 2. We generated a lot of repetitive code, which makes it harder to read.
 3. The code is hard to change and reuse. What if we wanted to use a different drum sound or play 16 sixteenth notes instead of 8 eighth notes? We'd have to go through the code line-by-line making the same change over and over again.
+
 ## How can we do this better? 
 In Python we can use a loop to repeat the same code over and over again for any number of times. Here's our same example again, but this time using a loop. Now we only need 2 lines of code instead of 8!
 ```python
@@ -56,6 +56,10 @@ In this example, we created a loop that repeats 8 times. Each pass of the loop p
 * The in range(8) means that we're going to loop for 8 times in a row.
 * The last part is the colon character. This tells Python that the next line(s) will get repeated as part of the loop. 
 * Everything inside the loop needs to be indented by four spaces.
+
+<a href="/images/Figure2.12.png" target="_blank">
+<img src="/images/Figure2.12.png" alt="Anatomy of a for-loop" width="450px" style="margin: 1rem;"></a>
+
 ## More Loops
 Now, let's try expanding this example with different loop counts and beat durations. 
 
