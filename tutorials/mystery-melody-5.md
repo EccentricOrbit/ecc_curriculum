@@ -1,6 +1,6 @@
 ---
 layout: layouts/activity.njk
-tags: [ 'puzzles', 'learn' ]
+tags: puzzles
 category: Puzzler
 title: Taylor Swift Mystery Melody
 description: See if you can fix all of the syntax errors to reveal the mystery melody!
