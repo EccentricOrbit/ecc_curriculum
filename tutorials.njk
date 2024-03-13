@@ -7,6 +7,7 @@ splash: /images/splash/tutorials-splash.jpg
 {% block body %}
 <section class="highlights">
     <h1>Song Tutorials</h1>
+    <p>Step-by-step tutorials to recreate popular music.</p>
     <div class="vcards">
     {%- for demo in collections.tutorials -%}
         <div class="vcard" data-url="{{ demo.url }}">
@@ -32,25 +33,65 @@ splash: /images/splash/tutorials-splash.jpg
 
 <section class="highlights">
     <h1>TunePad Covers</h1>
-    <div class="vcards">
-    {%- for demo in collections.covers -%}
-        <div class="vcard" data-url="{{ demo.url }}">
+    <p>Song covers created by the TunePad community.</p>
+    <div class="vcards" id="featured-projects">
+        {% for proj in featured.covers %}
+        <div class="vcard" data-url="{{ proj.url }}" data-target="_blank">
             <div class="card-image">
-                <img src="{{ demo.data.splash }}" alt="{{ demo.data.title }}">
+                {% if proj.artwork %}
+                <div class="ar-fix-image" style="background-image: url('{{ proj.artwork }}');"></div>
+                {% else %}
+                <div class="ar-fix-image" style="background-color: {{ proj.color }};"></div>
+                {% endif %}
             </div>
             <div class="card-info">
-                <h1>{{ demo.data.title }}</h1>
-                {{ demo.data.description }}<br><small>{{ demo.data.authors }}</small>
+                <h1>{{ proj.name }}</h1>
+                {{ proj.summary }}
+                {%- if proj.author -%}
+                <div class="author">{{ proj.author }}</div>
+                {%- endif -%}
             </div>
-            {% if demo.data.audio %}
+            {% if proj.preview %}
             <button class="card-audio-button">
                 <i class="fas fa-play"></i>
-                <audio src="{{ demo.data.audio }}" class="audio-preview"></audio>
+                <audio src="https://api.tunepad.com/api/projects/{{ proj.id }}/audio/" class="audio-preview"></audio>
             </button>
             {% endif %}
-            <div class="level-badge">{{ demo.data.level }}</div>
         </div>
-    {%- endfor -%}
+        {% endfor %}
+    </div>
+</section>
+
+
+
+<section class="highlights">
+    <h1>TunePad Originals</h1>
+    <p>Original music created in TunePad.</p>
+    <div class="vcards" id="featured-projects">
+        {% for proj in featured.originals %}
+        <div class="vcard" data-url="{{ proj.url }}" data-target="_blank">
+            <div class="card-image">
+                {% if proj.artwork %}
+                <div class="ar-fix-image" style="background-image: url('{{ proj.artwork }}');"></div>
+                {% else %}
+                <div class="ar-fix-image" style="background-color: {{ proj.color }};"></div>
+                {% endif %}
+            </div>
+            <div class="card-info">
+                <h1>{{ proj.name }}</h1>
+                {{ proj.summary }}
+                {%- if proj.author -%}
+                <div class="author">{{ proj.author }}</div>
+                {%- endif -%}
+            </div>
+            {% if proj.preview %}
+            <button class="card-audio-button">
+                <i class="fas fa-play"></i>
+                <audio src="https://api.tunepad.com/api/projects/{{ proj.id }}/audio/" class="audio-preview"></audio>
+            </button>
+            {% endif %}
+        </div>
+        {% endfor %}
     </div>
 </section>
 {% endblock %}
