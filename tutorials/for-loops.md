@@ -1,9 +1,9 @@
 ---
 layout: layouts/activity.njk
-tags: tutorials
+tags: learn
 category: Tutorial
 title: "5 Uses of For Loops"
-description: Learn different ways to use For loops in Tunepad including basic list iteration, usage of range(), nested for loops, loop conditionals and usage of enumerate().
+description: Learn five different ways to use for-loops in Python to make music.
 authors: by Anna Xiao 
 level: Intermediate
 time: 20-30 mins
@@ -11,7 +11,6 @@ license: by-nc-sa
 splash: /images/splash/for-loops-splash.png
 project: https://tunepad.com/project/76552
 audio: https://api.tunepad.com/api/projects/76552/audio/
-disclaimer: For educational purposes only. Parts of "Twinkle Twinkle Little Star" were used for inspiration. 
 ---
 
 # Step 1: Create a new Project
