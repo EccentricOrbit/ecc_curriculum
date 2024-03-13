@@ -601,6 +601,7 @@ iframe.tunepad-iframe {
     padding: 0;
     margin: 1rem 20px 1rem 0;
 }
+
 .card:hover, .vcard:hover {
     box-shadow: 4px 4px 4px #0002;
 }
@@ -626,6 +627,15 @@ iframe.tunepad-iframe {
     max-width: unset;
     margin: 0;
 }
+.vcard .card-image .ar-fix-image {
+    background-image: url('/images/logo-happy.svg');
+    background-position-x: center;
+    background-position-y: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 150px;
+    width: 223px;
+}
 .card-info {
     padding-left: 1em;
 }
@@ -640,6 +650,10 @@ iframe.tunepad-iframe {
 .vcard .card-info h1 {
     margin: 4px 0;
     font-size: 15px;
+}
+.card-info .author {
+    font-size: 85%;
+    margin-top: 0.75rem;
 }
 .card-audio-button {
     position: absolute;
