@@ -1,13 +1,14 @@
 
 # Todo
 * Rework landing page
+* Add featured bar to the landing page
 * Three Basic Hip Hop Beats
 * Custom Rock Beat
-* Planet Rock 
 * Advanced Trap Beat
 * Afro Cuban Rhythms
 * Curriculum layout
 * Curriculum title text convert to HTML
+* Featured title text convert to HTML
 * Ringtone challenge
 * Glossary
 * Include the variables and loops sheets from Still DRE somewhere
