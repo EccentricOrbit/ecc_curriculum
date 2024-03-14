@@ -1,0 +1,129 @@
+{
+    "covers": [
+        {
+            "id": 36874,
+            "artwork": "/images/splash/mario-splash.jpg",
+            "author": "Remix by Mike Horn"
+        },
+        {
+            "id": 75937,
+            "author": "Remix by David Latimore"
+        },
+        {
+            "id": 44213,
+            "summary": "NBC's The Office Theme composed by Jay Ferguson",
+            "author": "Remix by Madeleine Reed-Horn"
+        },
+        {
+            "id": 42,
+            "artwork": "/images/splash/trophies-splash.jpg",
+            "summary": "Drake (2014), Cash Money Records",
+            "author": "Remix by Josh Kim"
+        },
+        {
+            "id": 41332,
+            "artwork": "/images/splash/industry-baby-splash.jpg",
+            "summary": "Lil Nas X (ft Jack Harlow) 2021, Columbia Records",
+            "author": "Remix by Lev Rosenberg",
+            "tracks": true
+        },
+        {
+            "id": 43,
+            "artwork": "/images/splash/headlines-splash.jpg",
+            "summary": "Drake (2011), Cash Money Records"
+        },
+        {
+            "id": 47,
+            "name": "Don't You Worry Child",
+            "artwork": "/images/splash/worry-child-splash.jpg",
+            "summary": "Swedish House Mafia (feat. John Martin)"
+        },
+        {
+            "id": 76368,
+            "name": "I Gotta Feeling",
+            "artwork": "/images/splash/gotta-feeling-splash.jpg",
+            "summary": "Black Eyed Peas (2011)"
+        },
+        {
+            "id": 46,
+            "artwork": "/images/splash/remember-the-name-splash.jpg",
+            "summary": "Fort Minor (2005)"
+        },
+        {
+            "id": 77033,
+            "summary": "ABBA (1976)",
+            "author": "Remix by Kyla Bruno",
+            "tracks": true
+        },
+        {
+            "id": 36981,
+            "summary": "Daft Punk (2010). Disney",
+            "author": "Remix by Jamie Lee",
+            "tracks": true
+        },
+        {
+            "id": 36759,
+            "author": "Remix by Mike Horn",
+            "name": "Blue Monday",
+            "tracks": true
+        },
+        {
+            "id": 77149,
+            "author": "Remix by Lev Rosenberg"
+        },
+        {
+            "id": 36979,
+            "author": "Remix by Jenna Kopp"
+        },
+        {
+            "id": 36980,
+            "author": "Remix by Salome Khelashvili",
+            "summary": "The Paper Kites",
+            "tracks": true
+        },
+        {
+            "id": 77150,
+            "author": "Remix by Cameron Roberts"
+        }
+    ],
+
+    
+    "originals": [
+        {
+            "id": 71037,
+            "author": "Original by Russell Gillespie",
+            "tracks": true
+        },
+        {
+            "id": 64388,
+            "author": "Original by Sebastian Dash",
+            "summary": "Inspired by the Gerudo Valley Theme"
+        },
+        {
+            "id": 70953,
+            "author": "Original by Russell Gillespie",
+            "tracks": true
+        },
+        {
+            "id": 72822,
+            "author": "Original by Russell Gillespie",
+            "tracks": true
+        },
+        {
+            "id": 72280,
+            "name": "Tonal PolyRhythms",
+            "author": "Original by Russell Gillespie",
+            "tracks": true
+        },
+        {
+            "id": 70808,
+            "author": "Original by Russell Gillespie",
+            "tracks": true
+        },
+        {
+            "id": 52024,
+            "author": "Original by Russell Gillespie",
+            "tracks": true
+        }
+    ]
+}
