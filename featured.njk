@@ -1,9 +1,19 @@
 ---
-layout: layouts/curriculum.njk
 title: Featured Projects
+subtitle: Covers and Original Music
 description: Covers and original music composed with TunePad
 splash: /images/splash/featured-splash.png
 ---
+{% extends "layouts/curriculum.njk" %}
+{% block header %}
+{{ super() }}
+<style>
+    header {
+        color: #d1c6d7;
+        padding: 8rem 0 0 3rem;
+    }
+</style>
+{% endblock %}
 {% block body %}
 
 <section class="highlights">
