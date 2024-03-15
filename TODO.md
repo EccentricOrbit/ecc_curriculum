@@ -7,14 +7,11 @@
 * Advanced Trap Beat
 * Afro Cuban Rhythms
 * Curriculum layout
-* Curriculum title text convert to HTML
-* Featured title text convert to HTML
 * Ringtone challenge
 * Glossary
 * Include the variables and loops sheets from Still DRE somewhere
 * TunePad loops library
 * Curriculum pages
-* Featured page with covers and originals
 * Pulldown in composer is invisible on chromebooks; one of the drums isn't working
 * Tutorial videos
 * More extensive mobile testing. Search is non-functional for phones
