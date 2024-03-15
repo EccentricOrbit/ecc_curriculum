@@ -1,9 +1,18 @@
 ---
-layout: layouts/curriculum.njk
-title: Getting Started with TunePad
-subtitle: This collection of activities introduces core concepts in music and Python programming. The materials are designed for beginners who are new to both music and code.
+title: TunePad Beginner Course
+subtitle: Learn Music with Code
+description: This collection of activities introduces core concepts in music and Python programming. The materials are designed for beginners who are new to both music and code.
 splash: /images/splash/curriculum-splash2.png
 ---
+{% extends "layouts/curriculum.njk" %}
+{% block header %}
+{{ super() }}
+<style>
+    header {
+        color: #b7ffff;
+    }
+</style>
+{% endblock %}
 {% block body %}
 <div class="cards">
 {%- for demo in collections.learn -%}
