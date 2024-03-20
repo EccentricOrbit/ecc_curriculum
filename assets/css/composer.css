@@ -32,13 +32,14 @@
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
-
-html, body {
+body {
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
   margin: 1em;
   padding: 0;
-  overscroll-behavior: none;
-  -webkit-font-smoothing: antialiased;
 }
+
+body.embedded { margin: 0; }
 
 .instrument {
   min-width: 660px;

@@ -4,8 +4,7 @@
  *
  * TODO: 
  * Use screenToSvg to fix scaling issue
- * Failing to save data after a recompile
- * Stop all doesn't reset the playhead
+  * generate embed link
  */
 class Composer {
 
@@ -66,13 +65,14 @@ class Composer {
             this.start_beat = this.currentBeat;
         }
     }
-    
+
+
     /**
      * Global STOP
      */
     stopAll() {
-        this.start_beat = 0;
         this.sequencers.forEach(s => s.stopped());
+        this.start_beat = 0;
     }
 
     /**
@@ -109,21 +109,25 @@ class Composer {
             state.sequencers[s.stateId] = s.save();
         }
 
-        // first get what's in localStorage
-        try {
-            const s = localStorage.getItem(this.stateId);
-            if (s != null) {
-                const o = JSON.parse(s);
-                const bpm = parseInt(o.bpm);
-                if (Number.isInteger(bpm)) state.bpm = o.bpm;
-                if (o.sequencers instanceof Object) state.sequencers = o.sequencers;
+        // url query parameters
+        const qParams = new URLSearchParams(window.location.search);
+
+        // first get what's in localStorage unless we're embedded
+        if (!qParams.has("embedded")) {
+            try {
+                const s = localStorage.getItem(this.stateId);
+                if (s != null) {
+                    const o = JSON.parse(s);
+                    const bpm = parseInt(o.bpm);
+                    if (Number.isInteger(bpm)) state.bpm = o.bpm;
+                    if (o.sequencers instanceof Object) state.sequencers = o.sequencers;
+                }
             }
+            catch(err) { console.log(err); }
         }
-        catch(err) { console.log(err); }
 
         // next override with URL query params
         {
-            const qParams = new URLSearchParams(window.location.search);
             const bpm = parseInt(qParams.get("bpm"));
             const voice = parseInt(qParams.get("voice"));
             const steps = parseInt(qParams.get("steps"));
@@ -468,9 +472,6 @@ class DrumTrack {
             pattern += cell.save();
             if (cell.velocity > 0) generate = true;
         }
-        console.log(pattern);
-        console.log(patternToHex(pattern));
-        console.log(hexToPattern(patternToHex(pattern)));
         return generate ? `&track${this.track}=${patternToHex(pattern)}` : '';
     }
 
@@ -727,7 +728,6 @@ class Sequencer {
                 if (!isNaN(i) && i >= 0 && i < this.tracks.length) {
                     this.tracks[i].load(t);
                 }
-                console.log(t);
             }
         }
     }
@@ -874,11 +874,13 @@ class Sequencer {
 
     generateEmbed() {
         const url = window.location.origin + window.location.pathname;
-        let query = `?bpm=${this.bpm}&steps=${this.steps}`;
+
+        const voice = this.tracks[0].voiceIndex;
+        let query = `?embedded=true&bpm=${this.bpm}&steps=${this.steps}&voice=${voice}`;
         for (let track of this.tracks) {
             query += track.generateEmbed();
         }
-        console.log(url + query);
+        return url + query;
     }
 
 

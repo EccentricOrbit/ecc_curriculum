@@ -577,6 +577,15 @@ iframe.tunepad-iframe {
     overflow: hidden;
 }
 
+iframe.composer-iframe {
+    width: 100%; 
+    min-width: 500px; 
+    height: 390px; 
+    overflow: hidden; 
+    border: none;
+    outline: none;
+}
+
 /* Card for collection layout */
 .cards {
     text-align: center;

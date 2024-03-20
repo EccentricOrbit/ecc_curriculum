@@ -24,9 +24,8 @@ tags: interactive
     <link rel="stylesheet" href="/css/prism.css">
 
     <title>{{ title }}</title>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> -->
 
-    <!-- TUNEPAD App -->
     <script defer src="/js/composer.js"></script>
 </head>
 
@@ -122,6 +121,9 @@ tags: interactive
         ]
     };
 
+        
+    const params = new URLSearchParams(window.location.search);
+    if (params.has("embedded")) document.body.classList.add('embedded');
     window.onload = (e) => { 
         const container = document.getElementById('composer');
         new Composer(container, drum_config);
