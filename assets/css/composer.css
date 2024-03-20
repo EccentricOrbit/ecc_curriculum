@@ -39,7 +39,9 @@ body {
   padding: 0;
 }
 
-body.embedded { margin: 0; }
+body.embedded { 
+    margin: 0;
+}
 
 .instrument {
   min-width: 660px;
@@ -143,7 +145,6 @@ body.embedded { margin: 0; }
 }
 
 .instrument .embed-wrapper {
-    background-color: pink;
     text-align: right;
 }
 .embed-wrapper button {
@@ -154,6 +155,16 @@ body.embedded { margin: 0; }
     width: auto;
     box-shadow: none;
 }
+.embed-info {
+    background-color: #eee;
+    font-family: monospace;
+    padding: 2rem;
+    text-align: left;
+    margin-left: 10rem;
+    border-radius: 1rem;
+    user-select: text;
+}
+.embed-info.hidden { display: none; }
 
 .code-hint-container {
     position: relative;
@@ -356,3 +367,4 @@ button.copy-code-button {
   background-color: var(--drum-color);
   background-image: url('../images/instruments/drumkit.svg');
 }
+

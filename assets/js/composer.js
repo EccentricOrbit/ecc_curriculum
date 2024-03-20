@@ -1,10 +1,8 @@
 /**
  * This class synchronizes and manages all of the sequencers on the page.
  * For now there is only one instrument but this could be expanded.
- *
- * TODO: 
- * Use screenToSvg to fix scaling issue
-  * generate embed link
+ * 
+ * TODO: Adding a beat while playhead is near the end of the loop won't play next time around
  */
 class Composer {
 
@@ -93,10 +91,10 @@ class Composer {
         };
         for (let s of this.sequencers) {
             state['sequencers'][s.stateId] = s.save();
-            s.generateEmbed();
         }
         localStorage.setItem(this.stateId, JSON.stringify(state));
     }
+
     
     loadState() {
 
@@ -200,6 +198,7 @@ class DrumCell {
         this.rect.addEventListener("pointerdown", (e) => {
             this.setVelocity(this.velocity == 0 ? 100 : 0, true);
             this.track.onUpdate(this);
+            if (this.velocity === 0) this.cancelSound();
             //e.stopPropagation();
         });
         this.rect.addEventListener('pointerenter', (e) => {
@@ -578,6 +577,8 @@ class Sequencer {
         this.container.querySelector('.bars-up').addEventListener('click', (e) => this.incrementMeasures());
         this.container.querySelector('.bars-down').addEventListener('click', (e) => this.decrementMeasures());
         this.container.querySelector('.copy-code-button').addEventListener('click', (e) => this.copyCode());
+        this.container.querySelector('.embed-expand')?.addEventListener('click', (e) => this.showEmbedCode());
+        this.container.querySelector('.embed-collapse')?.addEventListener('click', (e) => this.hideEmbedCode());
         bindSpinnerButton(this.container.querySelector('.tempo-up'),
                             () => this.increaseTempo(),
                             () => this.mute(),
@@ -594,6 +595,8 @@ class Sequencer {
         this.container.querySelector('.tempo .value').addEventListener('keypress', (e) => {
             if (e.charCode === 13) e.target.blur();
         });
+
+
         this.updateCodeHint();
     }
 
@@ -618,20 +621,15 @@ class Sequencer {
 
 
     onUpdate() {
-        /*
-        this.parent.addEventListener('pointerdown', (e) => { this.dragging = true; });
-        document.addEventListener('pointerup', (e) => { 
-            this.dragging = false;
-            */
-            this.updated = true;
-            setTimeout(() => { 
-                if (this.updated) {
-                    this.updated = false;
-                    this.updateCodeHint();
-                }
-             }, 1000);
-             this.composer.saveState();
-        //});
+        this.updated = true;
+        setTimeout(() => { 
+            if (this.updated) {
+                this.updated = false;
+                this.updateCodeHint();
+                this.updateEmbedCode();
+            }
+        }, 1000);
+        this.composer.saveState();
     }
 
 
@@ -872,15 +870,37 @@ class Sequencer {
     }
 
 
-    generateEmbed() {
+    generateEmbedLink() {
         const url = window.location.origin + window.location.pathname;
-
-        const voice = this.tracks[0].voiceIndex;
-        let query = `?embedded=true&bpm=${this.bpm}&steps=${this.steps}&voice=${voice}`;
+        let query = `?embedded=true&bpm=${this.bpm}&steps=${this.steps}&voice=${this.voiceIndex}`;
         for (let track of this.tracks) {
             query += track.generateEmbed();
         }
         return url + query;
+    }
+
+    showEmbedCode() {
+        this.updateEmbedCode();
+        this.container.querySelector('.embed-expand')?.classList.add('hidden');
+        this.container.querySelector('.embed-collapse')?.classList.remove('hidden');
+        this.container.querySelector('.embed-info')?.classList.remove('hidden');
+    }
+
+    hideEmbedCode() {
+        this.container.querySelector('.embed-expand')?.classList.remove('hidden');
+        this.container.querySelector('.embed-collapse')?.classList.add('hidden');
+        this.container.querySelector('.embed-info')?.classList.add('hidden');
+
+    }
+
+    updateEmbedCode() {
+        const el = this.container.querySelector(".embed-info");
+        if (el) {
+            const styles = "width: 100%; min-width: 500px; overflow: hidden; border: none;";
+            const link = this.generateEmbedLink();
+            const code = `<iframe height="390" src="${link}" style="${styles}" scrolling="no"></iframe>`;
+            el.innerText = code;
+        }
     }
 
 

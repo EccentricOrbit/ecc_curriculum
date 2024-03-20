@@ -578,12 +578,15 @@ iframe.tunepad-iframe {
 }
 
 iframe.composer-iframe {
-    width: 100%; 
+    width: 100vw; 
     min-width: 500px; 
     height: 390px; 
     overflow: hidden; 
     border: none;
     outline: none;
+    transform: scale(0.7);
+    transform-origin: 0 0;
+    margin-bottom: -100px;
 }
 
 /* Card for collection layout */
