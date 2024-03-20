@@ -27,6 +27,8 @@ Spanish: https://docs.google.com/document/d/1Jh02dx-CZ-9gUocrsvpBm2C9S2fC0zyBCq5
 Full list from Cameron Roberts
 https://docs.google.com/document/d/13FXAX66NMen69nTWQKj_HmQkY_wlLk5fdQoRuf0Jg8w/edit
 
+Copy over featured projects from community site
+
 
 Other intern projects
 Passionfruit
@@ -42,3 +44,6 @@ https://www.figma.com/file/m0CoX6va2GSiTn5qUcNrJD/Tunepad?type=design&node-id=0*
 
 # References
 https://rknight.me/using-pagefind-with-eleventy-for-search/
+
+# Macy
+35546, 29524, 29555, 29569, 30168. I also remember Alex Chao's "One Dance" being a big hit!
