@@ -141,6 +141,19 @@ html, body {
     border-top: 2px solid #667;
 }
 
+.instrument .embed-wrapper {
+    background-color: pink;
+    text-align: right;
+}
+.embed-wrapper button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #000a;
+    width: auto;
+    box-shadow: none;
+}
+
 .code-hint-container {
     position: relative;
 }
@@ -180,25 +193,20 @@ button.copy-code-button {
 }
 
 
-.grid-cell, .grid-note {
+.grid-note {
   fill: #555;
   stroke: white;
   stroke-opacity: 0.4;
   stroke-width: 1;
 }
 
-.grid-cell.darker {
+.grid-note.darker {
   fill: #3a3a3a;
 }
 
-
-.grid-note {
+.grid-note.active {
   fill: var(--drum-color);
-  stroke: white;
-  stroke-width: 1.5;
-  stroke-opacity: 0.65;
 }
-.grid-note.dim { fill-opacity: 0.5; }
 .grid-note.bass { fill: var(--bass-color); }
 .grid-note.drone { fill: var(--marimba-color); }
 
@@ -253,8 +261,10 @@ button.copy-code-button {
     font-family: var(--main-font);
     font-weight: 600;
     min-width: 150px;
+/*    
     color: rgba(255, 255, 255, 0.75);
     background-color: #fff2;
+*/
     height: 28px;
     border-radius: 4px;
     font-size: 120%;

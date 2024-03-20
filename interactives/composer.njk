@@ -42,21 +42,21 @@ tags: interactive
             <button class="clear-button" title="Clear"><i class="fas fa-trash"></i></button>
             <div class="expander"></div>
             <div class="tempo-controls">
-                <button class="spinner tempo-up" title="Faster Tempo"><i class="fas fa-plus"></i></button>
+                <button class="spinner tempo-down" title="Slower Tempo"><i class="fas fa-minus"></i></button>
                 <div class="tempo">
                     <div class="value" contenteditable>90</div>
                     <div class="units">bpm</div>
                 </div>
-                <button class="spinner tempo-down" title="Slower Tempo"><i class="fas fa-minus"></i></button>
+                <button class="spinner tempo-up" title="Faster Tempo"><i class="fas fa-plus"></i></button>
             </div>
             <div class="expander"></div>
             <div class="bars-controls">
-                <button class="spinner bars-up" title="Increase Measures"><i class="fas fa-plus"></i></button>
+                <button class="spinner bars-down" title="Decrease Measures"><i class="fas fa-minus"></i></button>
                 <div class="bars">
                     <div class="value">1</div>
                     <div class="units">bar</div>
                 </div>
-                <button class="spinner bars-down" title="Decrease Measures"><i class="fas fa-minus"></i></button>
+                <button class="spinner bars-up" title="Increase Measures"><i class="fas fa-plus"></i></button>
             </div>
             
             <div class="expander"></div>
@@ -66,6 +66,10 @@ tags: interactive
             </div>
             <div class="scroll-container"><svg class="sequencer" version="1.1"></svg></div>
             <div class="gutter"></div>
+            <div class="embed-wrapper">
+                <button class="embed-expander">Show embed code<i class="fas fa-caret"></i></button>
+                <pre class="embed-info"></pre>
+            </div>
 
             <div class="code-hint-container">
                 <!-- <button class="code-button"><i class="fas fa-code" id="display-code-icon"></i></button> -->

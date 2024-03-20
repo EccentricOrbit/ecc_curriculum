@@ -1,25 +1,40 @@
 /**
  * This class synchronizes and manages all of the sequencers on the page.
- * Add data-state attribute to HTML 
+ * For now there is only one instrument but this could be expanded.
+ *
+ * TODO: 
+ * Use screenToSvg to fix scaling issue
+ * Failing to save data after a recompile
+ * Stop all doesn't reset the playhead
  */
 class Composer {
 
     constructor(container, config) {
+        // global tempo for all sequencers
         this.bpm = 100;
+
+        // global audio context
         this.context = null;
+
+        // different sequencers are stored in different local storage bins
         this.stateId = container.getAttribute('data-state');
+
+        // global playhead location
         this.start_time = 0;
         this.start_beat = 0;
+
+        // list of all sequencers (1 for now)
         this.sequencers = [];
         container.querySelectorAll('.instrument').forEach((i) => {
             this.sequencers.push(new Sequencer(this, i, config));
         });
+
+        // initialize all sequencers
         this.loadState();
         this.sequencers.forEach(s => s.redraw());
-        this.sequencers.forEach(s => s.loadTracks(false));
         this.sequencers.forEach(s => s.updateCodeHint());
 
-        // start the audio context on the first click
+        // start the audio context on the first click or on timeout
         document.addEventListener("click", (e) => { this.initAudio(); }, {once : true});
         setTimeout(() => { this.initAudio(); }, 100);
     }
@@ -32,7 +47,9 @@ class Composer {
         return b + this.start_beat;
     }
 
-    
+    /**
+     * Callback after user presses the PLAY button for any sequencer
+     */
     sequencerPlayed() {
         // if no sequencers are already playing
         if (!this.isPlaying) {
@@ -40,7 +57,9 @@ class Composer {
         }
     }
     
-    // called from a local sequencer
+    /**
+     * Callback after user presses PAUSE for any sequencer
+     */
     sequencerPaused() {
         // if all sequencers have stopped
         if (!this.isPlaying) {
@@ -48,12 +67,17 @@ class Composer {
         }
     }
     
+    /**
+     * Global STOP
+     */
     stopAll() {
         this.start_beat = 0;
         this.sequencers.forEach(s => s.stopped());
     }
 
-
+    /**
+     * Are any sequencers playing?
+     */
     get isPlaying() {
         if (this.context === null) return false;
         for (let s of this.sequencers) {
@@ -64,34 +88,71 @@ class Composer {
 
     saveState() {
         let state = {
-            'bpm' : `${this.bpm}`,
+            'bpm' : this.bpm,
             'sequencers' : { }
         };
         for (let s of this.sequencers) {
             state['sequencers'][s.stateId] = s.save();
+            s.generateEmbed();
         }
         localStorage.setItem(this.stateId, JSON.stringify(state));
     }
     
     loadState() {
-        const s = localStorage.getItem(this.stateId);
-        if (s !== null) {
-            const state = JSON.parse(s);
-            if (state instanceof Object && state['sequencers'] instanceof Object)  {
-                let tempo = state['bpm'];
-                if (isNaN(tempo)) {
-                    this.setTempo(100);
-                } else {
-                    this.setTempo(parseInt(tempo));
-                }
-                for (let seq of this.sequencers) {
-                    if (state['sequencers'][seq.stateId] instanceof Object) {
-                        seq.load(state['sequencers'][seq.stateId]);
+
+        // create a default state object
+        let state = {
+            bpm: 100,
+            sequencers: { }
+        };
+        for (let s of this.sequencers) {
+            state.sequencers[s.stateId] = s.save();
+        }
+
+        // first get what's in localStorage
+        try {
+            const s = localStorage.getItem(this.stateId);
+            if (s != null) {
+                const o = JSON.parse(s);
+                const bpm = parseInt(o.bpm);
+                if (Number.isInteger(bpm)) state.bpm = o.bpm;
+                if (o.sequencers instanceof Object) state.sequencers = o.sequencers;
+            }
+        }
+        catch(err) { console.log(err); }
+
+        // next override with URL query params
+        {
+            const qParams = new URLSearchParams(window.location.search);
+            const bpm = parseInt(qParams.get("bpm"));
+            const voice = parseInt(qParams.get("voice"));
+            const steps = parseInt(qParams.get("steps"));
+
+            if (Number.isInteger(bpm)) state.bpm = bpm;
+
+            for (let key in state.sequencers) {
+                const seq = state.sequencers[key];
+                if (Number.isInteger(voice)) seq.voiceIndex = voice;
+                if (Number.isInteger(steps)) seq.steps = steps;
+                for (const track of seq.tracks) {
+                    const hexStr = qParams.get(`track${track.track}`);
+                    if (hexStr) {
+                        let pattern = hexToPattern(hexStr, seq.steps);
+                        track.cells = pattern;
                     }
                 }
             }
         }
+
+        this.setTempo(state.bpm);
+
+        for (let seq of this.sequencers) {
+            if (state['sequencers'][seq.stateId] instanceof Object) {
+                seq.load(state['sequencers'][seq.stateId]);
+            }
+        }
     }
+
     
     initAudio() {
         if (this.context === null) {
@@ -118,12 +179,11 @@ class Composer {
  */
 class DrumCell {
 
-    constructor(sequencer, start, track) {
-        this.sequencer = sequencer;
+    constructor(track, start) {
+        this.track = track;     /// which DrumTrack does this cell belong to
         this.start = start;     /// start time as a step count (each step is 0.25 beats)
         this.end = start;       /// end time as step count (if end == start, the note is 0.25 beats long)
-        this.track = track;     /// which track (row) is this note on
-        this.velocity = 100;    /// loudness
+        this.velocity = 0;      /// volume
 
         this.group = document.createElementNS("http://www.w3.org/2000/svg", 'g');
         this.rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
@@ -134,47 +194,76 @@ class DrumCell {
         this._gain = null;    // GainNode
 
         this.rect.addEventListener("pointerdown", (e) => {
-            this.velocity = 0;
-            this.sequencer.removeNote(this);
-            e.stopPropagation();
+            this.setVelocity(this.velocity == 0 ? 100 : 0, true);
+            this.track.onUpdate(this);
+            //e.stopPropagation();
+        });
+        this.rect.addEventListener('pointerenter', (e) => {
+            if (e.buttons > 0 && this.velocity < 100) {
+                this.setVelocity(100, true);
+                this.track.onUpdate(this);
+            }
         });
     }
 
+    get bpm() { return this.track.bpm; }
     get beats() { return (this.end - this.start + 1) * 0.25; }
     get startBeat() { return this.start * 0.25; }
     get endBeat() { return this.end * 0.25; }
-    get audioCtx() { return this.sequencer.context; }
+    get audioCtx() { return this.track.context; }
+    get sound() { return this.track.buffer; }
 
-    save() {
-        return {
-            'start' : this.start,
-            'end' : this.end,
-            'track' : this.track,
-            'velocity' : this.velocity
-        };
+
+    setVelocity(v, cue = false) {
+        this.velocity = v;
+        if (v > 0) {
+            this.rect.classList.add('active');
+            this.rect.setAttribute('fill-opacity', `${(this.velocity / 100)}`);
+        } else {
+            this.rect.classList.remove('active');
+            this.rect.setAttribute('fill-opacity', '1.0');
+        }
+        if (cue) {
+            if (this.velocity > 0) {
+                this.previewSound();
+                if (this.track.isPlaying) {
+                    this.cueSound(this.track.master, 0, this.track.currentBeat);
+                }
+                else {
+                    this.cancelSound();
+                }
+            }
+        }
     }
 
-    load(state) {
-        this.start = parseInt(state['start']);
-        this.end = parseInt(state['end']);
-        this.track = parseInt(state['track']);
-        this.velocity = parseInt(state['velocity']);
-        this.reposition();
+    clear() {
+        this.setVelocity(0, true);
+    }
+
+    save() {
+        return this.velocity === 0 ? '-' : this.velocity >= 100 ? '!' : '*';
+    }
+
+    load(s) {
+        const v = (s === '!') ? 100 : (s === '*') ? 60 : 0;
+        this.setVelocity(v, false);
     }
 
 
     cueSound(dest, delayBeats, offsetBeats) {
         if (dest !== null) {
             let when = this.audioCtx.currentTime;
+
+            // special case when play button is pressed the first time after a STOP event
             if (this.startBeat === 0 && delayBeats === 0 && offsetBeats === 0) {
                 this.playSound(dest, when);
             }
             else if (delayBeats > 0) {
-                when = when + (this.startBeat + delayBeats) * 60 / this.sequencer.bpm;
+                when = when + (this.startBeat + delayBeats) * 60 / this.bpm;
                 this.playSound(dest, when);
             } 
             else if (offsetBeats >= 0 && this.startBeat > offsetBeats) {
-                when = when + (this.startBeat - offsetBeats) * 60 / this.sequencer.bpm;
+                when = when + (this.startBeat - offsetBeats) * 60 / this.bpm;
                 this.playSound(dest, when);
             }
         }
@@ -189,16 +278,17 @@ class DrumCell {
     }
 
     playSound(dest = null, when = 0) {
-        let sound = this.sequencer.trackBuffer(this.track);
-        const gain = this.sequencer.trackGain(this.track);
         const ctx = this.audioCtx;
-        if (ctx == null) return;
-        if (dest == null) dest = this.audioCtx.destination;
-        if (dest == null || sound == null) return;
+        if (ctx === null) return;
 
-        let R = 0.2;
+        if (dest == null) dest = this.audioCtx.destination;
+        const sound = this.track.buffer;
+        if (dest === null || sound === null || this.velocity <= 0) return;
+
+        const R = 0.2;
+        const gain = this.track.gain;
         if (when == 0) when = ctx.currentTime;
-        let duration = Math.max(0, (this.end - this.start + 1)) * 0.25 * 60 / this.sequencer.bpm;
+        let duration = Math.max(0, (this.end - this.start + 1)) * 0.25 * 60 / this.bpm;
         this._gain = ctx.createGain();
         this._gain.gain.value = (this.velocity / 120) * gain;
         this._gain.gain.setTargetAtTime(0, when + duration, 0.33 * R);
@@ -212,55 +302,197 @@ class DrumCell {
 
     cancelSound() {
         if (this._gain !== null) {
-            this._gain.gain.linearRampToValueAtTime(0, this.sequencer.context.currentTime + 0.25);
-        }
-    }
-
-    stopSound() {
-        if (this._gain !== null) {
-            this._gain.gain.value = 0.0;
+            this._gain.gain.linearRampToValueAtTime(0, this.audioCtx.currentTime + 0.25);
         }
     }
 
     reposition() {
-        this.rect.setAttribute('x', `${this.sequencer.stepToX(this.start)}`);
-        this.rect.setAttribute('y', `${this.sequencer.trackToY(this.track)}`);
-        this.rect.setAttribute('width', `${this.sequencer.cellWidth}`);
-        this.rect.setAttribute('height', `${this.sequencer.cellHeight}`);
+        this.rect.setAttribute('x', `${this.track.stepToX(this.start)}`);
+        this.rect.setAttribute('y', `${this.track.trackY}`);
+        this.rect.setAttribute('width', `${this.track.cellWidth}`);
+        this.rect.setAttribute('height', `${this.track.cellHeight}`);
+        if (this.velocity > 0) {
+            this.rect.setAttribute('fill-opacity', `${(this.velocity / 100)}`);
+            this.rect.classList.add('active');
+        } else {
+            this.rect.setAttribute('fill-opacity', '1.0');
+            this.rect.classList.remove('active');
+        }
+        if (Math.ceil((this.start+1) / 4) % 2 == 0) { 
+            this.rect.classList.add('darker');
+        }
     }
 
-    codeHint() {
-        let note = 0;
-        if (this.track >= 0 && this.track <= this.sequencer.tracks.length) {
-            note = this.sequencer.tracks[this.track].note;
-        }
-
+    generateCode() {
         if (this.velocity >= 100) {
-            return `playNote(${note}, beats = ${this.beats})`;
-        } else {
-            return `playNote(${note}, beats = ${this.beats}, velocity = ${this.velocity})`;
-        }        
+            return `playNote(${this.track.note}, beats = ${this.beats})\n`;
+        }
+        else if (this.velocity > 0) {
+            return `playNote(${this.track.note}, beats = ${this.beats}, velocity = ${this.velocity})\n`;
+        }
+        else {
+            return `rest(0.25)\n`;
+        }
     }
 }
 
 
-class Drum {
+class DrumTrack {
 
     constructor(config, sequencer) {
-        this.name = config['name'];
-        this.note = config['note'];
-        this.track = config['track'];
-        this.sound = config['sound'];
-        this.gain = ('gain' in config) ? config['gain'] : 1.0;
+
+        this.sequencer = sequencer;
+
+        // list of cells for this track
+        this.cells = [ ]; // List<DrumCell>
+
+        // group contains the text attribute and all of the cells
         this.group = document.createElementNS("http://www.w3.org/2000/svg", 'g');
         this.text = document.createElementNS("http://www.w3.org/2000/svg", 'text');
-        this.text.setAttribute('x', `${sequencer.headerWidth - 15}`);
-        this.text.setAttribute('y', `${sequencer.trackToY(this.track) + sequencer.cellHeight / 2}`);
 
+        this.changeVoice(config);        
+
+        this.text.setAttribute('x', `${sequencer.headerWidth - 15}`);
+        this.text.setAttribute('y', `${this.trackY + this.cellHeight / 2}`);
         this.text.classList.add('drum-name');
         this.text.innerHTML = `${this.name} (${this.note})`;
         this.group.append(this.text);
-        this.buffer = null;
+
+        for (let i = 0; i < this.sequencer.steps; i++) {
+            let cell = new DrumCell(this, i);
+            this.cells.push(cell);
+            this.group.append(cell.group);
+        }
+    }
+
+    get context() { return this.sequencer.context; }
+    get master() { return this.sequencer.master; }
+    get bpm() { return this.sequencer.bpm; }
+    get steps() { return this.sequencer.steps; }
+    get currentBeat() { return this.sequencer.currentBeat; }
+    get isPlaying() { return this.sequencer.isPlaying; }
+    get trackY() { return this.sequencer.trackToY(this.track); }
+    get cellWidth() { return this.sequencer.cellWidth; }
+    get cellHeight() { return this.sequencer.cellHeight; }
+    stepToX = (step) => this.sequencer.stepToX(step);
+
+
+    async changeVoice(config) {
+        this.name = config['name'];   // display name (e.g. "Kick")
+        this.note = config['note'];   // note number (e.g. 1, 2, 3)
+        this.track = config['track']; // track index (0, 1, 2, 3, ...)
+        this.sound = config['sound']; // audio file name
+        this.gain = ('gain' in config) ? config['gain'] : 1.0;
+        this.buffer = null;           // audio buffer
+        this.text.innerHTML = `${this.name} (${this.note})`;
+        if (this.context != null) {
+            this.buffer = await this.sequencer.loadAudioBuffer(this.sound);
+        }
+    }
+
+    onUpdate(cell) {
+        this.sequencer.onUpdate(cell);
+    }
+
+    clear() {
+        this.cells.forEach((cell) => cell.clear());
+    }
+
+    incrementMeasures() {
+        for (let i=0; i<this.steps; i++) {
+            if (i >= this.cells.length) {
+                let cell = new DrumCell(this, i)
+                this.cells.push(cell);
+                this.group.append(cell.group);                
+            }
+        }
+    }
+
+    decrementMeasures() {
+        for (let cell of this.cells) {
+            if (cell.start >= this.steps) {
+                cell.group.remove();
+            }
+        }
+        const delta = this.steps - this.cells.length;
+        this.cells.splice(delta);
+    }
+
+    cancelSound() {
+        this.cells.forEach(cell => cell.cancelSound());
+    }
+
+    cueSound(delayBeats, offsetBeats) {
+        for (let cell of this.cells) {
+            if (cell.start+1 <= this.sequencer.steps) {
+                cell.cueSound(this.sequencer.master, delayBeats, offsetBeats);
+            }
+        }
+    }
+
+    reposition() {
+        this.text.setAttribute('x', `${this.sequencer.headerWidth - 15}`);
+        this.text.setAttribute('y', `${this.trackY + this.cellHeight / 2}`);
+        this.text.classList.add('drum-name');        
+        this.cells.forEach(cell => cell.reposition());
+    }
+
+    save() {
+        let s = '';
+        for (let cell of this.cells) {
+            s += cell.save();
+        }
+        return { track : this.track, cells : s };
+    }
+
+    load(config) {
+        if (config.track == this.track) {
+            for (let i = 0; i<this.steps; i++) {
+                if (i >= this.cells.length) {
+                    let cell = new DrumCell(this, i)
+                    this.cells.push(cell);
+                    this.group.append(cell.group);
+                }
+                if (i < config.cells.length) {
+                    this.cells[i].load(config.cells[i]);
+                }
+            }
+        }
+    }
+
+
+    generateEmbed() {
+        let generate = false;
+        let pattern = '';
+        for (const cell of this.cells) {
+            pattern += cell.save();
+            if (cell.velocity > 0) generate = true;
+        }
+        console.log(pattern);
+        console.log(patternToHex(pattern));
+        console.log(hexToPattern(patternToHex(pattern)));
+        return generate ? `&track${this.track}=${patternToHex(pattern)}` : '';
+    }
+
+
+    generateCode() {
+        let build = false;
+        let code = "# " + this.name + "\nmoveTo(0)\n";
+        let rest = 0;
+        for (let cell of this.cells) {
+            if (cell.velocity > 0) {
+                if (rest > 0) {
+                    code += `rest(${rest})\n`;
+                    rest = 0;
+                }
+                code += cell.generateCode();
+                build = true;  // only generate code if at least one cell is on
+            }
+            else {
+                rest += 0.25;
+            }
+        }
+        return build ? (code + "\n") : "";
     }
 }
 
@@ -282,31 +514,28 @@ class Sequencer {
         this.master = null;             // GainNode
         this.parent = this.container.querySelector('.sequencer'); // SVGSVGElement
 
-        this.cellGroup = document.createElementNS("http://www.w3.org/2000/svg", 'g');
-        this.gridGroup = document.createElementNS("http://www.w3.org/2000/svg", 'g');
         this.trackGroup = document.createElementNS("http://www.w3.org/2000/svg", 'g');
         this.timelineGroup = document.createElementNS("http://www.w3.org/2000/svg", 'g');
         this.playhead = document.createElementNS("http://www.w3.org/2000/svg", 'line');
 
-        this.cellGroup.classList.add('cell-group');
-        this.gridGroup.classList.add('grid-group');
         this.trackGroup.classList.add('track-group');
         this.timelineGroup.classList.add('timeline-group')
         this.playhead.classList.add('playhead');
 
         this.parent.append(this.trackGroup);
         this.parent.append(this.timelineGroup);
-        this.parent.append(this.gridGroup);
-        this.parent.append(this.cellGroup);
         this.parent.append(this.playhead);
 
         this.codeHint = this.container.querySelector('.code-hint'); // DivElement
 
-        this.cells = [ ];    // List<DrumCell>
         this.tracks = [ ];   // List<Drum>();
         this.sounds = { };   // Map<String?, AudioBuffer>();
 
-        this.loadTracks(false);
+        for (let t of this.voice['tracks']) {
+            let track = new DrumTrack(t, this);
+            this.trackGroup.append(track.group);
+            this.tracks.push(track)
+        }
         this.redraw();
         this.setPlayhead(0);
 
@@ -315,17 +544,7 @@ class Sequencer {
         this.last_beat = 0;
 
         // Drag to paint notes
-        this.dragging = false;
-        this.parent.addEventListener('pointerdown', (e) => { this.dragging = true; });
-        document.addEventListener('pointerup', (e) => { 
-            this.dragging = false;
-            setTimeout(() => { 
-                if (this.updated) {
-                    this.updated = false;
-                    this.updateCodeHint();
-                }
-             }, 1000);
-        });
+        this.updated = false;
 
         addEventListener('resize', (e) => { this.redraw() });
 
@@ -379,11 +598,12 @@ class Sequencer {
 
     get context() { return this.composer.context; }
     get bpm() { return this.composer.bpm; }
-    get measures() { return Math.round(this.steps / this.stepsPerMeasure); }
+    get measures() { return Math.max(1, Math.min(this.maxMeasures, Math.round(this.steps / this.stepsPerMeasure))); }
     get stepsPerBeat() { return 4; }
     get beatsPerMeasure() { return 4; }
     get stepsPerMeasure() { return this.stepsPerBeat * this.beatsPerMeasure; }
     get maxMeasures() { return 3; }
+    get currentBeat() { return this.composer.currentBeat % this.totalBeats; }
     get width() { return this.container.getBoundingClientRect().width; }
     get height() { return 300; }
     get voice() { return this.config['voices'][this.voiceIndex]; }
@@ -396,10 +616,29 @@ class Sequencer {
     get totalBeats() { return this.steps / 4.0; }
 
 
+    onUpdate() {
+        /*
+        this.parent.addEventListener('pointerdown', (e) => { this.dragging = true; });
+        document.addEventListener('pointerup', (e) => { 
+            this.dragging = false;
+            */
+            this.updated = true;
+            setTimeout(() => { 
+                if (this.updated) {
+                    this.updated = false;
+                    this.updateCodeHint();
+                }
+             }, 1000);
+             this.composer.saveState();
+        //});
+    }
+
+
     incrementMeasures() {
         if (this.measures < this.maxMeasures) {
             this.steps = (this.measures + 1) * this.stepsPerMeasure;
             this.composer.stopAll();
+            this.tracks.forEach(track => track.incrementMeasures());
             this.redraw();
             this.composer.saveState();
             this.updateCodeHint();
@@ -410,6 +649,7 @@ class Sequencer {
         if (this.measures > 1) {
             this.steps = (this.measures - 1) * this.stepsPerMeasure;
             this.composer.stopAll();
+            this.tracks.forEach(track => track.decrementMeasures());
             this.redraw();
             this.composer.saveState();
             this.updateCodeHint();
@@ -427,22 +667,10 @@ class Sequencer {
     redraw() {
         this.parent.setAttribute("viewBox", `0 0 ${this.width} ${this.height}`);
         this.buildTimeline();
-        this.drawGrid();
-        this.cells.forEach(cell => cell.reposition());
+        this.tracks.forEach(track => track.reposition());
         this.container.querySelector(".bars .value").innerHTML = `${this.measures}`;
         this.container.querySelector(".bars .units").innerHTML = this.measures > 1 ? "bars" : "bar";
         this.container.querySelector(".tempo .value").innerHTML = `${this.bpm}`;
-    }
-
-    async loadTracks(loadAudio) {
-        this.tracks = [];
-        this.trackGroup.innerHTML = '';
-        for (let t of this.voice['tracks']) {
-            let drum = new Drum(t, this);
-            this.trackGroup.append(drum.group);
-            this.tracks.push(drum)
-            if (loadAudio) drum.buffer = await this.loadAudioBuffer(drum.sound);
-        }
     }
 
     updateVoiceMenu() {
@@ -456,67 +684,50 @@ class Sequencer {
     }
 
     changeVoice(index) {
-        this.voiceIndex = Math.max(0, Math.min(index, this.config['voices'].length));
-        this.loadTracks(true);
+        this.voiceIndex = Math.max(0, Math.min(index, this.config['voices'].length - 1));
+        for (let t of this.voice['tracks']) {
+            const i = t.track;
+            if (!isNaN(i) && i >= 0 && i < this.tracks.length) {
+                const track = this.tracks[i];
+                track.changeVoice(t);
+            }
+        }
         this.redraw();
         this.composer.saveState();
     }
 
-    drawGrid() {
-        this.gridGroup.innerHTML = '';
-        for (let j=0; j<this.trackCount; j++) {
-            for (let i=0; i<this.steps; i++) {
-
-                let rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
-                rect.setAttribute('x', `${this.stepToX(i)}`);
-                rect.setAttribute('y', `${this.trackToY(j)}`);
-                rect.setAttribute('width', `${this.cellWidth}`);
-                rect.setAttribute('height', `${this.cellHeight}`);
-                rect.classList.add('grid-cell');
-                
-                if (Math.ceil((i+1) / 4) % 2 == 0) { 
-                    rect.classList.add('darker');
-                }
-
-                rect.addEventListener('pointerdown', (e) => { this.addNote(i, j); });
-                rect.addEventListener('pointerenter', (e) => { if (this.dragging) this.addNote(i, j); });
-                this.gridGroup.append(rect);
-            }
-        }
-    }
 
     save() {
         let state = [ ];
-        for (let cell of this.cells) { state.push(cell.save()); }
+        for (let track of this.tracks) {
+            state.push(track.save());
+        }
         let config_state = {};
         config_state['steps'] = this.steps;
-        config_state['cells'] = state;
+        config_state['tracks'] = state;
         config_state['voiceIndex'] = this.voiceIndex;
         return config_state;
     }
 
     load(state) {
-        if (state instanceof Object && state['cells'] instanceof Array)  {
+        if (state instanceof Object && state['tracks'] instanceof Array)  {
             this.steps = parseInt(state['steps']);
+            this.steps = this.measures * this.stepsPerMeasure;  // make sure the lines up with time signature
             let vi = parseInt(state['voiceIndex']);
             if (isNaN(vi)) vi = 0;
+            vi = Math.max(0, Math.min(vi, this.config['voices'].length - 1));
             if (vi != this.voiceIndex) {
-                this.voiceIndex = vi;
+                this.changeVoice(vi);
                 this.updateVoiceMenu();
-                this.loadTracks(true);
             }
             if (isNaN(this.steps)) this.steps = 16;
 
-            this.cellGroup.innerHTML = '';
-            this.cells = [ ];
-            for (let m of state['cells']) {
-                let cell = new DrumCell(this, 0, 0);
-                cell.load(m);
-
-                if (cell.start+1 > this.steps) continue;
-                if (isNaN(cell.track) || cell.track < 0 || cell.track >= this.trackCount) continue;
-                this.cells.push(cell);
-                this.cellGroup.append(cell.group);
+            for (let t of state['tracks']) {
+                const i = t.track;
+                if (!isNaN(i) && i >= 0 && i < this.tracks.length) {
+                    this.tracks[i].load(t);
+                }
+                console.log(t);
             }
         }
     }
@@ -525,28 +736,12 @@ class Sequencer {
         return this.headerHeight + this.cellHeight * track;
     }
 
-    yToTrack(y) {
-        return Math.max(0, Math.min(this.trackCount - 1, (y - this.headerHeight) / this.cellHeight));
-    }
-
     stepToX(step) {
         return this.headerWidth + this.cellWidth * step + (step / this.stepsPerMeasure) * 4;
     }
 
     beatsToX(beats) {
         return this.headerWidth + this.cellWidth * this.steps * beats / this.totalBeats;
-    }
-
-    xToStep(x) {
-        return (x - this.headerWidth) / this.cellWidth;
-    }
-
-    trackBuffer(track) {
-        return this.tracks[track].buffer;
-    }
-
-    trackGain(track) {
-        return this.tracks[track].gain;
     }
 
     setPlayhead(beats) {
@@ -596,11 +791,7 @@ class Sequencer {
     }
 
     clear() {
-        for (let cell of this.cells) {
-            cell.stopSound();
-            cell.group.remove();
-        }
-        this.cells = [];
+        this.tracks.forEach(t => t.clear());
         this.composer.saveState();
     }
 
@@ -618,8 +809,7 @@ class Sequencer {
 
     tempoChange() {
         if (this.isPlaying && this.master !== null) {
-            this.cells.forEach(cell => cell.stopSound());
-
+            this.tracks.forEach(track => track.cancelSound());
             let beat = this.composer.currentBeat % this.totalBeats;
             if (beat < (this.totalBeats - 0.5)) {
                 this.cueSounds(0, this.last_beat);
@@ -633,11 +823,7 @@ class Sequencer {
 
     cueSounds(delayBeats, offsetBeats) {
         if (this.context != null && this.master != null) {
-            for (let cell of this.cells) {
-                if (cell.start+1 <= this.steps) {
-                    cell.cueSound(this.master, delayBeats, offsetBeats);
-                }
-            }
+            this.tracks.forEach(track => track.cueSound(delayBeats, offsetBeats));
         }
     }
 
@@ -677,77 +863,24 @@ class Sequencer {
         }
     }
 
-    moveToTop(cell) {
-        this.cellGroup.children.remove(cell.group);
-        this.cellGroup.append(cell.group);
-    }
-
-    addNote(step, track) {
-        let cell = new DrumCell(this, step, track);
-        this.cells.push(cell);
-        cell.previewSound();
-        this.cellGroup.append(cell.group);
-        if (this.isPlaying && this.master != null) {
-            cell.cueSound(this.master, 0, this.composer.currentBeat % this.totalBeats);
-        }
-        this.composer.saveState();
-        this.updated = true;
-    }
-
-
-    rescheduleNote(cell) {
-        if (this.isPlaying && this.master != null) {
-            cell.cueSound(this.master, 0, this.composer.currentBeat % this.totalBeats);
-        }
-    }
-
-
-    removeNote(cell) {
-        cell.group.remove();
-        this.cells = this.cells.filter(c => c !== cell);
-        cell.cancelSound();
-        this.composer.saveState();
-        this.updated = true;
-    }
-
-
-    removeOverlaps(cell) {
-        for (let i=this.cells.length - 1; i >= 0; i--) {
-            let c = cells[i];
-            if (c != cell && c.overlaps(cell)) {
-                this.removeNote(c);
-            }
-        }
-    }
-
     generateCode() {
         let code = "";
-
-        // super inefficient!!
-        for (let row = 0; row < this.trackCount; row++) {
-            let rest = 0;
-            let header = false;
-
-            for (let col = 0; col < this.steps; col++) {
-                for (let cell of this.cells) {
-                    if (cell.track === row && cell.start === col) {
-                        if (!header) {
-                            code += "# " + this.tracks[row].name + "\n";
-                            code += "moveTo(0)\n";
-                            header = true;
-                        }
-
-                        if (rest > 0) code += `rest(${rest})\n`;
-                        rest = -0.25;
-                        code += cell.codeHint() + "\n";
-                    }
-                }
-                rest += 0.25;
-            }
-            if (header) code += " \n";
+        for (let track of this.tracks) {
+            code += track.generateCode();
         }
         return code;
     }
+
+
+    generateEmbed() {
+        const url = window.location.origin + window.location.pathname;
+        let query = `?bpm=${this.bpm}&steps=${this.steps}`;
+        for (let track of this.tracks) {
+            query += track.generateEmbed();
+        }
+        console.log(url + query);
+    }
+
 
     updateCodeHint() {
         let code = this.generateCode();
@@ -770,8 +903,8 @@ class Sequencer {
 
     async initAudio(ac) {
         if (ac != null) {
-            for (let drum of this.tracks) {
-                drum.buffer = await this.loadAudioBuffer(drum.sound);
+            for (let track of this.tracks) {
+                track.buffer = await this.loadAudioBuffer(track.sound);
             }
             this.master = this.context.createGain();
             this.master.gain.value = 0.0;
@@ -801,17 +934,6 @@ class Sequencer {
         return null;
     }
 
-
-    /// returns true if the audio buffer has already been loaded
-    hasSound(s) {
-        return this.sounds[s] !== null;
-    }
-
-
-    /// returns a preloaded audio buffer or null if it doesn't exist
-    getAudioBuffer(b) {
-        return this.sounds[b];
-    }
 
     screenToSVG(sx, sy) {
         let xform = this.parent.createSvgPoint();
@@ -867,4 +989,37 @@ function bindSpinnerButton(button, spinAction, pressAction, releaseAction) {
             }, 500);
         });
     }
+}
+
+
+function patternToHex(pattern) {
+    let byte = 0;
+    let hex = '';
+    for (let i=0; i<pattern.length; i++) {
+        byte += (pattern[i] != '-') ? 8 : 0;
+        if ((i + 1) % 4 == 0) {
+            hex += byte.toString(16);
+            byte = 0;
+        } else {
+            byte >>= 1;
+        }
+    }
+    return hex;
+}
+
+function hexToPattern(hexString, steps) {
+    let pattern = '';
+    for (const char of hexString) {
+        let byte = parseInt(char, 16);
+        if (Number.isInteger(byte)) {
+            for (let i=0; i<4; i++) {
+                pattern += (byte & 0x01 === 1) ? '!' : '-';
+                byte >>= 1;
+            }
+        } else {
+            pattern += '----';
+        }
+    }
+    while (pattern.length < steps) { pattern += '-'; }
+    return pattern.substring(0,steps);
 }
