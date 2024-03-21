@@ -3,7 +3,7 @@ layout: layouts/activity.njk
 tags: learn
 category: Tutorial
 title: Advanced Trap Beat
-description: Build a custom beat in TunePad using loops, functions, and parameters. 
+description: Build a custom trap beat in TunePad using loops, functions, and parameters. 
 level: Intermediate
 time: 25 minutes
 license: by-nc-sa
