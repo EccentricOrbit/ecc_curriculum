@@ -1,3 +1,5 @@
 package-lock.json
 node_modules
 _site
+artwork
+_data/featured.json

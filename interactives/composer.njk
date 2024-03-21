@@ -24,9 +24,8 @@ tags: interactive
     <link rel="stylesheet" href="/css/prism.css">
 
     <title>{{ title }}</title>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> -->
 
-    <!-- TUNEPAD App -->
     <script defer src="/js/composer.js"></script>
 </head>
 
@@ -42,21 +41,21 @@ tags: interactive
             <button class="clear-button" title="Clear"><i class="fas fa-trash"></i></button>
             <div class="expander"></div>
             <div class="tempo-controls">
-                <button class="spinner tempo-up" title="Faster Tempo"><i class="fas fa-plus"></i></button>
+                <button class="spinner tempo-down" title="Slower Tempo"><i class="fas fa-minus"></i></button>
                 <div class="tempo">
                     <div class="value" contenteditable>90</div>
                     <div class="units">bpm</div>
                 </div>
-                <button class="spinner tempo-down" title="Slower Tempo"><i class="fas fa-minus"></i></button>
+                <button class="spinner tempo-up" title="Faster Tempo"><i class="fas fa-plus"></i></button>
             </div>
             <div class="expander"></div>
             <div class="bars-controls">
-                <button class="spinner bars-up" title="Increase Measures"><i class="fas fa-plus"></i></button>
+                <button class="spinner bars-down" title="Decrease Measures"><i class="fas fa-minus"></i></button>
                 <div class="bars">
                     <div class="value">1</div>
                     <div class="units">bar</div>
                 </div>
-                <button class="spinner bars-down" title="Decrease Measures"><i class="fas fa-minus"></i></button>
+                <button class="spinner bars-up" title="Increase Measures"><i class="fas fa-plus"></i></button>
             </div>
             
             <div class="expander"></div>
@@ -66,6 +65,11 @@ tags: interactive
             </div>
             <div class="scroll-container"><svg class="sequencer" version="1.1"></svg></div>
             <div class="gutter"></div>
+            <div class="embed-wrapper">
+                <button class="embed-expand">Show embed code&nbsp;<i class="fas fa-caret-down"></i></button>
+                <button class="embed-collapse hidden">Hide embed code&nbsp;<i class="fas fa-caret-up"></i></button>
+                <div class="embed-info hidden"></div>
+            </div>
 
             <div class="code-hint-container">
                 <!-- <button class="code-button"><i class="fas fa-code" id="display-code-icon"></i></button> -->
@@ -98,9 +102,9 @@ tags: interactive
                 'tracks' : [
                     { 'name' : 'tom', 'note' : 7, 'track' : 0, 'sound' : '/sounds/voices/909-drums/mid_tom' },
                     { 'name' : 'clap', 'note' : 10, 'track' : 1, 'sound' : '/sounds/voices/909-drums/clap' },
-                    { 'name' : 'hat', 'note' : 4, 'track' : 2, 'sound' : '/sounds/voices/909-drums/hat1' },
+                    { 'name' : 'hat', 'note' : 4, 'track' : 2, 'gain' : 0.1, 'sound' : '/sounds/voices/909-drums/hat1' },
                     { 'name' : 'open_hat', 'note' : 5, 'track' : 3, 'sound' : '/sounds/voices/909-drums/open_hat' },
-                    { 'name' : 'snare', 'note' : 2, 'track' : 4, 'gain' : 0.85, 'sound' : '/sounds/voices/909-drums/snare1' },
+                    { 'name' : 'snare', 'note' : 2, 'track' : 4, 'gain' : 0.5, 'sound' : '/sounds/voices/909-drums/snare1' },
                     { 'name' : 'kick', 'note' : 0, 'track' : 5, 'sound' : '/sounds/voices/909-drums/kick2' }
                 ]
             },
@@ -114,10 +118,24 @@ tags: interactive
                     { 'name' : 'snare', 'note' : 2, 'track' : 4, 'sound' : '/sounds/voices/rock-drums/snare1' },
                     { 'name' : 'kick', 'note' : 0, 'track' : 5, 'sound' : '/sounds/voices/rock-drums/kick' }
                 ]
+            },
+            {
+                'name' : 'Headlines Drums',
+                'tracks' : [
+                    { 'name' : '808', 'note' : 8, 'track' : 0, 'sound' : '/sounds/voices/headlines-drums/808-1' },
+                    { 'name' : 'clap', 'note' : 11, 'track' : 1, 'sound' : '/sounds/voices/headlines-drums/clap' },
+                    { 'name' : 'hat1', 'note' : 4, 'track' : 2, 'sound' : '/sounds/voices/headlines-drums/hat1' },
+                    { 'name' : 'hat2', 'note' : 5, 'track' : 3, 'sound' : '/sounds/voices/headlines-drums/hat2' },
+                    { 'name' : 'snare', 'note' : 2, 'track' : 4, 'sound' : '/sounds/voices/headlines-drums/snare1' },
+                    { 'name' : 'kick', 'note' : 0, 'track' : 5, 'sound' : '/sounds/voices/headlines-drums/kick1' }
+                ]
             }
         ]
     };
 
+        
+    const params = new URLSearchParams(window.location.search);
+    if (params.has("embedded")) document.body.classList.add('embedded');
     window.onload = (e) => { 
         const container = document.getElementById('composer');
         new Composer(container, drum_config);

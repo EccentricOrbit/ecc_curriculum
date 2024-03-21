@@ -1,11 +1,12 @@
 ---
-layout: layouts/cover.njk
-tags: covers
-category: Cover
+layout: layouts/activity.njk
+tags: tutorials
+category: Tutorial
 title: Somewhere Only We Know
-description: Keane
-authors: Remix by Rachel Tang
+description: This in-depth video tutorial recreates Somewhere Only We Know by Keane
+authors: Tutorial by Rachel Tang
 level: Advaced
+time: 1 hour
 splash: /images/splash/somewhere-splash.jpg
 project: https://tunepad.com/project/76367#tracks
 audio: https://api.tunepad.com/api/projects/76367/audio/

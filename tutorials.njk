@@ -1,12 +1,13 @@
 ---
 layout: layouts/collection.njk
-title: TunePad Tutorials and Covers
+title: TunePad Song Tutorials
 description: These step-by-step interactive tutorials help you recreate popular music in TunePad while building up your music+coding skillset.
 splash: /images/splash/tutorials-splash.jpg
 ---
 {% block body %}
 <section class="highlights">
     <h1>Song Tutorials</h1>
+    <p>Step-by-step tutorials to recreate popular music.</p>
     <div class="vcards">
     {%- for demo in collections.tutorials -%}
         <div class="vcard" data-url="{{ demo.url }}">
@@ -15,7 +16,7 @@ splash: /images/splash/tutorials-splash.jpg
             </div>
             <div class="card-info">
                 <h1>{{ demo.data.title }}</h1>
-                {{ demo.data.description }}
+                <div class="summary">{{ demo.data.description }}</div>
             </div>
             {% if demo.data.audio %}
             <button class="card-audio-button">
@@ -30,27 +31,4 @@ splash: /images/splash/tutorials-splash.jpg
 </section>
 
 
-<section class="highlights">
-    <h1>TunePad Covers</h1>
-    <div class="vcards">
-    {%- for demo in collections.covers -%}
-        <div class="vcard" data-url="{{ demo.url }}">
-            <div class="card-image">
-                <img src="{{ demo.data.splash }}" alt="{{ demo.data.title }}">
-            </div>
-            <div class="card-info">
-                <h1>{{ demo.data.title }}</h1>
-                {{ demo.data.description }}<br><small>{{ demo.data.authors }}</small>
-            </div>
-            {% if demo.data.audio %}
-            <button class="card-audio-button">
-                <i class="fas fa-play"></i>
-                <audio src="{{ demo.data.audio }}" class="audio-preview"></audio>
-            </button>
-            {% endif %}
-            <div class="level-badge">{{ demo.data.level }}</div>
-        </div>
-    {%- endfor -%}
-    </div>
-</section>
 {% endblock %}

@@ -434,6 +434,10 @@ article p {
     margin-top: 0;
     font-size: 15px;
 }
+article p code, article li code {
+    color: var(--theme-color);
+    font-weight: 700;
+}
 article li {
     font-size: 15px;
 }
@@ -483,7 +487,7 @@ pre {
 
 article pre[class*="language-python"] {
     padding-left: 0.5em;
-    max-width: 650px;
+    max-width: 700px;
     border-radius: 0.75em;
     margin-bottom: 2em;
 }
@@ -567,10 +571,22 @@ nav.prev-next .stacker {
 iframe.tunepad-iframe {
     width: 100%;
     min-width: 750px;
-    border: 1px solid #0005;
+    border: none;
     outline: none;
     height: 500px;
     overflow: hidden;
+}
+
+iframe.composer-iframe {
+    width: 100%; 
+    min-width: 660px; 
+    height: 320px; 
+    overflow: hidden; 
+    border: none;
+    outline: none;
+    transform: scale(0.9);
+    transform-origin: 0 0;
+    margin-bottom: -15px;
 }
 
 /* Card for collection layout */
@@ -597,6 +613,7 @@ iframe.tunepad-iframe {
     padding: 0;
     margin: 1rem 20px 1rem 0;
 }
+
 .card:hover, .vcard:hover {
     box-shadow: 4px 4px 4px #0002;
 }
@@ -622,6 +639,15 @@ iframe.tunepad-iframe {
     max-width: unset;
     margin: 0;
 }
+.vcard .card-image .ar-fix-image {
+    background-image: url('/images/logo-happy.svg');
+    background-position-x: center;
+    background-position-y: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 150px;
+    width: 223px;
+}
 .card-info {
     padding-left: 1em;
 }
@@ -636,6 +662,19 @@ iframe.tunepad-iframe {
 .vcard .card-info h1 {
     margin: 4px 0;
     font-size: 15px;
+}
+.card-info .author {
+    font-size: 85%;
+    margin-top: 0.75rem;
+}
+.card-info .summary {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 38px;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 .card-audio-button {
     position: absolute;
@@ -716,7 +755,7 @@ a.more-info:hover {
     article .footer-wrapper { background-color: transparent; border-top: 1px solid black; margin-top: 1.5rem; }
     article footer { color: black; font-size: 11px; }
     article footer.menu { display: none; }
-    article pre[class*="language-python"] { font-size: 12px; border: 1px solid #0009; max-width: 600px; }
+    article pre[class*="language-python"] { font-size: 11px; border: 1px solid #0009; max-width: 600px; }
     section.content { border-top: none !important; }
     nav.top-nav { display: none; }
     main { margin-top: 1rem; }

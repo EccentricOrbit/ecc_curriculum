@@ -4,11 +4,25 @@ title: Contribute to Learn TunePad
 description: This page provides information on how to contribute lessons, activities, videos, tutorials, covers, and more to https://learn.tunepad.com
 ---
 
+# How to submit your original TunePad project
+1. Open your project in TunePad
+2. Click on the **Share** button and select **Sharing & Collaboration**
+3. Add project artwork by clicking on the image button (please avoid copyrighted images)
+4. Click on the **Preview** button to generate an audio preview of your project
+5. Add a short description of your project along with your Author information
+6. Finally, make sure your project is set to **View Only**
+
+When you're done, [send us](mailto:support@tunepad.com) us your project URL with the Subject **TunePad original submission**.
+
+**Note** if you're creating a cover or remix of an existing song, please also include this disclaimer in your project description:
+<pre style="margin: 1rem; background-color: #e3e9f2; font-size: 13px; padding: 1rem; line-height: 150%;">
+This project is based on <mark>TITLE</mark> by <mark>ARTISTS</mark> (<mark>YEAR</mark>), <mark>record label</mark>. For educational purposes only.
+</pre>
 
 # How to contribute a TunePad Tutorial
 
 We welcome your contributions!   
-Please feel free to [email us](mailto:michael-horn@northwestern.edu) for more information on publishing your lessons, activities, videos, covers, and original music on [learn.tunepad.com](https://learn.tunepad.com).   
+Please feel free to [email us](mailto:support@tunepad.com) for more information on publishing your lessons, activities, videos, covers, and original music on [learn.tunepad.com](https://learn.tunepad.com).   
 
 If you’re feeling adventurous, you can also contribute directly to our open source repository by following the instructions below.
 
@@ -45,6 +59,7 @@ layout: layouts/activity.njk
 tags: tutorials
 category: Tutorial
 title: <mark>"My Tutorial Title"</mark>
+subtitle: <mark>Artist's name</mark>
 description: <mark>Description of my tutorial and what people will learn</mark>
 authors: by <mark>My name and optional contact info</mark>
 level: <mark>Beginner, Intermediate, or Expert</mark>
@@ -75,7 +90,7 @@ disclaimer: For educational purposes only. Based on <mark>song</mark> by <mark>a
 * You can proofread your edits by navigating to http://localhost:8080/tutorials/<mark>my-tutorial</mark>/
 
 ## Step 8: Publish your TunePad project
-Open your project in TunePad and click on the **Share** button and select **Sharing & Collaboration**
+Open your project in TunePad and click on **Share** -> **Sharing & Collaboration**
 1. Add project artwork
 2. Set your project to **View Only**
 3. Add a short description

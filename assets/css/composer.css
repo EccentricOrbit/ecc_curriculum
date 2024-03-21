@@ -32,12 +32,15 @@
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
-
-html, body {
+body {
+  -webkit-font-smoothing: antialiased;
+  overscroll-behavior: none;
   margin: 1em;
   padding: 0;
-  overscroll-behavior: none;
-  -webkit-font-smoothing: antialiased;
+}
+
+body.embedded { 
+    margin: 0;
 }
 
 .instrument {
@@ -53,7 +56,6 @@ html, body {
 
 .instrument .scroll-container {
   width: 100%;
-  height: 300px;
   border-left: 2px solid #414252;
   border-right: 2px solid #414252;
   background-color: #2e303f;
@@ -66,8 +68,8 @@ html, body {
 .buttons {
   display: flex;
   flex-direction: row;
-  padding-top: 12px;
-  padding-bottom: 6px;
+  padding-top: 7px;
+  padding-bottom: 5px;
   background: #535563;
   border-top: 2px solid #667;
   border-bottom: 2px solid #667;
@@ -122,7 +124,7 @@ html, body {
     display: flex;
 }
 .tempo .value, .bars .value {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
 }
 .units {
@@ -140,6 +142,28 @@ html, body {
     border-bottom-right-radius: 10px;
     border-top: 2px solid #667;
 }
+
+.instrument .embed-wrapper {
+    text-align: right;
+}
+.embed-wrapper button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #000a;
+    width: auto;
+    box-shadow: none;
+}
+.embed-info {
+    background-color: #eee;
+    font-family: monospace;
+    padding: 2rem;
+    text-align: left;
+    margin-left: 10rem;
+    border-radius: 1rem;
+    user-select: text;
+}
+.embed-info.hidden { display: none; }
 
 .code-hint-container {
     position: relative;
@@ -180,25 +204,20 @@ button.copy-code-button {
 }
 
 
-.grid-cell, .grid-note {
+.grid-note {
   fill: #555;
   stroke: white;
   stroke-opacity: 0.4;
   stroke-width: 1;
 }
 
-.grid-cell.darker {
+.grid-note.darker {
   fill: #3a3a3a;
 }
 
-
-.grid-note {
+.grid-note.active {
   fill: var(--drum-color);
-  stroke: white;
-  stroke-width: 1.5;
-  stroke-opacity: 0.65;
 }
-.grid-note.dim { fill-opacity: 0.5; }
 .grid-note.bass { fill: var(--bass-color); }
 .grid-note.drone { fill: var(--marimba-color); }
 
@@ -218,7 +237,7 @@ button.copy-code-button {
   font-family: var(--main-font);
   fill: white;
   fill-opacity: 0.7;
-  font-size: 17px;
+  font-size: 14px;
   text-anchor: end;
   user-select: none;
   /* text-decoration: underline; */
@@ -228,7 +247,7 @@ button.copy-code-button {
   font-family: var(--main-font);
   fill: white;
   fill-opacity: 0.7;
-  font-size: 15px;
+  font-size: 14px;
   text-anchor: middle;
   user-select: none;
 }
@@ -253,8 +272,10 @@ button.copy-code-button {
     font-family: var(--main-font);
     font-weight: 600;
     min-width: 150px;
+/*    
     color: rgba(255, 255, 255, 0.75);
     background-color: #fff2;
+*/
     height: 28px;
     border-radius: 4px;
     font-size: 120%;
@@ -317,8 +338,8 @@ button.copy-code-button {
 }
 
 .gadget-icon {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   position: relative;
   top: -2px;
   background-color: var(--piano-color);
@@ -345,3 +366,4 @@ button.copy-code-button {
   background-color: var(--drum-color);
   background-image: url('../images/instruments/drumkit.svg');
 }
+

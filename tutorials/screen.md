@@ -1,11 +1,12 @@
 ---
-layout: layouts/cover.njk
-tags: covers
-category: Cover
+layout: layouts/activity.njk
+tags: tutorials
+category: Tutorial
 title: Screen
-description: Twenty One Pilots
+description: This in-depth video tutorial recreates Screen by Twenty One Pilots
 authors: Remix by Victor Aung
 level: Advaced
+time: 1 hour
 splash: /images/splash/screen-splash.jpg
 project: https://tunepad.com/project/76366
 audio: https://api.tunepad.com/api/projects/76366/audio/
@@ -22,7 +23,7 @@ Before stepping into how you can re-create Screen in TunePad, take a listen to t
 
 We’re going to be recreating the intro section which is the foundation for patterns found throughout the piece.
 
-Check out the video supplement to this TuneTorial below:
+Check out the video of this TuneTorial:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/l1kHJe6I0pQ?si=1pHWTEMhQtlVRq0_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
