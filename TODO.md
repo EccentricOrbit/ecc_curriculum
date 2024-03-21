@@ -1,19 +1,15 @@
 
 # Todo
+* Planet Rock (Step Sequencer)
+* Afro Cuban Rhythms
 * Rework landing page
 * Add featured bar to the landing page
-* Three Basic Hip Hop Beats
-* Custom Rock Beat
-* Advanced Trap Beat
-* Afro Cuban Rhythms
 * Curriculum layout
 * Ringtone challenge
 * Glossary
 * Include the variables and loops sheets from Still DRE somewhere
 * TunePad loops library
 * Curriculum pages
-* Pulldown in composer is invisible on chromebooks; one of the drums isn't working
-* Tutorial videos
 * More extensive mobile testing. Search is non-functional for phones
 * Spanish translations?
 
@@ -28,7 +24,6 @@ Full list from Cameron Roberts
 https://docs.google.com/document/d/13FXAX66NMen69nTWQKj_HmQkY_wlLk5fdQoRuf0Jg8w/edit
 
 Copy over featured projects from community site
-
 
 Other intern projects
 Passionfruit
