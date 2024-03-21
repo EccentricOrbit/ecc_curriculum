@@ -609,11 +609,11 @@ class Sequencer {
     get maxMeasures() { return 3; }
     get currentBeat() { return this.composer.currentBeat % this.totalBeats; }
     get width() { return this.container.getBoundingClientRect().width; }
-    get height() { return 300; }
+    get height() { return 250; }
     get voice() { return this.config['voices'][this.voiceIndex]; }
     get trackCount() { return this.voice['tracks'].length; }
-    get headerWidth() { return 150; }
-    get headerHeight() { return 40; }
+    get headerWidth() { return 120; }
+    get headerHeight() { return 35; }
     get cellWidth() { return (this.width - this.headerWidth - this.measures * 4) / this.steps; }
   
     get cellHeight() { return (this.height - this.headerHeight) / this.trackCount; }
@@ -849,7 +849,7 @@ class Sequencer {
         for (let i=0; i<this.steps; i++) {
             let text = document.createElementNS("http://www.w3.org/2000/svg", 'text');
             text.setAttribute('x', `${this.stepToX(i) + cw/2}`);
-            text.setAttribute('y', `${this.headerHeight / 2}`);
+            text.setAttribute('y', `${this.headerHeight / 2 + 4}`);
             text.classList.add('beat-number');
             if (i % 4 == 0) {
                 text.innerHTML = `${1 + Math.round(i / 4)}`;
@@ -896,9 +896,9 @@ class Sequencer {
     updateEmbedCode() {
         const el = this.container.querySelector(".embed-info");
         if (el) {
-            const styles = "width: 100%; min-width: 500px; overflow: hidden; border: none;";
+            const styles = "width: 95%; min-width: 500px; overflow: hidden; border: none;";
             const link = this.generateEmbedLink();
-            const code = `<iframe height="390" src="${link}" style="${styles}" scrolling="no"></iframe>`;
+            const code = `<iframe height="325" src="${link}" style="${styles}" scrolling="no"></iframe>`;
             el.innerText = code;
         }
     }
