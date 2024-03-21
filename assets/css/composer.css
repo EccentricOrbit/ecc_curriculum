@@ -56,7 +56,6 @@ body.embedded {
 
 .instrument .scroll-container {
   width: 100%;
-  height: 300px;
   border-left: 2px solid #414252;
   border-right: 2px solid #414252;
   background-color: #2e303f;
@@ -69,8 +68,8 @@ body.embedded {
 .buttons {
   display: flex;
   flex-direction: row;
-  padding-top: 12px;
-  padding-bottom: 6px;
+  padding-top: 7px;
+  padding-bottom: 5px;
   background: #535563;
   border-top: 2px solid #667;
   border-bottom: 2px solid #667;
@@ -125,7 +124,7 @@ body.embedded {
     display: flex;
 }
 .tempo .value, .bars .value {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: bold;
 }
 .units {
@@ -238,7 +237,7 @@ button.copy-code-button {
   font-family: var(--main-font);
   fill: white;
   fill-opacity: 0.7;
-  font-size: 17px;
+  font-size: 14px;
   text-anchor: end;
   user-select: none;
   /* text-decoration: underline; */
@@ -248,7 +247,7 @@ button.copy-code-button {
   font-family: var(--main-font);
   fill: white;
   fill-opacity: 0.7;
-  font-size: 15px;
+  font-size: 14px;
   text-anchor: middle;
   user-select: none;
 }
@@ -339,8 +338,8 @@ button.copy-code-button {
 }
 
 .gadget-icon {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   position: relative;
   top: -2px;
   background-color: var(--piano-color);
