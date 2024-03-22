@@ -1,7 +1,7 @@
 
 # Todo
-* Planet Rock (Step Sequencer)
-* Afro Cuban Rhythms
+* Planet Rock (Step Sequencer)  https://tunepad.com/project/24382
+* Afro Cuban Rhythms            https://tunepad.com/project/24580
 * Rework landing page
 * Add featured bar to the landing page
 * Curriculum layout
