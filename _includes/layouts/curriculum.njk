@@ -1,45 +1,51 @@
 ---
-title: TunePad Interactives
-splash: /images/splash/curriculum-splash2.png
+title: TunePad Learn
+description: TunePad is a free online platform for creating music with the Python programming language.
+splash: /images/logo-black.svg
 ---
 {% extends "layouts/base.njk" %}
+
+
 {% block header %}
     {{ super() }}
 <style>
-    main {
-        margin: 4rem auto 0 auto;
+    header .splash-container {
+        width: 275px;
     }
-    article .content-wrapper {
-        padding: 1rem 2rem 3rem 2rem;
-        background-color: #f3f3f3; 
+    header .title-container {
+        max-width: 675px;
+        text-align: left;
+    }
+    header .info-box {
         margin: 0;
     }
-    header {
-        max-width: 1500px;
-        width: 100%;
-        height: 360px;
-        background-image: url('{{ splash }}');
-        background-size: cover;
-        background-repeat: no-repeat;
-        margin: 0 auto;
+    h1.page-title {
         text-align: left;
-        padding: 12rem 0 0 4rem;
-        color: #fffd;
-        font-family: var(--body-font);
     }
-    header h1, header h2 {
-        font-weight: 500;
-        margin: 0.25rem;
-        line-height: 110%;
+    article .content-wrapper {
+        padding: 3rem 2rem 3rem 2rem;
+        background-color: #f3f3f3; 
+        margin: 2rem 0;
     }
-    header h1 { font-size: 25px; }
-    header h2 { font-size: 42px; }
+    article .content {
+        max-width: 900px;
+    }
 </style>
-{% endblock %}
-{% block banner %}
-<h1>{{ title }}</h1>
-<h2>{{ subtitle }}</h2>
 {% endblock %}
 
 {% block resources %}
+    <div class="info-box">
+        <div>
+            <h3>Grades</h3>
+            {{ grades }}
+        </div>
+        <div>
+            <h3>Level</h3>
+            {{ level }}
+        </div>
+        <div>
+            <h3>Time</h3>
+            {{ time }}
+        </div>
+    </div>
 {% endblock %}
