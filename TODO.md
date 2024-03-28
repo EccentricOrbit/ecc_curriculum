@@ -2,16 +2,26 @@
 # Todo
 * Planet Rock (Step Sequencer)  https://tunepad.com/project/24382
 * Afro Cuban Rhythms            https://tunepad.com/project/24580
+* Remix challenge               https://tunepad.com/project/58633
 * Rework landing page
 * Add featured bar to the landing page
 * Curriculum layout
 * Ringtone challenge
 * Glossary
+* Icebreakers
 * Include the variables and loops sheets from Still DRE somewhere
 * TunePad loops library
 * Curriculum pages
 * More extensive mobile testing. Search is non-functional for phones
 * Spanish translations?
+* Main splash image too narrow for chromebooks.
+
+# Composer Issues
+909 drums not working
+touch not working on chromebooks
+slowing tempo causes sound buildup
+
+
 
 # Reference Packets
 
