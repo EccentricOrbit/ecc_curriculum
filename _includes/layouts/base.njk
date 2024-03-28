@@ -181,7 +181,7 @@
   </body>
     <script src="/pagefind/pagefind-ui.js" onload="new PagefindUI({ element: '#search', pageSize : 4, showImages: true });"></script>
     <script>
-        document.querySelectorAll(".card, .vcard").forEach((el) => {
+        document.querySelectorAll(".card, .vcard, .unit").forEach((el) => {
             let url = el.getAttribute('data-url');
             el.addEventListener('click', (e) => {
                 let target = el.getAttribute('data-target');
@@ -189,7 +189,7 @@
                 window.open(url, target);
             });
         });
-        document.querySelectorAll(".audio-button, .card-audio-button").forEach((el) => {
+        document.querySelectorAll(".audio-button, .card-audio-button, .unit-audio-button").forEach((el) => {
             el.addEventListener('click', (e) => {
                 e.stopImmediatePropagation();
                 playPausePreview(el);
