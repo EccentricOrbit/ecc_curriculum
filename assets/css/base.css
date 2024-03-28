@@ -473,6 +473,7 @@ article table {
     padding: 1em;
     margin: 2em auto;
     min-width: 300px;
+    max-width: 650px;
 }
 article table td, article table th {
     padding: 0.5em 0.75em;
@@ -595,6 +596,85 @@ iframe.composer-iframe {
     margin-bottom: -15px;
 }
 
+/* Curriculum Units */
+.units {
+    text-align: left;
+}
+
+.unit {
+    display: flex;
+    margin: 1rem 2rem 3rem 0;
+    border: 1px solid #0002;
+    background-color: white;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    border-radius: 1.5rem;
+}
+.unit .unit-image {
+    min-height: 100%;
+    max-width: 230px;
+    min-width: 230px;
+    vertical-align: top;
+    text-align: left;
+    position: relative;
+    border-right: 1px solid #eee;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.unit .unit-info {
+    vertical-align: top;
+    text-align: left;
+    padding: 1.5rem 2rem;
+}
+article .unit h1 {
+    margin: 0 0 0.5rem 0 !important;
+    font-family: var(--body-font);
+    font-size: 18px;
+}
+.unit-info:hover h1 {
+    text-decoration: underline;
+}
+.unit .expand-link {
+    width: 80px;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+}
+.unit:hover .expand-link {
+    color: var(--theme-color);
+}
+.unit .unit-badge {
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.5rem;
+    float: right;
+    background-color: var(--theme-color);
+}
+.unit-audio-button {
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    background-color: #0005;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 16px;
+    color: #fff9;
+    padding: unset;
+    margin: 0 auto;
+    border: none;
+    outline: none;
+    right: 15px;
+    bottom: 10px;
+    pointer-events: all;
+}
+
+
+
 /* Card for collection layout */
 .cards {
     text-align: center;
@@ -620,7 +700,7 @@ iframe.composer-iframe {
     margin: 1rem 20px 1rem 0;
 }
 
-.card:hover, .vcard:hover {
+.card:hover, .vcard:hover, .unit:hover {
     box-shadow: 4px 4px 4px #0002;
 }
 .card .card-image, .card-info {
@@ -704,6 +784,11 @@ iframe.composer-iframe {
     left: 15px;
     bottom: 10px;
 }
+.unit .card-audio-button {
+    left: unset;
+    right: 15px;
+    bottom: 10px;
+}
 .card .level-badge, .vcard .level-badge {
     position: absolute;
     font-weight: bold;
@@ -755,12 +840,13 @@ a.more-info:hover {
 @media print {
     .resource-box { display: none; }
     article .content { padding: 0 0 0 0.25in; }
-    article .content h1 { font-size: 18px; margin-top: 2rem; }
-    article p { font-size: 12px; font-weight: lighter; max-width: 7in; }
-    article li { font-size: 12px; font-weight: lighter; max-width: 7in; }
+    article .content h1 { font-size: 16px; margin-top: 2rem; }
+    article .content h2 { font-size: 14px; margin-top: 2rem; }
+    article p { font-size: 12px; max-width: 7in; }
+    article li { font-size: 12px; max-width: 7in; }
     article .content-wrapper { margin-top: 0; }
     article .footer-wrapper { background-color: transparent; border-top: 1px solid black; margin-top: 1.5rem; }
-    article footer { color: black; font-size: 11px; }
+    article footer { color: black; font-size: 10px; }
     article footer.menu { display: none; }
     article pre[class*="language-python"] { font-size: 10px; border: 1px solid #0005; max-width: 550px; margin-left: 3rem; }
     section.content { border-top: none !important; }
