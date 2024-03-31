@@ -7,6 +7,7 @@ description: Learn about loops in Python and TunePad's rewind/gain/cents functio
 level: Intermediate
 time: 20-30 minutes
 license: by-nc-sa
+authors: tutorial by Soji Oduneye
 splash: /images/splash/fnaf-splash.jpg  
 video: 
 slides: 
@@ -61,218 +62,49 @@ We know that songs often repeat their melodies, so creating a `for-loop` is a gr
 # Step 4: Supporting Chord #2
 Good job! Let's add some more supporting chords. Create a new `Piano` cell and try:
 ```python
-playNote(80, 1)
-rewind(1)
-playNote(75, 1)
-rewind(1)
-playNote(72, 1)
-
+playNote([80, 75, 72], beats = 1)
 rest(1)
 
-playNote(77, 1)
-rewind(1)
-playNote(72, 1)
-rewind(1)
-playNote(68, 1)
-
+playNote([77, 72, 68], beats = 1)
 rest(1)
 
-playNote(73, 1)
-rewind(1)
-playNote(68, 1)
-rewind(1)
-playNote(65, 1)
-
+playNote([73, 68, 65], beats = 1)
 rest(1)
 
-playNote(79, 1)
-rewind(1)
-playNote(70, 1)
-rewind(1)
-playNote(67, 1)
-
+playNote([79, 70, 67], beats = 1)
 rest(1)
 
-playNote(80, 1)
-rewind(1)
-playNote(75, 1)
-rewind(1)
-playNote(72, 1)
-
+playNote([80, 75, 72], beats = 1)
 rest(1)
 
-playNote(77, 1)
-rewind(1)
-playNote(72, 1)
-rewind(1)
-playNote(68, 1)
-
+playNote([77, 72, 68], beats = 1)
 rest(1)
 
-playNote(73, 1)
-rewind(1)
-playNote(68, 1)
-rewind(1)
-playNote(64, 1)
-
+playNote([73, 68, 64], beats = 1)
 rest(1)
 
-playNote(75, 1)
-rewind(1)
-playNote(70, 1)
-rewind(1)
-playNote(63, 1)
-
+playNote([75, 70, 63], beats = 1)
+rest(1)
 ```
+
 # Step 5: Supporting Chord #3
 Good job! Let's add one last supporting chord. Create a new `Guitar` cell, select `Acoustic Guitar` and try:
 ```python
+def strum(chord):
+    playNote(chord, beats = 0.5)
+    playNote(chord, beats = 0.75)
+    playNote(chord, beats = 0.75)
+
 rest(16)
-playNote(44, 0.50)
-rewind(0.50)
-playNote(48, 0.50)
-rewind(0.50)
-playNote(51, 0.50)
 
-playNote(44, 0.75)
-rewind(0.75)
-playNote(48, 0.75)
-rewind(0.75)
-playNote(51, 0.75)
-
-playNote(44, 0.75)
-rewind(0.75)
-playNote(48, 0.75)
-rewind(0.75)
-playNote(51, 0.75)
-
-playNote(41, 0.50)
-rewind(0.50)
-playNote(44, 0.50)
-rewind(0.50)
-playNote(48, 0.50)
-
-playNote(41, 0.75)
-rewind(0.75)
-playNote(44, 0.75)
-rewind(0.75)
-playNote(48, 0.75)
-
-playNote(41, 0.75)
-rewind(0.75)
-playNote(44, 0.75)
-rewind(0.75)
-playNote(48, 0.75)
-
-playNote(46, 0.50)
-rewind(0.50)
-playNote(49, 0.50)
-rewind(0.50)
-playNote(53, 0.50)
-
-playNote(46, 0.75)
-rewind(0.75)
-playNote(49, 0.75)
-rewind(0.75)
-playNote(53, 0.75)
-
-playNote(46, 0.75)
-rewind(0.75)
-playNote(49, 0.75)
-rewind(0.75)
-playNote(53, 0.75)
-
-
-playNote(39, 0.50)
-rewind(0.50)
-playNote(43, 0.50)
-rewind(0.50)
-playNote(46, 0.50)
-
-playNote(39, 0.75)
-rewind(0.75)
-playNote(43, 0.75)
-rewind(0.75)
-playNote(46, 0.75)
-
-playNote(39, 0.75)
-rewind(0.75)
-playNote(43, 0.75)
-rewind(0.75)
-playNote(46, 0.75)
-
-playNote(44, 0.50)
-rewind(0.50)
-playNote(48, 0.50)
-rewind(0.50)
-playNote(51, 0.50)
-
-playNote(44, 0.75)
-rewind(0.75)
-playNote(48, 0.75)
-rewind(0.75)
-playNote(51, 0.75)
-
-playNote(44, 0.75)
-rewind(0.75)
-playNote(48, 0.75)
-rewind(0.75)
-playNote(51, 0.75)
-
-playNote(41, 0.50)
-rewind(0.50)
-playNote(44, 0.50)
-rewind(0.50)
-playNote(48, 0.50)
-
-playNote(41, 0.75)
-rewind(0.75)
-playNote(44, 0.75)
-rewind(0.75)
-playNote(48, 0.75)
-
-playNote(41, 0.75)
-rewind(0.75)
-playNote(44, 0.75)
-rewind(0.75)
-playNote(48, 0.75)
-
-playNote(44, 0.50)
-rewind(0.50)
-playNote(49, 0.50)
-rewind(0.50)
-playNote(53, 0.50)
-
-playNote(44, 0.75)
-rewind(0.75)
-playNote(49, 0.75)
-rewind(0.75)
-playNote(53, 0.75)
-
-playNote(44, 0.75)
-rewind(0.75)
-playNote(49, 0.75)
-rewind(0.75)
-playNote(53, 0.75)
-
-playNote(55, 0.50)
-rewind(0.50)
-playNote(51, 0.50)
-rewind(0.50)
-playNote(46, 0.50)
-
-playNote(55, 0.75)
-rewind(0.75)
-playNote(51, 0.75)
-rewind(0.75)
-playNote(46, 0.75)
-
-playNote(55, 0.75)
-rewind(0.75)
-playNote(51, 0.75)
-rewind(0.75)
-playNote(46, 0.75)
-
+strum([ 44, 48, 51 ])
+strum([ 41, 44, 48 ])
+strum([ 46, 49, 53 ])
+strum([ 39, 43, 46 ])
+strum([ 44, 48, 51 ])
+strum([ 41, 44, 48 ])
+strum([ 44, 49, 53 ])
+strum([ 55, 51, 46 ])
 ```
 
 # Step 6: Drum Build Up
@@ -290,13 +122,13 @@ with bend(cents = -10):
         playNote(0, 0.5)
         playNote(0, 1)
 ```
-In this code, we're making music with a computer, and we're using a special trick called a "pitch bend" to make the notes sound a bit different. First, we have a quiet moment with rest(28), which means we wait for 28 beats before we start playing notes again.
+In this code, we're making music with a computer, and we're using a special trick called a "pitch bend" to make the notes sound a bit different. First, we have a quiet moment with `rest(28)`, which means we wait for 28 beats before we start playing notes again.
 
-When we play notes with playNote, we're like hitting keys on a piano. But here's the cool part: we use with bend(cents = -10) to make the notes sound slightly lower than they normally would. Imagine you're singing a note and then you make your voice go a bit lower—that's what the bend does to the computer's notes.
+When we play notes with `playNote`, we're like hitting keys on a piano. But here's the cool part: we use with `bend(cents = -10)` to make the notes sound slightly lower than they normally would. Imagine you're singing a note and then you make your voice go a bit lower—that's what the bend does to the computer's notes.
 
-The cents part is a way to measure how much we change the note. Just like inches can measure how tall you are, cents measure how much we're bending the note. A "cent" is really, really tiny; it takes 100 of them to change a note to the next one on a piano. Here, we're only changing the note by -10 cents, which is just a tiny bit lower, so it's not a big change but it adds something special to the music.
+The `cents` part is a way to measure how much we change the note. Just like inches can measure how tall you are, cents measure how much we're bending the note. A "cent" is really, really tiny; it takes 100 of them to change a note to the next one on a piano. Here, we're only changing the note by -10 cents, which is just a tiny bit lower, so it's not a big change but it adds something special to the music.
 
-We also use with gain([0,4], 4) to make the notes start quiet and get louder. So, as we play each note with the pitch bend making them slightly lower, they also start really soft and gradually become louder. This combination of getting louder and the slight bend in pitch creates a cool effect that makes the music more interesting.
+We also use with `gain([0,4], 4)` to make the notes start quiet and get louder. So, as we play each note with the pitch bend making them slightly lower, they also start really soft and gradually become louder. This combination of getting louder and the slight bend in pitch creates a cool effect that makes the music more interesting.
 
 Lastly, the pitch bend can be set to change over time or stay the same for all the notes. In our example, we're keeping it the same for a little while as we play our notes. This way, the music has a unique sound that's different from just hitting piano keys normally.
 
