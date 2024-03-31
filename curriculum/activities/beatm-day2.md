@@ -5,13 +5,13 @@ category: Curriculum
 title: Rhythm
 description: Everything starts with the beat! Today we’ll learn the names of drum sounds and their note numbers in TunePad. Then we’ll practice making common beat patterns. We’ll also explore how different drum sounds can shape how a rhythm feels.
 level: Beginner
-time: 15-20 minutes
+time: 50 minutes
 license: by-nc-sa
 splash: /images/splash/rhythm-splash.jpg
-video: 
+video: https://drive.google.com/file/d/1J1GXx7AJWE2T-rw1pQvlbn4CFEBZPbYd/view
 slides: 
-project: https://tunepad.com/project/27933
-audio: https://api.tunepad.com/api/projects/27933/audio/
+project: https://tunepad.com/project/77343
+audio: https://api.tunepad.com/api/projects/77343/audio/
 ---
 
 # Warmup: Fixing Syntax Errors

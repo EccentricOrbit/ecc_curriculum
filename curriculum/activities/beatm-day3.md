@@ -5,11 +5,11 @@ category: Curriculum
 title: Notes and Melody
 description: For this activity set we learn about note names and values. Then we’ll use those note values to start adding melody and harmony to our projects. We’ll also think about what ingredients go into a good melody.
 level: Beginner
-time: 15-20 minutes
+time: 50 minutes
 license: by-nc-sa
 splash: /images/splash/piano-cartoon-splash.png
 video: https://drive.google.com/file/d/1Er4rBmwG3Jj7FyCdDEIc8GfMkdx-Nuav/view?usp=sharing
-slides: https://docs.google.com/document/d/1GJFpag52fC_8d6yRB6AliR6dF6JXxbo4yqCQENfbcxI/edit?usp=sharing
+slides: 
 project: https://tunepad.com/project/27933
 audio: https://api.tunepad.com/api/projects/27933/audio/
 ---
