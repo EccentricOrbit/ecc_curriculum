@@ -846,7 +846,7 @@ a.more-info:hover {
     article li { font-size: 12px; max-width: 7in; }
     article .content-wrapper { margin-top: 0; }
     article .footer-wrapper { background-color: transparent; border-top: 1px solid black; margin-top: 1.5rem; }
-    article footer { color: black; font-size: 10px; }
+    article footer { color: black; font-size: 9px; }
     article footer.menu { display: none; }
     article pre[class*="language-python"] { font-size: 10px; border: 1px solid #0005; max-width: 550px; margin-left: 3rem; }
     section.content { border-top: none !important; }
