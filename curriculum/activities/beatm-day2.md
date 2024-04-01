@@ -1,7 +1,7 @@
 ---
 layout: layouts/activity.njk
 tags: beatmakers
-category: Curriculum
+category: Lesson Plan
 title: Rhythm
 description: Everything starts with the beat! Today we’ll learn the names of drum sounds and their note numbers in TunePad. Then we’ll practice making common beat patterns. We’ll also explore how different drum sounds can shape how a rhythm feels.
 level: Beginner

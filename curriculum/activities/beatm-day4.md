@@ -1,62 +1,102 @@
 ---
 layout: layouts/activity.njk
 tags: beatmakers
-category: Curriculum
+category: Lesson Plan
 title: Variables, Lists, & Chords
-description: Today we’ll learn about variables and lists in Python to help make our code more readable and reusable. We’ll also learn how to use lists to play common chords in music.
+description: Today we’ll learn about variables in Python to help make our code more readable and reusable. We’ll also learn how to use lists to play common chords in music.
 level: Beginner
-time: 15-20 minutes
+time: 50 minutes
 license: by-nc-sa
 splash: /images/splash/meer-bass-splash.png
-video: https://drive.google.com/file/d/1Er4rBmwG3Jj7FyCdDEIc8GfMkdx-Nuav/view?usp=sharing
-slides: https://docs.google.com/document/d/1GJFpag52fC_8d6yRB6AliR6dF6JXxbo4yqCQENfbcxI/edit?usp=sharing
-project: https://tunepad.com/project/44
-audio: https://api.tunepad.com/api/projects/44/audio/
+video: https://drive.google.com/file/d/19eKW276TlQcaitZWOwYGTsuPkG10tZV5/view
+slides: https://docs.google.com/presentation/d/1U1L9Eg9rGV3lvLYPcZoFbospAkggN_htF0ex_075E6s/edit#slide=id.g13e681789de_2_0
+project: https://tunepad.com/project/43861
+audio: https://api.tunepad.com/api/projects/43861/audio/
 ---
+# Topic 1: Variables in Python
+In programming, a **variable** is a name that stands for numbers, text, or other information.
+Variables are helpful for making your code easier to understand and modify.
+You can use any name you want for a variable as long as it follows the rules.  
 
-# Step 1: Create a new Project
-Log in and create a new TunePad project at [tunepad.com](https://tunepad.com). Name your project “Stranger Things”.
+## Variable names:
+* Can include letters, numbers, and the underscore (_) character.
+* Cannot include spaces, tabs, quotes, or other characters.
+* Cannot start with a number.
+*Cannot be a Python keyword (like def, for, in, while, if)
 
-# Step 2: Heartbeat
-We’ll start with the heartbeat drums that give the theme its sense of excitement, unease, and anxiety. 
-It’s the quickened pulse of a human heartbeat. Create a new Drum cell in TunePad, and use this code:
+## Here are some example valid and invalid variable names
+| VALID ✅ | INVALID ❌ |       |
+| -------- | ---------- | ---- |
+| `hat`    | `hi hat`   | (no spaces allowed) |
+| `kick`   | `1tom`     | (can’t start with a number) |
+| `high_hat` | `while`  | (can’t be a keyword) |
+| `_chord` | `@tom`     | (no special characters like @) |
+| `my_long_variable` | `C#` | (can’t use a hashtag) |
+| `tom1`  | `tom-1` | (no dashes allowed) |
+| `CMajor` | `C:major` | (no colon characters allowed) |
+
+
+## Variables for Drums
+This example uses variables for drum names.
+We assign a value to a variable using the equal sign (=)
+The variable name comes first, then the equal sign, and then the value.
 ```python
-playNote(1, beats = 0.5)
-playNote(1, beats = 0.5, velocity = 50)
-rest(1)
+kick = 1
+hat = 4
+snare = 2
+clap = 10
 
-playNote(1, beats = 0.5)
-playNote(1, beats = 0.5, velocity = 50)
-rest(1)
-```
-The heartbeat sounds like a LUB-dub, LUB-dub. Notice that we use the `velocity` parameter to make the first LUB kicks louder than the second dub kicks.
-
-# Step 3: Ominous Drone
-We’re going to add a low, ominous drone that slowly fades in and out of the mix.  
-Add a new Keys cell to your project and switch the voice to **Synth → Leads → Searing Lead**.
-
-<a href="/images/stranger-things-fig1.png" target="_blank">
-<img src="/images/stranger-things-fig1.png" alt="Screenshot of a TunePad keyboard instrument" width="450px" style="margin: 1rem;"></a>
-
-
-Use this code for your drone sound:
-```python
-with lowpass(frequency = [0, 1100, 0], beats = 40):
-    playNote(16, beats = 40)
-```
-This uses an audio production tool called a **lowpass filter** that slowly opens and closes over 40 beats.
-
-# STEP 4: Arpeggio
-Add a Keys cell to your project and change the voice to **Synth → Bass → PWM Synth Bass**.
-
-An _arpeggio_ is a chord broken into a series of individual notes played in rapid succession. 
-Arpeggios are used everywhere in music and contribute rhythmic, harmonic, and melodic elements to a song. 
-The Stranger Things theme uses an iconic arpeggio consisting of a C Major 7 chord played up and then back down in order of pitch.
-```python
-chord = [ 24, 28, 31, 35, 36, 35, 31, 28 ]
-for note in chord:
-    playNote(note, beats = 0.5)
+playNote([kick, hat], beats = 0.5)
+playNote(hat, beats = 0.5)
+playNote([kick, hat, snare, clap], beats = 0.5)
+playNote(hat, beats = 0.5)
 ```
 
-# Try It
-Open this project in TunePad <a href="{{project}}" target="_blank">{{ project }}</a>
+<img src="/images/list-icon.png" alt="List Icon" style="float: right" width="170">
+
+# Topic 2: Lists in Python
+In programming, a list is an ordered collection of things
+* A list can be as long or short as you want
+* A list can be empty (zero items)
+* A list holds things in fixed order
+* A list can hold numbers, letters, words, or even other lists
+* A list can hold variables too
+* Here are a few examples of lists in Python
+```python
+notes = [ 24, 28, 31 ]
+colors = [ "blue", "yellow", "red", "green" ]
+emptyList = [ ]
+```
+
+## Lists in TunePad
+In TunePad you can use a list to play more than one drum sound at the same time.
+```python
+kick = 1
+hat = 4
+snare = 2
+
+# play a kick, hat, and snare drum at the same time
+playNote([kick, hat, snare])
+```
+
+You can use a list to play a chord, which means more than one musical note at a time.
+```python
+# play a C Major chord
+playNote([60, 64, 67])
+```
+
+# Activity: Bad Bunny Beat
+In this activity, you'll practice using lists and variables to make a Bad Bunny-style beat.
+<a href="/tutorials/bad-bunny" style="margin: 2rem; display: block;" target="_blank">
+<img src="/images/splash/bad-bunny-splash.png" style="margin: 0.5rem 0" alt="Bad Bunny" width="400">Open Bad Bunny Activity</a>
+
+
+# Activity: Build your own chord progressions
+In music a chord is more than one note played at the same time. 
+There are many, many chords to choose from, but here are seven easy chords to get you started.
+<a href="/learn/seven-chords" style="margin: 2rem; display: block;" target="_blank">
+<img src="/images/splash/chords-splash.jpg" style="margin: 0.5rem 0" alt="Bad Bunny" width="400">Open Seven Chords Activity</a>
+
+# Same four chords!
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HTYrkOZ5nCs?si=5MSobitSM28Zxe4n" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

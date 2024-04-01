@@ -1,7 +1,7 @@
 ---
 layout: layouts/activity.njk
 tags: beatmakers
-category: Curriculum
+category: Lesson Plan
 title: Notes and Melody
 description: For this activity set we learn about note names and values. Then we’ll use those note values to start adding melody and harmony to our projects. We’ll also think about what ingredients go into a good melody.
 level: Beginner
