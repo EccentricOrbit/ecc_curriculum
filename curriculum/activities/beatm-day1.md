@@ -12,41 +12,34 @@ video: https://drive.google.com/file/d/1J1GXx7AJWE2T-rw1pQvlbn4CFEBZPbYd/view?us
 audio: https://api.tunepad.com/api/projects/67934/audio/
 ---
 ### Learning Objectives
-* Learn about the Python programming and its many uses
+* Learn about the Python programming
 * Get started with TunePad to make music with Python code
-
-
-# Welcome!
-Welcome to the unit on Python and TunePad. 
-We’re going to explore the Python programming language and see how we can use code to make music.
-
 
 <img src="/images/python-logo.svg" alt="Python logo" style="width: 130px; float: right; position: relative; top: -2rem;">
 
 # What is Python?
-* Python is a text-based programming language. 
-* Instead of dragging blocks on the screen, we type lines of code for the computer to run.
-* With Python we have to write code following exact rules.
 * Python is one of the world’s most popular programming languages.
-* Professional programmers use Python to make websites, apps, games, and more. 
-* Scientists use Python to help make sense of vast amounts of information.
+* Professional programmers use Python to make websites, apps, and games.
+* Scientists use Python to help make sense of large amounts of information.
 * In this unit, we’re going to use Python to make music!
+* Python is a text-based programming language, which means you have to type lines of code that tell the computer what to do.
+* This is different than dragging blocks of code on the screen.
 
 <img src="/images/logo-black.svg" alt="TunePad logo" style="width: 130px; float: right; position: relative; top: -2rem;">
 
 # What is TunePad?
-* TunePad is a website where you make music with Python.
-* TunePad was created at Northwestern University.
+* TunePad is a website where you make music with Python code.
+* TunePad was created at Northwestern University with funding from the National Science Foundation.
 * TunePad is free for everyone to use.
 * TunePad does not make money from advertising.
-* TunePad never shares your personal information or email with anyone.
+* TunePad will never share your personal information or email.
 
 # Warmup Activity
 This [warmup activity](/tutorials/chicago-house/) walks through logging into TunePad and creating your first project. 
 You'll practice using TunePad's `playNote` and `rest` functions to create a Chicago House Beat.
 
 <a href="/interactives/composer" style="margin: 2rem; display: block;" target="_blank">
-<img src="/images/splash/house-splash.png" style="margin: 0.5rem 0" alt="Teenager listening to music with headphones" width="400">Open Chicago House Beat Activity</a>
+<img src="/images/splash/house-splash.png" style="margin: 0.5rem 0" alt="Teenager listening to music with headphones" width="300">Open Chicago House Beat Activity</a>
 
 
 # TunePad Function Review

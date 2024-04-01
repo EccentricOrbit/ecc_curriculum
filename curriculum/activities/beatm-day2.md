@@ -30,14 +30,14 @@ You'll also get to practice fixing syntax errors in a TunePad project to reveal 
 <iframe src="/interactives/drumkit/" style="width: 70%; height: auto; aspect-ratio: 20 / 13; border: none; margin: 0 auto; display: block;"></iframe>
 
 
-| Drum&nbsp;Names | Description | Note&nbsp;Number |
+| Drum&nbsp;Names | Description | Note&nbsp;Numbers |
 | ---------- | ----------- | ------------------- |
 | Kick Drum | The kick drum (or bass drum) makes a loud, low thumping sound. | 0 and 1 |
-| Snare | Snare drums make a sharp snap sound. Snare drums are commonly used on beats 2 and 4. | 2 and 3 |
+| Snare | Snare drums make a sharp snapy sound. Snare drums are commonly used on beats 2 and 4. | 2 and 3 |
 | Hi-Hat | The hi-hat is a combination of two cymbals sandwiched together on a metal rod. | 4 (closed)<br>5 (open) |
 | Tom Drums | Tom drums (tom-toms) are cylindrical drums that have a less snappy sound than the snare drum. | 6, 7, 8 |
 | Crash Cymbal | A large cymbal that makes a loud crash sound, often used as a percussion accent. | 9 |
-| Claps | Different TunePad drum kits include a range of other percussion sounds common in popular music including various claps, shakers, and other sounds. | 10 |
+| Claps | Different TunePad drum kits include a range of other percussion sounds common in popular music including claps, shakers, and rim shots. | 10 - 12 |
 
 
 # Activity: Three Basic Beats
