@@ -518,7 +518,7 @@ For more information on each function and examples, try the
 [playChord](/activities/play-chord) tutorial. To use this module in TunePad
 add this line to your cell:
 ```python
-from tunpad.chords import *
+from tunepad.chords import *
 ```
 
 <a id="tunepad.chords.playChord"></a>
