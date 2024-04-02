@@ -70,13 +70,11 @@
 .key-hint {
     stroke: none;
     font: 9pt sans-serif;
-    fill: #666;
+    fill: #0006;
     text-anchor: middle;
     opacity: 0.0;
     pointer-events: none;
     user-select: none;
-    -moz-user-select: none;
-    -webkit-user-select: none;
 }
 
 .midi-hint.black, .note-hint.black, .key-hint.black {
