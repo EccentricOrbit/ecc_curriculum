@@ -5,58 +5,164 @@ category: Curriculum
 title: Final Project
 description: Today we’ll continue working on our final projects and start getting ready for the showcase presentations. We’ll put together everything we’ve learned together to create a musical composition with Python code!
 level: Beginner
-time: 15-20 minutes
+time: 45 minutes
 license: by-nc-sa
 splash: /images/splash/showcase-splash.png
-video: https://drive.google.com/file/d/1Er4rBmwG3Jj7FyCdDEIc8GfMkdx-Nuav/view?usp=sharing
-slides: https://docs.google.com/document/d/1GJFpag52fC_8d6yRB6AliR6dF6JXxbo4yqCQENfbcxI/edit?usp=sharing
-project: https://tunepad.com/project/27933
-audio: https://api.tunepad.com/api/projects/27933/audio/
 ---
+### Learning Objectives
+* Gain confidence presenting creative work-in-progress to other people
+* Practice giving constructive feedback
+* Practice receiving constructive feedback
 
-# Step 1: Create a new Project
-Log in and create a new TunePad project at [tunepad.com](https://tunepad.com). Name your project “Stranger Things”.
+# Warmup Mystery Melody
+Here's a quick warmup mystery melody
 
-# Step 2: Heartbeat
-We’ll start with the heartbeat drums that give the theme its sense of excitement, unease, and anxiety. 
-It’s the quickened pulse of a human heartbeat. Create a new Drum cell in TunePad, and use this code:
-```python
-playNote(1, beats = 0.5)
-playNote(1, beats = 0.5, velocity = 50)
-rest(1)
+<a href="/tutorials/mystery-melody-2/" style="margin: 2rem; display: block;" target="_blank">
+<img src="/images/splash/halloween-splash.jpg" style="margin: 0.5rem 0" alt="Digital drum interface" width="300">Haunted Mystery Melody</a>
 
-playNote(1, beats = 0.5)
-playNote(1, beats = 0.5, velocity = 50)
-rest(1)
-```
-The heartbeat sounds like a LUB-dub, LUB-dub. Notice that we use the `velocity` parameter to make the first LUB kicks louder than the second dub kicks.
+# Final Project
+<img src="/images/splash/final-splash.png" alt="Floating headphones" width="300" style="margin: 2rem;">
 
-# Step 3: Ominous Drone
-We’re going to add a low, ominous drone that slowly fades in and out of the mix.  
-Add a new Keys cell to your project and switch the voice to **Synth → Leads → Searing Lead**.
+It’s time to put everything you’ve learned together to create an original musical composition with Python code! Your project should have 4 parts, each in its own TunePad cell:
 
-<a href="/images/stranger-things-fig1.png" target="_blank">
-<img src="/images/stranger-things-fig1.png" alt="Screenshot of a TunePad keyboard instrument" width="450px" style="margin: 1rem;"></a>
+* Rhythm (drums)
+* Harmony (chords)
+* Melody or Arpeggios
+* Artwork, lyrics, or a description of your project.
+
+You’ll also showcase everything you’ve learned about Python:
+
+* Comments so your code is easy to understand
+* Variables
+* `playNote` functions with different note durations
+* `rest` functions
+* Loops
 
 
-Use this code for your drone sound:
-```python
-with lowpass(frequency = [0, 1100, 0], beats = 40):
-    playNote(16, beats = 40)
-```
-This uses an audio production tool called a **lowpass filter** that slowly opens and closes over 40 beats.
+<style>
+    table.rubric {
+        max-width: 100%;
+        border-collapse: collapse;
+    }
+    table.rubric th {
+        background-color: black;
+        color: white;
+    }
+    table.rubric td {
+        border: 1px solid black;
+    }
+</style>
+# Final Project Rubric   
 
-# STEP 4: Arpeggio
-Add a Keys cell to your project and change the voice to **Synth → Bass → PWM Synth Bass**.
 
-An _arpeggio_ is a chord broken into a series of individual notes played in rapid succession. 
-Arpeggios are used everywhere in music and contribute rhythmic, harmonic, and melodic elements to a song. 
-The Stranger Things theme uses an iconic arpeggio consisting of a C Major 7 chord played up and then back down in order of pitch.
-```python
-chord = [ 24, 28, 31, 35, 36, 35, 31, 28 ]
-for note in chord:
-    playNote(note, beats = 0.5)
-```
+### Python Code Rubric
+<table class="rubric">
+<tr>
+    <th>Criteria</th>
+    <th>Emerging</th>
+    <th>Confident</th>
+    <th>Mastery</th>
+</th>
+<tr>
+    <td>Open TunePad, login, create new project</td>
+    <td>Needs help finding TunePad, logging in, and starting a new project.</td>
+    <td>Can find the TunePad website but needs help logging in and starting a project.</td>
+    <td>Can find TunePad, login, and start a new project without assistance.</td>
+</tr>
+<tr>
+    <td>Add TunePad cells</td>
+    <td>Needs step-by-step help adding TunePad cells for different musical parts</td>
+    <td>Needs a reminder about how to add cells to a project</td>
+    <td>Is able to add cells without assistance.</td>
+</tr>
+<tr>
+    <td>Rhythm</td>
+    <td>Needs step-by-step help to program drum sounds with Python.</td>
+    <td>Is able to program a rhythm with 2-3 drum sounds.</td>
+    <td>Is able to program complex rhythm with 3 or more drum sounds and notes of different durations.</td>
+</tr>
+<tr>
+    <td>Harmony</td>
+    <td>Needs step-by-step help to add chords.</td>
+    <td>Needs a reminder or reference to program chords.</td>
+    <td>Is able to add complex chord progressions without help.</td>
+</tr>
+<tr>
+    <td>Melody</td>
+    <td>Needs step-by-step help to add a melody.</td>
+    <td>Needs a reminder or reference to program a simple melody.</td>
+    <td>Is able to program a complex melody that works with the rhythm and harmony section and has different note durations.</td>
+</tr>
+<tr>
+    <td>Layered Sounds</td>
+    <td>Did not add extra cells</td>
+    <td>Added extra TunePad cells with simple decoration (sounds or rhythmic chords)</td>
+    <td>Added one or more extra cells with more complex musical layers.</td>
+</tr>
+<tr>
+    <td>Artwork and text</td>
+    <td>Did not add artwork and text</td>
+    <td>Added minimal artwork and description in a text cell</td>
+    <td>Added one or more cells with artwork and text that enriches the project.</td>
+</tr>
+<tr>
+    <td>Code has comments</td>
+    <td>No comments in code</td>
+    <td>Sparse comments in code</td>
+    <td>Comments help make the code more readable.</td>
+</tr>
+<tr>
+    <td>Code has variables</td>
+    <td>No variables in code</td>
+    <td>Only a small number of variables used inconsistently</td>
+    <td>Variables used throughout to help make the code more readable. Variables for drum sounds, notes, and chords.</td>
+</tr>
+<tr>
+    <td>Code has loops</td>
+    <td>No loops in code</td>
+    <td>One or two loops used</td>
+    <td>Multiple loops used strategically for things like arpeggios and repeated rhythmic elements.</td>
+</tr>
+</table>
 
-# Try It
-Open this project in TunePad <a href="{{project}}" target="_blank">{{ project }}</a>
+### Music Rubric
+<table class="rubric">
+<tr>
+    <th>Criteria</th>
+    <th>Emerging</th>
+    <th>Confident</th>
+    <th>Mastery</th>
+</tr>
+<tr>
+    <td>DRUMS</td>
+    <td>Doesn’t know what drums or drum patches are. Knows what a beat is but doesn’t know it’s makeup.</td>
+    <td>Can Identify parts of a drumset and drum beat, but still needs help occasionally with recognizing traditional versus synthetic sounds.</td>
+    <td>Can identify all parts of a drumset, know drum vocabulary, knows difference between real and synthetic drum sounds.</td>
+</tr>
+<tr>
+    <td>Melody</td>
+    <td>Doesn’t know what melody or instrument patches are. Know what music is but doesn’t know about effects of melody. Doesn’t know about music keys.</td>
+    <td>Can Identify parts of a melody and supporting melody, but still needs help occasionally with recognizing traditional versus synthetic sounds. Needs help hearing when things are in the wrong key.</td>
+    <td>Can identify all parts of a melody, know music vocabulary, knows difference between real and synthetic melody sounds.Know when something is in or out of key.</td>
+</tr>
+<tr>
+    <td>Harmony and Rhythm</td>
+    <td>Can’t hear the difference between single note or chord. Can recognize rhythm, but has not vocabulary to describe it.</td>
+    <td>Can sometimes hear the difference between single notes and chords. Has some vocabulary about describing rhythm and musical timing.</td>
+    <td>Can definitely hear the difference between a single note and chord. Can hold a decent conversation about rhythm and timing of a composition.</td>
+</tr>
+<tr>
+    <td>Music Composition</td>
+    <td>Does not know what a musical movement, phrase, or section is. Doesn’t know the difference between a verse or chorus.</td>
+    <td>Can sometimes tell when phrasing or sections of a composition has changed. Somewhat knows the structure of a song.</td>
+    <td>Know the structure of a song or composition. Knows when sections in a song change.</td>
+</tr>
+<tr>
+    <td>Loops and Patterns in Music</td>
+    <td>Can not hear or understand patterns or loops in music. Have no vocabulary to describe it.</td>
+    <td>Can sometimes hear and articulate ideas about patterns and loops.</td>
+    <td>Can definitely hear and identify patterns and loops. Can Count them and create them.</td>
+</tr>
+</table>
+
+
