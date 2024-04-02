@@ -1,62 +1,110 @@
 ---
 layout: layouts/activity.njk
 tags: beatmakers
-category: Curriculum
+category: Lesson Plan
 title: Loops
 description: Repetition is one of the most important parts of music. Repetition helps build memorable songs that stick in our ears. In Python, a loop is a tool that we can use to repeat things over and over.
 level: Beginner
 time: 15-20 minutes
 license: by-nc-sa
 splash: /images/splash/still-dre-splash.jpg
-video: https://drive.google.com/file/d/1Er4rBmwG3Jj7FyCdDEIc8GfMkdx-Nuav/view?usp=sharing
-slides: https://docs.google.com/document/d/1GJFpag52fC_8d6yRB6AliR6dF6JXxbo4yqCQENfbcxI/edit?usp=sharing
+video: https://drive.google.com/file/d/1mP2mVS8Jmuc4Ngyp1ecZ0m4lQDZSfysp/view?usp=sharing
+slides: https://docs.google.com/presentation/d/1uGQr4CZrCok1f5ET55KI3unJ94lXqKJcWkeU5mRlRWE/edit
 project: https://tunepad.com/project/44
 audio: https://api.tunepad.com/api/projects/44/audio/
 ---
+# Loops in Python
+* A loop is a way of repeating something many times.
+* Loops are helpful for composing music.
+* Here’s an example of what a loop looks like in Python:
 
-# Step 1: Create a new Project
-Log in and create a new TunePad project at [tunepad.com](https://tunepad.com). Name your project “Stranger Things”.
+<img src="/images/Figure2.12.png" width="500" style="margin: 2rem; max-width: 100%;" alt="Parts of a for loop in Python">
 
-# Step 2: Heartbeat
-We’ll start with the heartbeat drums that give the theme its sense of excitement, unease, and anxiety. 
-It’s the quickened pulse of a human heartbeat. Create a new Drum cell in TunePad, and use this code:
+| Part | Meaning | 
+| ---- | ------- |
+| `for` keyword | Tells Python that we’re starting a loop |
+| `loop` variable | Variable that holds the current value of the loop |
+| `in` keyword | Tells Python what we’re going to loop through |
+| `range` function | Generates a list of numbers to loop through. |
+| colon character | Tells Python the loop is starting |
+| indent | Everything we want to be repeated gets indented four spaces |
+
+
+# Repeating Drum Sounds
+<img src="/images/splash/hats-off-splash.jpg" width="300" alt="hi-hat" style="margin: 2rem;">
+This example repeats a hi-hat sound 8 times in a row:
+
+## Without a loop
 ```python
-playNote(1, beats = 0.5)
-playNote(1, beats = 0.5, velocity = 50)
-rest(1)
-
-playNote(1, beats = 0.5)
-playNote(1, beats = 0.5, velocity = 50)
-rest(1)
-```
-The heartbeat sounds like a LUB-dub, LUB-dub. Notice that we use the `velocity` parameter to make the first LUB kicks louder than the second dub kicks.
-
-# Step 3: Ominous Drone
-We’re going to add a low, ominous drone that slowly fades in and out of the mix.  
-Add a new Keys cell to your project and switch the voice to **Synth → Leads → Searing Lead**.
-
-<a href="/images/stranger-things-fig1.png" target="_blank">
-<img src="/images/stranger-things-fig1.png" alt="Screenshot of a TunePad keyboard instrument" width="450px" style="margin: 1rem;"></a>
-
-
-Use this code for your drone sound:
-```python
-with lowpass(frequency = [0, 1100, 0], beats = 40):
-    playNote(16, beats = 40)
-```
-This uses an audio production tool called a **lowpass filter** that slowly opens and closes over 40 beats.
-
-# STEP 4: Arpeggio
-Add a Keys cell to your project and change the voice to **Synth → Bass → PWM Synth Bass**.
-
-An _arpeggio_ is a chord broken into a series of individual notes played in rapid succession. 
-Arpeggios are used everywhere in music and contribute rhythmic, harmonic, and melodic elements to a song. 
-The Stranger Things theme uses an iconic arpeggio consisting of a C Major 7 chord played up and then back down in order of pitch.
-```python
-chord = [ 24, 28, 31, 35, 36, 35, 31, 28 ]
-for note in chord:
-    playNote(note, beats = 0.5)
+playNote(4, beats=0.5)
+playNote(4, beats=0.5)
+playNote(4, beats=0.5)
+playNote(4, beats=0.5)
+playNote(4, beats=0.5)
+playNote(4, beats=0.5)
+playNote(4, beats=0.5)
+playNote(4, beats=0.5)
 ```
 
-# Try It
-Open this project in TunePad <a href="{{project}}" target="_blank">{{ project }}</a>
+## With a loop
+```python
+for i in range(8):
+    playNote(4, beats=0.5)
+```
+
+Try using a loop in a TunePad drum cell. Experiment with:
+* Changing the number inside the range function
+* Changing the beats parameter of playNote
+* Changing the note number to different drum sounds
+
+
+# Repeating Chords
+<img src="/images/splash/keys-splash.png" width="300" alt="playing a piano" style="margin: 2rem;">
+
+* We can also use loops to repeat things like chords.
+* This is a nice way to add harmony and rhythm to your music.
+* Try this code in a piano cell:
+
+```python
+for i in range(8):
+	playNote([ 48, 52, 55 ], beats = 0.5)
+    
+for i in range(8):
+	playNote([ 55, 59, 62 ], beats = 0.5)
+    
+for i in range(8):
+	playNote([ 57, 60, 64 ], beats = 0.5)
+    
+for i in range(8):
+	playNote([ 53, 57, 60 ], beats = 0.5)
+```
+
+# Playing Arpeggios
+* You can also use loops without the `range` function.
+* This lets you loop through any list you want.
+<img src="/images/for-loop.png" width="500" style="margin: 2rem; max-width: 100%;" alt="Parts of a for loop in Python">
+
+Try this example in a TunePad piano cell:
+```python
+notes = [ 48, 52, 55, 52, 48 ]
+for note in notes:
+	playNote(note)
+
+playNote(notes, beats = 4)
+```
+	
+This example will play each note in the list, one at a time.
+Try experimenting with different notes in the list.
+
+# Activity: Recreate Still D.R.E.
+In this activity, practice using loops to make repeated chords.
+
+<a href="/tutorials/still-dre" style="margin: 2rem; display: block;" target="_blank">
+<img src="/images/splash/still-dre-splash.jpg" style="margin: 0.5rem 0" alt="Still DRE" width="400">Open the Still D.R.E. Tutorial</a>
+
+
+# Extra: Loops and Hats
+Learn how to create unique hi-hat patterns with for loops
+
+<a href="/tutorials/hats-off" style="margin: 2rem; display: block;" target="_blank">
+<img src="/images/splash/hats-off-splash.jpg" style="margin: 0.5rem 0" alt="Hi Hat" width="400">Open the Hats Off Tutorial</a>
