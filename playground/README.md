@@ -16,9 +16,9 @@ npm install --save-dev @rollup/plugin-typescript
 npm install --save-dev rollup-plugin-copy-watch
 npm install --save-dev rollup-plugin-serve
 npm install --save-dev rollup-plugin-livereload
-// npm install --save-dev rollup-plugin-postcss-modules
 npm install --save-dev rollup-plugin-css-modules
 npm install --save-dev rollup-plugin-html
+npm install --save-dev @rollup/plugin-terser
 ```
 
 # Scripts
