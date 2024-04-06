@@ -13,7 +13,7 @@
 import styles from './piano.module.css' with {type: 'css'};
 import html from './piano.module.html';
 
-import { MIDISource, MIDIEvent } from '../synthesizer/midi';
+import { MIDISource, MIDIEvent } from '../core/midi';
 
 /**
  * Piano keyboard custom element
@@ -104,7 +104,6 @@ export class PianoKeyboard extends HTMLElement {
 
 
     connectedCallback() {
-        console.log('connected');
         const template = document.createElement('template');
         template.innerHTML = html;
         // Create a shadow root
@@ -129,7 +128,6 @@ export class PianoKeyboard extends HTMLElement {
     }
 
     attributeChangedCallback(name : string, oldValue : string, newValue : string) {
-        console.log(`Attribute ${name} has changed to ${newValue}.`);
 
         switch (name) {
             case 'note-hints': this.setNoteHints(newValue != "false"); break;
@@ -357,13 +355,11 @@ export class PianoKeyboard extends HTMLElement {
     setFocusOctave(octave : number) {
         this.props.focusOctave = Math.max(this.props.minOctave, Math.min(this.props.maxOctave, octave));
         const focusIndex = (this.props.focusOctave - this.props.minOctave) * 12;
-        console.log(this.props.minOctave, this.props.focusOctave, this.props.maxOctave, focusIndex);
         if (isNaN(octave) || this.container == null) return;
 
         this.keys.forEach((key) => key.autoRelease());
         if (focusIndex >= 0 && focusIndex < this.keys.length) {
             const dx = this.keys[focusIndex].x;
-            console.log(focusIndex, dx);
             this.allKeys.style.transform = `translateX(${-dx}px)`;
 
             // update keyboard hints
