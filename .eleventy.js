@@ -21,6 +21,7 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({ "assets/sounds" : "sounds" });
     eleventyConfig.addPassthroughCopy({ "assets/images" : "images" });
     eleventyConfig.addPassthroughCopy({ "assets/webfonts" : "webfonts" });
+    eleventyConfig.addPassthroughCopy({ "playground/build" : "js" });
 
     eleventyConfig.on('eleventy.before', async () => {
         await loadFeaturedProjects();
