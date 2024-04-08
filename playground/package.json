@@ -1,8 +1,8 @@
 {
-  "name": "TunePad Playground",
+  "name": "tunepad",
   "version": "1.0.0",
   "description": "Open version of TunePad with no datastore. Like a jsfiddle.",
-  "main": "index.js",
+  "main": "build/js/tunepad.min.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
