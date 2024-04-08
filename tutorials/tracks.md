@@ -1,6 +1,6 @@
 ---
 layout: layouts/activity.njk
-tags: [ "tutorials", "learn" ]
+tags: [ "tutorials", "learn", "livecoders" ]
 category: Tutorial
 title: Layering Audio with Tracks
 description: Learn how to layer audio loops together into full-length songs using TunePad’s tracks interface. 
