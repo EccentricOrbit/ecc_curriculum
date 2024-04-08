@@ -1,7 +1,7 @@
 ---
 layout: layouts/activity.njk
 category: Lesson
-tags: learn
+tags: [ "learn", "livecoders" ]
 title: "Seven Easy Chords"
 description: A chord is more than one note played at the same time. There are many, many chords to choose from, but here are seven easy chords to get you started.
 level: Beginner
