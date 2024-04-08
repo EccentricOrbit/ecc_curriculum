@@ -13,13 +13,20 @@ We also need a rollup plugin to integrate with typescript
 ```sh
 npm install --save-dev rollup typescript rimraf
 npm install --save-dev @rollup/plugin-typescript
-npm install --save-dev rollup-plugin-copy-watch
-npm install --save-dev rollup-plugin-serve
-npm install --save-dev rollup-plugin-livereload
 npm install --save-dev rollup-plugin-css-modules
 npm install --save-dev rollup-plugin-html
 npm install --save-dev @rollup/plugin-terser
 ```
+
+# Unused for now (but cool!)
+Creates a server that livereloads.
+Also copies assets like css, images, sounds, etc.
+```sh
+npm install --save-dev rollup-plugin-copy-watch
+npm install --save-dev rollup-plugin-serve
+npm install --save-dev rollup-plugin-livereload
+```
+
 
 # Scripts
 * `npm run build`
