@@ -324,7 +324,7 @@ export class PianoKeyboard extends HTMLElement {
         this.allKeys.append(whiteKeys);
         this.allKeys.append(blackKeys);
         this.parent.append(this.allKeys);
-
+/*
         const shelf = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
         shelf.setAttribute("width", "100%");
         shelf.setAttribute("height", "6");
@@ -333,11 +333,11 @@ export class PianoKeyboard extends HTMLElement {
         shelf.setAttribute("fill", "black");
         shelf.setAttribute("fill-opacity", "0.2");
         this.parent.append(shelf);
-
+*/
         const felt = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
         felt.classList.add("felt")
         felt.setAttribute("width", "100%");
-        felt.setAttribute("height", "2");
+        felt.setAttribute("height", "1.5");
         felt.setAttribute("x", "0");
         felt.setAttribute("y", "0");
         this.parent.append(felt);
