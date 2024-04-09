@@ -1,0 +1,20 @@
+
+<div class="piano-wrapper">
+    <div class="shelf">
+        <pre id="code-hint"></pre>
+        <button id="copy-button" title="Copy Code">Copy to Clipboard</button>
+        <!-- <div class="logo-text">TunePad</div> -->
+    </div>
+    <div class="keyboard-wrapper">
+        <button id="down-octave" class="octave-button" title="Lower Octave">❮</button>
+        <piano-keyboard 
+            note-hints="true"
+            midi-hints="true"
+            armed="true"
+            max-octave="8"
+            min-octave="1"
+            focus-octave="3"
+            key-range="17"></piano-keyboard>
+        <button id="up-octave" class="octave-button" title="Higher Octave">❯</button>
+    </div>
+</div>
