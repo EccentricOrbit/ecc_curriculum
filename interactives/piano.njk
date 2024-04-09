@@ -1,0 +1,166 @@
+---
+title: TunePad Piano
+description: Learn note names and values with this interactive piano keyboard.
+splash: /images/splash/piano-splash.png
+tags: interactive
+---
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="{{ title }}">
+    <meta property=”og:type” content="article">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:image" content="https://learn.tunepad.com{{ splash }}">
+    <meta property="og:url" content="https://learn.tunepad.com{{ page.url }}">
+    <meta property="og:site_name" content="Learn TunePad">
+    <meta property="og:locale" content="en_US" />
+    <meta name="title" content="{{ title }}">
+    <meta name="description" content="{{ description }}">
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="/css/composer.css">
+    <link rel="stylesheet" href="/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="/css/prism.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playball&family=Source+Code+Pro&display=swap" rel="stylesheet">
+    <style>
+        .piano-wrapper {
+            width: 95%;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: black;
+            border-radius: 20px;
+        }
+        #code-hint {
+            margin: 0rem 1rem 1rem 1rem;
+            padding: 0.5rem 1rem;
+            background: #757f79;
+            width: 440px;
+            height: 46px;
+            border: 3px solid #887;
+            font-size: 150%;
+            border-radius: 5px;
+            text-shadow: 1px 1px 2px #000a;
+            box-shadow: 1px 1px 2px #0008 inset;
+            user-select: none;
+        }
+        .shelf {
+            display: flex;
+        }
+        .logo {
+            font-family: "Playball", cursive;
+            font-weight: 400;
+            font-style: normal;
+            color: #fffc;
+            text-align: right;
+            font-size: 40px;
+            align-content: center;
+            flex: 1;
+            padding: 0 2rem 0.2rem 0;
+            user-select: none;
+        }
+        #copy-button {
+            color: #fffa;
+            outline: none;
+            border: none;
+            font-size: 150%;
+            width: 35px;
+            height: 45px;
+            background-color: transparent;
+        }
+        #copy-button:hover { color: #fff; }
+        #copy-button:active { color: rgb(121, 216, 245); }
+    </style>
+
+    <title>{{ title }}</title>
+
+    <script defer src="/jslib/tunepad.min.js"></script>
+</head>
+<body>
+    <div class="piano-wrapper">
+        <div class="shelf">
+            <pre id="code-hint"></pre>
+            <button id="copy-button" title="Copy Code"><i class="fa fa-copy"></i></button>
+            <div class="logo">TunePad</div>
+        </div>
+        <piano-keyboard 
+            note-hints="true" 
+            midi-hints="true" 
+            armed="true"
+            max-octave="6"
+            min-octave="2"
+            focus-octave="3"
+            key-range="17"></piano-keyboard>
+    </div>
+<script>
+
+
+window.addEventListener("load", (e) => {
+
+    const notes = new Set();
+    let chord = new Array();
+
+    function getCodeHint() {
+        if (chord.length === 1) {
+            const note = new tunepad.Note(chord[0]);
+            return `playNote(${note.note})    # ${note.nameWithOctave}`;
+        } else if (chord.length > 0) {
+            return `playNote([ ${chord.join(', ')} ])`;
+        } else {
+            return '';
+        }    
+    }
+
+    function addCodeHint(note) {
+        notes.add(note.note);
+        chord = [ ...notes ].sort();
+        const el = document.getElementById('code-hint');
+        if (el) el.innerHTML = getCodeHint();
+    }
+
+    function removeCodeHint(note) {
+        notes.delete(note.note);
+        if (notes.size == 0) chord = [ ];
+    }
+
+    // create the audio context
+    const audio = tunepad.TunePadAudio.init();
+
+
+    // create a synthesizer and load a grand piano
+    const synth = new tunepad.Synthesizer();
+    synth.loadPatch('/sounds/voices/grand-piano/patch.json', audio.context);
+
+    // catch piano note events and play note + display note info
+    document.querySelector('piano-keyboard')?.addEventListener('note-on', (e) => {
+        if (e instanceof CustomEvent) {
+            const note = new tunepad.Note(e.detail.note);
+            synth.playNote(note, audio.context.destination);
+            addCodeHint(note);
+        }
+    });
+
+    document.querySelector('piano-keyboard')?.addEventListener('note-off', (e) => {
+        if (e instanceof CustomEvent) {
+            const note = new tunepad.Note(e.detail.note);
+            synth.releaseNote(note);
+            removeCodeHint(note);
+        }
+    });
+
+    document.querySelector('piano-keyboard')?.addEventListener('pitch-bend', (e) => {
+        console.log(e);
+    });
+
+    document.querySelector('#copy-button')?.addEventListener('click', (e) => {
+        console.log('click');
+        console.log(notes);
+        console.log(getCodeHint());
+        navigator.clipboard.writeText(getCodeHint());
+    });
+});
+  </script>
+</body>
+</html>
