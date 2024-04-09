@@ -13,15 +13,18 @@ const FEATURED_SRC = "_data/featured-projects.json";
 
 
 module.exports = function(eleventyConfig) {
+
     eleventyConfig.addPlugin(syntaxHighlight, {
         alwaysWrapLineHighlights: true,
     });
+
+    eleventyConfig.setServerPassthroughCopyBehavior("passthrough");
     eleventyConfig.addPassthroughCopy({ "assets/js" : "js" });
     eleventyConfig.addPassthroughCopy({ "assets/css" : "css" });
     eleventyConfig.addPassthroughCopy({ "assets/sounds" : "sounds" });
     eleventyConfig.addPassthroughCopy({ "assets/images" : "images" });
     eleventyConfig.addPassthroughCopy({ "assets/webfonts" : "webfonts" });
-    eleventyConfig.addPassthroughCopy({ "playground/build" : "js" });
+    eleventyConfig.addPassthroughCopy({ "playground/build" : "jslib" });
 
     eleventyConfig.on('eleventy.before', async () => {
         await loadFeaturedProjects();
@@ -48,7 +51,7 @@ async function loadFeaturedProjects() {
     try {
 
         // refresh at most once every 10 minutes
-        if (needsUpdate(FEATURED_DST, 1000 * 60)) {
+        if (needsUpdate(FEATURED_DST, 1000 * 60 * 10)) {
             console.log("Time to rebuild the featured project database.");
             const fdata = JSON.parse(fs.readFileSync(FEATURED_SRC, 'utf8'));
 
