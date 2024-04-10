@@ -12,8 +12,7 @@
  */
 import styles from './note-explorer.module.css' with {type: 'css'};
 import html from './note-explorer.module.html';
-import { Note, TunePadAudio } from '../core';
-import { Synthesizer } from '../synthesizer';
+import { Note } from '../core';
 
 /**
  * Note explorer shows a playable piano keyboard with note names and numbers.
@@ -30,65 +29,39 @@ export class NoteExplorer extends HTMLElement {
         "patch",  // URL for patch JSON file
     ];
 
-
     /// all of the HTML elements for the instrument are contained within a shadow DOM
     root : ShadowRoot;
 
     private notes = new Set();
     private chord = new Array();
 
-    // TunePad audio core
-    private audio : TunePadAudio;
-
-    // create a synthesizer and load a grand piano
-    private synth = new Synthesizer();
-
-    private octave = 3;
-
     constructor() {
         super();
         this.root = this.attachShadow({ mode: 'open' });
         this.root.adoptedStyleSheets.push(styles);
-        this.audio = TunePadAudio.init();
+        const template = document.createElement('template');
+        template.innerHTML = html;
+        this.root.appendChild(template.content.cloneNode(true));
     }
 
 
     connectedCallback() {
-        const template = document.createElement('template');
-        template.innerHTML = html;
-
-        // Create a shadow root
-        this.root.appendChild(template.content.cloneNode(true));
-
-        // create the audio context
-        this.audio = TunePadAudio.init();
+        const piano = this.root.querySelector('piano-instrument');
 
         // catch piano note events and play note + display note info
-        this.root.querySelector('piano-keyboard')?.addEventListener('note-on', (e) => {
+        piano?.addEventListener('note-on', (e) => {
             const note = new Note((e as CustomEvent).detail.note);
-            this.synth.playNote(note, this.audio.context.destination);
             this.addCodeHint(note);
         });
 
-        this.root.querySelector('piano-keyboard')?.addEventListener('note-off', (e) => {
+        piano?.addEventListener('note-off', (e) => {
             const note = new Note((e as CustomEvent).detail.note);
-            this.synth.releaseNote(note);
             this.removeCodeHint(note);
         });
 
-        this.root.querySelector('#copy-button')?.addEventListener('click', (e) => {
+        piano?.addEventListener('click', (e) => {
             const el = document.querySelector('#code-hint');
             if (el) navigator.clipboard.writeText(el.innerHTML);
-        });
-
-        this.root.querySelector('#down-octave')?.addEventListener('click', (e) => {
-            this.octave = Math.max(1, this.octave - 1);
-            this.root.querySelector('piano-keyboard')?.setAttribute('focus-octave', `${this.octave}`);
-        });
-
-        this.root.querySelector('#up-octave')?.addEventListener('click', (e) => {
-            this.octave = Math.min(8, this.octave + 1);
-            this.root.querySelector('piano-keyboard')?.setAttribute('focus-octave', `${this.octave}`);
         });
     }
 
@@ -99,7 +72,7 @@ export class NoteExplorer extends HTMLElement {
 
     attributeChangedCallback(name : string, oldValue : string, newValue : string) {
         if (name === 'patch' && newValue !== oldValue) {
-            this.synth.loadPatch(newValue, this.audio.context);
+            this.root.querySelector('piano-instrument')?.setAttribute(name, newValue);
         }
     }
 

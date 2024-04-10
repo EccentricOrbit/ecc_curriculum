@@ -1,55 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Playball&display=swap');
-
-.piano-wrapper {
+.explore-wrapper {
     width: 95%;
     margin: 2rem auto;
     padding: 1rem 0;
-    background-color: black;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
 }
 #code-hint {
-    margin: 0rem 1rem 1rem 1.5rem;
-    padding: 0.5rem 1rem;
-    background: #757f79;
-    width: 50%;
-    height: 40px;
-    border: 3px solid #887;
-    font-size: 120%;
+    margin: 0rem 0.25rem 0 0;
+    padding: 0 1rem;
+    background: #0002;
+    height: 35px;
+    line-height: 35px;
+    border: 1px solid #887;
     border-radius: 5px;
-    text-shadow: 1px 1px 2px #000a;
-    box-shadow: 1px 1px 2px #0008 inset;
     user-select: none;
     box-sizing: border-box;
+    flex: 1;
 }
 .shelf {
     display: flex;
-    padding-right: 1.5rem;
+    margin-top: 1rem;
 }
 .keyboard-wrapper {
     display: flex;
 }
 #copy-button {
-    color: #fffc;
+    color: #000a;
     outline: none;
-    border: 1px solid #fffc;
-    font-size: 90%;
-    height: 30px;
-    margin: 5px 0;
+    border: 1px solid #555;
+    height: 35px;
     background-color: transparent;
     border-radius: 5px;
     font-weight: 500;
+    user-select: none;
 }
-#copy-button:hover { color: #fff; }
-#copy-button:active { color: rgb(121, 216, 245); }
-piano-keyboard { flex: 1; }
-.octave-button {
-    background-color: transparent;
-    border: none;
-    outline: none;
-    color: #fffc;
-    font-size: 200%;
-}
-.octave-button:hover { color: #fff; }
-.octave-button:active { color: rgb(121, 216, 245); }
+#copy-button:hover { color: black; }
+#copy-button:active { color: rgb(45, 113, 134); }
+piano-instrument { flex: 1; }
