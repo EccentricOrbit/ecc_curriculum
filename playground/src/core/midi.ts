@@ -35,7 +35,13 @@ export class MIDIEvent {
 
     readonly props : MIDIEventProps;
 
-    get customEvent() : CustomEvent { return new CustomEvent(this.props.message, { detail: this.props }); }
+    get customEvent() : CustomEvent { 
+        return new CustomEvent(this.props.message, {
+            bubbles: true,
+            composed: true,
+            detail: this.props 
+        }); 
+    }
     
     constructor(props : MIDIEventProps) {
         this.props = { ...MEDefaults, ...props, ...{ time: Date.now() } };
