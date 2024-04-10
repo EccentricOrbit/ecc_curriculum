@@ -1,107 +1,21 @@
-/*
-@keyframes fade-out {
-    0% {
-        opacity: 1.0;
-    }
 
-    100% {
-        opacity: 0.0;
-    }
-}
-*/
-.instrument {
-    position: relative;
-    box-sizing: border-box;
+.piano-wrapper {
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem 0;
+    background-color: black;
+    border-radius: 10px;
     display: flex;
 }
 
-.backdrop {
-    fill: #30303f;
-}
-
-.container {
-    width: 100%;
-}
-
-.piano-key.black {
-    fill: #1d1e1f;
-    stroke: #222;
-    stroke-width: 1.5;
-    rx: 1.5;
-}
-
-.piano-key.black .black-top {
-    fill: #444;
-}
-
-.piano-key.black:hover .black-top {
-    fill: #777;
-}
-
-.piano-key.black.pressed .black-top {
-    fill: #222;
-}
-
-.piano-key.white {
-    fill: #ecedee;
-    stroke: #f7f7f8;
-    stroke-width: 1.5;
-    rx: 1.4;
-}
-
-.piano-key.white:hover {
-    fill: #ccc;
-}
-
-.piano-key.white.pressed {
-    fill: #aaa;
-    stroke: #777;
-}
-/*
-.piano-key.white.pressed.step-0 { fill: rgb(229, 76, 78); }
-.piano-key.white.pressed.step-2 { fill: rgb(228, 171, 81); }
-.piano-key.white.pressed.step-4 { fill: rgb(223, 228, 78); }
-.piano-key.white.pressed.step-5 { fill: rgb(174, 215, 71); }
-.piano-key.white.pressed.step-7 { fill: rgb(63, 169, 180); }
-.piano-key.white.pressed.step-9 { fill: rgb(78, 69, 179); }
-.piano-key.white.pressed.step-11 { fill: rgb(202, 69, 147); }
-*/
-.note-hint,
-.midi-hint,
-.key-hint {
-    stroke: none;
-    font: 9pt sans-serif;
-    fill: #0006;
-    text-anchor: middle;
-    opacity: 0.0;
-    pointer-events: none;
+piano-keyboard { flex: 1; }
+.octave-button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #fffc;
+    font-size: 200%;
     user-select: none;
 }
-
-.midi-hint.black, .note-hint.black, .key-hint.black {
-    fill: #ccc;
-}
-.show {
-    opacity: 1.0;
-}
-
-.note-hint.always-show {
-    opacity: 1.0;
-}
-
-.felt {
-    fill: #a00;
-}
-
-.animated-slide {
-    transition: transform 0.5s ease-in-out;
-}
-
-.mini-piano {
-    opacity: 0.0;
-    transition: opacity 0.25s;
-}
-
-.mini-piano.show {
-    opacity: 1.0;
-}
+.octave-button:hover { color: #fff; }
+.octave-button:active { color: rgb(121, 216, 245); }

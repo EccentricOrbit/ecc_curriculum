@@ -1,1 +1,12 @@
-<div class="instrument"><svg class="container" version="1.1"></svg></div>
+<div class="piano-wrapper">
+    <button id="down-octave" class="octave-button" title="Lower Octave">❮</button>
+    <piano-keyboard 
+        note-hints="true"
+        midi-hints="true"
+        armed="true"
+        max-octave="8"
+        min-octave="1"
+        focus-octave="3"
+        key-range="17"></piano-keyboard>
+    <button id="up-octave" class="octave-button" title="Higher Octave">❯</button>
+</div>
