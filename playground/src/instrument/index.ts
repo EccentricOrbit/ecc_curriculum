@@ -11,4 +11,5 @@
  * of the National Science Foundation (NSF).
  */
 
+export * from './keyboard';
 export * from './piano';
