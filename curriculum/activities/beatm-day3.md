@@ -8,55 +8,74 @@ level: Beginner
 time: 50 minutes
 license: by-nc-sa
 splash: /images/splash/piano-cartoon-splash.png
-video: https://drive.google.com/file/d/1Er4rBmwG3Jj7FyCdDEIc8GfMkdx-Nuav/view?usp=sharing
+video:
 slides: 
-project: https://tunepad.com/project/27933
-audio: https://api.tunepad.com/api/projects/27933/audio/
+project:
+audio:
 ---
-
-# Step 1: Create a new Project
-Log in and create a new TunePad project at [tunepad.com](https://tunepad.com). Name your project “Stranger Things”.
-
-# Step 2: Heartbeat
-We’ll start with the heartbeat drums that give the theme its sense of excitement, unease, and anxiety. 
-It’s the quickened pulse of a human heartbeat. Create a new Drum cell in TunePad, and use this code:
+# Learning Note Names
+In TunePad musical notes are numbers. C1 is a very low note on the piano keyboard. It has the number 24, and you can play it with this Python code:
 ```python
-playNote(1, beats = 0.5)
-playNote(1, beats = 0.5, velocity = 50)
+playNote(24)   # C1
+```
+* Notes with higher pitches have higher numbers. 
+* Notes are grouped into sets of 12 called an **octave**. 
+* For example, the note C2 has the number 24, which is 12 notes higher than C1.
+
+Try playing different notes on the piano keyboard to hear how they sound. The note numbers and note names are show on each key.  You can make the keyboard show lower and higher octaves by pressing the arrow buttons.
+
+<note-explorer patch="/sounds/voices/grand-piano/patch.json"></note-explorer>
+
+# Activity: Make a Melody!
+
+## Step 1: Start with a Piano
+* Log in and create a new TunePad project at [tunepad.com](https://tunepad.com). 
+* Name your project “My Melody”.
+* Add a **Keys** cell to your project.
+
+## Step 2: Play Different Notes
+You can play a note in TunePad with the `playNote` function.
+
+<img src="/images/play-note.png" style="width: 90%;" alt="The TunePad playNote functions">
+
+Try making up your own melody with the note numbers from 60 to 72. Here's an example. 
+```python
+playNote(60)
+playNote(69)
+playNote(67)
+playNote(67)
+```
+This example is the same as playing these notes on the piano:
+
+<img src="/images/music/melody1.png" width="400px;" alt="sheet music">
+
+# Step 2: Add a Rest
+A rest is a way of adding pause or silence to music. You can add a rest to your code with the `rest` function.
+
+<img src="/images/rest.png" alt="TunePad rest function." style="width: 50%;">
+
+Try adding a rest somewhere in your code. Here's an example:
+```python
+playNote(60)
+playNote(69)
+rest(2)
+playNote(67)
 rest(1)
+playNote(67)
+```
+<img src="/images/music/melody2.png" width="500px;" alt="sheet music">
 
-playNote(1, beats = 0.5)
-playNote(1, beats = 0.5, velocity = 50)
+# Step 3: Change your Timing
+You can make notes longer or shorter in TunePad with the beats **parameter**.
+Try adding the `beats` parameter to some of your notes. Common beat values are 2, 1, 0.5, and 0.25.
+```python
+playNote(60)
+playNote(69, beats = 2)
 rest(1)
+playNote(67, beats = 0.5)
+rest(0.5)
+playNote(67, beats = 0.5)
+rest(0.5)
 ```
-The heartbeat sounds like a LUB-dub, LUB-dub. Notice that we use the `velocity` parameter to make the first LUB kicks louder than the second dub kicks.
+<img src="/images/music/melody3.png" width="500px;" alt="sheet music">
 
-# Step 3: Ominous Drone
-We’re going to add a low, ominous drone that slowly fades in and out of the mix.  
-Add a new Keys cell to your project and switch the voice to **Synth → Leads → Searing Lead**.
-
-<a href="/images/stranger-things-fig1.png" target="_blank">
-<img src="/images/stranger-things-fig1.png" alt="Screenshot of a TunePad keyboard instrument" width="450px" style="margin: 1rem;"></a>
-
-
-Use this code for your drone sound:
-```python
-with lowpass(frequency = [0, 1100, 0], beats = 40):
-    playNote(16, beats = 40)
-```
-This uses an audio production tool called a **lowpass filter** that slowly opens and closes over 40 beats.
-
-# STEP 4: Arpeggio
-Add a Keys cell to your project and change the voice to **Synth → Bass → PWM Synth Bass**.
-
-An _arpeggio_ is a chord broken into a series of individual notes played in rapid succession. 
-Arpeggios are used everywhere in music and contribute rhythmic, harmonic, and melodic elements to a song. 
-The Stranger Things theme uses an iconic arpeggio consisting of a C Major 7 chord played up and then back down in order of pitch.
-```python
-chord = [ 24, 28, 31, 35, 36, 35, 31, 28 ]
-for note in chord:
-    playNote(note, beats = 0.5)
-```
-
-# Try It
-Open this project in TunePad <a href="{{project}}" target="_blank">{{ project }}</a>
