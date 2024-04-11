@@ -13,6 +13,13 @@ slides: https://docs.google.com/presentation/d/1U1L9Eg9rGV3lvLYPcZoFbospAkggN_ht
 project: https://tunepad.com/project/43861
 audio: https://api.tunepad.com/api/projects/43861/audio/
 ---
+### Learning Objectives
+* Learn about variables in programming
+* Learn about lists in programming
+* Learn about common chord progressions in music
+* Practice playing chords in TunePad
+
+
 # Topic 1: Variables in Python
 In programming, a **variable** is a name that stands for numbers, text, or other information.
 Variables are helpful for making your code easier to understand and modify.

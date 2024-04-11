@@ -13,6 +13,11 @@ slides:
 project:
 audio:
 ---
+### Learning Objectives
+* Learn about note names, note values, and octaves
+* Learn about melody composition
+* Practice coding a melody
+
 # Learning Note Names
 In TunePad musical notes are numbers. C1 is a very low note on the piano keyboard. It has the number 24, and you can play it with this Python code:
 ```python

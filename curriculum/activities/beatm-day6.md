@@ -13,6 +13,10 @@ slides: https://docs.google.com/document/d/1GJFpag52fC_8d6yRB6AliR6dF6JXxbo4yqCQ
 project: https://tunepad.com/project/27933
 audio: https://api.tunepad.com/api/projects/27933/audio/
 ---
+### Learning Objectives
+* Practice using loops and lists to play arpeggios
+* Practice using arpeggios to create fun musical patterns.
+
 # Arpeggios
 
 <img src="/images/sheet-music.png" alt="Sheet music" width="400" style="margin: 1rem;" />

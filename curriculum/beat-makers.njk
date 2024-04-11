@@ -13,7 +13,7 @@ license: by-nc-sa
 <section class="highlights">
     <div class="units">
     {%- for unit in collections.beatmakers -%}
-        <div class="unit" data-url="{{ unit.url }}">
+        <div class="unit" data-url="{{ unit.url }}" data-target="_self">
             <div class="unit-image" style="background-image: url('{{ unit.data.splash }}')">
                 {%- if unit.data.audio -%}
                 <button class="unit-audio-button">
@@ -34,3 +34,79 @@ license: by-nc-sa
     {%- endfor -%}
     </div>
 </section>
+
+<style>
+    table.standards {
+        width: 90%;
+        max-width: unset;
+        border: 1px solid black;
+        border-collapse: collapse;
+        margin: 2rem 0;
+    }
+    td.code { text-wrap: nowrap; font-weight: 600; }
+    th { background-color: black; color: white; }
+</style>
+<h1>CSTA K-12 Framework Alignment (2017)</h1>
+Covered standards highlighted in green.
+
+<table class="standards">
+    <tr>
+        <th>Level 2</th>
+        <th>Grades 6-8 (ages 11-14)</th>
+        <th></th>
+    </tr>
+    <tr>
+        <td class="code">2-AP-10</td>
+        <td>Use flowcharts and/or pseudocode to address complex problems as algorithms.</td>
+        <td>Algorithms</td>
+    </tr>
+    <tr>
+        <td class="code">2-AP-11</td>
+        <td>Create clearly named variables that represent different data types and perform operations on their values.
+        </td>
+        <td>Variables</td>
+    </tr>
+    <tr>
+        <td class="code">2-AP-12</td>
+        <td>Design and iteratively develop programs that combine control structures, including nested loops and compound
+            conditionals.</td>
+        <td>Control</td>
+    </tr>
+    <tr>
+        <td class="code">2-AP-13</td>
+        <td>Decompose problems and subproblems into parts to facilitate the design, implementation, and review of
+            programs.</td>
+        <td>Modularity</td>
+    </tr>
+    <tr>
+        <td class="code">2-AP-14</td>
+        <td>Create procedures with parameters to organize code and make it easier to reuse.</td>
+        <td>Modularity</td>
+    </tr>
+    <tr>
+        <td class="code">2-AP-15</td>
+        <td>Seek and incorporate feedback from team members and users to refine a solution that meets user needs.</td>
+        <td>Program Development</td>
+    </tr>
+    <tr>
+        <td class="code">2-AP-16</td>
+        <td>Incorporate existing code, media, and libraries into original programs, and give attribution.</td>
+        <td>Program Development</td>
+    </tr>
+    <tr>
+        <td class="code">2-AP-17</td>
+        <td>Systematically test and refine programs using a range of test cases.</td>
+        <td>Program Development</td>
+    </tr>
+    <tr>
+        <td class="code">2-AP-18</td>
+        <td>Distribute tasks and maintain a project timeline when collaboratively developing computational artifacts.
+        </td>
+        <td>Program Development</td>
+    </tr>
+    <tr>
+        <td class="code">2-AP-19</td>
+        <td>Document programs in order to make them easier to follow, test, and debug.</td>
+        <td>Program Development</td>
+    </tr>
+</table>

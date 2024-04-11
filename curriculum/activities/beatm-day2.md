@@ -13,6 +13,13 @@ slides:
 project: https://tunepad.com/project/77343
 audio: https://api.tunepad.com/api/projects/77343/audio/
 ---
+### Learning Objectives
+* Learn how drum sounds shape the character of music
+* Practice coding common beat patterns
+* Learn about comments to make code more readable
+* Learn about syntax errors in text-based code
+* Practice fixing Python syntax errors
+
 
 # Warmup: Fixing Syntax Errors
 In this activity, you'll learn about *syntax errors* in Python code and how to fix them.

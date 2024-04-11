@@ -13,6 +13,12 @@ slides: https://docs.google.com/presentation/d/1uGQr4CZrCok1f5ET55KI3unJ94lXqKJc
 project: https://tunepad.com/project/44
 audio: https://api.tunepad.com/api/projects/44/audio/
 ---
+### Learning Objectives
+* Learn about loops in Python
+* Learn about loops in music
+* Practice using loops to create hi-hat pattern
+
+
 # Loops in Python
 * A loop is a way of repeating something many times.
 * Loops are helpful for composing music.

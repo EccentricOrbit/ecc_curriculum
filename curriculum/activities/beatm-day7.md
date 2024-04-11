@@ -13,6 +13,9 @@ slides: https://docs.google.com/document/d/1GJFpag52fC_8d6yRB6AliR6dF6JXxbo4yqCQ
 project: https://tunepad.com/project/27933
 audio: https://api.tunepad.com/api/projects/27933/audio/
 ---
+### Learning Objectives
+* Learn about how songs are composed from smaller parts
+* Practice using TunePad’s Tracks interface to create a longer song
 
 # Step 1: Create a new Project
 Log in and create a new TunePad project at [tunepad.com](https://tunepad.com). Name your project “Stranger Things”.
