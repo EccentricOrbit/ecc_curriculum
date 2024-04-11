@@ -13,6 +13,7 @@
 import styles from './note-explorer.module.css' with {type: 'css'};
 import html from './note-explorer.module.html';
 import { Note } from '../core';
+import { Piano } from '../instrument';
 
 /**
  * Note explorer shows a playable piano keyboard with note names and numbers.
@@ -25,9 +26,7 @@ export class NoteExplorer extends HTMLElement {
 
     static readonly ELEMENT = "note-explorer";
 
-    static observedAttributes = [ 
-        "patch",  // URL for patch JSON file
-    ];
+    static observedAttributes = Piano.observedAttributes;
 
     /// all of the HTML elements for the instrument are contained within a shadow DOM
     root : ShadowRoot;
@@ -71,7 +70,7 @@ export class NoteExplorer extends HTMLElement {
     }
 
     attributeChangedCallback(name : string, oldValue : string, newValue : string) {
-        if (name === 'patch' && newValue !== oldValue) {
+        if (newValue !== oldValue) {
             this.root.querySelector('piano-instrument')?.setAttribute(name, newValue);
         }
     }
