@@ -20,7 +20,7 @@
 }
 .shelf {
     display: flex;
-    margin-top: 1rem;
+    margin: 1rem 4.5rem;
 }
 .keyboard-wrapper {
     display: flex;
