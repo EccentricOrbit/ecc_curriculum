@@ -23,8 +23,10 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({ "assets/css" : "css" });
     eleventyConfig.addPassthroughCopy({ "assets/sounds" : "sounds" });
     eleventyConfig.addPassthroughCopy({ "assets/images" : "images" });
+    eleventyConfig.addPassthroughCopy({ "assets/python" : "python" });
     eleventyConfig.addPassthroughCopy({ "assets/webfonts" : "webfonts" });
     eleventyConfig.addPassthroughCopy({ "playground/build" : "jslib" });
+    eleventyConfig.addPassthroughCopy({ "playground/src/compiler/PythonWorker.js" : "jslib/PythonWorker.js" });
 
     eleventyConfig.on('eleventy.before', async () => {
         await loadFeaturedProjects();
