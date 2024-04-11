@@ -1,5 +1,5 @@
 echo -e "---\nlayout: layouts/docs.njk\n---\n<div class=\"toc\">\n" > docs.md
-pydoc-markdown -m tunepad -m tunepad.constants -m tunepad.chords -I ../tunepad_playground/public/assets/python/ '{
+pydoc-markdown -m tunepad -m tunepad.constants -m tunepad.chords -I ./assets/python/ '{
     renderer: {
       type: markdown,
       render_toc: true
@@ -7,7 +7,7 @@ pydoc-markdown -m tunepad -m tunepad.constants -m tunepad.chords -I ../tunepad_p
   }' | sed -e '/<a id="tunepad">/,$d' >> docs.md
 echo -e "</div>\n" >> docs.md
 echo -e "<div class=\"docs\">" >> docs.md
-pydoc-markdown -m tunepad -m tunepad.constants -m tunepad.chords -I ../tunepad_playground/public/assets/python/ '{
+pydoc-markdown -m tunepad -m tunepad.constants -m tunepad.chords -I ./assets/python/ '{
     renderer: {
       type: markdown,
       descriptive_class_title: false,
