@@ -115,6 +115,21 @@ export class Note {
         this.note = n;
     }
 
+    public isEqual(other : Note) : boolean {
+        return (
+          this.note === other.note &&
+          this.start === other.start &&
+          this.duration === other.duration &&
+          this.velocity === other.velocity);
+    }
+
+    public clone() : Note {
+        let n = new Note(this.note);
+        n.start = this.start;
+        n.duration = this.duration;
+        n.velocity = this.velocity;
+        return n;
+    }
 
     /// create a note by name (e.g. D#4, C2)
     static fromName(name : string) : Note {
