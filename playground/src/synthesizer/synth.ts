@@ -14,9 +14,11 @@ import { Note } from "../core/note";
 import { SynthNode } from "./nodes/node";
 import { SynthEvent } from "./event";
 import { SynthChain } from "./chain";
+import { SynthEffect, EmptyEffect } from "./effect";
 import { SynthParameter } from "./param";
 import { clamp } from "../core/utils";
 import { SoundLoader } from "./sounds";
+import { MusicTrace, TraceEvent } from "../core/trace";
 
 export interface Patch {
     name : string,
@@ -120,16 +122,12 @@ export class Synthesizer {
     ///          to skip the beginning of a loop
     scheduleNote(note: Note, dest: AudioNode, start: number, delta: number = 0): SynthChain | undefined {
 
-        //-------------------------------------------------
         // convert from beats to seconds
-        //-------------------------------------------------
         const now = dest.context.currentTime!;
         const duration = note.duration * (60 / this.bpm);
         start = (start + delta) * (60 / this.bpm);
 
-        //-------------------------------------------------
         // allocate generator that's free at the note start time
-        //-------------------------------------------------
         const generator = this._allocateGenerator(dest.context!, now + start);
         generator?.scheduleNote(note, start, duration, dest);
         return generator;
@@ -195,8 +193,7 @@ export class Synthesizer {
     ///   delta: time before the start of the next measure (in beats)
     ///          when this note is to be scheduled. if negative, it means
     ///          to skip the beginning of a loop
-    /*
-    scheduleNotes(trace : Trace, dest : AudioNode, delta : number) {
+    scheduleNotes(trace : MusicTrace, dest : AudioNode, delta : number) {
         const now = dest.context.currentTime;
         const offset = Math.max(0, -delta);
 
@@ -215,7 +212,7 @@ export class Synthesizer {
         //-------------------------------------------------
         // cleanup previously scheduled sound generators
         //-------------------------------------------------
-        for (let i=0; i<=this.sound_gens.length; i++) {
+        for (let i=0; i < this.sound_gens.length; i++) {
             const chain = this.sound_gens[i];
             if (chain.free < now) {
                 delete this.sound_gens[i];
@@ -226,40 +223,43 @@ export class Synthesizer {
         //-------------------------------------------------
         // schedule new notes
         //-------------------------------------------------
-        List<Effect> estack = [ ];
-        Effect rootFx = EmptyEffect(dest.context!);
+        const estack = new Array<SynthEffect>();
+        const rootFx : SynthEffect = new EmptyEffect(dest.context);
         rootFx.beats = trace.beats;
-        estack.add(rootFx);
-        _effects.add(rootFx);
-        rootFx.connect(dest, bpm, delta);
+        estack.push(rootFx);
+        this._effects.push(rootFx);
+        rootFx.connect(dest, this.bpm, delta);
 
-        for (TraceEvent t in trace.trace) {
-        if (t.command == TraceEvent.START) {
-        }
-        else if (t.command == TraceEvent.PUSH_FX) {
+        for (const t of trace.trace) {
+            if (t.command == TraceEvent.PUSH_FX) {
 
-            // TODO: don't allow duplicate effects in the stack?
-            Effect parent = estack.last;
-            Effect fx = Effect(t, dest.context!);
-            fx.connect(parent.node, bpm, delta);
-            estack.add(fx);
-            _effects.add(fx);
-        }
-        else if (t.command == TraceEvent.POP_FX) {
-            if (estack.length > 1) estack.removeLast();
-        }
-        else if (t.command == TraceEvent.PLAY && t.end >= offset) {
-            SynthChain ? gen = scheduleNote(t.note, estack.last.node, t.time, delta);
-            estack.forEach((fx) { fx.afterEffect(gen, t.time, t.note.duration, bpm, delta); });
-        }
-        else if (t.command == TraceEvent.SOUND && t.end >= offset && t['sound-url'] is String) {
-            SynthChain ? gen = scheduleSound(t.note, t['sound-url'], estack.last.node, t.time, delta);
-            estack.forEach((fx) { fx.afterEffect(gen, t.time, t.note.duration, bpm, delta); });
-        }
+                // TODO: don't allow duplicate effects in the stack?
+                const parent = estack[estack.length - 1];
+                const fx = SynthEffect.createEffect(t, dest.context);
+                fx.connect(parent.node, this.bpm, delta);
+                estack.push(fx);
+                this._effects.push(fx);
+            }
+            else if (t.command == TraceEvent.POP_FX) {
+                //if (estack.length > 1) estack.removeLast();
+            }
+            else if (t.command == TraceEvent.PLAY && t.end >= offset) {
+                const last = estack[estack.length - 1];
+                const gen = this.scheduleNote(t.note, last.node, t.time, delta);
+                estack.forEach((fx) => {
+                    fx.afterEffect(gen, t.time, t.note.duration, this.bpm, delta);
+                });
+            }
+            /*
+            else if (t.command == TraceEvent.SOUND && t.end >= offset && t['sound-url'] is String) {
+                const gen = scheduleSound(t.note, t['sound-url'], estack.last.node, t.time, delta);
+                estack.forEach((fx) { fx.afterEffect(gen, t.time, t.note.duration, bpm, delta); });
+            }
+            */
         }
     }
-    List<Effect> _effects = [ ];
-*/
+    private _effects = new Array<SynthEffect>();
+
 
 /**
  * Render audio into a buffer using an offline audio context
