@@ -1,7 +1,7 @@
 ---
 layout: layouts/activity.njk
 tags: beatmakers
-category: Curriculum
+category: Lesson Plan
 title: Final Project
 description: Today we’ll continue working on our final projects and start getting ready for the showcase presentations. We’ll put together everything we’ve learned together to create a musical composition with Python code!
 level: Beginner

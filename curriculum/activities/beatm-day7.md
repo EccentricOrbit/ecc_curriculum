@@ -1,65 +1,42 @@
 ---
 layout: layouts/activity.njk
 tags: beatmakers
-category: Curriculum
-title: Final Project + Song Arrangement
+category: Lesson Plan
+title: Song Arrangement with Tracks
 description: This week we’ll practice arranging different musical loops into longer songs with different parts. We’ll also talk about common patterns in popular music composition.
 level: Beginner
 time: 15-20 minutes
 license: by-nc-sa
 splash: /images/splash/tracks-splash.png
-video: https://drive.google.com/file/d/1Er4rBmwG3Jj7FyCdDEIc8GfMkdx-Nuav/view?usp=sharing
-slides: https://docs.google.com/document/d/1GJFpag52fC_8d6yRB6AliR6dF6JXxbo4yqCQENfbcxI/edit?usp=sharing
-project: https://tunepad.com/project/27933
-audio: https://api.tunepad.com/api/projects/27933/audio/
+project: https://tunepad.com/project/40743
+audio: https://api.tunepad.com/api/projects/40743/audio/
 ---
 ### Learning Objectives
 * Learn about how songs are composed from smaller parts
 * Practice using TunePad’s Tracks interface to create a longer song
 
-# Step 1: Create a new Project
-Log in and create a new TunePad project at [tunepad.com](https://tunepad.com). Name your project “Stranger Things”.
 
-# Step 2: Heartbeat
-We’ll start with the heartbeat drums that give the theme its sense of excitement, unease, and anxiety. 
-It’s the quickened pulse of a human heartbeat. Create a new Drum cell in TunePad, and use this code:
-```python
-playNote(1, beats = 0.5)
-playNote(1, beats = 0.5, velocity = 50)
-rest(1)
+In this activity, you’ll learn how to layer audio loops together to make a full-length song using TunePad’s tracks interface. 
 
-playNote(1, beats = 0.5)
-playNote(1, beats = 0.5, velocity = 50)
-rest(1)
-```
-The heartbeat sounds like a LUB-dub, LUB-dub. Notice that we use the `velocity` parameter to make the first LUB kicks louder than the second dub kicks.
-
-# Step 3: Ominous Drone
-We’re going to add a low, ominous drone that slowly fades in and out of the mix.  
-Add a new Keys cell to your project and switch the voice to **Synth → Leads → Searing Lead**.
-
-<a href="/images/stranger-things-fig1.png" target="_blank">
-<img src="/images/stranger-things-fig1.png" alt="Screenshot of a TunePad keyboard instrument" width="450px" style="margin: 1rem;"></a>
+# Start
+* Open this link: [https://tunepad.com/project/40743](https://tunepad.com/project/40743)
+* Press the **Remix** button.
+* Play each of the cells one at a time to hear what they sound like.
 
 
-Use this code for your drone sound:
-```python
-with lowpass(frequency = [0, 1100, 0], beats = 40):
-    playNote(16, beats = 40)
-```
-This uses an audio production tool called a **lowpass filter** that slowly opens and closes over 40 beats.
+# Using Tracks
+Click on the Tracks button in the top navigation bar of your project. 
+This will open a timeline view of your project. From the timeline, you can:
+* Position tracks to start and stop at different times
+* Stretch tracks so that they loop
+* Duplicate tracks to have more than one start at different times
+* Change the volume and stereo pan
 
-# STEP 4: Arpeggio
-Add a Keys cell to your project and change the voice to **Synth → Bass → PWM Synth Bass**.
+<img src="/images/tracks-info.png" alt="Controls for a track" width="350px">
 
-An _arpeggio_ is a chord broken into a series of individual notes played in rapid succession. 
-Arpeggios are used everywhere in music and contribute rhythmic, harmonic, and melodic elements to a song. 
-The Stranger Things theme uses an iconic arpeggio consisting of a C Major 7 chord played up and then back down in order of pitch.
-```python
-chord = [ 24, 28, 31, 35, 36, 35, 31, 28 ]
-for note in chord:
-    playNote(note, beats = 0.5)
-```
+# Compose
+Try arranging loops on the timeline to create a full-length song with an opening, middle, and end.
+
 
 # Try It
 Open this project in TunePad <a href="{{project}}" target="_blank">{{ project }}</a>

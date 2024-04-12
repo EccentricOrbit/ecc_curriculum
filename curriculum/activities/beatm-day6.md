@@ -1,7 +1,7 @@
 ---
 layout: layouts/activity.njk
 tags: beatmakers
-category: Curriculum
+category: Lesson Plan
 title: Arpeggios
 description: An arpeggio is a chord that is broken up and played rapidly one note at a time. Arpeggios combine melody, harmony, and rhythm all in one. With Python it’s easy to use a for loop to play an arpeggio.
 level: Beginner
