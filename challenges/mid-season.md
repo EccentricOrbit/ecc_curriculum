@@ -19,7 +19,6 @@ Are you ready to put your remixing skills to the test? In this challenge, your t
 So, gather your squad, and work together to create a remix that will let your creativity shine
 
 ## Remixing Process: A Step-by-Step Guide
-![Example Remix Project Image](/images/splash/remix.jpg)
 
 ### Step 1: Explore the Sound Library 
 - Get to know the provided sound library, which includes:
@@ -195,7 +194,7 @@ Your submission should include the following files:
 
 ## Submit Your Project
 1. Ensure your project meets all the requirements and includes the necessary files
-2. Submit the link to your project on Steamville by the deadline: **June 15, 2024, 11:59 PM PST**
+2. Submit the link to your project on Steamville by the deadline: **June 15, 2024, 11:59 PM CST**
 
 ---
 
