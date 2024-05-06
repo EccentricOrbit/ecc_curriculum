@@ -5,7 +5,7 @@
     --theme-color: #791791;
     font-size: 14px;
     --body-font: 'Nunito Sans', sans-serif;
-    --header-font: "Merriweather", serif;
+    --header-font: "Nunito Sans", serif;
 }
 * {
     box-sizing: border-box;
@@ -589,11 +589,46 @@ iframe.composer-iframe {
     margin-bottom: -15px;
 }
 
+.banner-text {
+    width: 100%;
+    height: max-content;
+    color: white;
+    padding: 50px 40px;
+    text-align: left;
+    font-size: 2em;
+}
+
+.banner-text p {
+    font-size: 0.7em;
+    max-width: 1000px;
+}
+
 /* Card for collection layout */
+.directory {
+    display: inline-block;
+    border-radius: 25px;
+    width: 45%;
+    height: max-content !important;
+    text-align: left;
+}
+
+.directory button {
+    display: flex;
+    margin: auto;
+    text-align: center;
+    padding: 0px 5px;
+    width: fit-content;
+    text-decoration: none !important;
+}
+
+.directory button:hover {
+    border: 1px solid #33093dc4 !important;
+}
+
 .cards {
     text-align: center;
 }
-.card, .vcard {
+.card, .vcard, .qcard {
     display: inline-block;
     margin: 2rem 20px 0 0;
     padding: 1em;
@@ -614,7 +649,13 @@ iframe.composer-iframe {
     margin: 1rem 20px 1rem 0;
 }
 
-.card:hover, .vcard:hover {
+.qcard {
+    width: 100%;
+    height: 180px;
+    padding: 0em 1em 0em 0em;
+}
+
+.card:hover, .vcard:hover, .qcard:hover {
     box-shadow: 4px 4px 4px #0002;
 }
 .card .card-image, .card-info {
@@ -634,11 +675,30 @@ iframe.composer-iframe {
     display: block;
     text-align: left;
 }
-.vcard .card-image img {
+.vcard .card-image img, .qcard .card-image img {
     width: 100%;
     max-width: unset;
+    height: 100%;
     margin: 0;
 }
+
+.qcard .card-image {
+    height: 180px;
+    position: relative;
+    float: left;
+}
+
+.qcard .card-info {
+    max-width: none;
+    width: 60%;
+    height: 100%;
+}
+
+.qcard .card-image, .qcard .card-info {
+    display: inline-block;
+    text-align: left;
+}
+
 .vcard .card-image .ar-fix-image {
     background-image: url('/images/logo-happy.svg');
     background-position-x: center;
@@ -698,7 +758,7 @@ iframe.composer-iframe {
     left: 15px;
     bottom: 10px;
 }
-.card .level-badge, .vcard .level-badge {
+.card .level-badge, .vcard .level-badge, .qcard .level-badge {
     position: absolute;
     font-weight: bold;
     text-transform: uppercase;
