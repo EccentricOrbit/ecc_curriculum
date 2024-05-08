@@ -1,6 +1,6 @@
 ---
 layout: layouts/activity.njk
-tags: learn
+tags: [ "learn", "livecoders" ]
 category: Tutorial
 title: Advanced Trap Beat
 description: Build a custom trap beat in TunePad using loops, functions, and parameters. 

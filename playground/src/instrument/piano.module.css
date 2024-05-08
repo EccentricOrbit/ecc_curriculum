@@ -1,0 +1,21 @@
+
+.piano-wrapper {
+    width: 100%;
+    margin: 0 auto;
+    padding: 1rem 0;
+    background-color: black;
+    border-radius: 10px;
+    display: flex;
+}
+
+piano-keyboard { flex: 1; }
+.octave-button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #fffc;
+    font-size: 200%;
+    user-select: none;
+}
+.octave-button:hover { color: #fff; }
+.octave-button:active { color: rgb(121, 216, 245); }
