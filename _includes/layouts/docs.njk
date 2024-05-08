@@ -26,7 +26,7 @@ splash: /images/splash/docs-splash.png
             font-family: 'Courier New', Courier, monospace;
         }
         .api h1::before {
-            content: "Module ";
+            content: "Module: ";
         }
         .api h1 {
             font-size: 22px;
@@ -40,17 +40,32 @@ splash: /images/splash/docs-splash.png
         code .highlight-line:before {
             display: none;
         }
+        .docs {
+            background-color: whitesmoke;
+            padding: 0 2em;
+        }
         .toc {
             margin-top: 1.5rem;
+            padding-right: 20px;
             width: 240px;
             min-width: 240px;
         }
-        .toc ul li  { font-weight: bold; }
-        .toc ul ul { padding: 0; }
+        .toc ul li  { font-weight: bold;}
+        .toc ul ul { 
+            padding: 0; 
+            margin-bottom: 0;
+        }
         .toc ul ul li { font-weight: normal; }
         .toc h1::before { content: none; }
-        .toc h1 { display: none; }
-
+        .toc h1 { 
+            border-bottom: 1px solid #0002; 
+            border-top: 0px; 
+        }
+        .toc ul li a:hover, .toc ul ul li a:hover {
+            text-decoration: 5px underline #ccd6e4; 
+            text-underline-offset: 5px; 
+        }
+        .highlight {background-color: #ccd6e4;}
     </style>
 {% endblock %}
 

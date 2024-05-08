@@ -57,17 +57,18 @@
         {% if showtoc %}
         <nav class="toc">
             {% for item in toc.contents %}
-                <h1><a href="{{ item.url }}">{{ item.title }}</a></h1>
+                <h1>{{ item.title }}</h1>
                 {% if item.contents %}
                 <ul>
                     {% for subitem in item.contents %}
-                        {% if subitem.url == page.url %}
+                        {% if "docs/{{ subitem.url }}" == "{{ page.url }}" %}
                             {% set i = loop.index0 %}
                             {% set nextPage = item.contents[i + 1] %}
                             {% set prevPage = item.contents[i - 1] %}
                         {% endif %} 
-                    <li{% if subitem.url == page.url %} class="highlight"{% endif %}>
-                    <a href="{{ subitem.url }}">{{ subitem.title }}</a></li>
+                    <li {% if "docs/{{ subitem.url }}" == "{{ page.url }}" %} class="highlight"{% endif %}>
+                        <a href="{{ subitem.url }}">{{ subitem.title }}</a>
+                    </li>
                     {% endfor %}
                 </ul>
                 {% endif %}
@@ -183,7 +184,7 @@
   </body>
     <script src="/pagefind/pagefind-ui.js" onload="new PagefindUI({ element: '#search', pageSize : 4, showImages: true });"></script>
     <script>
-        document.querySelectorAll(".card, .vcard, .unit").forEach((el) => {
+        document.querySelectorAll(".card, .vcard, .unit, .qcard").forEach((el) => {
             let url = el.getAttribute('data-url');
             el.addEventListener('click', (e) => {
                 let target = el.getAttribute('data-target');
