@@ -3,7 +3,7 @@ layout: layouts/docs.njk
 ---
 <div class="toc">
 
-# Table of Contents
+# Functions
 
 * [tunepad](#tunepad)
   * [playNote](#tunepad.playNote)
