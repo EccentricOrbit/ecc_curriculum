@@ -1,0 +1,40 @@
+.explore-wrapper {
+    width: 95%;
+    margin: 2rem auto;
+    padding: 1rem 0;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+}
+#code-hint {
+    margin: 0rem 0.25rem 0 0;
+    padding: 0 1rem;
+    background: #0002;
+    height: 35px;
+    line-height: 35px;
+    border: 1px solid #887;
+    border-radius: 5px;
+    user-select: none;
+    box-sizing: border-box;
+    flex: 1;
+}
+.shelf {
+    display: flex;
+    margin: 1rem 4.5rem;
+}
+.keyboard-wrapper {
+    display: flex;
+}
+#copy-button {
+    color: #000a;
+    outline: none;
+    border: 1px solid #555;
+    height: 35px;
+    background-color: transparent;
+    border-radius: 5px;
+    font-weight: 500;
+    user-select: none;
+}
+#copy-button:hover { color: black; }
+#copy-button:active { color: rgb(45, 113, 134); }
+piano-instrument { flex: 1; }

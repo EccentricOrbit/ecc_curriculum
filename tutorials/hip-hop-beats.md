@@ -1,6 +1,6 @@
 ---
 layout: layouts/activity.njk
-tags: learn
+tags: [ 'learn', 'livecoders' ]
 category: Tutorial
 title: Three Hip-Hop Beats
 description: Practice using the playNote and rest functions to make three common hip-hop beat patterns.

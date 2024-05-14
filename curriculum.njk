@@ -1,0 +1,50 @@
+---
+title: TunePad Curriculum
+subtitle: Teach music with code
+splash: /images/splash/chalkboard-splash.png
+---
+{% extends "layouts/collection2.njk" %}
+{% block header %}
+{{ super() }}
+<style>
+    header {
+        color: #fffd;
+        padding: 4rem 0 0 3rem;
+        max-width: unset !important;
+    }
+    .card {
+        border-radius: 10px;
+    }
+    .card .card-info h1 {
+        margin-top: 5px !important;
+    }
+    .card-info .summary {
+        -webkit-line-clamp: 4;
+        line-clamp: 4;
+        max-height: 75px;
+    }
+    .card .level-badge {
+        font-size: 14px;
+    }
+</style>
+{% endblock %}
+{% block body %}
+<section class="highlights">
+    <h1>Curated Curriculum</h1>
+    <div class="cards">
+        {%- for curr in collections.curriculum -%}
+        <div class="card" data-url="{{ curr.url }}" data-target="_blank">
+            <div class="card-image">
+                <img src="{{ curr.data.splash }}" alt="{{ curr.data.title }}">
+            </div>
+            <div class="card-info">
+                <h1>{{ curr.data.title }}</h1>
+                <div class="summary">{{ curr.data.description }}</div>
+            </div>
+            <div class="level-badge">Grades {{ curr.data.grades }}</div>
+        </div>
+        {%- endfor -%}
+    </div>
+</section>
+
+{% endblock %}

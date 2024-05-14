@@ -19,6 +19,7 @@
         <link rel="stylesheet" href="/css/fontawesome.all.min.css">
         <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
         <title>{{ title }}</title>
+        <script defer src="/jslib/tunepad.min.js"></script>
         <script>
             function showMenu() {
                 document.querySelector(".top-menu").classList.toggle('visible');
@@ -36,6 +37,7 @@
             <h1><a href="/" aria-label="Home">Learn&nbsp;TunePad</a></h1>
             <ul class="top-menu">
                 <li><a href="/learn/"{% if page.url == "/learn/" %} class="selected"{% endif %}>Getting Started</a></li>
+                <li><a href="/curriculum/"{% if page.url == "/curriculum/" %} class="selected"{% endif %}>Curriculum</a></li>
                 <li><a href="/tutorials/"{% if page.url == "/tutorials/" %} class="selected"{% endif %}>Tutorials</a></li>
                 <li><a href="/featured/"{% if page.url == "/featured/" %} class="selected"{% endif %}>Featured</a></li>
                 <li><a href="/interactives/"{% if page.url == "/interactives/" %} class="selected"{% endif %}>Interactives</a></li>
@@ -55,17 +57,18 @@
         {% if showtoc %}
         <nav class="toc">
             {% for item in toc.contents %}
-                <h1><a href="{{ item.url }}">{{ item.title }}</a></h1>
+                <h1>{{ item.title }}</h1>
                 {% if item.contents %}
                 <ul>
                     {% for subitem in item.contents %}
-                        {% if subitem.url == page.url %}
+                        {% if "docs/{{ subitem.url }}" == "{{ page.url }}" %}
                             {% set i = loop.index0 %}
                             {% set nextPage = item.contents[i + 1] %}
                             {% set prevPage = item.contents[i - 1] %}
                         {% endif %} 
-                    <li{% if subitem.url == page.url %} class="highlight"{% endif %}>
-                    <a href="{{ subitem.url }}">{{ subitem.title }}</a></li>
+                    <li {% if "docs/{{ subitem.url }}" == "{{ page.url }}" %} class="highlight"{% endif %}>
+                        <a href="{{ subitem.url }}">{{ subitem.title }}</a>
+                    </li>
                     {% endfor %}
                 </ul>
                 {% endif %}
@@ -181,7 +184,7 @@
   </body>
     <script src="/pagefind/pagefind-ui.js" onload="new PagefindUI({ element: '#search', pageSize : 4, showImages: true });"></script>
     <script>
-        document.querySelectorAll(".card, .vcard").forEach((el) => {
+        document.querySelectorAll(".card, .vcard, .unit, .qcard").forEach((el) => {
             let url = el.getAttribute('data-url');
             el.addEventListener('click', (e) => {
                 let target = el.getAttribute('data-target');
@@ -189,7 +192,7 @@
                 window.open(url, target);
             });
         });
-        document.querySelectorAll(".audio-button, .card-audio-button").forEach((el) => {
+        document.querySelectorAll(".audio-button, .card-audio-button, .unit-audio-button").forEach((el) => {
             el.addEventListener('click', (e) => {
                 e.stopImmediatePropagation();
                 playPausePreview(el);

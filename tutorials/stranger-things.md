@@ -1,6 +1,6 @@
 ---
 layout: layouts/activity.njk
-tags: tutorials
+tags: [ 'tutorials', 'livecoders' ]
 category: Tutorial
 title: "Stranger Things Theme"
 description: Learn about arpeggios in music and loops in Python by recreating the Stranger Things theme in TunePad

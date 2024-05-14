@@ -1,0 +1,33 @@
+{
+  "name": "tunepad",
+  "version": "1.0.0",
+  "description": "Open version of TunePad with no datastore. Like a jsfiddle.",
+  "main": "build/js/tunepad.min.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf build && rollup --config rollup.config.js",
+    "watch": "rollup --config rollup.config.js --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EccentricOrbit/ecc_curriculum.git"
+  },
+  "keywords": [],
+  "author": "Michael Horn",
+  "license": "Copyright Nortwestern University",
+  "devDependencies": {
+    "@rollup/plugin-html": "^1.0.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "autoprefixer": "^10.4.19",
+    "rimraf": "^5.0.5",
+    "rollup": "^4.13.0",
+    "rollup-plugin-copy-watch": "^0.0.1",
+    "rollup-plugin-css-modules": "^0.1.2",
+    "rollup-plugin-html": "^0.2.1",
+    "rollup-plugin-livereload": "^2.0.5",
+    "rollup-plugin-serve": "^1.1.1",
+    "typescript": "^5.4.3"
+  }
+}

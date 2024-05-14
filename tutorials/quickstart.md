@@ -17,6 +17,23 @@ TunePad is an online learning platform for creating music with the Python progra
 TunePad was developed at Northwestern University with funding from the National Science Foundation.
 It's free for everyone to use, and we will never sell your personal information.
 
+<h1>What is TunePad?</h1>
+    <ul>
+        <li><a href="https://tunepad.com" target="_blank">TunePad</a> a free, online platform for creating music with Python code. </li>
+        <li>TunePad was developed at Northwestern University with funding from the National Science Foundation.</li>
+        <li>TunePad is <b>free for everyone</b> to use. We don't make money from advertising, and we will never sell your personal information.</li>
+    </ul>
+
+<h1>What is Python?</h1>
+    <img src="/images/python-logo.svg" alt="Python logo" style="width: 130px; float: right; position: relative; top: -2rem;">
+    <ul>
+        <li><a href="https://www.python.org/" target="_blank">Python</a> is one of the most widely-used programming languages in the world.</li>
+        <li>Python is easy to read and write, which makes it a popular choice for beginners.</li>
+        <li>It’s also powerful, which makes it a good choice for professionals.</li>
+        <li>Python is used for data science, artificial intelligence, web development, art, music, and video game development.</li>
+        <li>Python is a “text-based” language, which means that you type code instead of dragging blocks.</li>
+    </ul>
+
 # How it Works
 TunePad projects consist of a collection of **cells**.
 Cells can include text and images, or they can include playable musical instruments like the piano below.

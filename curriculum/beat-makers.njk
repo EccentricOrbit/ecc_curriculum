@@ -1,0 +1,114 @@
+---
+layout: layouts/curriculum.njk
+tags: curriculum
+category: Curriculum
+title: TunePad Beat Makers 1
+splash: /images/splash/curriculum-splash.png
+description: These activities combine digital music production with Python computer programming. Students will gain confidence with text-based programming languages; reinforce core coding concepts and why to use them; apply problem-solving skills to successfully troubleshoot programs; and understand how coding can empower creative domains such as music. At the end of the unit, students will combine their new skills to create original final projects.
+grades: 6-8
+level: Beginner
+time: 8 Days
+license: by-nc-sa
+---
+<section class="highlights">
+    <div class="units">
+    {%- for unit in collections.beatmakers -%}
+        <div class="unit" data-url="{{ unit.url }}" data-target="_self">
+            <div class="unit-image" style="background-image: url('{{ unit.data.splash }}')">
+                {%- if unit.data.audio -%}
+                <button class="unit-audio-button">
+                    <i class="fas fa-play"></i>
+                    <audio src="{{ unit.data.audio }}" class="audio-preview"></audio>
+                </button>
+                {%- endif -%}
+            </div>
+            <div class="unit-info">
+                <h3>DAY {{ loop.index }}</h3>
+                <h1>{{ unit.data.title }}</h1>
+                <div class="summary">{{ unit.data.description }}</div>
+            </div>
+            <div class="expand-link">
+                <i class="fas fa-caret-right"></i>
+            </div>
+        </div>
+    {%- endfor -%}
+    </div>
+</section>
+
+<style>
+    table.standards {
+        width: 90%;
+        max-width: unset;
+        border: 1px solid black;
+        border-collapse: collapse;
+        margin: 2rem 0;
+    }
+    table.standards tr { border: 1px solid black; }
+    table.standards tr.meets { background-color: #4f85; }
+    table.standards td.code { text-wrap: nowrap; font-weight: 600; height: 4rem; }
+    table.standards th { background-color: black; color: white; }
+</style>
+<h1>CSTA K-12 Framework Alignment (2017)</h1>
+Covered standards highlighted in green.
+
+<table class="standards">
+    <tr>
+        <th>Level 2</th>
+        <th>Grades 6-8 (ages 11-14)</th>
+        <th></th>
+    </tr>
+    <tr>
+        <td class="code">2-AP-10</td>
+        <td>Use flowcharts and/or pseudocode to address complex problems as algorithms.</td>
+        <td>Algorithms</td>
+    </tr>
+    <tr class="meets">
+        <td class="code">2-AP-11</td>
+        <td>Create clearly named variables that represent different data types and perform operations on their values.
+        </td>
+        <td>Variables</td>
+    </tr>
+    <tr class="meets">
+        <td class="code">2-AP-12</td>
+        <td>Design and iteratively develop programs that combine control structures, including nested loops and compound
+            conditionals.</td>
+        <td>Control</td>
+    </tr>
+    <tr>
+        <td class="code">2-AP-13</td>
+        <td>Decompose problems and subproblems into parts to facilitate the design, implementation, and review of
+            programs.</td>
+        <td>Modularity</td>
+    </tr>
+    <tr>
+        <td class="code">2-AP-14</td>
+        <td>Create procedures with parameters to organize code and make it easier to reuse.</td>
+        <td>Modularity</td>
+    </tr>
+    <tr class="meets">
+        <td class="code">2-AP-15</td>
+        <td>Seek and incorporate feedback from team members and users to refine a solution that meets user needs.</td>
+        <td>Program Development</td>
+    </tr>
+    <tr class="meets">
+        <td class="code">2-AP-16</td>
+        <td>Incorporate existing code, media, and libraries into original programs, and give attribution.</td>
+        <td>Program Development</td>
+    </tr>
+    <tr>
+        <td class="code">2-AP-17</td>
+        <td>Systematically test and refine programs using a range of test cases.</td>
+        <td>Program Development</td>
+    </tr>
+    <tr>
+        <td class="code">2-AP-18</td>
+        <td>Distribute tasks and maintain a project timeline when collaboratively developing computational artifacts.
+        </td>
+        <td>Program Development</td>
+    </tr>
+    <tr class="meets">
+        <td class="code">2-AP-19</td>
+        <td>Document programs in order to make them easier to follow, test, and debug.</td>
+        <td>Program Development</td>
+    </tr>
+</table>

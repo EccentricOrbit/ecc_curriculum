@@ -1,6 +1,6 @@
 ---
 layout: layouts/activity.njk
-tags: learn
+tags: [ 'learn', 'livecoders' ]
 category: Tutorial
 title: "5 Uses of For Loops"
 description: Learn five different ways to use for-loops in Python to make music.

@@ -1,0 +1,32 @@
+---
+title: TunePad Piano
+description: Learn note names and values with this interactive piano keyboard.
+splash: /images/splash/piano-splash.png
+tags: interactive
+---
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="{{ title }}">
+    <meta property=”og:type” content="article">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:image" content="https://learn.tunepad.com{{ splash }}">
+    <meta property="og:url" content="https://learn.tunepad.com{{ page.url }}">
+    <meta property="og:site_name" content="Learn TunePad">
+    <meta property="og:locale" content="en_US" />
+    <meta name="title" content="{{ title }}">
+    <meta name="description" content="{{ description }}">
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="stylesheet" href="/css/composer.css">
+    <link rel="stylesheet" href="/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="/css/prism.css">
+    <title>{{ title }}</title>
+
+    <script defer src="/jslib/tunepad.min.js"></script>
+</head>
+<body>
+    <note-explorer patch="/sounds/voices/grand-piano/patch.json"></note-explorer>
+</body>
+</html>

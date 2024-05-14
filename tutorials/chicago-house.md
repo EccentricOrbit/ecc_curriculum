@@ -1,6 +1,6 @@
 ---
 layout: layouts/activity.njk
-tags: [ 'tutorials', 'learn' ]
+tags: [ 'tutorials', 'learn', 'livecoders' ]
 category: Tutorial
 title: Chicago House Beat
 description: In this warmup activity create a Chicago House beat with Python code.
@@ -15,17 +15,14 @@ date: 2024-01-02
 ---
 In this activity you’ll get started using TunePad by creating a short Chicago House style beat.
 
-## Objectives
-* Sign in to TunePad
-* Get familiar with the TunePad interface
-* Practice coding in Python
-* Practice using the playNote and rest functions
+### Objectives
+* Sign in to TunePad and get familiar with the interface
+* Practice coding in Python using the `playNote` and `rest` functions
 * Code a basic Chicago House beat pattern
 
-## Materials
+### Materials
 * Chromebook, iPad, laptop, or desktop computer
 * Headphones (recommended)
-* Printout (optional)
 
 
 # Step 1: Sign In to TunePad
@@ -35,8 +32,8 @@ In this activity you’ll get started using TunePad by creating a short Chicago 
 * Enter your Gmail address and password
 
 # Step 2: Create a new TunePad Project
-* Click on the **New Project** button to create an empty project. 
-* It should look like the picture below.
+Click on the **New Project** button to create an empty project. 
+It should look like the picture below.
 
 <a href="/images/empty-project.png" target="_blank">
 <img src="/images/empty-project.png" alt="Screenshot of an empty TunePad project" width="400px"></a>

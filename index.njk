@@ -1,7 +1,7 @@
 ---
 title: Learn TunePad
 description: TunePad is a free, online platform for creating digital music with Python code. This page provides learning resources including curriculum, tutorials, games, puzzles, interactive learning tools, and more. This materials is designed for learners who are new to both music and coding.
-splash: /images/splash/landing-splash2.png
+splash: /images/splash/homesplash.jpeg
 ---
 {% extends "layouts/base.njk" %}
 {% block header %}
@@ -24,7 +24,6 @@ splash: /images/splash/landing-splash2.png
         margin: 4rem auto 0 auto;
     }
     header {
-        max-width: 1500px;
         width: 100%;
         height: 360px;
         background-image: url('{{ splash }}');
@@ -40,44 +39,43 @@ splash: /images/splash/landing-splash2.png
 {% endblock %}
 
 {% block banner %}
+    <div class="banner-text">
+        <img src="/images/logo-black.svg" alt="TunePad logo" style="width: 130px; float: right; position: relative; top: -2rem;">
+
+        <h1>Welcome to TunePad!</h1>
+        <p>
+            This site provides resources for learning how to create digital music using Python code.
+            You can find TunePad curriculum, tutorials, games, puzzles, and more. 
+            This materials is designed for learners who are new to both music and coding.
+        </p>
+    </div>
 {% endblock %}
 
 {% block body %}
 
 <section class="highlights">
-    <img src="/images/logo-black.svg" alt="TunePad logo" style="width: 130px; float: right; position: relative; top: -2rem;">
-
-    <h1>Welcome</h1>
-    <p>
-        This site provides resources for learning how to create digital music using Python code.
-        You can find TunePad curriculum, tutorials, games, puzzles, and more. 
-        This materials is designed for learners who are new to both music and coding.
-    </p>
-
-    <h1>What is TunePad?</h1>
-    <ul>
-        <li><a href="https://tunepad.com" target="_blank">TunePad</a> a free, online platform for creating music with Python code. </li>
-        <li>TunePad was developed at Northwestern University with funding from the National Science Foundation.</li>
-        <li>TunePad is <b>free for everyone</b> to use. We don't make money from advertising, and we will never sell your personal information.</li>
-    </ul>
-
-    <h1>What is Python?</h1>
-    <img src="/images/python-logo.svg" alt="Python logo" style="width: 130px; float: right; position: relative; top: -2rem;">
-    <ul>
-        <li><a href="https://www.python.org/" target="_blank">Python</a> is one of the most widely-used programming languages in the world.</li>
-        <li>Python is easy to read and write, which makes it a popular choice for beginners.</li>
-        <li>It’s also powerful, which makes it a good choice for professionals.</li>
-        <li>Python is used for data science, artificial intelligence, web development, art, music, and video game development.</li>
-        <li>Python is a “text-based” language, which means that you type code instead of dragging blocks.</li>
-    </ul>
+    <div class="resource-box" style="text-align: center; padding-bottom: 10px;">
+        <div class="card directory">
+            <h3>Student Resources</h3>
+            <p style="margin: 5px 2px 10px;">This is a student description. There will be information about why a 
+                student should select this option and how curated content will help them learn.</p>
+            <button>I'm a Student</button>
+        </div>
+        <div class="card directory">
+            <h3>Educator Resources</h3>
+            <p style="margin: 5px 2px 10px;">This is an educator description. There will be information about why an 
+                educator should select this option and how curated content will help them teach.</p>
+            <button>I'm an Educator</button>
+        </div>
+    </div>
 </section>
 
 <section class="highlights">
     <h1><a href="/learn/">Getting Started</a></h1>
     <p>Our <a href="/learn/">getting started</a> activities are designed for beginners who are new to both music and Python programming.</p>
     <div class="cards">
-        {%- for demo in collections.learn | limit(4) -%}
-        <div class="vcard" data-url="{{ demo.url }}">
+        {%- for demo in collections.learn | limit(2) -%}
+        <div class="qcard" data-url="{{ demo.url }}">
             <div class="card-image">
                 <img src="{{ demo.data.splash }}" alt="{{ demo.data.title }}">
             </div>
@@ -91,7 +89,7 @@ splash: /images/splash/landing-splash2.png
                 <audio src="{{ demo.data.audio }}" class="audio-preview"></audio>
             </button>
             {% endif %}
-            <div class="level-badge">{{ demo.data.level }}</div>
+            <h3 class="level-badge">{{ demo.data.level }}</h3>
         </div>
         {%- endfor -%}
         <a class="more-info" href="/learn/">Browse all {{ collections.learn.length }} lessons and activities &#8680;</a>

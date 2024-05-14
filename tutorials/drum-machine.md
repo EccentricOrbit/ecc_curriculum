@@ -1,6 +1,6 @@
 ---
 layout: layouts/activity.njk
-tags: learn
+tags: [ 'learn', 'livecoders' ]
 category: Tutorial
 title: "Drum Machine"
 description: Learn how to use the moveTo function to create a drum machine.
