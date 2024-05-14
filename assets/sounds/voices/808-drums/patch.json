@@ -1,0 +1,111 @@
+{
+    "uid": "c97d3010-879e-11ec-9ee5-914948458fe3",
+    "version": "2.0",
+    "id": 11,
+    "description": "Roland 808 drum machine",
+    "format": "tunepad-patch",
+    "instrument": "drums",
+    "created": "2022-02-06 16:44:48.593",
+    "modified": "2022-03-08 11:15:49.079",
+    "name": "808 Drumkit",
+    "nodes": [
+        {
+            "A": 0,
+            "D": 0.1,
+            "R": 0.15,
+            "S": 1,
+            "a shape": 4,
+            "d shape": 2,
+            "id": 0,
+            "level": 0,
+            "r shape": 2,
+            "type": "out"
+        },
+        {
+            "id": 2,
+            "sample-pack": "808 drumkit",
+            "samples": [
+                {
+                    "name": "kick",
+                    "sample": "bd",
+                    "step": 0
+                },
+                {
+                    "name": "kick",
+                    "sample": "kick1",
+                    "step": 1
+                },
+                {
+                    "name": "snare",
+                    "sample": "sd",
+                    "step": 2
+                },
+                {
+                    "name": "snare",
+                    "sample": "snare1",
+                    "step": 3
+                },
+                {
+                    "name": "hat",
+                    "sample": "hihat",
+                    "step": 4
+                },
+                {
+                    "name": "hat",
+                    "sample": "oh",
+                    "step": 5
+                },
+                {
+                    "name": "tom",
+                    "sample": "ht",
+                    "step": 6
+                },
+                {
+                    "name": "tom",
+                    "sample": "mt",
+                    "step": 7
+                },
+                {
+                    "name": "tom",
+                    "sample": "lt",
+                    "step": 8
+                },
+                {
+                    "name": "cymbal",
+                    "sample": "cy",
+                    "step": 9
+                },
+                {
+                    "name": "clap",
+                    "sample": "cp",
+                    "step": 10
+                },
+                {
+                    "name": "shaker",
+                    "sample": "shaker",
+                    "step": 11
+                },
+                {
+                    "name": "bell",
+                    "sample": "cb",
+                    "step": 12
+                },
+                {
+                    "name": "rimshot",
+                    "sample": "rs",
+                    "step": 13
+                }
+            ],
+            "type": "drums"
+        }
+    ],
+    "routing": [
+        {
+            "dest": 0,
+            "id": 1,
+            "level": 0,
+            "source": 2,
+            "type": "audio"
+        }
+    ]
+}
