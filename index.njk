@@ -25,7 +25,7 @@ splash: /images/splash/homesplash.jpeg
     }
     header {
         width: 100%;
-        height: 360px;
+        height: 300px;
         background-image: url('{{ splash }}');
         background-size: cover;
         background-repeat: no-repeat;
@@ -40,13 +40,11 @@ splash: /images/splash/homesplash.jpeg
 
 {% block banner %}
     <div class="banner-text">
-        <img src="/images/logo-black.svg" alt="TunePad logo" style="width: 130px; float: right; position: relative; top: -2rem;">
-
         <h1>Welcome to TunePad!</h1>
         <p>
             This site provides resources for learning how to create digital music using Python code.
-            You can find TunePad curriculum, tutorials, games, puzzles, and more. 
-            This materials is designed for learners who are new to both music and coding.
+            You can find TunePad curriculum, tutorials, games, puzzles, and more, all designed for 
+            learners who are new to both music and coding.
         </p>
     </div>
 {% endblock %}
@@ -56,15 +54,16 @@ splash: /images/splash/homesplash.jpeg
 <section class="highlights">
     <div class="resource-box" style="text-align: center; padding-bottom: 10px;">
         <div class="card directory">
-            <h3>Student Resources</h3>
-            <p style="margin: 5px 2px 10px;">This is a student description. There will be information about why a 
-                student should select this option and how curated content will help them learn.</p>
+            <h2>Learner Resources</h2>
+            <p>Whether you're a beginner to music, or coding, or both, find resources to 
+                start your music-making journey using Python code.</p>
             <button>I'm a Student</button>
         </div>
         <div class="card directory">
-            <h3>Educator Resources</h3>
-            <p style="margin: 5px 2px 10px;">This is an educator description. There will be information about why an 
-                educator should select this option and how curated content will help them teach.</p>
+            <h2>Educator Resources</h2>
+            <p>Find resources to teach TunePad in your classroom, camp,
+                or afterschool program. We have curriclum for elementary through high school
+                and beyond.</p>
             <button>I'm an Educator</button>
         </div>
     </div>

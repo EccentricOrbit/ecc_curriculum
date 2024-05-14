@@ -1,0 +1,105 @@
+{
+    "id": -1,
+    "uid": "66102800-408c-1eff-a707-77ec94865b87",
+    "nodes": [
+        {
+            "id": 0,
+            "type": "out",
+            "A": 0,
+            "D": 0,
+            "S": 1,
+            "R": 0.25,
+            "a shape": 0.001,
+            "d shape": 1.0,
+            "r shape": 5,
+            "level": 0
+        },
+        {
+            "id": 6,
+            "type": "drums",
+            "sample-pack": "rock drumkit",
+            "playback": 1,
+            "detune": 0,
+            "samples": [
+                {
+                    "sample": "kick",
+                    "step": 0,
+                    "name": "kick"
+                },
+                {
+                    "sample": "rideBell",
+                    "step": 1,
+                    "name": "ride"
+                },
+                {
+                    "sample": "snare1",
+                    "step": 2,
+                    "name": "snare1"
+                },
+                {
+                    "sample": "snare2",
+                    "step": 3,
+                    "name": "snare2"
+                },
+                {
+                    "sample": "closedHat",
+                    "step": 4,
+                    "name": "hat"
+                },
+                {
+                    "sample": "openHat",
+                    "step": 5,
+                    "name": "open-hat"
+                },
+                {
+                    "sample": "highTom",
+                    "step": 6,
+                    "name": "high-tom"
+                },
+                {
+                    "sample": "midTom",
+                    "step": 7,
+                    "name": "mid-tom"
+                },
+                {
+                    "sample": "floorTom",
+                    "step": 8,
+                    "name": "floor-tom"
+                },
+                {
+                    "sample": "crash",
+                    "step": 9,
+                    "name": "crash"
+                },
+                {
+                    "sample": "clap",
+                    "step": 10,
+                    "name": "clap"
+                },
+                {
+                    "sample": "shaker",
+                    "step": 11,
+                    "name": "shaker"
+                }
+            ]
+        }
+    ],
+    "routing": [
+        {
+            "id": 4,
+            "source": 6,
+            "dest": 0,
+            "type": "audio",
+            "level": 0
+        }
+    ],
+    "parameters": [],
+    "name": "Rock Drumkit",
+    "description": "",
+    "instrument": "drums",
+    "submenu": "",
+    "version": "2.0",
+    "format": "tunepad-patch",
+    "created": "2024-03-08 16:15:54.384",
+    "modified": "2024-03-08 16:15:54.385"
+}

@@ -12,7 +12,6 @@ splash: /images/splash/docs-splash.png
         }
         code {
             color: var(--theme-color);
-            font-weight: bold;
         }
         .api p {
             line-height: 150%;
@@ -39,6 +38,9 @@ splash: /images/splash/docs-splash.png
         }
         code .highlight-line:before {
             display: none;
+        }
+        article pre[class*="language-python"] {
+            padding-left: 2rem;
         }
         .docs {
             background-color: whitesmoke;

@@ -1,11 +1,11 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Inter:wght@100..900&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
 :root {
     --pagefind-ui-scale: 0.7 !important;
-    --theme-color: #791791;
+    --theme-color: #37425F; /* old purple #791791; */
     font-size: 14px;
     --body-font: 'Nunito Sans', sans-serif;
-    --header-font: "Nunito Sans", serif;
+    --header-font: "Nunito Sans", sans-serif;
 }
 * {
     box-sizing: border-box;
@@ -44,14 +44,14 @@ nav.top-nav {
 
 .top-menu-wrapper h1 {
     font-family: var(--header-font);
-    margin: 0 1rem 0.75rem 0;
+    margin: 0 1rem 0.5rem 0;
 }
 .top-menu-wrapper h1 a {
     color: black;
     text-decoration: none;
 }
 .top-menu-wrapper h1 a:hover {
-    text-decoration: underline;
+    color: var(--theme-color);
 }
 
 ul.top-menu {
@@ -496,7 +496,6 @@ article pre[class*="language-python"] {
     border-radius: 0.75em;
     margin-bottom: 2rem;
     font-size: 12px;
-    margin-left: 3rem;
 }
 
 pre[class*="language-python"] code .highlight-line:before {
@@ -598,16 +597,19 @@ iframe.composer-iframe {
 
 .banner-text {
     width: 100%;
-    height: max-content;
+    height: 100%;
     color: white;
-    padding: 50px 40px;
+    padding: 5rem 20rem 3rem 9rem;
     text-align: left;
-    font-size: 2em;
+    background-color: #0008;
 }
-
+.banner-text h1 { 
+    font-size: 30px;
+    margin-bottom: 0.75rem;
+}
 .banner-text p {
-    font-size: 0.7em;
-    max-width: 1000px;
+    font-size: 16px;
+    line-height: 150%;
 }
 
 /* Curriculum Units */
@@ -688,20 +690,30 @@ article .unit h1 {
 }
 
 /* Card for collection layout */
-.directory {
+.card.directory {
     display: inline-block;
-    border-radius: 25px;
-    width: 45%;
-    height: max-content !important;
+    border-radius: 8px;
+    height: 175px;
+    overflow: hidden;
     text-align: left;
+    padding: 1.5rem 2.5rem;
+    position: relative;
+    margin: 1.5rem 0 0 1.5rem;
 }
+.card.directory:first-child { margin-left: 0;}
+
+.directory h2 {
+    margin: 0.5rem 0 !important;
+}
+.directory p { font-size: 95%;}
 
 .directory button {
-    display: flex;
-    margin: auto;
-    text-align: center;
-    padding: 0px 5px;
-    width: fit-content;
+    position: absolute;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    padding: 0 1.5rem;
+    border-radius: 15px;
+    width: unset;
     text-decoration: none !important;
 }
 
@@ -796,7 +808,7 @@ article .unit h1 {
     padding-left: 1em;
 }
 .vcard .card-info {
-    padding: 1rem;
+    padding: 0 1rem;
     font-size: 13px;
 }
 .card .card-info h1 {
@@ -804,7 +816,7 @@ article .unit h1 {
     font-size: 15px;
 }
 .vcard .card-info h1 {
-    margin: 4px 0;
+    margin: 8px 0 !important;
     font-size: 15px;
 }
 .card-info .author {
