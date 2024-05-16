@@ -1,0 +1,209 @@
+{
+    "name": "Grand Piano",
+    "instrument": "piano",
+    "version": "2.0",
+    "format": "tunepad-patch",
+    "created": "2024-03-31",
+    "modified": "2024-03-31",
+    "id": -1,
+    "nodes": [
+        {
+            "id": 0,
+            "type": "out",
+            "level": 0,
+            "A": 0,
+            "D": 0,
+            "S": 1,
+            "R": 0.25,
+            "a shape": 4,
+            "d shape": 2,
+            "r shape": 2
+        },
+        {
+            "id": 1,
+            "type": "sample",
+            "samples": [
+                {
+                    "sample": "24pianoC1",
+                    "step": 24
+                },
+                {
+                    "sample": "26pianoD1",
+                    "step": 26
+                },
+                {
+                    "sample": "28pianoE1",
+                    "step": 28
+                },
+                {
+                    "sample": "30pianoGb1",
+                    "step": 30
+                },
+                {
+                    "sample": "32pianoAb1",
+                    "step": 32
+                },
+                {
+                    "sample": "34pianoBb1",
+                    "step": 34
+                },
+                {
+                    "sample": "36pianoC2",
+                    "step": 36
+                },
+                {
+                    "sample": "38pianoD2",
+                    "step": 38
+                },
+                {
+                    "sample": "40pianoE2",
+                    "step": 40
+                },
+                {
+                    "sample": "42pianoGb2",
+                    "step": 42
+                },
+                {
+                    "sample": "44pianoAb2",
+                    "step": 44
+                },
+                {
+                    "sample": "46pianoBb2",
+                    "step": 46
+                },
+                {
+                    "sample": "48pianoC3",
+                    "step": 48
+                },
+                {
+                    "sample": "50pianoD3",
+                    "step": 50
+                },
+                {
+                    "sample": "52pianoE3",
+                    "step": 52
+                },
+                {
+                    "sample": "54pianoGb3",
+                    "step": 54
+                },
+                {
+                    "sample": "56pianoAb3",
+                    "step": 56
+                },
+                {
+                    "sample": "58pianoBb3",
+                    "step": 58
+                },
+                {
+                    "sample": "60pianoC4",
+                    "step": 60
+                },
+                {
+                    "sample": "62pianoD4",
+                    "step": 62
+                },
+                {
+                    "sample": "64pianoE4",
+                    "step": 64
+                },
+                {
+                    "sample": "66pianoGb4",
+                    "step": 66
+                },
+                {
+                    "sample": "68pianoAb4",
+                    "step": 68
+                },
+                {
+                    "sample": "70pianoBb4",
+                    "step": 70
+                },
+                {
+                    "sample": "72pianoC5",
+                    "step": 72
+                },
+                {
+                    "sample": "74pianoD5",
+                    "step": 74
+                },
+                {
+                    "sample": "76pianoE5",
+                    "step": 76
+                },
+                {
+                    "sample": "78pianoGb5",
+                    "step": 78
+                },
+                {
+                    "sample": "80pianoAb5",
+                    "step": 80
+                },
+                {
+                    "sample": "82pianoBb5",
+                    "step": 82
+                },
+                {
+                    "sample": "84pianoC6",
+                    "step": 84
+                },
+                {
+                    "sample": "86pianoD6",
+                    "step": 86
+                },
+                {
+                    "sample": "88pianoE6",
+                    "step": 88
+                },
+                {
+                    "sample": "90pianoGb6",
+                    "step": 90
+                },
+                {
+                    "sample": "92pianoAb6",
+                    "step": 92
+                },
+                {
+                    "sample": "94pianoBb6",
+                    "step": 94
+                },
+                {
+                    "sample": "96pianoC7",
+                    "step": 96
+                },
+                {
+                    "sample": "98pianoD7",
+                    "step": 98
+                },
+                {
+                    "sample": "100pianoE7",
+                    "step": 100
+                },
+                {
+                    "sample": "102pianoGb7",
+                    "step": 102
+                },
+                {
+                    "sample": "104pianoAb7",
+                    "step": 104
+                },
+                {
+                    "sample": "106pianoBb7",
+                    "step": 106
+                },
+                {
+                    "sample": "108pianoC8",
+                    "step": 108
+                }
+            ]
+        }
+    ],
+    "routing": [
+        {
+            "source": 1,
+            "dest": 0,
+            "type": "audio",
+            "level": 0
+        }
+    ]
+}
