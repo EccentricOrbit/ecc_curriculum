@@ -20,6 +20,7 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({ "assets/css" : "css" });
     eleventyConfig.addPassthroughCopy({ "assets/sounds" : "sounds" });
     eleventyConfig.addPassthroughCopy({ "assets/images" : "images" });
+    eleventyConfig.addPassthroughCopy({ "assets/python" : "python" });
     eleventyConfig.addPassthroughCopy({ "assets/webfonts" : "webfonts" });
 
     eleventyConfig.on('eleventy.before', async () => {
