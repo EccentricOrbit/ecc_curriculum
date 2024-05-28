@@ -419,9 +419,10 @@ article .content h1:first-child {
     margin-top: 1rem;
 }
 article .content h1 a {
-    color: black;
+    color: var(--theme-color);
     text-decoration: none;
 }
+
 article .content h1 a:hover {
     text-decoration: underline;
 }
@@ -464,7 +465,7 @@ article ul {
 }
 
 article li {
-    padding-bottom: 0.5em;
+    padding-bottom: 0.25em;
 }
 
 article table {
@@ -698,7 +699,6 @@ article .unit h1 {
     text-align: left;
     padding: 1.5rem 2.5rem;
     position: relative;
-    margin: 1.5rem 0 0 1.5rem;
 }
 .card.directory:first-child { margin-left: 0;}
 
@@ -788,6 +788,10 @@ article .unit h1 {
     max-width: none;
     width: 60%;
     height: 100%;
+    padding: 30px;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .qcard .card-image, .qcard .card-info {
@@ -859,20 +863,42 @@ article .unit h1 {
     right: 15px;
     bottom: 10px;
 }
+
+.badge {
+    background-color: rgb(70, 85, 114, 0.05);
+    border-radius: 15px;
+    margin: 10px;
+    padding: 5px 10px;
+}
+
 .card .level-badge, .vcard .level-badge, .qcard .level-badge {
-    position: absolute;
     font-weight: bold;
     text-transform: uppercase;
     font-size: 11px;
+    color: var(--theme-color);
+    width: max-content;
+}
+
+.card .level-badge, .vcard .level-badge {
+    position: absolute;
     bottom: 12px;
     right: 15px;
-    color: var(--theme-color);
+}
+
+.section-title {
+    display: inline-block; 
+    width: 75%;
+}
+
+.section-title h1 {
+    font-size: 36px !important;
 }
 
 a.more-info {
-    display: block;
+    display: inline-block;
+    width: 20%;
     text-align: right;
-    margin: 1rem 5rem;
+    vertical-align: center;
     text-decoration: none;
     color: black;
     font-weight: bold;
