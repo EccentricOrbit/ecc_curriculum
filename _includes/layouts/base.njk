@@ -17,7 +17,6 @@
         <link rel="stylesheet" href="/css/base.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.5.0/prism-coldark-cold.min.css">
         <link rel="stylesheet" href="/css/fontawesome.all.min.css">
-        <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
         <title>{{ title }}</title>
         <script src="/js/prism.js"></script> 
         <script src="/js/tunepad.min.js"></script>
@@ -39,12 +38,11 @@
             <h1><a href="/" aria-label="Home">Learn&nbsp;TunePad</a></h1>
             <ul class="top-menu">
                 <li><a href="/learn/"{% if page.url == "/learn/" %} class="selected"{% endif %}>Getting Started</a></li>
-                <li><a href="/curriculum/"{% if page.url == "/curriculum/" %} class="selected"{% endif %}>Curriculum</a></li>
+                <li><a href="/teach/"{% if page.url == "/teach/" %} class="selected"{% endif %}>Teach</a></li>
                 <li><a href="/tutorials/"{% if page.url == "/tutorials/" %} class="selected"{% endif %}>Tutorials</a></li>
                 <li><a href="/featured/"{% if page.url == "/featured/" %} class="selected"{% endif %}>Featured</a></li>
                 <li><a href="/interactives/"{% if page.url == "/interactives/" %} class="selected"{% endif %}>Interactives</a></li>
                 <li><a href="/puzzlers/"{% if page.url == "/puzzlers/" %} class="selected"{% endif %}>Puzzlers</a></li>
-                <!-- <li><a href="/curriculum">Curriculum</a></li> -->
                 <li><a href="/docs/"{% if page.url == "/docs/" %} class="selected"{% endif %}>Docs</a></li>
                 <li class="expander"></li>
             </ul>
@@ -69,7 +67,7 @@
                             {% set prevPage = item.contents[i - 1] %}
                         {% endif %} 
                     <li {% if "docs/{{ subitem.url }}" == "{{ page.url }}" %} class="highlight"{% endif %}>
-                        <a href="{{ subitem.url }}">{{ subitem.title }}</a>
+                        <a class="idx" href="{{ subitem.url }}">{{ subitem.title }}</a>
                     </li>
                     {% endfor %}
                 </ul>
@@ -226,4 +224,6 @@
             }
         }
     </script> 
+    {% block script %}
+    {% endblock %}
 </html>

@@ -9,9 +9,21 @@ splash: /images/splash/docs-splash.png
     <style>
         main {
             max-width: unset;
+            margin-top: 82px;
         }
-        .splash-container {
-            display: none !important;
+        header .title-container {
+            max-width: none;
+            display: grid;
+            justify-items: center;
+        }
+        header .title-container h1 {
+            font-size: 30pt;
+        }
+        header .title-container p {
+            font-size: 20px;
+        }
+        header .splash-container {
+            display: none;
         }
         code {
             color: var(--theme-color);
@@ -48,32 +60,45 @@ splash: /images/splash/docs-splash.png
         .docs {
             background-color: whitesmoke;
             padding: 0 2em;
+            margin-left: 20px;
         }
         .toc {
-            margin-top: 1.5rem;
-            padding-right: 20px;
-            width: 240px;
-            min-width: 240px;
+            margin-top: calc(1.5rem - 20px);
+            padding-bottom: 50px;
+            height: 590px;
             position: sticky;
-            top: 150px;
-            left: 0px;
+            top: 100px;
+            left: 10px;
+        }
+        .toc ul {
+            height: 540px;
+            padding-right: 100px;
+            overflow-y: scroll;
+            overflow-x: hidden;
         }
         .toc ul li  { font-weight: bold;}
         .toc ul ul { 
             padding: 0; 
             margin-bottom: 0;
+            overflow-y: hidden;
+            height: min-content;
         }
         .toc ul ul li { font-weight: normal; }
         .toc h1::before { content: none; }
         .toc h1 { 
             border-bottom: 1px solid #0002; 
             border-top: 0px; 
+            margin-top: 0px !important;
+            padding-top: 0px;
         }
         .toc ul li a:hover, .toc ul ul li a:hover {
             text-decoration: 5px underline #ccd6e4; 
             text-underline-offset: 5px; 
         }
         .highlight {background-color: #ccd6e4;}
+        .logo-nugget {
+            display: none;
+        }
     </style>
 {% endblock %}
 
