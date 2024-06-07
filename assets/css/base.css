@@ -731,7 +731,7 @@ article .unit h1 {
 }
 
 .directory button:hover {
-    border: 1px solid #33093dc4 !important;
+    box-shadow: 3px 3px 3px #0003;
 }
 
 .cards {
@@ -901,10 +901,6 @@ article .unit h1 {
 .section-title {
     display: inline-block; 
     width: 75%;
-}
-
-.section-title h1 {
-    font-size: 36px !important;
 }
 
 a.more-info {
