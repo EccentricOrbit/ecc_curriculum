@@ -1,0 +1,99 @@
+---
+title: TEACH TunePad
+subtitle: Resources for Educators
+description: This page offers activities, curriculum guides, and other resources for teachers looking to incorporate TunePad in the classroom.
+splash: /images/splash/curriculum-splash2.png
+---
+{% extends "layouts/collection2.njk" %}
+{% block header %}
+{{ super() }}
+<style>
+    header {
+        color: #fffd;
+        padding: 4rem 0 0 3rem;
+        max-width: unset !important;
+    }
+    .card {
+        border-radius: 10px;
+    }
+    .card .card-info h1 {
+        margin-top: 5px !important;
+    }
+    .card-info .summary {
+        -webkit-line-clamp: 4;
+        line-clamp: 4;
+        max-height: 75px;
+    }
+    .card .level-badge {
+        font-size: 14px;
+    }
+</style>
+{% endblock %}
+{% block body %}
+<section class="highlights">
+    <h1 class="section-title">Curated Curricula</h1>
+    <div class="cards">
+        {%- for curr in collections.curriculum -%}
+        <div class="card" data-url="{{ curr.url }}" data-target="_blank">
+            <div class="card-image">
+                <img src="{{ curr.data.splash }}" alt="{{ curr.data.title }}">
+            </div>
+            <div class="card-info">
+                <h1>{{ curr.data.title }}</h1>
+                <div class="summary">{{ curr.data.description }}</div>
+            </div>
+            <div class="level-badge">Grades {{ curr.data.grades }}</div>
+        </div>
+        {%- endfor -%}
+    </div>
+</section>
+<section class="highlights">
+    <h1 class="section-title">Lessons</h1>   
+    <a class="more-info" href="/tutorials/">Browse all {{ collections.learn.length }} lessons &#8680;</a>
+    <div class="cards">
+        {%- for demo in collections.learn | limit(3) -%}
+        <div class="qcard" data-url="{{ demo.url }}">
+            <div class="card-image">
+                <img src="{{ demo.data.splash }}" alt="{{ demo.data.title }}">
+            </div>
+            <div class="card-info">
+                <div style="display: flex; align-items: center;">
+                    <h1 style="margin-top: 0px; width: max-content;">{{ demo.data.title }}</h1>
+                    <div class="badge">
+                        <h3 class="level-badge">{{ demo.data.level }}</h3>
+                    </div>
+                </div>
+                <br>
+                {{ demo.data.description }}
+            </div>
+            <div style="position: absolute; right: 15px; bottom: 50px;" >
+                <img src="/images/Vector.png" alt="arrow pointing to the right">
+            </div>
+            {% if demo.data.audio %}
+            <button class="card-audio-button">
+                <i class="fas fa-play"></i>
+                <audio src="{{ demo.data.audio }}" class="audio-preview"></audio>
+            </button>
+            {% endif %}
+        </div>
+        {%- endfor -%}
+    </div>
+</section>
+<section class="highlights">
+    <h1 class="section-title">Resources</h1>
+    <div class="cards">
+        {%- for curr in collections.curriculum -%}
+        <div class="card" data-url="{{ curr.url }}" data-target="_blank">
+            <div class="card-image">
+                <img src="{{ curr.data.splash }}" alt="{{ curr.data.title }}">
+            </div>
+            <div class="card-info">
+                <h1>{{ curr.data.title }}</h1>
+                <div class="summary">{{ curr.data.description }}</div>
+            </div>
+            <div class="level-badge">Grades {{ curr.data.grades }}</div>
+        </div>
+        {%- endfor -%}
+    </div>
+</section>
+{% endblock %}
