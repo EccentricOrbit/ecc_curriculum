@@ -31,9 +31,8 @@ splash: /images/splash/curriculum-splash2.png
 {% endblock %}
 {% block body %}
 <section class="highlights">
+    <h1 class="section-title">Curriculum Collections</h1>
     <p>This page offers activities, curriculum guides, and other resources for educators looking to incorporate TunePad in their learning space.</p>
-
-    <h1 class="section-title">Curated Curricula</h1>
     <div class="cards">
         {%- for curr in collections.curriculum -%}
         <div class="card" data-url="{{ curr.url }}" data-target="_blank">
@@ -49,6 +48,7 @@ splash: /images/splash/curriculum-splash2.png
         {%- endfor -%}
     </div>
 </section>
+<!--
 <section class="highlights">
     <h1 class="section-title">Lessons</h1>   
     <a class="more-info" href="/tutorials/">Browse all {{ collections.learn.length }} lessons &#8680;</a>
@@ -81,21 +81,6 @@ splash: /images/splash/curriculum-splash2.png
         {%- endfor -%}
     </div>
 </section>
-<section class="highlights">
-    <h1 class="section-title">Resources</h1>
-    <div class="cards">
-        {%- for curr in collections.curriculum -%}
-        <div class="card" data-url="{{ curr.url }}" data-target="_blank">
-            <div class="card-image">
-                <img src="{{ curr.data.splash }}" alt="{{ curr.data.title }}">
-            </div>
-            <div class="card-info">
-                <h1>{{ curr.data.title }}</h1>
-                <div class="summary">{{ curr.data.description }}</div>
-            </div>
-            <div class="level-badge">Grades {{ curr.data.grades }}</div>
-        </div>
-        {%- endfor -%}
-    </div>
-</section>
+-->
+
 {% endblock %}
