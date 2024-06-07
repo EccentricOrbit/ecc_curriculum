@@ -9,14 +9,15 @@ splash: /images/splash/curriculum-splash2.png
 {{ super() }}
 <style>
     header {
-        color: #b7ffff;
+        color: #fffd;
+        padding: 8rem 0 0 3rem;
+        max-width: unset !important;
     }
 </style>
 {% endblock %}
 {% block body %}
+<!--
 <section class="highlights">
-    <h1 class="section-title">Lessons</h1>   
-    <a class="more-info" href="/tutorials/">Browse all {{ collections.learn.length }} lessons &#8680;</a>
     <div class="cards">
         {%- for demo in collections.learn | limit(3) -%}
         <div class="qcard" data-url="{{ demo.url }}">
@@ -46,67 +47,29 @@ splash: /images/splash/curriculum-splash2.png
         {%- endfor -%}
     </div>
 </section>
-<section class="highlights">
-    <h1 class="section-title">TunePad Activities & Tutorials</h1>   
+-->
+<section class="highlights"> 
     <div style="display: grid;">
-    <div class="cards">
-    {%- for demo in collections.tutorials -%}
-        <div class="card" data-url="{{ demo.url }}">
-            <div class="card-image">
-                <img src="{{ demo.data.splash }}" alt="{{ demo.data.title }}">
+        <div class="cards">
+        {%- for demo in collections.learn -%}
+            <div class="card" data-url="{{ demo.url }}">
+                <div class="card-image">
+                    <img src="{{ demo.data.splash }}" alt="{{ demo.data.title }}">
+                </div>
+                <div class="card-info">
+                    <h1>{{ demo.data.title }}</h1>
+                    {{ demo.data.description }}
+                </div>
+                {% if demo.data.audio %}
+                <button class="card-audio-button">
+                    <i class="fas fa-play"></i>
+                    <audio src="{{ demo.data.audio }}" class="audio-preview"></audio>
+                </button>
+                {% endif %}
+                <div class="level-badge">{{ demo.data.category }}</div>
             </div>
-            <div class="card-info">
-                <h1>{{ demo.data.title }}</h1>
-                {{ demo.data.description }}
-            </div>
-            {% if demo.data.audio %}
-            <button class="card-audio-button">
-                <i class="fas fa-play"></i>
-                <audio src="{{ demo.data.audio }}" class="audio-preview"></audio>
-            </button>
-            {% endif %}
-            <div class="level-badge">{{ demo.data.category }}</div>
+        {%- endfor -%}
         </div>
-    {%- endfor -%}
-    </div>
-    <div class="cards">
-    {%- for demo in collections.puzzles -%}
-        <div class="card" data-url="{{ demo.url }}">
-            <div class="card-image">
-                <img src="{{ demo.data.splash }}" alt="{{ demo.data.title }}">
-            </div>
-            <div class="card-info">
-                <h1>{{ demo.data.title }}</h1>
-                {{ demo.data.description }}
-            </div>
-            {% if demo.data.audio %}
-            <button class="card-audio-button">
-                <i class="fas fa-play"></i>
-                <audio src="{{ demo.data.audio }}" class="audio-preview"></audio>
-            </button>
-            {% endif %}
-            <div class="level-badge">{{ demo.data.category }}</div>
-        </div>
-    {%- endfor -%}
-    {%- for demo in collections.interactive -%}
-        <div class="card" data-url="{{ demo.url }}">
-            <div class="card-image">
-                <img src="{{ demo.data.splash }}" alt="{{ demo.data.title }}">
-            </div>
-            <div class="card-info">
-                <h1>{{ demo.data.title }}</h1>
-                {{ demo.data.description }}
-            </div>
-            {% if demo.data.audio %}
-            <button class="card-audio-button">
-                <i class="fas fa-play"></i>
-                <audio src="{{ demo.data.audio }}" class="audio-preview"></audio>
-            </button>
-            {% endif %}
-            <div class="level-badge">{{ demo.data.category }}</div>
-        </div>
-    {%- endfor -%}
-    </div>
     </div>
 </section>
 
