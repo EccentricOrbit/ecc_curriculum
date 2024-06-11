@@ -1,7 +1,7 @@
 ---
 title: Learn TunePad
 description: TunePad is a free, online platform for creating digital music with Python code. This page provides learning resources including curriculum, tutorials, games, puzzles, interactive learning tools, and more. This materials is designed for learners who are new to both music and coding.
-splash: /images/splash/homesplash.png
+splash: /images/splash/curriculum-splash2.png
 ---
 {% extends "layouts/base.njk" %}
 {% block header %}
@@ -29,6 +29,9 @@ splash: /images/splash/homesplash.png
         background-repeat: no-repeat;
         margin: 0 auto;
     }
+    .banner-text { 
+        background-color: #0003;
+    }
 </style>
 {% endblock %}
 
@@ -51,13 +54,13 @@ splash: /images/splash/homesplash.png
 
 <section style="border-bottom: 1px solid #0002;">
     <div class="resource-box" style="text-align: center; padding-bottom: 10px;">
-        <div class="card directory">
+        <div class="card directory" data-url="/learn/">
             <h2>Learner Resources</h2>
             <p>Whether you're a beginner to music, or coding, or both, find resources to 
                 start your music-making journey using Python code.</p>
             <button><a style="text-decoration: none; color: white" href="/learn/">I'm a Student</a></button>
         </div>
-        <div class="card directory">
+        <div class="card directory" data-url="/teach/">
             <h2>Educator Resources</h2>
             <p>Find resources to teach TunePad in your classroom, camp,
                 or afterschool program. We have curriclum for elementary through high school
