@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="/css/fontawesome.all.min.css">
         <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
         <title>{{ title }}</title>
-        <script src="/js/prism.js"></script> 
+        <script src="/js/prism.js"></script>
         <script src="/js/tunepad.min.js"></script>
         <script src="/js/tunepad-datastore.min.js"></script>
         <script>
@@ -29,7 +29,7 @@
         </script>
         {% endblock %}
     </head>
-  <body>
+  <body class="line-numbers">
     {{ page.url }}
     <nav class="top-nav">
         <a class="logo" title="Learn TunePad" href="/" aria-label="Home">
@@ -52,8 +52,6 @@
         <button class="show-menu" aria-label="Menu" onclick="showMenu()"><i class="fas fa-bars"></i></button>
     </nav>
     <main>
-        {% set nextPage = false %}
-        {% set prevPage = false %}
 
         {% if showtoc %}
         <nav class="toc">
@@ -64,8 +62,6 @@
                     {% for subitem in item.contents %}
                         {% if "docs/{{ subitem.url }}" == "{{ page.url }}" %}
                             {% set i = loop.index0 %}
-                            {% set nextPage = item.contents[i + 1] %}
-                            {% set prevPage = item.contents[i - 1] %}
                         {% endif %} 
                     <li {% if "docs/{{ subitem.url }}" == "{{ page.url }}" %} class="highlight"{% endif %}>
                         <a class="idx" href="{{ subitem.url }}">{{ subitem.title }}</a>
@@ -126,22 +122,22 @@
             </div>
 
             <nav class="prev-next">
-                {% if prevPage %}
-                <a href="{{ prevPage.url }}">
+                {% if prevURL %}
+                <a href="{{ prevURL }}">
                     <i class="fas fa-arrow-left"></i>
                     <div class="stacker">
-                        <h3>Previous {{ prevPage.type }}</h3>
-                        {{ prevPage.title }}
+                        <h3>Back</h3>
+                        {{ prevTitle }}
                     </div>
                 </a>
                 </div>
                 {% endif %}
                 <div class="spacer"></div>
-                {% if nextPage %}
-                <a href="{{ nextPage.url }}">
+                {% if nextURL %}
+                <a href="{{ nextURL }}">
                     <div class="stacker">
-                        <h3>Next {{ nextPage.type }}</h3>
-                        {{ nextPage.title }}
+                        <h3>Next</h3>
+                        {{ nextTitle }}
                     </div>
                     <i class="fas fa-arrow-right"></i>
                 </a>
