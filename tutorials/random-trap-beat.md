@@ -1,6 +1,6 @@
 ---
 layout: layouts/activity.njk
-tags: [ "learn", "tutorials" ]
+tags: [ "learn", "tutorials", "livecoders" ]
 category: Tutorial
 title: "Random Trap Beat"
 description: Build a simple Trap beat using the Python programming language with loops, conditionals, and randomness.

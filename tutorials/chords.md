@@ -1,6 +1,6 @@
 ---
 layout: layouts/activity.njk
-tags: learn
+tags: [ 'learn', 'livecoders' ]
 category: Tutorial
 title: Major and Minor Chords
 description: Define functions to play major and minor chords in TunePad

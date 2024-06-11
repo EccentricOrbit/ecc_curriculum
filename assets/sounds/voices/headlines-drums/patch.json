@@ -1,0 +1,110 @@
+{
+    "uid": "94e44970-9f03-11ec-8d50-9df792facf86",
+    "version": "2.0",
+    "id" : 407,
+    "description": "",
+    "format": "tunepad-patch",
+    "instrument": "drums",
+    "created": "2022-02-26 22:37:11.894",
+    "modified": "2022-03-08 11:17:12.789",
+    "name": "Headlines Drums",
+    "nodes": [
+        {
+            "A": 0,
+            "D": 0.1,
+            "R": 0.15,
+            "S": 1,
+            "a shape": 4,
+            "cx": 70,
+            "cy": 0,
+            "d shape": 2,
+            "id": 0,
+            "level": 0,
+            "r shape": 2,
+            "type": "out"
+        },
+        {
+            "cx": -29.5000019073486,
+            "cy": -4.76837158203125e-7,
+            "detune": 0,
+            "detune-mod": 20,
+            "id": 2,
+            "playback": 1,
+            "playback-mod": 0.15,
+            "sample-pack": "headlines drumkit",
+            "samples": [
+                {
+                    "name": "kick",
+                    "sample": "kick1",
+                    "step": 0
+                },
+                {
+                    "name": "kick",
+                    "sample": "kick2",
+                    "step": 1
+                },
+                {
+                    "name": "snare",
+                    "sample": "snare1",
+                    "step": 2
+                },
+                {
+                    "name": "snare",
+                    "sample": "snare2",
+                    "step": 3
+                },
+                {
+                    "name": "hat",
+                    "sample": "hat1",
+                    "step": 4
+                },
+                {
+                    "name": "hat",
+                    "sample": "hat2",
+                    "step": 5
+                },
+                {
+                    "name": "hat",
+                    "sample": "hat3",
+                    "step": 6
+                },
+                {
+                    "name": "hat",
+                    "sample": "hat4",
+                    "step": 7
+                },
+                {
+                    "name": "808",
+                    "sample": "808-1",
+                    "step": 8
+                },
+                {
+                    "name": "808",
+                    "sample": "808-2",
+                    "step": 9
+                },
+                {
+                    "name": "kick",
+                    "sample": "kick3",
+                    "step": 10
+                },
+                {
+                    "name": "clap",
+                    "sample": "clap",
+                    "step": 11
+                }
+            ],
+            "type": "drums"
+        }
+    ],
+    "parameters": [],
+    "routing": [
+        {
+            "dest": 0,
+            "id": 1,
+            "level": 0,
+            "source": 2,
+            "type": "audio"
+        }
+    ]
+}

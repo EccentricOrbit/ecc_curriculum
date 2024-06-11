@@ -1,7 +1,7 @@
 ---
 title: Learn TunePad
 description: TunePad is a free, online platform for creating digital music with Python code. This page provides learning resources including curriculum, tutorials, games, puzzles, interactive learning tools, and more. This materials is designed for learners who are new to both music and coding.
-splash: /images/splash/landing-splash2.png
+splash: /images/splash/homesplash.png
 ---
 {% extends "layouts/base.njk" %}
 {% block header %}
@@ -12,9 +12,6 @@ splash: /images/splash/landing-splash2.png
         background-color: #f6f6f9; 
         margin: 0;
     }
-    section.highlights {
-        border-bottom: 1px solid #0002;
-    }
     .logo-nugget {
         background-image: url('/images/quickstart.svg');
         width: 100px;
@@ -24,11 +21,11 @@ splash: /images/splash/landing-splash2.png
         margin: 4rem auto 0 auto;
     }
     header {
-        max-width: 1500px;
         width: 100%;
-        height: 360px;
+        height: 300px;
         background-image: url('{{ splash }}');
-        background-size: cover;
+        background-size: 100% auto;
+        background-position-y: bottom;
         background-repeat: no-repeat;
         margin: 0 auto;
     }
@@ -40,50 +37,59 @@ splash: /images/splash/landing-splash2.png
 {% endblock %}
 
 {% block banner %}
+    <div class="banner-text">
+        <h1>Welcome to TunePad!</h1>
+        <p>
+            This site provides resources for learning how to create digital music using Python code.
+            You can find TunePad curriculum, tutorials, games, puzzles, and more, all designed for 
+            learners who are new to both music and coding.
+        </p>
+    </div>
 {% endblock %}
 
 {% block body %}
 
-<section class="highlights">
-    <img src="/images/logo-black.svg" alt="TunePad logo" style="width: 130px; float: right; position: relative; top: -2rem;">
-
-    <h1>Welcome</h1>
-    <p>
-        This site provides resources for learning how to create digital music using Python code.
-        You can find TunePad curriculum, tutorials, games, puzzles, and more. 
-        This materials is designed for learners who are new to both music and coding.
-    </p>
-
-    <h1>What is TunePad?</h1>
-    <ul>
-        <li><a href="https://tunepad.com" target="_blank">TunePad</a> a free, online platform for creating music with Python code. </li>
-        <li>TunePad was developed at Northwestern University with funding from the National Science Foundation.</li>
-        <li>TunePad is <b>free for everyone</b> to use. We don't make money from advertising, and we will never sell your personal information.</li>
-    </ul>
-
-    <h1>What is Python?</h1>
-    <img src="/images/python-logo.svg" alt="Python logo" style="width: 130px; float: right; position: relative; top: -2rem;">
-    <ul>
-        <li><a href="https://www.python.org/" target="_blank">Python</a> is one of the most widely-used programming languages in the world.</li>
-        <li>Python is easy to read and write, which makes it a popular choice for beginners.</li>
-        <li>It’s also powerful, which makes it a good choice for professionals.</li>
-        <li>Python is used for data science, artificial intelligence, web development, art, music, and video game development.</li>
-        <li>Python is a “text-based” language, which means that you type code instead of dragging blocks.</li>
-    </ul>
+<section style="border-bottom: 1px solid #0002;">
+    <div class="resource-box" style="text-align: center; padding-bottom: 10px;">
+        <div class="card directory">
+            <h2>Learner Resources</h2>
+            <p>Whether you're a beginner to music, or coding, or both, find resources to 
+                start your music-making journey using Python code.</p>
+            <button><a style="text-decoration: none; color: white" href="/learn/">I'm a Student</a></button>
+        </div>
+        <div class="card directory">
+            <h2>Educator Resources</h2>
+            <p>Find resources to teach TunePad in your classroom, camp,
+                or afterschool program. We have curriclum for elementary through high school
+                and beyond.</p>
+            <button><a style="text-decoration: none; color: white" href="/teach/">I'm an Educator</a></button>
+        </div>
+    </div>
 </section>
 
 <section class="highlights">
-    <h1><a href="/learn/">Getting Started</a></h1>
-    <p>Our <a href="/learn/">getting started</a> activities are designed for beginners who are new to both music and Python programming.</p>
+    <div class="section-title">
+        <h1><a href="/learn/">Getting Started</a></h1>
+        <p>Our <a href="/learn/">getting started</a> activities are designed for beginners who are new to both music and Python programming.</p>
+    </div>
     <div class="cards">
-        {%- for demo in collections.learn | limit(4) -%}
-        <div class="vcard" data-url="{{ demo.url }}">
+        {%- for demo in collections.learn | limit(2) -%}
+        <div class="qcard" data-url="{{ demo.url }}">
             <div class="card-image">
                 <img src="{{ demo.data.splash }}" alt="{{ demo.data.title }}">
             </div>
             <div class="card-info">
-                <h1>{{ demo.data.title }}</h1>
+                <div style="display: flex; align-items: center;">
+                    <h1 style="margin-top: 0px; width: max-content;">{{ demo.data.title }}</h1>
+                    <div class="badge">
+                        <h3 class="level-badge">{{ demo.data.level }}</h3>
+                    </div>
+                </div>
+                <br>
                 {{ demo.data.description }}
+            </div>
+            <div style="position: absolute; right: 15px; bottom: 50px;" >
+                <img src="images/Vector.png" alt="arrow pointing to the right">
             </div>
             {% if demo.data.audio %}
             <button class="card-audio-button">
@@ -91,10 +97,8 @@ splash: /images/splash/landing-splash2.png
                 <audio src="{{ demo.data.audio }}" class="audio-preview"></audio>
             </button>
             {% endif %}
-            <div class="level-badge">{{ demo.data.level }}</div>
         </div>
         {%- endfor -%}
-        <a class="more-info" href="/learn/">Browse all {{ collections.learn.length }} lessons and activities &#8680;</a>
     </div>
 </section>
 
@@ -102,8 +106,11 @@ splash: /images/splash/landing-splash2.png
 
 
 <section class="highlights">
-    <h1><a href="/tutorials/">TunePad Song Tutorials</a></h1>
-    <p>TunePad <a href="/tutorials/">tutorials</a> give step-by-step instructions for recreating popular songs.</p>
+    <div class="section-title">
+        <h1><a href="/tutorials/">Song Tutorials</a></h1>
+        <p>TunePad <a href="/tutorials/">tutorials</a> give step-by-step instructions for recreating popular songs.</p>
+    </div>
+    <a class="more-info" href="/tutorials/">Browse all {{ collections.tutorials.length }} tutorials &#8680;</a>
     <div class="cards">
         {%- for demo in collections.tutorials | limit(4) -%}
         <div class="vcard" data-url="{{ demo.url }}">
@@ -123,7 +130,6 @@ splash: /images/splash/landing-splash2.png
             <div class="level-badge">{{ demo.data.level }}</div>
         </div>
         {%- endfor -%}
-        <a class="more-info" href="/tutorials/">Browse all {{ collections.tutorials.length }} tutorials &#8680;</a>
     </div>
 </section>
 
@@ -131,8 +137,11 @@ splash: /images/splash/landing-splash2.png
 
 
 <section class="highlights">
-    <h1><a href="/puzzlers/">TunePad Puzzlers</a></h1>
-    <p>TunePad <a href="/puzzlers/">puzzlers</a> are games and challenges designed to sharpen your music+coding skills.</p>
+    <div class="section-title">
+        <h1><a href="/puzzlers/">TunePad Puzzlers</a></h1>
+        <p>TunePad <a href="/puzzlers/">puzzlers</a> are games and challenges designed to sharpen your music+coding skills.</p>
+    </div>
+    <a class="more-info" href="/learn/">Browse all {{ collections.puzzles.length }} puzzlers &#8680;</a>
     <div class="cards">
         {%- for demo in collections.puzzles | limit(4) -%}
         <div class="vcard" data-url="{{ demo.url }}">
@@ -152,7 +161,6 @@ splash: /images/splash/landing-splash2.png
             <div class="level-badge">{{ demo.data.level }}</div>
         </div>
         {%- endfor -%}
-        <a class="more-info" href="/learn/">Browse all {{ collections.puzzles.length }} puzzlers &#8680;</a>
     </div>
 </section>
 
@@ -160,8 +168,11 @@ splash: /images/splash/landing-splash2.png
 
 
 <section class="highlights">
-    <h1><a href="/interactives/">TunePad Interactives</a></h1>
-    <p>TunePad <a href="/interactives/">interactives</a> are tools to help explore the connections between music and code.</p>
+    <div class="section-title">
+        <h1><a href="/interactives/">TunePad Interactives</a></h1>
+        <p>TunePad <a href="/interactives/">interactives</a> are tools to help explore the connections between music and code.</p>
+    </div>
+    <a class="more-info" href="/learn/">Browse all {{ collections.interactive.length }} interactives &#8680;</a>
     <div class="cards">
         {%- for demo in collections.interactive | limit(4) -%}
         <div class="vcard" data-url="{{ demo.url }}">
@@ -181,7 +192,6 @@ splash: /images/splash/landing-splash2.png
             <div class="level-badge">{{ demo.data.level }}</div>
         </div>
         {%- endfor -%}
-        <a class="more-info" href="/learn/">Browse all {{ collections.interactive.length }} interactives &#8680;</a>
     </div>
 </section>
 

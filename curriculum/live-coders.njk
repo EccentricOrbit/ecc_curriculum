@@ -1,0 +1,44 @@
+---
+layout: layouts/curriculum.njk
+tags: curriculum
+category: Curriculum
+title: TunePad Live Coders
+splash: /images/splash/livecode-splash.png
+description: This curriculum develops student skills in music and coding with the goal of being able to perform live music for an audience using Python programming.
+grades: 8-12
+level: Beginner / Intermediate
+time: 8 Days
+license: by-nc-sa
+---
+<h1>Learning Objectives</h1>
+<ul>
+    <li>Students will gain confidence with text-based programming languages</li>
+    <li>Gain experience with core coding concepts and when / why to use them</li>
+    <li>Apply problem-solving skills to successfully troubleshoot programs</li>
+    <li>Understand how coding can empower creative domains such as music</li>
+    <li>Practice different strategies to combine coding with live music performance</li>
+</ul>
+<section class="highlights"> 
+    <div style="display: grid;">
+        <div class="cards">
+        {%- for demo in collections.livecoders -%}
+            <div class="card" data-url="{{ demo.url }}">
+                <div class="card-image">
+                    <img src="{{ demo.data.splash }}" alt="{{ demo.data.title }}">
+                </div>
+                <div class="card-info">
+                    <h1>{{ demo.data.title }}</h1>
+                    {{ demo.data.description }}
+                </div>
+                {% if demo.data.audio %}
+                <button class="card-audio-button">
+                    <i class="fas fa-play"></i>
+                    <audio src="{{ demo.data.audio }}" class="audio-preview"></audio>
+                </button>
+                {% endif %}
+                <div class="level-badge">{{ demo.data.category }}</div>
+            </div>
+        {%- endfor -%}
+        </div>
+    </div>
+</section>

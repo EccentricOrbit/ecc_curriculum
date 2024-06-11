@@ -7,7 +7,8 @@ description: Learn about loops in Python and TunePad's rewind/gain functions thr
 level: Intermediate
 time: 20-30 minutes
 license: by-nc-sa
-splash: /images/splash/mirrors-splash.png  
+splash: /images/splash/mirrors-splash.png
+authors: tutorial by Soji Oduneye
 video: 
 slides: 
 project: https://tunepad.com/project/76857

@@ -1,6 +1,6 @@
 ---
 layout: layouts/activity.njk
-tags: learn
+tags: [ 'learn', 'livecoders' ]
 category: Tutorial
 title: Three Basic Beats
 description: Practice using the playNote and rest functions to make three basic beat patterns.

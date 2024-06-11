@@ -1,6 +1,6 @@
 ---
 layout: layouts/activity.njk
-tags: learn
+tags: [ 'learn', 'livecoders' ]
 category: Tutorial
 title: "Hats Off"
 description: In this tutorial you'll use for-loops to create hi-hat patterns.
