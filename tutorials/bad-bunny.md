@@ -1,6 +1,6 @@
 ---
 layout: layouts/activity.njk
-tags: [ "tutorials", "livecoders" ]
+tags: tutorials
 category: Tutorial
 title: Bad Bunny Remix
 description: Learn to use lists in Python to create chords. Practice using chords together to make progressions.
