@@ -1,6 +1,6 @@
 ---
 layout: layouts/activity.njk
-tags: [ "learn", "livecoders" ]
+tags: learn
 category: Lesson
 title: "Percusion Sounds and Instruments"
 description: A summary of common percussion instruments and sounds
