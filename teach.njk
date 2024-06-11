@@ -35,7 +35,7 @@ splash: /images/splash/curriculum-splash2.png
     <p>This page offers activities, curriculum guides, and other resources for educators looking to incorporate TunePad in their learning space.</p>
     <div class="cards">
         {%- for curr in collections.curriculum -%}
-        <div class="card" data-url="{{ curr.url }}" data-target="_blank">
+        <div class="card" data-url="{{ curr.url }}">
             <div class="card-image">
                 <img src="{{ curr.data.splash }}" alt="{{ curr.data.title }}">
             </div>
