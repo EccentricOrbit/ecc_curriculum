@@ -204,7 +204,7 @@ header .splash-image {
     display: none;
 }
 header .title-container {
-    max-width: 500px;
+    max-width: 550px;
     padding: 1rem 3rem 0 3rem;
     vertical-align: top;
     display: inline-block;
@@ -253,8 +253,9 @@ aside.disclaimer {
 main h3 {
     font-family: var(--body-font);
     font-size: 13px;
-    font-weight: bold;
+    font-weight: 800;
     margin: 0;
+    margin-bottom: 3px;
     text-transform: uppercase;
     color: var(--theme-color);
 }
@@ -326,7 +327,7 @@ article footer.license {
     line-height: 150%;
     background-image: url('https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png');
     background-repeat: no-repeat;
-    background-size: 120px;
+    background-size: 110px;
     background-position: center right;
 }
 
@@ -411,8 +412,8 @@ footer section a.footlink.contribute {
 
 article .content h1 {
     font-family: var(--header-font);
-    font-size: 20px;
-    margin-top: 3rem;
+    font-size: 22px;
+    margin-top: 2rem;
     margin-bottom: 0.25rem;
 }
 article .content h1:first-child {
@@ -429,7 +430,7 @@ article .content h1 a:hover {
 
 article .content h2 {
     font-family: var(--body-font);
-    font-size: 18px;
+    font-size: 17px;
     margin-top: 1.5rem;
     margin-bottom: 0.5em;
 }
@@ -437,7 +438,7 @@ article .content h2 {
 article p {
     margin-top: 0;
     font-size: 15px;
-    max-width: 800px;
+    max-width: 900px;
 }
 article p code, article li code {
     color: var(--theme-color);
@@ -491,19 +492,19 @@ section .highlights {
     margin-top: 2em;
     border-top: 1px solid #0005;
 }
-
+/*
 pre {
     counter-reset: lineNumber;
 }
-
+*/
 article pre[class*="language-python"] {
     padding-left: 0.5em;
     max-width: 650px;
     border-radius: 0.75em;
-    margin-bottom: 2rem;
+    margin: 0 0 2rem 0;
     font-size: 12px;
 }
-
+/*
 pre[class*="language-python"] code .highlight-line:before {
     user-select: none;
     border-right: 1px solid #404040;
@@ -517,9 +518,50 @@ pre[class*="language-python"] code .highlight-line:before {
     text-align: right;
     width: 2em;
 }
+*/
+
+pre[class*="language-"].line-numbers {
+	position: relative;
+	padding-left: 3.8em;
+	counter-reset: linenumber;
+}
+
+pre[class*="language-"].line-numbers > code {
+	position: relative;
+	white-space: inherit;
+    line-height: 175%;
+}
+
+.line-numbers .line-numbers-rows {
+	position: absolute;
+	pointer-events: none;
+	top: -2px;
+	font-size: 100%;
+	left: -3.8em;
+	width: 3em; /* works for line-numbers below 1000 lines */
+	letter-spacing: -1px;
+	border-right: 1px solid #999;
+	user-select: none;
+	background-color: transparent !important;
+}
+
+.line-numbers-rows > span {
+    display: block;
+    counter-increment: linenumber;
+}
+
+.line-numbers-rows > span:before {
+    content: counter(linenumber);
+    color: #999;
+    display: block;
+    padding-right: 0.8em;
+    text-align: right;
+}
 
 nav.prev-next {
     display: flex;
+    max-width: 1000px;
+    margin: 1rem auto;
 }
 
 nav.prev-next .spacer {
@@ -942,20 +984,29 @@ a.more-info:hover {
         margin-bottom: 1rem;
     }
 }
+.print-only {
+    display: none;
+}
 @media print {
     .resource-box { display: none; }
     article .content { padding: 0 0 0 0.25in; }
-    article .content h1 { font-size: 16px; margin-top: 2rem; }
-    article .content h2 { font-size: 14px; margin-top: 2rem; }
+    article .content h1 { font-size: 16px; margin-top: 1rem; }
+    article .content h1:first { margin-top: 0; }
+    article .content h2 { font-size: 14px; margin-top: 1rem; }
     article p { font-size: 12px; max-width: 7in; }
     article li { font-size: 12px; max-width: 7in; }
     article .content-wrapper { margin-top: 0; }
     article .footer-wrapper { background-color: transparent; border-top: 1px solid black; margin-top: 1.5rem; }
-    article footer { color: black; font-size: 9px; }
+    article footer.license { color: black; font-size: 8px; background-size: 80px; }
     article footer.menu { display: none; }
-    article pre[class*="language-python"] { font-size: 10px; border: 1px solid #0005; max-width: 550px; margin-left: 3rem; }
+    article pre[class*="language-python"] { 
+        font-size: 10px; 
+        border: 1px solid #0005;
+        max-width: 550px;
+    }
     section.content { border-top: none !important; }
     nav.top-nav { display: none; }
+    nav.prev-next { display: none; }
     main { margin-top: 1rem; }
     header { margin-bottom: 0; }
     header .title-container { max-width: 400px; padding: 0.5rem; }
@@ -966,5 +1017,6 @@ a.more-info:hover {
     .info-box div { font-size: 15px; }
     .toc { display: none; }
     .noprint { display: none; }
+    .print-only { display: block; }
     h1.page-title { font-size: 20px; }
 }
