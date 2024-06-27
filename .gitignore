@@ -4,3 +4,4 @@ _site
 artwork
 _data/featured.json
 .DS_Store
+.cache
