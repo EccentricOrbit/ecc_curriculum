@@ -1,7 +1,9 @@
 # To install 11ty
-`npm install @11ty/eleventy --save-dev`  
-`npm install @11ty/eleventy-plugin-syntaxhighlight --save-dev`  
-`npm install --save-dev pagefind`  
+```sh
+npm install --save-dev @11ty/eleventy
+npm install --save-dev @11ty/eleventy-plugin-syntaxhighlight 
+npm install --save-dev @11ty/eleventy-fetch
+npm install --save-dev pagefind
 
 # To run dev server
 `npx @11ty/eleventy --serve`
