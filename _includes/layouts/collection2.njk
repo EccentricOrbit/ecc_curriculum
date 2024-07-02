@@ -34,7 +34,16 @@ splash: /images/splash/curriculum-splash2.png
     }
     header h1 { font-size: 25px; }
     header h2 { font-size: 42px; }
+
+    /* Media Query for Mobile and Small Screens */
+    @media (max-width: 530px) {
+        article {
+            width: unset;
+        }
+    }
+
 </style>
+
 {% endblock %}
 {% block banner %}
 <div style="background-color: #0008; width: max-content; padding: 0.5rem">
