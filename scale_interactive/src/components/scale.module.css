@@ -1,0 +1,118 @@
+.lines {
+    stroke: black;
+    stroke-width: 0.3;
+    stroke-linecap: round;
+}
+.note {
+    stroke-width: 0.3;
+    stroke-linecap: round;
+}
+.button:active {
+    fill-opacity: 0.5;
+}
+.wheel {
+    fill-opacity: 0.8;
+    stroke-width: 0;
+    box-sizing: border-box;
+}
+
+/* Steps */
+.whole {
+    fill:none; 
+    stroke:grey;
+    stroke-width: 0.4;
+    stroke-linejoin: round;
+}
+.half {
+    fill:none; 
+    stroke:grey;
+    stroke-width: 0.4;
+    stroke-linejoin: round;
+    stroke-dasharray: 1;
+}
+
+/* Text */
+.wheel-text {
+    font: 8px monospace;
+    fill:darkslategray;
+    text-anchor: middle;
+    text-transform: uppercase;
+    user-select: none;
+}
+.major-text {
+    text-transform: uppercase;
+}
+.minor-text {
+    text-transform: lowercase;
+}
+.button-text {
+    font: 3.2px monospace;
+    text-anchor: middle;
+    user-select: none;
+}
+.code {
+    font: 4px monospace;
+    stroke-width: 0;
+    text-anchor: middle;
+}
+
+/* Notes */
+.C {
+    fill:rgb(255, 142, 161);
+    stroke: rgb(255, 142, 161);
+} 
+.C.hover {
+    fill:rgb(236, 53, 83);
+    stroke: rgb(236, 53, 83);
+}
+.D {
+    fill:tomato;
+    stroke:tomato;
+}
+.D.hover {
+    fill:rgb(220, 34, 1);
+    stroke:rgb(220, 34, 1);
+}
+.E {
+    fill:orange;
+    stroke:orange;
+}
+.E.hover {
+    fill:rgb(226, 117, 0);
+    stroke:rgb(226, 117, 0);
+}
+.F {
+    fill:gold;
+    stroke:gold;
+}
+.F.hover {
+    fill:rgb(207, 193, 0);
+    stroke:rgb(207, 193, 0);
+}
+.G {
+    fill:rgb(157, 242, 135);
+    stroke:rgb(157, 242, 135);
+}
+.G.hover {
+    fill:rgb(82, 195, 54);
+    stroke:rgb(82, 195, 54);
+}
+.A {
+    fill:lightskyblue;
+    stroke:lightskyblue;
+}
+.A.hover {
+    fill:rgb(29, 156, 235);
+    stroke:rgb(29, 156, 235);
+}
+.B {
+    fill:plum;
+    stroke:plum;
+}
+.B.hover {
+    fill:rgb(165, 89, 165);
+    stroke:rgb(165, 89, 165);
+}
+#scale-container {
+    max-width: 700px;
+}

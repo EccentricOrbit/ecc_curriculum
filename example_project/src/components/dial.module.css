@@ -1,0 +1,21 @@
+.ring {
+    fill: #a7aac3;
+    stroke: none;
+}
+.ring:hover {
+    fill: #4b4e6e;
+}
+.inner-ring {
+    fill: #7c80a1;
+}
+.inner-ring:hover {
+    fill: #4b4e6e;
+}
+#pointer {
+    stroke: #0f112f;
+    stroke-width: 6;
+    stroke-linecap: round;
+}
+#dial-container {
+    max-width: 100px;
+}
