@@ -10,12 +10,14 @@ export declare class Scale extends HTMLElement {
     private startNote;
     static readonly NOTES: string[];
     static MIDI: number[];
+    static currScale: number[];
     private wheel;
     private button;
     constructor();
     connectedCallback(): void;
     disconnectedCallback(): void;
     attributeChangedCallback(name: string, oldValue: string, newValue: string): void;
+    generateScale(startNote: number): void;
     update(major: any, note: any): void;
     render(first: boolean, updateMaj: boolean): void;
 }

@@ -25,12 +25,13 @@ export class Scale extends HTMLElement {
     width : number = 700;
     height : number = 900;
 
-    private major = false;
+    private major = true;
     private startNote : number = 0;
 
     /// scale notes
     static readonly NOTES = ["C", "D", "E", "F", "G", "A", "B"];
     static MIDI = [60, 62, 64, 65, 67, 69, 71, 72];
+    static currScale : number[];
     
     /// note wheel element
     private wheel : NoteWheel | null = null;
@@ -50,6 +51,8 @@ export class Scale extends HTMLElement {
         this.container?.append(this.parent);
         this.container?.setAttribute('viewBox', `0 0 100 1000`);
         console.log(this.container);
+
+        // this.generateScale(this.startNote);
 
         // render SVG content
         this.render(true, true);
@@ -74,6 +77,7 @@ export class Scale extends HTMLElement {
                 }
                 else {
                     if (clickedIndex == 2 || clickedIndex == 5) {
+                        console.log((clickedIndex - 1) * 2 + 1 + Scale.MIDI[this.startNote]);
                         synth.playNote((clickedIndex - 1) * 2 + 1 + Scale.MIDI[this.startNote]);
                     }
                     else {
@@ -116,6 +120,23 @@ export class Scale extends HTMLElement {
     }
 
     attributeChangedCallback(name : string, oldValue : string, newValue : string) {
+    }
+    
+    generateScale(startNote : number) {
+        let note = startNote;
+        for (let i = 0; i < 8; i++) {
+            if (this.major) {
+                if (i == 2 || i == 6) note += 1;
+                else note += 2;
+            }
+            // if minor, half steps on 2nd and 5th notes
+            else {
+                if (i == 1 || i == 4) note += 1;
+                else note += 2;
+            }
+            Scale.currScale.concat(note);
+            console.log(note);
+        }
     }
 
     update(major: any, note : any) {
@@ -297,6 +318,7 @@ class NoteWheel {
         let downX = -1;
         let downY = -1;
         let totalAngle = 0;
+        let lastAngle = 0;
         this.el.addEventListener('pointerdown', (e) => {
             this.down = true;
             downX = e.clientX;
@@ -306,12 +328,12 @@ class NoteWheel {
         document.addEventListener('pointermove', (e) => {
             if(this.down){ 
                 // rotate wheel
-                const deltaX = downX - e.clientX;
-                const deltaY = downY - e.clientY;
-                // let center = SVGToScreen(this.cx, this.cy);
-                // if (!center) return;
-                // else 
-                totalAngle = Math.atan2(deltaY, deltaX) * 180 / Math.PI;
+                const center = this.svgToScreen(this.cx, this.cy);
+
+                const deltaX = center.x - e.clientX;
+                const deltaY = center.y - e.clientY;
+
+                totalAngle = Math.atan2(deltaY, deltaX) * 180 / Math.PI - lastAngle;
 
                 this.wheel.setAttribute("transform", `rotate(${totalAngle} ${this.cx} ${this.cy})`);
                 
@@ -324,26 +346,36 @@ class NoteWheel {
             }
 
             // determine current note
-            let sectors = this.el.querySelectorAll('.wheel');
-            sectors?.forEach((e) => {
-                const sectorBound = e.getBoundingClientRect();
-                const pickerBound = picker.getBoundingClientRect();
-                const pickerC = (pickerBound.right + pickerBound.left) / 2;
-
-                // console.log(`${e.classList.item(0)}\nL: ${sectorBound.left}\nR: ${sectorBound.right}\nT: ${sectorBound.top}\nB: ${sectorBound.bottom}`);
-                // console.log(`Picker\nL: ${pickerBound.left}\nR: ${pickerBound.right}\nT: ${pickerBound.top}\nB: ${pickerBound.bottom}`);
-                if (pickerC <= sectorBound.right && pickerC >= sectorBound.left
-                    && pickerBound.bottom <= sectorBound.bottom && pickerBound.top >= sectorBound.top) {
-                    scale.update(null, e.classList.item(1));
-                }
-            });
+            const testPoint = this.svgToScreen(50, 18);
+            let sectors = this.scale.root.elementsFromPoint(testPoint.x, testPoint.y);
+            sectors = sectors.filter((sector) => sector.classList.contains('wheel'));
+            if (sectors.length > 0) {
+                scale.update(null, sectors[0].classList.item(1));
+            }
         });
 
         document.addEventListener('pointerup', (e) => {
             if (this.down) {
                 this.down = false;
             }
+            const center = this.svgToScreen(this.cx, this.cy);
+
+            const deltaX = center.x - e.clientX;
+            const deltaY = center.y - e.clientY;
+
+            lastAngle = Math.atan2(deltaY, deltaX) * 180 / Math.PI;
         });
+    }
+
+    /**
+     * Transform svg coordinates to screen coordinates
+     */
+    svgToScreen(svgX : number, svgY : number) {
+        const svg = this.scale.container!;
+        const p = svg.createSVGPoint();
+        p.x = svgX;
+        p.y = svgY;
+        return p.matrixTransform(svg.getScreenCTM() ?? undefined);
     }
 }
 
