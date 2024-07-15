@@ -62,8 +62,8 @@
     stroke: rgb(255, 142, 161);
 } 
 .C.hover {
-    fill:rgb(236, 53, 83);
-    stroke: rgb(236, 53, 83);
+    fill:rgb(237, 63, 118);
+    stroke: rgb(237, 63, 118);
 }
 .D {
     fill:tomato;
@@ -113,6 +113,6 @@
     fill:rgb(165, 89, 165);
     stroke:rgb(165, 89, 165);
 }
-#scale-container {
-    max-width: 700px;
-}
+/* #scale-container {
+    max-width: 550px;
+} */

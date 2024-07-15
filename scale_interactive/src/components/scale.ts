@@ -25,7 +25,7 @@ export class Scale extends HTMLElement {
     width : number = 700;
     height : number = 900;
 
-    private major = true;
+    private major = false;
     private startNote : number = 0;
 
     /// scale notes
@@ -57,16 +57,29 @@ export class Scale extends HTMLElement {
         // note event listeners
         const notes = this.root.querySelectorAll('.note');
         console.log('connected', notes);
-
-        let patch_url = new URL('/assets/patches/grand-piano/patch.json', import.meta.url);
-        // const synth = new Synthesizer(patch_url);
+        
+        const patch_url = new URL('/assets/sounds/voices/grand-piano/patch.json', import.meta.url);
+        const synth = new Synthesizer(patch_url);
         notes?.forEach((note) => {
             note.addEventListener('click', (e) => {
                 console.log('clicked on ' + note.classList);
-                // if (note.classList.contains("last")){ 
-                //     synth.playNote(Scale.MIDI[Scale.NOTES.findIndex(note.classList.toString)] + 12);
-                // }
-                // else synth.playNote(Scale.MIDI[Scale.NOTES.findIndex(note.classList.toString)]);
+                const clickedIndex = Scale.NOTES.findIndex((value) => value === note.classList[1]);
+                if (this.major) {
+                    if (clickedIndex == 3 || clickedIndex == 7) {
+                        synth.playNote((clickedIndex - 1) * 2 + 1 + Scale.MIDI[this.startNote]);
+                    }
+                    else {
+                        synth.playNote(clickedIndex * 2 + Scale.MIDI[this.startNote]);
+                    }
+                }
+                else {
+                    if (clickedIndex == 2 || clickedIndex == 5) {
+                        synth.playNote((clickedIndex - 1) * 2 + 1 + Scale.MIDI[this.startNote]);
+                    }
+                    else {
+                        synth.playNote(clickedIndex * 2 + Scale.MIDI[this.startNote]);
+                    }
+                }
             });
 
             let allNotes = this.root.querySelectorAll(`.${note.classList[1]}`);
