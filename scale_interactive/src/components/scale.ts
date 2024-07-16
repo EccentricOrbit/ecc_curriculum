@@ -31,7 +31,8 @@ export class Scale extends HTMLElement {
     /// scale notes
     static readonly NOTES = ["C", "D", "E", "F", "G", "A", "B"];
     static MIDI = [60, 62, 64, 65, 67, 69, 71, 72];
-    static currScale : number[];
+    static MAJOR : number[] = [0, 2, 4, 5, 7, 9, 11, 12];
+    static MINOR : number[] = [0, 2, 3, 5, 7, 8, 10, 12];
     
     /// note wheel element
     private wheel : NoteWheel | null = null;
@@ -51,9 +52,8 @@ export class Scale extends HTMLElement {
         this.container?.append(this.parent);
         this.container?.setAttribute('viewBox', `0 0 100 1000`);
         console.log(this.container);
-
-        // this.generateScale(this.startNote);
-
+        
+        
         // render SVG content
         this.render(true, true);
 
@@ -66,26 +66,15 @@ export class Scale extends HTMLElement {
         notes?.forEach((note) => {
             note.addEventListener('click', (e) => {
                 console.log('clicked on ' + note.classList);
-                const clickedIndex = Scale.NOTES.findIndex((value) => value === note.classList[1]);
+                const clickedIndex = Scale.NOTES.findIndex((value) => value === note.classList[1]) - this.startNote;
                 if (this.major) {
-                    if (clickedIndex == 3 || clickedIndex == 7) {
-                        synth.playNote((clickedIndex - 1) * 2 + 1 + Scale.MIDI[this.startNote]);
-                    }
-                    else {
-                        synth.playNote(clickedIndex * 2 + Scale.MIDI[this.startNote]);
-                    }
+                    synth.playNote(Scale.MIDI[this.startNote] + Scale.MAJOR[clickedIndex]);
                 }
                 else {
-                    if (clickedIndex == 2 || clickedIndex == 5) {
-                        console.log((clickedIndex - 1) * 2 + 1 + Scale.MIDI[this.startNote]);
-                        synth.playNote((clickedIndex - 1) * 2 + 1 + Scale.MIDI[this.startNote]);
-                    }
-                    else {
-                        synth.playNote(clickedIndex * 2 + Scale.MIDI[this.startNote]);
-                    }
+                    synth.playNote(Scale.MIDI[this.startNote] + Scale.MINOR[clickedIndex]);
                 }
             });
-
+            
             let allNotes = this.root.querySelectorAll(`.${note.classList[1]}`);
             note.addEventListener('mouseout', (e) => {
                 allNotes?.forEach((letter) => {
@@ -108,35 +97,18 @@ export class Scale extends HTMLElement {
                     allNotes?.forEach((letter) => {
                         letter.classList.add("hover");
                     });
-
+    
                     const wheelNote = this.root.querySelector(`.wheel.${note.classList[1]}`);
                     if (wheelNote) wheelNote.classList.add("hover");
                 }
             });
         });
     }
-
+    
     disconnectedCallback() {
     }
 
     attributeChangedCallback(name : string, oldValue : string, newValue : string) {
-    }
-    
-    generateScale(startNote : number) {
-        let note = startNote;
-        for (let i = 0; i < 8; i++) {
-            if (this.major) {
-                if (i == 2 || i == 6) note += 1;
-                else note += 2;
-            }
-            // if minor, half steps on 2nd and 5th notes
-            else {
-                if (i == 1 || i == 4) note += 1;
-                else note += 2;
-            }
-            Scale.currScale.concat(note);
-            console.log(note);
-        }
     }
 
     update(major: any, note : any) {
@@ -491,7 +463,7 @@ class Staff {
                 }
                 note.append(ledger);
             }
-
+            
             // add accidentals if necessary
             switch (noteLetter) {
                 case "C":
@@ -525,7 +497,7 @@ class Staff {
                             break;
                     }
                     break;
-                case "F": 
+                case "F":
                     switch (startNote) {
                         case 1: // D Major
                         case 4: // G Major
