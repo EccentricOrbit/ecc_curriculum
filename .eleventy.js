@@ -16,6 +16,13 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({ "assets/python" : "python" });
     eleventyConfig.addPassthroughCopy({ "assets/webfonts" : "webfonts" });
 
+    eleventyConfig.addPassthroughCopy({ "assets/js" : "assets/js" });
+    eleventyConfig.addPassthroughCopy({ "assets/css" : "assets/css" });
+    eleventyConfig.addPassthroughCopy({ "assets/sounds" : "assets/sounds" });
+    eleventyConfig.addPassthroughCopy({ "assets/images" : "assets/images" });
+    eleventyConfig.addPassthroughCopy({ "assets/python" : "assets/python" });
+    eleventyConfig.addPassthroughCopy({ "assets/webfonts" : "assets/webfonts" });
+
     eleventyConfig.on('eleventy.after', () => {
         execSync(`npx pagefind --site _site --glob \"**/*.html\"`, { encoding: 'utf-8' })
     });
