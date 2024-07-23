@@ -1,5 +1,5 @@
-from boilerplate import *
-from chords import *
+#from boilerplate import *
+#from ./chords import *
 import unittest
 import logging
 
