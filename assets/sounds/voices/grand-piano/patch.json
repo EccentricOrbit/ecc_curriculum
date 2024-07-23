@@ -6,6 +6,7 @@
     "created": "2024-03-31",
     "modified": "2024-03-31",
     "id": -1,
+    "parameters" : [ ],
     "nodes": [
         {
             "id": 0,
