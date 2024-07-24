@@ -1,228 +1,295 @@
-
 :root {
-    --main-font: 'Nunito', sans-serif;
+  --main-font: "Nunito", sans-serif;
 }
 * {
-    box-sizing: border-box;
-    font-size: 15px;
+  box-sizing: border-box;
+  font-size: 15px;
 }
 body {
-    margin: 0;
-    width: 100vw;
+  margin: 0;
+  width: 100vw;
 }
 #drumscope {
-    box-sizing: border-box;
-    width: calc(100% - 3rem);
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    margin: 0 1.5rem;
+  box-sizing: border-box;
+  width: calc(100% - 3rem);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: 0 1.5rem;
 }
 
 #timeline {
-    width: calc(100% - 5px);
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 100;
-    pointer-events: none;
+  width: calc(100% - 5px);
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  pointer-events: none;
 }
 
 #timeline .playhead {
-    stroke: #222;
-    stroke-width: 2;
+  stroke: #222;
+  stroke-width: 2;
 }
 
 #timeline .major-tick {
-    stroke: #222;
-    stroke-width: 1.5;
+  stroke: #222;
+  stroke-width: 1.5;
 }
 
 #timeline .minor-tick {
-    stroke: #666;
-    stroke-width: 1;
+  stroke: #666;
+  stroke-width: 1;
 }
 
 #timeline .beat-number {
-    font-family: var(--main-font);
-    fill: #222;
-    font-size: 15px;
-    text-anchor: middle;
-    user-select: none;
+  font-family: var(--main-font);
+  fill: #222;
+  font-size: 15px;
+  text-anchor: middle;
+  user-select: none;
 }
 
 .timeline-manipulator {
-    width: 100%;
-    min-height: 30px;
-    max-height: 30px;
-    height: 30px;
-    padding: 5px 0 0 90px;
-    font-size: 13px;
-    user-select: none;
-    font-family: var(--main-font);
+  width: 100%;
+  min-height: 30px;
+  max-height: 30px;
+  height: 30px;
+  padding: 5px 0 0 90px;
+  font-size: 13px;
+  user-select: none;
+  font-family: var(--main-font);
 }
 
 .tracks {
-    display: flex;
+  display: flex;
 }
 
 nav.controls {
-    width: 100vw;
-    display: flex;
-    flex-direction: row;
-    padding: 6px 1.5rem;
-    background-color: #eee;
-    border-bottom: 1px solid #0004;
-    box-shadow: 3px 3px 5px #0002;
-    margin-bottom: 2.5rem;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  padding: 6px 1.5rem;
+  background-color: #eee;
+  border-bottom: 1px solid #0004;
+  box-shadow: 3px 3px 5px #0002;
+  margin-bottom: 2.5rem;
 }
 
-.controls .expander { flex: 1; }
+.controls .expander {
+  flex: 1;
+}
 
 .controls button {
-    outline: none;
-    border: 1px solid #0008;
-    width: 45px;
-    height: 35px;
-    border-radius: 6px;
-    margin: 3px;
-    font-size: 14px;
-    text-align: center;
-    white-space: nowrap;
-    background-color: white;
+  outline: none;
+  border: 1px solid #0008;
+  width: 45px;
+  height: 35px;
+  border-radius: 6px;
+  margin: 3px;
+  font-size: 14px;
+  text-align: center;
+  white-space: nowrap;
+  background-color: white;
 }
-.controls button:active { opacity: 0.5; }
-.controls button:hover { color: var(--active-color); }
-.controls button.hidden { display: none; }
+.controls button:active {
+  opacity: 0.5;
+}
+.controls button:hover {
+  color: var(--active-color);
+}
+.controls button.hidden {
+  display: none;
+}
 .controls button.spinner {
-    border: none;
-    background-color: transparent;
-    box-shadow: none;
-    font-size: 16px;
-    font-weight: bold;
-    width: unset;
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+  font-size: 16px;
+  font-weight: bold;
+  width: unset;
 }
 
-.tempo-controls, .combo {
-    display: flex;
-    font-family: var(--main-font);
-    margin: 0 0.75em;
+.tempo-controls,
+.combo {
+  display: flex;
+  font-family: var(--main-font);
+  margin: 0 0.75em;
 }
-.tempo, .combo label {
-    line-height: 40px;
-    margin: 0 0.25em;
-    display: flex;
+.tempo,
+.combo label {
+  line-height: 40px;
+  margin: 0 0.25em;
+  display: flex;
 }
 .tempo .value {
-    font-size: 20px;
-    font-weight: bold;
+  font-size: 20px;
+  font-weight: bold;
 }
 .units {
-    font-size: 14px;
-    font-weight: normal;
-    margin-left: 0.25em;
+  font-size: 14px;
+  font-weight: normal;
+  margin-left: 0.25em;
 }
 
 .drum-pads {
-    display: flex;
-    flex-direction: column;
-    width: 150px;
-    min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  min-width: 150px;
 }
-.drum-pads button, .drum-tracks .track {
-    min-height: 75px;
-    max-height: 75px;
-    margin: 0.25rem;
-    box-sizing: border-box;
-    flex: 1;
-    border-radius: 8px;
+.drum-pads button,
+.drum-tracks .track {
+  min-height: 75px;
+  max-height: 75px;
+  margin: 0.25rem;
+  box-sizing: border-box;
+  flex: 1;
+  border-radius: 8px;
 }
 .drum-tracks {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 .drum-tracks .track {
-    background-color: #0002;
-    border: 1px solid #0009;
-    overflow: hidden;
+  background-color: #0002;
+  border: 1px solid #0009;
+  overflow: hidden;
 }
 .drum-tracks .track canvas {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 .drum-pads button {
-    background-image: url('/images/drums/snare.svg');
-    background-size: 70px;
-    background-position: center;
-    background-repeat: no-repeat;
-    outline: none;
-    border: 1px solid #0009;
-    border-radius: 8px;
-    background-color: #0001;
-    position: relative;
-    padding: 0;
-    box-shadow: 3px 3px 3px #0002;
+  background-image: url("/images/drums/snare.svg");
+  background-size: 70px;
+  background-position: center;
+  background-repeat: no-repeat;
+  outline: none;
+  border: 1px solid #0009;
+  border-radius: 8px;
+  background-color: #0001;
+  position: relative;
+  padding: 0;
+  box-shadow: 3px 3px 3px #0002;
 }
-.drum-pads button:hover { background-color: #0002; }
-.drum-pads button:active { background-color: #0004; }
-.drum-pads button.clicked { background-color: #0004; }
+.drum-pads button:hover {
+  background-color: #0002;
+}
+.drum-pads button:active {
+  background-color: #0004;
+}
+.drum-pads button.clicked {
+  background-color: #0004;
+}
 
-.drum-pads button[data-drum="kick"] { background-image: url('/images/drums/kick.svg'); }
-.drum-pads button[data-drum="clap"] { background-image: url('/images/drums/clap.svg'); }
-.drum-pads button[data-drum="closedHat"] { background-image: url('/images/drums/hat.svg'); }
-.drum-pads button[data-drum="openHat"] { background-image: url('/images/drums/open-hat.svg'); }
-.drum-pads button[data-drum="midTom"] { background-image: url('/images/drums/tom.svg'); }
+.drum-pads button[data-drum="kick"] {
+  background-color: #eb455f;
+  background-image: url("/images/drums/kick.svg");
+}
+.drum-pads button[data-drum="clap"] {
+  background-color: #6f1ab6;
+  background-image: url("/images/drums/clap.svg");
+}
+.drum-pads button[data-drum="closedHat"] {
+  background-color: #ffcd4b;
+  background-image: url("/images/drums/hat.svg");
+}
+.drum-pads button[data-drum="openHat"] {
+  background-color: #fde767;
+  background-image: url("/images/drums/open-hat.svg");
+}
+.drum-pads button[data-drum="floorTom"] {
+  background-color: #5d9c59;
+  background-image: url("/images/drums/tom.svg");
+}
+
+.drum-pads button[data-drum="snare1"] {
+  background-color: #fd841f;
+  background-image: url("/images/drums/snare.svg");
+}
+
+.drum-pads button[data-drum="crash"] {
+  background-color: #3ab0ff;
+  background-image: url("/images/drums/open-hat.svg");
+}
 
 .drum-pads button .drum-name {
-    position: absolute;
-    height: 15px;
-    top: 5px;
-    left: 10px;
-    font-size: 12px;
-    color: black;
-    text-transform: uppercase;
-    text-align: left;
+  position: absolute;
+  height: 15px;
+  top: 5px;
+  left: 10px;
+  font-size: 12px;
+  color: black;
+  text-transform: uppercase;
+  text-align: left;
 }
-.drum-pads button .trigger, .drum-pads button .note {
-    position: absolute;
-    width: 1rem;
-    height: 15px;
-    bottom: 8px;
-    right: 5px;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 18px;
-    color: black;
+.drum-pads button .trigger,
+.drum-pads button .note {
+  position: absolute;
+  width: 1rem;
+  height: 15px;
+  bottom: 8px;
+  right: 5px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 18px;
+  color: black;
 }
 
 .drum-pads button .note {
-    left: 5px;
-    right: unset;
+  left: 5px;
+  right: unset;
 }
 
+.track .track-controls {
+  position: absolute;
+  /* top: 35px;*/
+  right: 5px;
+  border: 1px solid #888;
+  border-radius: 5px;
+  display: flex;
+  gap: 2px;
+}
+
+.track-controls button {
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.track-controls .record-button.active {
+  color: #e3304c;
+}
+
+.track-controls .mute-button.active {
+  color: #3045e3;
+}
 
 .code-hint-container {
-    position: relative;
-    margin: 2rem;
+  position: relative;
+  margin: 2rem;
 }
 
 .code-hint-container h2 {
-    margin-top: 2em;
-    font-family: var(--main-font);
+  margin-top: 2em;
+  font-family: var(--main-font);
 }
 
 button.copy-code-button {
-    position: absolute;
-    top: 4em;
-    right: 2em;
-    color: #0009;
-    padding: 0 1.5em;
-    font-size: 15px;
-    border: 1px solid #0004;
-    z-index: 100;
-    width: auto;
+  position: absolute;
+  top: 4em;
+  right: 2em;
+  color: #0009;
+  padding: 0 1.5em;
+  font-size: 15px;
+  border: 1px solid #0004;
+  z-index: 100;
+  width: auto;
 }
 
 .code-hint {

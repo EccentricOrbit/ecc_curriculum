@@ -173,7 +173,9 @@ class DrumScope {
 
     clear() {
         for (let t in this.tracks) {
-            this.tracks[t].clear();
+            if (!this.tracks[t].isRecording) {
+                this.tracks[t].clear();
+            }
         }
         this.master && this.master.gain.setValueAtTime(0.0, 0.1);
         this.master = this.context.createGain();
@@ -506,6 +508,14 @@ class AudioTrack {
         this.resize();
         this.draw();
         this.master = null;
+        this.isRecording = false;
+        this.isMuted = false;
+        this.recordButton = container.querySelector('.record-button');
+        this.muteButton = container.querySelector('.mute-button');
+
+
+        this.recordButton.addEventListener('click', () => this.toggleRecord());
+        this.muteButton.addEventListener('click', () => this.toggleMute());
 
         this.canvas.addEventListener('click', (e) => {
             let beat = this.xToBeat(e.offsetX);
@@ -525,6 +535,18 @@ class AudioTrack {
             this.draw();
             this.scope.updateCodeHint();
         });
+    }
+
+    toggleRecord() {
+        this.isRecording = !this.isRecording;
+        this.recordButton.classList.toggle('active', this.isRecording);
+        this.recordButton.innerHTML = this.isRecording ? '<i class="fas fa-circle"></i>' : '<i class="far fa-circle"></i>';
+    }
+
+    toggleMute() {
+        this.isMuted = !this.isMuted;
+        this.muteButton.classList.toggle('active', this.isMuted);
+        this.muteButton.innerHTML = this.isMuted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
     }
 
     hasHit(beat) {
@@ -547,6 +569,8 @@ class AudioTrack {
     }
 
     playSound(beat, velocity = 100) {
+        if(!this.isMuted){
+
         this.cueSound(null, 0, velocity);
         if (this.scope.quantize) {
             beat = this.quantizeBeat(beat);
@@ -557,9 +581,11 @@ class AudioTrack {
             this._drawSound(beat, velocity);
         }
     }
+    }
 
 
     cueSound(dest = null, when = 0, velocity = 100) {
+        if(!this.isMuted){
         const context = this.scope.context;
         const sound = this.scope.getAudioBuffer(this.drum);
         if (context == null || sound == null) return;
@@ -578,6 +604,7 @@ class AudioTrack {
         source.buffer = sound;
         source.connect(gain);
         source.start(when);
+    }
     }
 
     stopSounds() {
@@ -614,6 +641,7 @@ class AudioTrack {
 
     generateCode() {
         let code = "";
+        if (this.hits.length > 0 && !this.isMuted) {
         if (this.hits.length > 0) {
             code += `# ${this.name}\n`;
             code += `${this.name} = ${this.note}\n`;
@@ -635,7 +663,8 @@ class AudioTrack {
             }
             playhead = hit + 0.5;
         }
-        return code + "\n\n";
+    }
+        return code ? code + "\n\n" : code;
     }
 
     clear() {

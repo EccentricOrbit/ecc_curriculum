@@ -3,7 +3,7 @@
 :root {
   --main-bg-color: #f0e6e1;
   --hero-color: rgb(52, 68, 88);
-  --hero-highlight: #F18B05;
+  --hero-highlight: #f18b05;
   --hero-orange: #fd974f;
   --active-color: #2f9aef;
   --piano-color: #2f9aef;
@@ -19,17 +19,19 @@
   --header-bg-color: #2e303f;
   --mixer-track-pad: 15px;
   --error-color: #da575d;
-  --main-font: 'Nunito', sans-serif;
-  --title-font: 'Nunito Sans', sans-serif;
-  --impact-font: 'Alegreya Sans', sans-serif;
+  --main-font: "Nunito", sans-serif;
+  --title-font: "Nunito Sans", sans-serif;
+  --impact-font: "Alegreya Sans", sans-serif;
   --nav-color: #414251;
   --warning-color: #2f9aef;
   --warning-flash-color: #4bf;
 }
 
-*, *:after, *:before {
+*,
+*:after,
+*:before {
   box-sizing: border-box;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 body {
@@ -39,8 +41,8 @@ body {
   padding: 0;
 }
 
-body.embedded { 
-    margin: 0;
+body.embedded {
+  margin: 0;
 }
 
 .instrument {
@@ -80,7 +82,9 @@ body.embedded {
   padding-right: 1.5em;
 }
 
-.buttons .expander { flex: 1; }
+.buttons .expander {
+  flex: 1;
+}
 .buttons h3 {
   font-family: var(--main-font);
   font-weight: bold;
@@ -100,90 +104,103 @@ body.embedded {
   text-align: center;
   white-space: nowrap;
 }
-.instrument button:active { opacity: 0.5; }
-.instrument button:hover { color: var(--active-color); }
-.instrument button.hidden { display: none; }
-.instrument .clear-button { margin-left: 20px; }
+.instrument button:active {
+  opacity: 0.5;
+}
+.instrument button:hover {
+  color: var(--active-color);
+}
+.instrument button.hidden {
+  display: none;
+}
+.instrument .clear-button {
+  margin-left: 20px;
+}
 .instrument button.spinner {
-    border: none;
-    background-color: transparent;
-    box-shadow: none;
-    font-size: 16px;
-    font-weight: bold;
-    width: unset;
+  border: none;
+  background-color: transparent;
+  box-shadow: none;
+  font-size: 16px;
+  font-weight: bold;
+  width: unset;
 }
 
-.tempo-controls, .bars-controls {
-    display: flex;
-    font-family: var(--main-font);
+.tempo-controls,
+.bars-controls {
+  display: flex;
+  font-family: var(--main-font);
 }
-.tempo, .bars {
-    color: rgba(255, 255, 255, 0.75);
-    line-height: 30px;
-    margin: 0 0.25em;
-    display: flex;
+.tempo,
+.bars {
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 30px;
+  margin: 0 0.25em;
+  display: flex;
 }
-.tempo .value, .bars .value {
-    font-size: 16px;
-    font-weight: bold;
+.tempo .value,
+.bars .value {
+  font-size: 16px;
+  font-weight: bold;
 }
 .units {
-    font-size: 14px;
-    font-weight: normal;
-    margin-left: 0.25em;
+  font-size: 14px;
+  font-weight: normal;
+  margin-left: 0.25em;
 }
 
 .instrument .gutter {
-    height: 1em;
-    background: #535563;
-    border-left: 2px solid #414252;
-    border-right: 2px solid #414252;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    border-top: 2px solid #667;
+  height: 1em;
+  background: #535563;
+  border-left: 2px solid #414252;
+  border-right: 2px solid #414252;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-top: 2px solid #667;
 }
 
 .instrument .embed-wrapper {
-    text-align: right;
+  text-align: right;
 }
 .embed-wrapper button {
-    background-color: transparent;
-    border: none;
-    outline: none;
-    color: #000a;
-    width: auto;
-    box-shadow: none;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: #000a;
+  width: auto;
+  box-shadow: none;
 }
 .embed-info {
-    background-color: #eee;
-    font-family: monospace;
-    padding: 2rem;
-    text-align: left;
-    margin-left: 10rem;
-    border-radius: 1rem;
-    user-select: text;
+  background-color: #eee;
+  font-family: monospace;
+  padding: 2rem;
+  text-align: left;
+  margin-left: 10rem;
+  border-radius: 1rem;
+  user-select: text;
 }
-.embed-info.hidden { display: none; }
+.embed-info.hidden {
+  display: none;
+}
 
 .code-hint-container {
-    position: relative;
+  position: relative;
 }
 
 .code-hint-container h2 {
-    margin-top: 2em;
-    font-family: var(--main-font);
+  margin-top: 2em;
+  font-family: var(--main-font);
 }
 
 button.copy-code-button {
-    position: absolute;
-    top: 4em;
-    right: 2em;
-    color: #0009;
-    padding: 0 1.5em;
-    font-size: 15px;
-    border: 1px solid #0004;
-    z-index: 100;
-    width: auto;
+  position: absolute;
+  top: 4em;
+  right: 2em;
+  color: #0009;
+  padding: 0 1.5em;
+  font-size: 15px;
+  border: 1px solid #0004;
+  z-index: 100;
+  width: auto;
 }
 
 .code-hint {
@@ -198,12 +215,10 @@ button.copy-code-button {
   min-height: 30px;
 }
 
-
 #display-code-icon {
   font-size: 10pt;
   color: #ccc;
 }
-
 
 .grid-note {
   fill: #555;
@@ -219,8 +234,12 @@ button.copy-code-button {
 .grid-note.active {
   fill: var(--drum-color);
 }
-.grid-note.bass { fill: var(--bass-color); }
-.grid-note.drone { fill: var(--marimba-color); }
+.grid-note.bass {
+  fill: var(--bass-color);
+}
+.grid-note.drone {
+  fill: var(--marimba-color);
+}
 
 .grid-note.dragging {
   stroke: white;
@@ -269,21 +288,21 @@ button.copy-code-button {
   position: relative;
 }
 .voice-menu {
-    font-size: 14px;
-    font-family: var(--main-font);
-    font-weight: 600;
-    min-width: 150px;
-/*    
+  font-size: 14px;
+  font-family: var(--main-font);
+  font-weight: 600;
+  min-width: 150px;
+  /*    
     color: rgba(255, 255, 255, 0.75);
     background-color: #fff2;
 */
-    height: 28px;
-    border-radius: 4px;
-    font-size: 120%;
-    font-weight: normal;
-    padding: 0 0.5em;
-    border: 1px solid #fff5;
-    margin: 3px;
+  height: 28px;
+  border-radius: 4px;
+  font-size: 120%;
+  font-weight: normal;
+  padding: 0 0.5em;
+  border: 1px solid #fff5;
+  margin: 3px;
 }
 /*.toolbar .load-button {
   font-size: 100%;
@@ -346,7 +365,7 @@ button.copy-code-button {
   background-color: var(--piano-color);
   border-radius: 50%;
   margin-right: 10px;
-  background-image: url('../images/instruments/synth.svg');
+  background-image: url("../images/instruments/synth.svg");
   background-size: 70%;
   background-repeat: no-repeat;
   background-position: center;
@@ -356,15 +375,15 @@ button.copy-code-button {
 
 .gadget-icon.bass {
   background-color: var(--bass-color);
-  background-image: url('../images/instruments/bass.svg');
+  background-image: url("../images/instruments/bass.svg");
 }
 
-.gadget-icon.piano  {
+.gadget-icon.piano {
   background-color: var(--piano-color);
-  background-image: url('../images/instruments/synth.svg');
+  background-image: url("../images/instruments/synth.svg");
 }
-.gadget-icon.drums ,  .gadget-icon.drumkit {
+.gadget-icon.drums,
+.gadget-icon.drumkit {
   background-color: var(--drum-color);
-  background-image: url('../images/instruments/drumkit.svg');
+  background-image: url("../images/instruments/drumkit.svg");
 }
-
