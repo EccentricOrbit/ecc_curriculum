@@ -29,10 +29,15 @@ tags: interactive
 
 <body>
     <nav class="controls">
+    
         <button class="play-button" title="Play"><i class="fas fa-play"></i></button>
         <button class="pause-button hidden" title="Pause"><i class="fas fa-pause"></i></button>
         <button class="stop-button" title="Stop"><i class="fas fa-square"></i></button>
         <button class="clear-button" title="Clear"><i class="fas fa-trash"></i></button>
+        <div class="combo">
+            <input type="checkbox" id="metronome-check" value="true">
+            <label for="metronome-check">Metronome</label>
+        </div>
         <div class="expander"></div>
         <div class="tempo-controls">
             <button class="spinner tempo-up" title="Faster Tempo"><i class="fas fa-plus"></i></button>

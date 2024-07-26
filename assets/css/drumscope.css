@@ -303,3 +303,19 @@ button.copy-code-button {
   padding: 8px 90px;
   min-height: 30px;
 }
+
+/* #metronome-indicator {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #333;
+  transition: background-color 0.1s;
+}
+
+#metronome-indicator.active {
+  background-color: #e3304c;
+} */

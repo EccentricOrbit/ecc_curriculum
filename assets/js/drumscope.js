@@ -18,6 +18,9 @@ class DrumScope {
         this.last_beat = 0;
         this.timeline = new Timeline(this);
         this._needsUpdate = false;
+        this.metronomeEnabled = false;
+        this.metronomeSound = null;
+        this.nextMetronomeTime = 0;
 
 
         this.tracks = { };          // audio tracks draw waveform trace
@@ -26,6 +29,9 @@ class DrumScope {
             this.tracks[drum] = new AudioTrack(el, this);
         });
 
+        document.querySelector('#metronome-check').addEventListener('change', (e) => {
+            this.metronomeEnabled = e.target.checked;
+        });
         document.querySelector(".play-button").addEventListener('click', e => this.play());
         document.querySelector(".pause-button").addEventListener('click', e => this.pause());
         document.querySelector(".stop-button").addEventListener('click', e => this.stop());
@@ -39,6 +45,7 @@ class DrumScope {
             this.initAudio();
             this.initDrumPads()
             this.updateCodeHint();
+            this.loadMetronomeSound();
         }, 100);
 
         setInterval(() => {
@@ -126,6 +133,19 @@ class DrumScope {
                 }
                 this.looped = false;
             }
+
+            // schedule metronome
+            this.scheduleMetronome();
+
+            // update metronome indicator
+            // if (this.metronomeEnabled) {
+            //     const indicator = document.getElementById('metronome-indicator');
+            //     if (Math.floor(beat) !== Math.floor(this.last_beat)) {
+            //         indicator.classList.add('active');
+            //         setTimeout(() => indicator.classList.remove('active'), 100);
+            //     }
+            // }
+
             this.last_beat = beat;
             this.timeline.draw(beat);
             requestAnimationFrame(time => this.animate());
@@ -133,7 +153,41 @@ class DrumScope {
     }
 
 
+    async loadMetronomeSound() {
+        const response = await fetch("/sounds/voices/metronome/metronome.wav");
+        const arrayBuffer = await response.arrayBuffer();
+        this.metronomeSound = await this.context.decodeAudioData(arrayBuffer);
+    }
+
+    scheduleMetronome() {
+        if (!this.metronomeEnabled || !this.isPlaying) return;
+
+        const currentTime = this.context.currentTime;
+        
+        while (this.nextMetronomeTime < currentTime + 0.1) {
+            this.playMetronomeSound(this.nextMetronomeTime);
+            this.nextMetronomeTime += 60 / this.bpm;
+        }
+    }
+
+    playMetronomeSound(time) {
+        if (!this.metronomeSound) return;
+
+        const source = this.context.createBufferSource();
+        source.buffer = this.metronomeSound;
+        
+        const gainNode = this.context.createGain();
+        gainNode.gain.value = 0.5
+
+        source.connect(gainNode);
+        gainNode.connect(this.context.destination);
+
+        source.start(time);
+    }
     play() {
+        if (this.context.state === 'suspended') {
+            this.context.resume();
+        }
         if (!this.isPlaying && this.context !== null) {
             this.isPlaying = true;
             this.start_time = this.context.currentTime;
@@ -150,6 +204,8 @@ class DrumScope {
             if (this.last_beat < (this.totalBeats - 0.5)) {
                 this.cueSounds(0, this.last_beat);
             }
+            this.nextMetronomeTime = this.context.currentTime;
+            
             this.animate();
         }        
     }
