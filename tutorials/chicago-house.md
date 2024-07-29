@@ -3,7 +3,7 @@ layout: layouts/activity.njk
 tags: [ 'tutorials', 'learn' ]
 category: Tutorial
 title: Chicago House Beat
-description: In this warmup activity create a Chicago House beat with Python code.
+description: In this short warmup activity, create a Chicago House beat using Python code.
 level: Beginner
 time: 15-20 minutes
 license: by-nc-sa
@@ -14,11 +14,7 @@ audio: https://api.tunepad.com/api/projects/67934/audio/
 date: 2024-01-02
 ---
 In this activity you’ll get started using TunePad by creating a short Chicago House style beat.
-
-### Objectives
-* Sign in to TunePad and get familiar with the interface
-* Practice coding in Python using the `playNote` and `rest` functions
-* Code a basic Chicago House beat pattern
+You'll also practice using the `playNote` and `rest` functions in Python.
 
 ### Materials
 * Chromebook, iPad, laptop, or desktop computer
@@ -43,7 +39,6 @@ It should look like the picture below.
 * Then select **Drums**.
 * In TunePad, a “cell” is an instrument that you can program to play music. 
 * Name the new instrument “Kicks” and then add this Python code.
-
 ```python
 playNote(0)
 playNote(0)
@@ -60,12 +55,10 @@ You’ve just written a Python program! Press **Play** at the top left to hear h
 
 
 # Step 4: Snare Drums
-* For our kick drums we used a TunePad statement called `playNote`. 
-* Every time we type a line of code with `playNote`, it adds a sound to our track. 
 * Click the **ADD CELL** button again and select **Drums**. 
 * Now you should have two drum cells, one appearing above the other in your project. 
 * Name the second cell “Snare Drums” and add this Python code. 
-* Try playing this cell while playing the kick drums at the same time. In TunePad all cells will *synchronize* together.
+* Try playing this cell while also playing the kick drums at the same time. In TunePad all cells will *synchronize* together.
 
 
 ```python
@@ -94,12 +87,12 @@ rest(0.5)
 playNote(4, beats=0.5)
 ```
 
-Try playing all three of the drum cells together, you should hear a basic House beat pattern:
+Try playing all three of the drum cells together. You should hear a basic House beat pattern:
 
 ### KICK - HAT - SNARE - HAT - KICK - HAT - SNARE - HAT
 
 # Step 6: Bass Line
-* Add a new cell to your project, but this time select **Bass** instead of Drums. \
+* Add a new cell to your project, but this time select **Bass** instead of Drums.
 * Next add this code:
 
 ```python
