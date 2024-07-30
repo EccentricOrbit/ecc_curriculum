@@ -4,7 +4,7 @@ layout: layouts/activity.njk
 tags: livecoders
 category: Lesson Plan
 title: Variables and Lists
-description: Today we’ll learn about variables in Python to help make our code more readable and reusable. We’ll also learn how to use lists to play more than one note at the same time.
+description: Variables in Python can help make our code more readable and reusable, and lists give us a way to play more than one note at the same time.
 level: Beginner
 time: 20 minutes
 license: by-nc-sa

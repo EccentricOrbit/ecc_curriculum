@@ -171,6 +171,7 @@ body.embedded {
 
 .code-hint-container h2 {
     margin-top: 2em;
+    font-family: var(--main-font);
 }
 
 button.copy-code-button {

@@ -17,17 +17,21 @@ disclaimer: For educational purposes only.
 Log in and create a new TunePad project at [tunepad.com](https://tunepad.com). Name your project “Drum Machine”.
 
 # STEP 2: Machine Function
-A common way to create beats and rhythms is to use a step sequencer. A step sequencer breaks up time into even slices or steps (like 16th notes or 32nd notes). This Roland 808 drum machine from the 1980s let musicians program in rhythms with 16 switches representing times when various drum sounds would be played. 
+A common way to create beats and rhythms is to use a step sequencer. A step sequencer breaks up time into even slices or steps (like 16th notes or 32nd notes). 
+
+<div class="noprint">
+This Roland 808 drum machine from the 1980s let musicians program in rhythms with 16 switches representing times when various drum sounds would be played. 
 
 <a href="/images/splash/drum-machine-splash.jpg" target="_blank">
-<img src="/images/splash/drum-machine-splash.jpg" alt="Screenshot of a Roland 808 drum machine from the 1980s" width="450px" style="margin: 1rem;"></a>
+<img src="/images/splash/drum-machine-splash.jpg" alt="Screenshot of a Roland 808 drum machine from the 1980s" width="350px" style="margin: 1rem;"></a>
+</div>
 
 Modern digital step sequencers often represent drum machines as grids where each row represents a different drum sound and each column represents a consecutive time slice (image from the <a href="/interactives/composer/" target="_blank">TunePad Beat Composer</a>).
 
 <a href="/images/splash/composer-splash.png" target="_blank">
-<img src="/images/splash/composer-splash.png" alt="Screenshot of a TunePad beat composer" width="450px" style="margin: 1rem;"></a>
+<img src="/images/splash/composer-splash.png" alt="Screenshot of a TunePad beat composer" width="300px" style="margin: 1rem;"></a>
 
-We're going to make the equivalent of this drum machine in Python using our own function called `machine`. Our function will use *strings* to represent different sound patterns for each drum. To do this, we'll also need a new TunePad function called `moveTo` that lets us fast-forward or rewind time by moving the beat counter to any position we want.
+We're going to make a drum machine in Python using our own function called `machine`. Our function will use **strings** to represent different sound patterns for each drum. To do this, we'll also need a new TunePad function called `moveTo` that lets us fast-forward or rewind time by moving the beat counter to any position we want.
 
 ```python
 def machine(note, pattern):
@@ -43,13 +47,13 @@ def machine(note, pattern):
 # STEP 3: Machine Description
 This function is only 7 lines long, but there's a lot going on. Let's break it into easier pieces. 
 
-First, the function takes two parameters, `note` and `pattern`. `notes` is just a number representing the drum sound to play (like 0 for kick, 2 for snare, or 4 for hat). `pattern` is something called a string in Python. You can think of a string as a list of characters. For example, in this string, "**Hello, I'm a string**", there are 18 characters starting with '**H**' and ending with '**g**' and including the spaces. Python uses either double quotes (") or single quotes (') to define a string.
+* First, the function takes two parameters, `note` and `pattern`. `note` is just a number representing the drum sound to play (like 0 for kick, 2 for snare, or 4 for hat). `pattern` is something called a string in Python. You can think of a string as a list of characters. For example, in this string, "**Hello, I'm a string**", there are 18 characters starting with '**H**' and ending with '**g**' and including the spaces. Python uses either double quotes (") or single quotes (') to define a string.
 
-The first line of the function uses `moveTo` to move back to the beginning of the measure. We'll see why this is important when we make multiple calls to machine (below).
+* The first line of the function uses `moveTo` to move back to the beginning of the measure. We'll see why this is important when we make multiple calls to machine (below).
 
-Next, the machine function uses a *for loop* to iterate over each character in the string, one at a time. This is slightly different from the counting loop in the [Hats Off](/tutorials/hats-off) tutorial in that it iterates over a list of characters instead of a list of numbers.
+* The function uses a **for loop** to iterate over each character in the string, one at a time.
 
-Now, line 4 has a statement called called a **conditional**, or an **if-then-else** statement. What we're trying to do is say **_if_** the character is a '!', play a sound really loud (`velocity = 100`). Otherwise, rest. In a minute, we'll revisit this to also let us play quiet beats. Notice again that we use the colon character and indentation to set up blocks of code. 
+* Line 4 has a statement called called a **conditional**, or an **if-then-else** statement. What we're trying to do is say **_if_** the character is a '!', play a sound really loud (`velocity = 100`). Otherwise, rest. In a minute, we'll revisit this to also let us play quiet beats. Notice again that we use the colon character and indentation to set up blocks of code. 
 
 OK, but how do we use this function? Here's a simple example beat with five sounds. Each call to machine is like a row in the drum machine. We use the '-' character to mean no sound, but really this can be any character except at '!'.
 

@@ -68,7 +68,7 @@ Check out some example videos of live coded performances by college students:
     <td><b>Creativity</b></td>
     <td>
         <ul>
-            <li>Judges will use their discretion to award creativity points for elements that go beyond the standard example projectss. Surprize and delight the audience to max out this category.</li>
+            <li>Judges will use their discretion to award creativity points for elements that go beyond the standard example projects. Surprise and delight the audience to max out this category.</li>
             
         </ul>
     </td>

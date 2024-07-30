@@ -17,10 +17,10 @@
 * Main splash image too narrow for chromebooks.
 
 # Composer Issues
-909 drums not working
 touch not working on chromebooks
 slowing tempo causes sound buildup
 
+* https://docs.google.com/document/d/1IUVk9S8XJqFzzajKH-IENngXWDRFOPXSqHzj0QqvqGg/edit
 
 
 # Reference Packets

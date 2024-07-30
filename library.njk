@@ -1,0 +1,30 @@
+---
+title: TunePad Loop Library
+subtitle: Find the perfect loop for your project
+description: The TunePad Loop library
+splash: /images/splash/featured-splash.png
+---
+{% extends "layouts/collection2.njk" %}
+{% block header %}
+{{ super() }}
+<style>
+    header {
+        color: #d1c6d7;
+        padding: 8rem 0 0 3rem;
+    }
+</style>
+{% endblock %}
+{% block body %}
+
+<section class="highlights">
+    <h1>TunePad Loop Library</h1>
+    <p>Find the perfect loop for your composition.</p>
+    <ul>
+        {% for lib in library %}
+        <li>{{ lib.name }}</li>
+        {% endfor %}
+    </ul>
+
+</section>
+
+{% endblock %}

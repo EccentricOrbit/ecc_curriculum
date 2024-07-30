@@ -27,11 +27,12 @@ Please feel free to [email us](mailto:support@tunepad.com) for more information 
 If you’re feeling adventurous, you can also contribute directly to our open source repository by following the instructions below.
 
 ## Step 1: Clone the GitHub repository
-* Visit our [github repo](https://github.com/EccentricOrbit/ecc_curriculum) and make a clone of the main branch.
+* Visit our [github repo](https://github.com/EccentricOrbit/ecc_curriculum) and make a clone of the **staging** branch.
 * Create a [new branch](https://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging) for your local changes.
 
 ## Step 2: Install 11ty
-We use a static site generator called [11ty](https://www.11ty.dev/) to publish our learning resources. To install 11ty:
+We use a static site generator called [eleventy](https://www.11ty.dev/) to publish our learning resources. 
+To install eleventy you will need node.js and a package manager like npm. From the command line:
 ```sh
 cd <my-project-directory>
 npm install @11ty/eleventy --save-dev

@@ -18,11 +18,9 @@ nextTitle: Variables and Lists
 ---
 Reggaetón originated in Puerto Rico during the late 1990s and today is regarded as one of the most popular styles of music worldwide. Reggaetón consists of an easy-to-code pattern of kick and snare drums. We'll start by coding the basic pattern, and then we'll learn how to use our own functions to make the pattern more interesting. 
 
-<div class="noprint">
 Here's what the basic pattern looks like:
 
 <iframe height="325" src="http://localhost:8080/interactives/composer/?embedded=true&bpm=100&steps=16&voice=3&track4=8484&track5=1111" style="width: 95%; min-width: 500px; overflow: hidden; border: none;" scrolling="no"></iframe>
-</div>
 
 # Step 1: Create a new project
 * Log into [TunePad](https://tunepad.com/project/) and create a new project.

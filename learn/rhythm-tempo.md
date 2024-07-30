@@ -12,15 +12,15 @@ splash: /images/splash/tempo-splash.png
 date: 2024-01-03
 ---
 # Beat and Tempo
-The **beat** is the foundation of rhythm in music. In TunePad, the beat is the unit of time that determines how long individual notes are played.
+The **beat** is the foundation of rhythm in music. The beat is a unit of time that determines how long notes are played.
 
 **Tempo** refers to the speed at which the rhythm moves in a piece of music. 
-The standard way to measure tempo is in **beats per minute** (BPM or bpm), meaning the total number of beats 
+Tempo is measured in **beats per minute** (BPM or bpm), meaning the total number of beats 
 played in one minute’s time.
-So, at a tempo of 60 bpm, your foot taps 60 times each minute (or one beat per second). 
+At a tempo of 60 bpm, your foot taps 60 times each minute (or one beat per second). 
 At 120 bpm, you get two beats every second, and, at 90 bpm, you get 1.5 beats every second.
 
-Different genres of music have their own typical tempo ranges (although every song and every artist is different). 
+Different genres of music have their own tempo ranges (although every song and every artist is different). 
 For example, hip-hop usually falls in the 60 - 110 bpm range, while rock is faster in the 100-140 bpm range. 
 House/techno/trance is faster still, with tempos between 120-140 bpm.
 
@@ -36,20 +36,19 @@ House/techno/trance is faster still, with tempos between 120-140 bpm.
 | Bachata  | 120 - 140 bpm     |
 | Footwork | 150 - 165 bpm     |
 
-Computers excel at keeping a perfectly steady tempo. This is great if you want precision, but there’s also a risk that the resulting music will sound too rigid and machine-like. When real people play music they often speed up or slow down, either for dramatic effect or just as a result of being a human. Depending on the genre, performers might add slight variations in rhythm called swing or shuffle, that’s a kind of back and forth rocking of the beat that you can feel almost more than you can hear.
 
 # Rhythmic Notations
-Over the centuries, musicians and composers have developed many different written systems to record and share music. And, with the invention of digital production software, a number of other interactive representations for mixing and editing have become common as well. To continue our exploration of rhythm, in music, here are four different visual representations of the same rhythmic pattern. The pattern has a total duration of four beats and can be counted as “1 and 2, 3 and four”. The first two notes are ½ beats long followed by a note that is 1 beat long. Then the pattern repeats.
+Over the centuries, musicians and composers have developed many different written systems to record and share music. Here are four different ways to show the same rhythmic pattern. The pattern has a total duration of four beats and can be counted as “1 and 2, 3 and four”. The first two notes are ½ beats long followed by a note that is 1 beat long. Then the pattern repeats.
 
 ## Representation 1: Standard Western music notation
-The first representation (below) shows standard music notation (or Western notation), a system of recording notes that has been developed over many hundreds of years. The two thick vertical lines on the left side of the illustration indicate that this is rhythmic notation, meaning that there is no information about musical pitch, only rhythmic timing. The dots on the long horizontal lines are notes whose shapes indicate the duration of each sound to be played. Sometimes different percussion instruments will have their notes drawn on different lines. 
+The first representation shows standard music notation (or Western notation), a system of recording notes that has been developed over many hundreds of years. The two thick vertical lines on the left side of the diagram mean that this is rhythmic notation. The dots on the long horizontal lines are notes whose shapes indicate the duration of each sound to be played. Sometimes different percussion instruments will have their notes drawn on different lines. 
 
 <img src="/images/Figure2.2.png" alt="Standard Western music notation" width="400" style="margin-bottom: 2em">
 
 Standard rhythm notation has been refined over centuries and is accessible to an enormous, worldwide community of musicians. On the other hand, it can be confusing for people who haven’t yet learned how to read sheet music. The timing of individual notes is communicated using tails and flags attached to the notes, but there’s no consistent mapping between horizontal space and timing.
 
 ## Representation 2: Audio Waveforms
-The second representation shows a visualization of the actual audio waveform that gets sent to the speakers when you play music. The waveform shows the amplitude (or volume) of the audio signal over time. You can think of it as a graph that shows the literal intensity of the vibration of your speakers over time. 
+The second representation shows the actual sound waves that gets sent to the speakers when you play music. The waveform shows the amplitude (or volume) of the audio signal over time. You can think of it as a graph that shows the vibration of your speakers.
 
 <img src="/images/Figure2.3.png" alt="Audio waveform notation" style="margin-bottom: 2em">
 
@@ -76,4 +75,4 @@ playNote(6, beats = 1)
 ```
 The Python code is easier for computers to read than humans—it’s definitely not something you would hand to a musician to sight read. On the other hand, it has the advantage that it can be incorporated into computer algorithms and manipulated and transformed in endless ways.
 
-There are many, many other notation systems designed to transcribe a musical performance—what we hear at a live performance—onto a sheet of paper or a computer screen. Each of these representations was invented for a specific purpose and/or genre of music. You might pick a representation based on the context and whether you’re in the role of a musician (and what kind of instrument you play), a singer, a composer, a sound engineer, or a producer. Music notation systems are as rich and varied as the cultures and musical traditions that invented them. One nice thing about working with software is that it’s easy to switch between multiple representations of music depending on the task we’re trying to accomplish.
+There are many, many other ways to transcribe a musical performance—what we hear at a live performance—onto a sheet of paper or a computer screen. Each was invented for a specific purpose and/or genre of music. Music notation systems are as rich and varied as the cultures and musical traditions that invented them. One nice thing about working with software is that it’s easy to switch between multiple representations of music depending on the task we’re trying to accomplish.
