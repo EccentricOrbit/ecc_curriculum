@@ -16,9 +16,6 @@ project: https://tunepad.com/project/81586
 audio: https://api.tunepad.com/api/projects/81586/audio/
 disclaimer: For educational purposes only. Based on Let Her Go by Passenger (2012), Embassy of Music.
 ---
-# Welcome!
-**Please complete the pre-survey before completing the activity: <a href="https://forms.gle/igzSe7XsesKwnowe6" target="_blank">https://forms.gle/igzSe7XsesKwnowe6</a>**
-
 # What are Scales?
 Scales are a very useful tool in music involving a set of eight notes put in order by their pitch. If you play an instrument, you may have played scales as a warm-up when practicing. Many songs utilize scales, whether that’s in a typical ascending or descending form, or jumbling up the order of the notes to create a melody.
 
@@ -35,6 +32,8 @@ Major scales tend to have a happier and brighter sound. They follow a special pa
 On the other hand, minor scales have a more sad and dark tone. Like major scales, they also have their own pattern of whole and half steps: W H W W H W W.
 
 # How do I use the interactive?
+**Open the following link to view the interactive: <a href="https://learn.tunepad.space/clarissa/" target="_blank">https://learn.tunepad.space/clarissa/</a>**
+
 Below is an interactive designed to help you create scales in TunePad. This interactive contains the major and minor scales of the 7 basic notes (think the white keys on a piano): A, B, C, D, E, F, and G. 
 
 In the top left corner, there is a button where you can toggle between major and minor scales. 
@@ -63,9 +62,6 @@ Now, use the interactive tool to code the line of music below.
 _Hint: all of the notes you'll need (except one) are all in the C Major scale. Use the music notes and code block in the interactive to help you! For the one note that is outside of the C Major scale, think about whole steps and how we code them in TunePad._
 <img src="/images/let-her-go-sheet-music.png" alt="Let Her Go sheet music" 
 width="800" style="margin-bottom: 2em">
-
-# Finished?
-**Please complete the post-survey after completing the activity: <a href="https://forms.gle/MgP7bxFJ6VnqyoTU8" target="_blank">https://forms.gle/MgP7bxFJ6VnqyoTU8</a>**
 
 # Stuck?
 If you're stuck, open this project in TunePad <a href="{{project}}" target="_blank">{{ project }}</a> for the solution.

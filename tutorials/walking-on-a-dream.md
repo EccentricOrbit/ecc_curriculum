@@ -90,8 +90,8 @@ for i in range(3):
 
 # section 2:
 for i in range(8):
-    for j in range(2):
-        playNote(DbMaj, 0.5)
+    playNote(DbMaj, 0.5)
+    playNote(DbMaj, 0.5)
     rest(0.5)
     for j in range(2):
         for k in range(3):
@@ -116,8 +116,8 @@ rest(32) # intro beats
 
 # section 1:
 for i in range(11):
-    for j in range(2):
-        playNote(7, 0.5)
+    playNote(7, 0.5)
+    playNote(7, 0.5)
     playNote([2, 7], 0.5)
     playNote(7, 0.5)
     
@@ -128,8 +128,8 @@ for i in range(2):
 
 # section 2:
 for i in range(31):
-    for j in range(2):
-        playNote(4, 0.5)
+    playNote(4, 0.5)
+    playNote(4, 0.5)
     playNote([2, 4], 0.5)
     playNote(4, 0.5)
     
@@ -148,8 +148,8 @@ for i in range(11):
     for j in range(3):
         playNote(0)
         rest(1)
-    for j in range(2):
-        playNote(0, 0.5)
+    playNote(0, 0.5)
+    playNote(0, 0.5)
     rest(1)
 
 rest(4)
@@ -177,10 +177,47 @@ Create a new **Keys** cell and change the voice to ***Piano***.
 
 In the code below, you'll notice that we have if and elif statements within the for-loop, similar to in Step 3. The beginning of these phrases is the same, but each differs slightly in the notes that are played after, whether it's how many times they're played or how many beats they're held for.
 
+For easier reading, we also separate the first few phrases into functions at the beginning of the code. This just helps separate our code into bite-sized chunks for clarity and organization.
+
 Copy and paste in the code below:
 ```python
 rest(32) # intro beats
 
+def phrase1():
+    for j in range(3):
+        playNote(60, 0.5)
+    for j in range(2):
+        playNote(58, 0.5)
+        playNote(60, 0.5)
+        playNote(60)
+
+def phrase2():
+    playNote(60, 0.5)
+    playNote(60)
+    for j in range(2):
+        playNote(58, 0.5)
+        playNote(60, 0.5)
+        playNote(60)
+
+def phrase3():
+    for j in range(2):
+        playNote(60, 0.5)
+        playNote(60)
+        playNote(58, 0.5)
+    playNote(60, 0.5)
+    playNote(60)
+    
+def phrase4():
+    for j in range(3):
+        playNote(60, 0.5)
+    playNote(58, 0.5)
+    playNote(60, 0.5)
+    playNote(60, 0.5)
+    playNote(58, 0.5)
+    playNote(58, 0.5)
+    playNote(60, 0.5)
+    playNote(60, 0.5)
+    
 for i in range(3):
     for j in range(4):
         playNote(72, 0.5)
@@ -191,40 +228,17 @@ for i in range(4):
     for j in range(5):
         playNote(63, 0.5)
     if i == 0:
-        for j in range(3):
-            playNote(60, 0.5)
-        for j in range(2):
-            playNote(58, 0.5)
-            playNote(60, 0.5)
-            playNote(60)
+        phrase1()
     elif i == 1:
-        playNote(60, 0.5)
-        playNote(60)
-        for j in range(2):
-            playNote(58, 0.5)
-            playNote(60, 0.5)
-            playNote(60)
+        phrase2()
     elif i == 2:
-        for j in range(2):
-            playNote(60, 0.5)
-            playNote(60)
-            playNote(58, 0.5)
-        playNote(60, 0.5)
-        playNote(60)
+        phrase3()
     elif i == 3:
-        for j in range(3):
-            playNote(60, 0.5)
-        playNote(58, 0.5)
-        for j in range(2):
-            playNote(60, 0.5)
-        for j in range(2):
-            playNote(58, 0.5)
-        for j in range(2):
-            playNote(60, 0.5)
+        phrase4()
 
 for i in range(2):   
-    for j in range(2):
-        playNote(63, 0.5)
+    playNote(63, 0.5)
+    playNote(63, 0.5)
     playNote(58, 0.5)
     playNote(72, 2.5)
     playNote(58, 0.5)
@@ -242,7 +256,6 @@ for i in range(2):
     playNote(65)
     rest(2.5)
 rest(2.5)
-
 ```
 
 # Try It
