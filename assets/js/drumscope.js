@@ -137,15 +137,6 @@ class DrumScope {
             // schedule metronome
             this.scheduleMetronome();
 
-            // update metronome indicator
-            // if (this.metronomeEnabled) {
-            //     const indicator = document.getElementById('metronome-indicator');
-            //     if (Math.floor(beat) !== Math.floor(this.last_beat)) {
-            //         indicator.classList.add('active');
-            //         setTimeout(() => indicator.classList.remove('active'), 100);
-            //     }
-            // }
-
             this.last_beat = beat;
             this.timeline.draw(beat);
             requestAnimationFrame(time => this.animate());
@@ -566,14 +557,20 @@ class AudioTrack {
         this.master = null;
         this.isRecording = false;
         this.isMuted = false;
+        this.isLocked = false;
+        this.animationFrame = null;
+        this.lastToggleTime = 0;
         this.recordButton = container.querySelector('.record-button');
         this.muteButton = container.querySelector('.mute-button');
+        this.lockButton = container.querySelector('.lock-button');
 
 
         this.recordButton.addEventListener('click', () => this.toggleRecord());
         this.muteButton.addEventListener('click', () => this.toggleMute());
+        this.lockButton.addEventListener('click', () => this.toggleLock());
 
         this.canvas.addEventListener('click', (e) => {
+            if (this.isLocked) return;
             let beat = this.xToBeat(e.offsetX);
             if (this.scope.quantize) {
                 beat = this.quantizeBeat(beat);
@@ -593,16 +590,40 @@ class AudioTrack {
         });
     }
 
+    animateRecord(timestamp) {
+        if (!this.isRecording) {
+            this.recordButton.classList.remove('active');
+            return;
+        }
+
+        if (timestamp - this.lastToggleTime > 500) {
+            this.recordButton.classList.toggle('active');
+            this.lastToggleTime = timestamp;
+        }
+
+        this.animationFrame = requestAnimationFrame(this.animateRecord.bind(this));
+    }
+
     toggleRecord() {
         this.isRecording = !this.isRecording;
-        this.recordButton.classList.toggle('active', this.isRecording);
-        this.recordButton.innerHTML = this.isRecording ? '<i class="fas fa-circle"></i>' : '<i class="far fa-circle"></i>';
+        if (this.isRecording) {
+            this.animationFrame = requestAnimationFrame(this.animateRecord.bind(this));
+        } else if (this.animationFrame) {
+            this.recordButton.classList.remove('active');
+            cancelAnimationFrame(this.animationFrame);
+        }
     }
 
     toggleMute() {
         this.isMuted = !this.isMuted;
         this.muteButton.classList.toggle('active', this.isMuted);
         this.muteButton.innerHTML = this.isMuted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
+    }
+
+    toggleLock() {
+        this.isLocked = !this.isLocked;
+        this.lockButton.classList.toggle('active', this.isLocked);
+        this.lockButton.innerHTML = this.isLocked ? '<i class="fas fa-lock"></i>' : '<i class="fas fa-lock-open"></i>';
     }
 
     hasHit(beat) {
@@ -625,23 +646,24 @@ class AudioTrack {
     }
 
     playSound(beat, velocity = 100) {
-        if(!this.isMuted){
-
-        this.cueSound(null, 0, velocity);
-        if (this.scope.quantize) {
-            beat = this.quantizeBeat(beat);
+        if (!this.isMuted) {
+            this.cueSound(null, 0, velocity);
+            if (!this.isLocked) {
+                if (this.scope.quantize) {
+                    beat = this.quantizeBeat(beat);
+                }
+                beat = beat % this.scope.totalBeats;
+                if (!this.hasHit(beat)) {
+                    this.addHit(beat, velocity);
+                    this._drawSound(beat, velocity);
+                }
+            }
         }
-        beat = beat % this.scope.totalBeats;
-        if (!this.hasHit(beat)) {
-            this.addHit(beat, velocity);
-            this._drawSound(beat, velocity);
-        }
-    }
     }
 
 
     cueSound(dest = null, when = 0, velocity = 100) {
-        if(!this.isMuted){
+        if(this.isMuted) return;
         const context = this.scope.context;
         const sound = this.scope.getAudioBuffer(this.drum);
         if (context == null || sound == null) return;
@@ -660,7 +682,6 @@ class AudioTrack {
         source.buffer = sound;
         source.connect(gain);
         source.start(when);
-    }
     }
 
     stopSounds() {
@@ -724,9 +745,11 @@ class AudioTrack {
     }
 
     clear() {
-        this.hits = [ ];
-        this.stopSounds();
-        this.draw();
+        if (!this.isLocked) {
+            this.hits = [];
+            this.stopSounds();
+            this.draw();
+        }
     }
 
     draw() {

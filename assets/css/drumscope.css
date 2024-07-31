@@ -246,7 +246,6 @@ nav.controls {
 
 .track .track-controls {
   position: absolute;
-  /* top: 35px;*/
   right: 5px;
   border: 1px solid #888;
   border-radius: 5px;
@@ -261,13 +260,16 @@ nav.controls {
   cursor: pointer;
   font-size: 16px;
 }
-
 .track-controls .record-button.active {
-  color: #e3304c;
+  color: #f5004f;
 }
 
 .track-controls .mute-button.active {
-  color: #3045e3;
+  color: #0802a3;
+}
+
+.track-controls .lock-button.active {
+  color: #1e1548;
 }
 
 .code-hint-container {
@@ -303,19 +305,3 @@ button.copy-code-button {
   padding: 8px 90px;
   min-height: 30px;
 }
-
-/* #metronome-indicator {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #333;
-  transition: background-color 0.1s;
-}
-
-#metronome-indicator.active {
-  background-color: #e3304c;
-} */
