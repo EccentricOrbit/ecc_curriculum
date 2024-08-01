@@ -4,7 +4,8 @@
   "description": "> npx @11ty/eleventy",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "npx @11ty/eleventy --serve",
+    "build": "npx @11ty/eleventy"
   },
   "keywords": [],
   "author": "",
@@ -14,5 +15,8 @@
     "@11ty/eleventy-fetch": "^4.0.1",
     "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
     "pagefind": "^1.1.0"
+  },
+  "dependencies": {
+    "html-to-docx": "^1.8.0"
   }
 }
