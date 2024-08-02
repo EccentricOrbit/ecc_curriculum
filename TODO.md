@@ -34,13 +34,11 @@ https://docs.google.com/document/d/1Z4uVP5WoXxb39tJAZY3PQrC_TDeubOHhvWhNqrnngi8/
 
 
 # Covers to Add
+
 Full list from Cameron Roberts
 https://docs.google.com/document/d/13FXAX66NMen69nTWQKj_HmQkY_wlLk5fdQoRuf0Jg8w/edit
 
-Copy over featured projects from community site (Bowser from mario)
-
 Other intern projects
-Passionfruit
 
 # 2022 curriculum
 https://docs.google.com/document/d/1jriHRSDJNJsuG3gp6mG63O78OML4eJrSaoX-d3_RHIs/edit
