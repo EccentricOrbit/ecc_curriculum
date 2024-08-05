@@ -482,8 +482,9 @@ article table {
     max-width: 650px;
 }
 article table td, article table th {
-    padding: 0.5em 0.75em;
+    padding: 0.25em 0.5em;
     vertical-align: top;
+    font-size: 11px;
 }
 
 section .highlights {
@@ -1047,4 +1048,12 @@ a.more-info:hover {
     .noprint { display: none; }
     .print-only { display: block; }
     h1.page-title { font-size: 20px; }
+
+    iframe.composer-iframe {
+        width: 50%;
+        min-width: none;
+        height: 230px;
+        transform: scale(0.55);
+        margin-bottom: -85px;
+    }
 }

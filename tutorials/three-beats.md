@@ -38,6 +38,7 @@ playNote(4, beats = 0.5)
 
 # BEAT 2: Trapetón (Latin Trap / Bad Bunny Beat)
 <iframe src="/interactives/composer/?embedded=true&bpm=90&steps=16&voice=1&track4=8484&track5=1111" class="composer-iframe" scrolling="no"></iframe>
+
 * Click on the **Add Cell** button and select Drums
 * Change the instrument to **Drums → Headline Drums** and add this code.
 * Press Play to hear how it sounds.
@@ -56,6 +57,7 @@ playNote(2, beats = 0.5)
 
 # BEAT 3: Vintage Hip-Hop
 <iframe src="/interactives/composer/?embedded=true&bpm=90&steps=16&voice=0&track1=0020&track4=0101&track5=9440" class="composer-iframe" scrolling="no"></iframe>
+
 * Click on the **Add Cell** button and select Drums.
 * Change the instrument to **Drums → 808 Drums**, and add this code
 
