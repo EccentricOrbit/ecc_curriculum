@@ -31,7 +31,7 @@ module.exports = function(eleventyConfig) {
         // Replace <code> tags with a custom element that we can style
         const processedContent = content.replace(/<code/g, '<p class="code"').replace(/<\/code>/g, '</p>');
         
-        const docxBuffer = await HTMLtoDOCX(processedContent, "This can be the header", options, "Tunepad Tutorial");
+        const docxBuffer = await HTMLtoDOCX(processedContent, "This can be the header", {}, "Tunepad Tutorial");
         const encodedContent = docxBuffer.toString('base64');
     
         return `<button onclick="downloadDocx('${encodedContent}', '${this.page.fileSlug}.docx')">Download Tutorial</button>`;
