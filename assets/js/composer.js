@@ -201,12 +201,14 @@ class DrumCell {
             if (this.velocity === 0) this.cancelSound();
             //e.stopPropagation();
         });
-        this.rect.addEventListener('pointerenter', (e) => {
-            if (e.buttons > 0 && this.velocity < 100) {
-                this.setVelocity(100, true);
-                this.track.onUpdate(this);
-            }
-        });
+
+        // FIXME breaks iPad compatibility
+        // this.rect.addEventListener('pointerenter', (e) => {
+        //     if (e.buttons > 0 && this.velocity < 100) {
+        //         this.setVelocity(100, true);
+        //         this.track.onUpdate(this);
+        //     }
+        // });
     }
 
     get bpm() { return this.track.bpm; }
