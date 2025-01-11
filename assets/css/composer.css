@@ -387,3 +387,8 @@ button.copy-code-button {
   background-color: var(--drum-color);
   background-image: url("../images/instruments/drumkit.svg");
 }
+
+/* prevents the iPad buttons to be stuck with the hover state */
+@media (hover: none) {
+  .instrument button:hover { color: rgba(255, 255, 255, 0.75); !important;}
+}

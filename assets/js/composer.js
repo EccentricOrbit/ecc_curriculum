@@ -575,12 +575,19 @@ class Sequencer {
         this.container.querySelector('.play-button').addEventListener('click', (e) => this.play());
         this.container.querySelector('.pause-button').addEventListener('click', (e) => this.pause());
         this.container.querySelector('.stop-button').addEventListener('click', (e) => this.composer.stopAll());
-        this.container.querySelector('.clear-button').addEventListener('click', (e) => this.clear());
         this.container.querySelector('.bars-up').addEventListener('click', (e) => this.incrementMeasures());
         this.container.querySelector('.bars-down').addEventListener('click', (e) => this.decrementMeasures());
         this.container.querySelector('.copy-code-button').addEventListener('click', (e) => this.copyCode());
         this.container.querySelector('.embed-expand')?.addEventListener('click', (e) => this.showEmbedCode());
         this.container.querySelector('.embed-collapse')?.addEventListener('click', (e) => this.hideEmbedCode());
+
+        // clear the sequencer as well as the code hint
+        this.container.querySelector('.clear-button').addEventListener('click', (e) =>
+        {
+            this.clear();
+            this.updateCodeHint();
+        });
+
         bindSpinnerButton(this.container.querySelector('.tempo-up'),
                             () => this.increaseTempo(),
                             () => this.mute(),
