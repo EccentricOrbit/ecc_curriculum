@@ -1,5 +1,13 @@
 /**
+ * Updates as of Feb 16, 2025
+ *   Removed global recording checkbox
+ *   Fixed user-select issue on drum pads
+ *   Fixed playhead timeline-manipulator bug
  * 
+ * TODO:
+ * line 578: remove hit??
+ * scope.updateCodeHint only permanent hits
+ * don't cut off sounds at the end of a bar
  */
 class DrumScope {
 
@@ -13,7 +21,6 @@ class DrumScope {
         this.isPlaying = false;
         this.looped = false;
         this.quantize = true;
-        this.recording = true;
         this.midi = true;
         this.last_beat = 0;
         this.timeline = new Timeline(this);
@@ -82,9 +89,6 @@ class DrumScope {
         document.querySelector('#quantize-check').addEventListener('change', (e) => {
             this.quantize = e.target.checked;
         });
-        document.querySelector('#record-check').addEventListener('change', (e) => {
-            this.recording = e.target.checked;
-        });
         document.querySelector('#midi-check').addEventListener('change', (e) => {
             this.midi = e.target.checked;
         });
@@ -128,7 +132,7 @@ class DrumScope {
                 this.looped = true;
             }
             else if (this.last_beat > beat) {
-                if (this.looped && !this.recording) {
+                if (this.looped) {
                     this.clear();
                 }
                 this.looped = false;
@@ -536,7 +540,20 @@ class Timeline {
     }
 
     xToBeat(x) {
-        return ((x - this.MARGIN) / this.width) * this.scope.totalBeats;
+        return Math.max(0.0, ((x - this.MARGIN) / this.width) * this.scope.totalBeats);
+    }
+}
+
+class DrumHit {
+    constructor(beat, velocity, permanent) {
+        this.beat = beat;
+        this.alpha = 1.0;
+        this.velocity = velocity;
+        this.permanent = permanent;
+    }
+
+    fade() {
+        if (!this.permanent) this.alpha *= 0.8;
     }
 }
 
@@ -551,7 +568,8 @@ class AudioTrack {
         this.note = container.getAttribute("data-note");
         this.canvas = container.querySelector("canvas");
         this.ctx = this.canvas.getContext('2d');
-        this.hits = [ ]; // when drum hits are triggered
+        this.velocity = 100;
+        this.hits = [ ];  // when drum hits are triggered
         this.resize();
         this.draw();
         this.master = null;
@@ -578,7 +596,7 @@ class AudioTrack {
             if (this.hasHit(beat)) {
                 this.removeHit(beat);
             } else {
-                this.addHit(beat);
+                this.addHit(new DrumHit(beat, this.velocity, this.isRecording));
                 if (this.scope.isPlaying) {
                     this.stopSounds();
                     this.cueSounds(this.scope.master, 0, this.scope.currentBeat % this.scope.totalBeats);
@@ -588,6 +606,7 @@ class AudioTrack {
             this.draw();
             this.scope.updateCodeHint();
         });
+        setInterval(() => this.fadeOutAnimation(), 100);
     }
 
     animateRecord(timestamp) {
@@ -626,17 +645,18 @@ class AudioTrack {
         this.lockButton.innerHTML = this.isLocked ? '<i class="fas fa-lock"></i>' : '<i class="fas fa-lock-open"></i>';
     }
 
+    // return true only if hit is permanent
     hasHit(beat) {
-        return this.hits.some((e) => e[0] === beat);
+        return this.hits.some(hit => (hit.beat === beat && hit.permanent));
     }
 
-    addHit(beat, velocity = 100) {
-        this.hits.push([ beat, velocity ]);
-        this.hits.sort((a, b) => a[0] - b[0]);
+    addHit(hit) {
+        this.hits.push(hit);
+        this.hits.sort((a, b) => a.beat - b.beat);
     }
 
     removeHit(beat) {
-        this.hits = this.hits.filter(item => item[0] !== beat);
+        this.hits = this.hits.filter(hit => !(hit.beat === beat && hit.permanent));
     }
 
     resize() {
@@ -654,8 +674,9 @@ class AudioTrack {
                 }
                 beat = beat % this.scope.totalBeats;
                 if (!this.hasHit(beat)) {
-                    this.addHit(beat, velocity);
-                    this._drawSound(beat, velocity);
+                    const hit = new DrumHit(beat, velocity, this.isRecording);
+                    this.addHit(hit);
+                    this._drawSound(hit);
                 }
             }
         }
@@ -697,56 +718,63 @@ class AudioTrack {
         const bpm = this.scope.bpm;
 
         if (dest !== null && context !== null) {
-            for (let el of this.hits) {
+            for (const hit of this.hits) {
                 let when = context.currentTime;
-                const hit = el[0];
-                const vel = el[1];
-                if (hit === 0 && delayBeats === 0 && offsetBeats === 0) {
-                    this.cueSound(dest, when, vel);
-                }
-                else if (delayBeats > 0) {
-                    when = when + (hit + delayBeats) * 60 / bpm;
-                    this.cueSound(dest, when, vel);
-                } 
-                else if (offsetBeats >= 0 && hit > offsetBeats) {
-                    when = when + (hit - offsetBeats) * 60 / bpm;
-                    this.cueSound(dest, when, vel);
+                if (hit.permanent) {
+                    if (hit.beat === 0 && delayBeats === 0 && offsetBeats === 0) {
+                        this.cueSound(dest, when, hit.velocity);
+                    }
+                    else if (delayBeats > 0) {
+                        when = when + (hit.beat + delayBeats) * 60 / bpm;
+                        this.cueSound(dest, when, hit.velocity);
+                    } 
+                    else if (offsetBeats >= 0 && hit.beat > offsetBeats) {
+                        when = when + (hit.beat - offsetBeats) * 60 / bpm;
+                        this.cueSound(dest, when, hit.velocity);
+                    }
                 }
             }
+        }
+    }
+
+    fadeOutAnimation() {
+        // fade drum hits
+        if (this.hits.some(hit => !hit.permanent)) {
+            this.hits.forEach((hit) => { hit.fade(); });
+            this.hits = this.hits.filter(hit => hit.alpha > 0.1);
+            this.draw();
         }
     }
 
     generateCode() {
         let code = "";
-        if (this.hits.length > 0 && !this.isMuted) {
-        if (this.hits.length > 0) {
+        const permahits = this.hits.filter(hit => hit.permanent);
+        if (permahits.length > 0 && !this.isMuted) {
             code += `# ${this.name}\n`;
             code += `${this.name} = ${this.note}\n`;
             code += "moveTo(0)\n";
-        }
-        let playhead = 0;
-        for (let el of this.hits) {
-            const hit = el[0];
-            const vel = el[1];
-            if (hit > playhead) {
-                code += `rest(${(hit - playhead).toFixed(2)})\n`;
-            } else if (hit < playhead) {
-                code += `rewind(${(playhead - hit).toFixed(2)})\n`;
+
+            let playhead = 0;
+            for (const hit of permahits) {
+                if (hit.beat > playhead) {
+                    code += `rest(${(hit.beat - playhead).toFixed(2)})\n`;
+                } else if (hit.beat < playhead) {
+                    code += `rewind(${(playhead - hit.beat).toFixed(2)})\n`;
+                }
+                if (hit.velocity !== 100) {
+                    code += `playNote(${this.drum}, beats=0.5, velocity=${hit.velocity})\n`;
+                } else {
+                    code += `playNote(${this.drum}, beats=0.5)\n`;
+                }
+                playhead = hit.beat + 0.5;
             }
-            if (vel !== 100) {
-                code += `playNote(${this.drum}, beats=0.5, velocity=${vel})\n`;
-            } else {
-                code += `playNote(${this.drum}, beats=0.5)\n`;
-            }
-            playhead = hit + 0.5;
         }
-    }
         return code ? code + "\n\n" : code;
     }
 
     clear() {
         if (!this.isLocked) {
-            this.hits = [];
+            this.hits = this.hits.filter(hit => hit.permanent);
             this.stopSounds();
             this.draw();
         }
@@ -780,10 +808,8 @@ class AudioTrack {
                 c.lineTo(this.beatToX(m * this.scope.beatsPerMeasure), h);
             }
             c.stroke();
-            for (let el of this.hits) {
-                const hit = el[0];
-                const vel = el[1];
-                this._drawSound(hit, vel);
+            for (const hit of this.hits) {
+                this._drawSound(hit);
             }
         }
         c.restore();
@@ -804,9 +830,13 @@ class AudioTrack {
     }
 
 
-    _drawSound(beat, velocity = 100) {
+    _drawSound(hit) {
         const sound = this.scope.getAudioBuffer(this.drum);
         if (sound === null) return;
+
+        const beat = hit.beat;
+        const velocity = hit.velocity;
+        const perm = hit.permanent;
         const c = this.ctx;
         const w = this.canvas.width;
         const h = this.canvas.height;
@@ -820,7 +850,7 @@ class AudioTrack {
         c.save();
         {
             c.lineWidth = 2;
-            c.strokeStyle = '#e3304c';
+            c.strokeStyle = perm ? '#000000' : `rgba(227,48,76, ${hit.alpha})`;
             c.beginPath();
             c.moveTo(this.startpx, h/2);
             let x = 0.0, y = 0.0, s = this.beatToX(beat);

@@ -138,6 +138,7 @@ nav.controls {
   flex-direction: column;
   width: 150px;
   min-width: 150px;
+  user-select: none;
 }
 .drum-pads button,
 .drum-tracks .track {
