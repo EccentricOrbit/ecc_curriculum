@@ -3,11 +3,7 @@
  *   Removed global recording checkbox
  *   Fixed user-select issue on drum pads
  *   Fixed playhead timeline-manipulator bug
- * 
- * TODO:
- * line 578: remove hit??
- * scope.updateCodeHint only permanent hits
- * don't cut off sounds at the end of a bar
+ *   Created temporary and permanent drum hits depending on whether you're recording or not
  */
 class DrumScope {
 
@@ -132,9 +128,6 @@ class DrumScope {
                 this.looped = true;
             }
             else if (this.last_beat > beat) {
-                if (this.looped) {
-                    this.clear();
-                }
                 this.looped = false;
             }
 
@@ -774,7 +767,7 @@ class AudioTrack {
 
     clear() {
         if (!this.isLocked) {
-            this.hits = this.hits.filter(hit => hit.permanent);
+            this.hits = [ ];
             this.stopSounds();
             this.draw();
         }
