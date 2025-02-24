@@ -15,6 +15,7 @@ class DrumScope {
         this.start_time = 0;
         this.start_beat = 0;
         this.isPlaying = false;
+        this.isRecording = false;
         this.looped = false;
         this.quantize = true;
         this.midi = true;
@@ -24,6 +25,8 @@ class DrumScope {
         this.metronomeEnabled = false;
         this.metronomeSound = null;
         this.nextMetronomeTime = 0;
+        this.animationFrame = null;
+        this.lastToggleTime = 0;
 
 
         this.tracks = { };          // audio tracks draw waveform trace
@@ -38,6 +41,7 @@ class DrumScope {
         document.querySelector(".play-button").addEventListener('click', e => this.play());
         document.querySelector(".pause-button").addEventListener('click', e => this.pause());
         document.querySelector(".stop-button").addEventListener('click', e => this.stop());
+        document.querySelector(".record-button").addEventListener('click', e => this.toggleRecord());
         document.querySelector(".clear-button").addEventListener('click', e => this.clear());
         document.querySelector('.copy-code-button').addEventListener('click', (e) => this.copyCode());
         
@@ -140,7 +144,6 @@ class DrumScope {
         }
     }
 
-
     async loadMetronomeSound() {
         const response = await fetch("/sounds/voices/metronome/metronome.wav");
         const arrayBuffer = await response.arrayBuffer();
@@ -213,6 +216,40 @@ class DrumScope {
         this.setPlayhead(0);
         this.start_beat = 0;
         this.stopSounds();
+        this.stopRecording();
+    }
+
+    animateRecord(timestamp) {
+        if (timestamp - this.lastToggleTime > 500) {
+            document.querySelector('.controls .record-button').classList.toggle('active');
+            this.lastToggleTime = timestamp;
+        }
+        this.animationFrame = requestAnimationFrame(this.animateRecord.bind(this));        
+    }
+
+    startRecording() {
+        this.isRecording = true;
+        document.querySelector('.controls .record-button').classList.remove('active');
+        for (let t in this.tracks) { this.tracks[t].startRecording(); }          
+        this.lastToggleTime = 0;
+        if (this.animationFrame == null) {
+            this.animationFrame = requestAnimationFrame(this.animateRecord.bind(this));
+        } 
+    }
+
+    stopRecording() {
+        this.isRecording = false;
+        document.querySelector('.controls .record-button').classList.remove('active');
+        for (let t in this.tracks) { this.tracks[t].stopRecording(); }
+        if (this.animationFrame != null) {
+            cancelAnimationFrame(this.animationFrame);
+            this.animationFrame = null;
+        }
+    }        
+
+
+    toggleRecord() {
+        this.isRecording ? this.stopRecording() : this.startRecording();
     }
 
     clear() {
@@ -389,6 +426,22 @@ class DrumScope {
                     }
                 }
             });
+        }
+
+        // control change
+        else if (cmd === 11) {
+            let controller = event.data[1];
+            let value = event.data[2];
+
+            // arbitrarily use controller 7 for start/stop recording
+            if (controller === 7) {
+                if (value > 0 && !this.isRecording) {
+                    this.startRecording();
+                } 
+                else if (value === 0 && this.isRecording) {
+                    this.stopRecording();
+                }
+            }
         }
     }
 
@@ -574,11 +627,13 @@ class AudioTrack {
         this.recordButton = container.querySelector('.record-button');
         this.muteButton = container.querySelector('.mute-button');
         this.lockButton = container.querySelector('.lock-button');
-
+        this.trashButton = container.querySelector('.trash-button');
 
         this.recordButton.addEventListener('click', () => this.toggleRecord());
         this.muteButton.addEventListener('click', () => this.toggleMute());
         this.lockButton.addEventListener('click', () => this.toggleLock());
+        this.trashButton.addEventListener('click', () => this.clear());
+
 
         this.canvas.addEventListener('click', (e) => {
             if (this.isLocked) return;
@@ -603,27 +658,33 @@ class AudioTrack {
     }
 
     animateRecord(timestamp) {
-        if (!this.isRecording) {
-            this.recordButton.classList.remove('active');
-            return;
-        }
-
         if (timestamp - this.lastToggleTime > 500) {
             this.recordButton.classList.toggle('active');
             this.lastToggleTime = timestamp;
         }
-
         this.animationFrame = requestAnimationFrame(this.animateRecord.bind(this));
     }
 
-    toggleRecord() {
-        this.isRecording = !this.isRecording;
-        if (this.isRecording) {
+    startRecording() {
+        this.isRecording = true;
+        this.recordButton.classList.remove('active');
+        this.lastToggleTime = 0;
+        if (this.animationFrame == null) {
             this.animationFrame = requestAnimationFrame(this.animateRecord.bind(this));
-        } else if (this.animationFrame) {
-            this.recordButton.classList.remove('active');
-            cancelAnimationFrame(this.animationFrame);
         }
+    }
+
+    stopRecording() {
+        this.isRecording = false;
+        this.recordButton.classList.remove('active');
+        if (this.animationFrame != null) {
+            cancelAnimationFrame(this.animationFrame);
+            this.animationFrame = null;
+        }
+    }
+
+    toggleRecord() {
+        this.isRecording ? this.stopRecording() : this.startRecording();
     }
 
     toggleMute() {
@@ -644,8 +705,10 @@ class AudioTrack {
     }
 
     addHit(hit) {
-        this.hits.push(hit);
-        this.hits.sort((a, b) => a.beat - b.beat);
+        if (!this.hasHit(hit.beat))  {
+            this.hits.push(hit);
+            this.hits.sort((a, b) => a.beat - b.beat);
+        }
     }
 
     removeHit(beat) {
@@ -847,7 +910,7 @@ class AudioTrack {
             c.beginPath();
             c.moveTo(this.startpx, h/2);
             let x = 0.0, y = 0.0, s = this.beatToX(beat);
-            for (let i = 0; i < d.length; i += 8) {
+            for (let i = 0; i < d.length; i += 64) {
                 y = h/2 - h/2 * d[i] * p;
                 x = s + i / spp;
                 c.lineTo(x, y);

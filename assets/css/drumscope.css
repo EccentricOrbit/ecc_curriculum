@@ -111,6 +111,13 @@ nav.controls {
   width: unset;
 }
 
+.controls button.record-button.active {
+    color: #f5004f;
+}
+.controls button.record-button.active:hover {
+    color: #f5004f;
+}
+
 .tempo-controls,
 .combo {
   display: flex;
@@ -260,6 +267,9 @@ nav.controls {
   color: #888;
   cursor: pointer;
   font-size: 16px;
+}
+.track-controls button:hover {
+  color: #222; 
 }
 .track-controls .record-button.active {
   color: #f5004f;
