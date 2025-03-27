@@ -27,6 +27,7 @@ tags: interactive
 </head>
 
 
+
 <body>
     <nav class="controls">
     
@@ -59,42 +60,45 @@ tags: interactive
         </div>
                 
     </nav>
+    <div class="headline">
+        <canvas width="700" height="100" id="headline-canvas"></canvas>
+    </div>
     <main id="drumscope">
         <svg id="timeline"></svg>
         <div class="timeline-manipulator">BEATS</div>
         <div class="tracks">
             <div class="drum-pads">
-                <button data-drum="kick" data-trigger="k" data-note="0">
+                <button data-drum="kick" data-trigger="k" data-note="0" data-color="#eb455f">
                     <div class="drum-name">Kick</div>
                     <div class="trigger">k</div>
                     <div class="note">0</div>
                 </button>
-                <button data-drum="snare1" data-trigger="s" data-note="2">
+                <button data-drum="snare" data-trigger="s" data-note="2" data-color="#fd841f">
                     <div class="drum-name">Snare</div>
                     <div class="trigger">s</div>
                     <div class="note">2</div>
                 </button>
-                <button data-drum="closedHat" data-trigger="h" data-note="4">
+                <button data-drum="hat" data-trigger="h" data-note="4" data-color="#ffcd4b">
                     <div class="drum-name">Closed Hat</div>
                     <div class="trigger">h</div>
                     <div class="note">4</div>
                 </button>
-                <button data-drum="openHat" data-trigger="o" data-note="5">
+                <button data-drum="ohat" data-trigger="o" data-note="5" data-color="#fde767">
                     <div class="drum-name">Open Hat</div>
                     <div class="trigger">o</div>
                     <div class="note">5</div>
                 </button>
-                <button data-drum="floorTom" data-trigger="t" data-note="8">
+                <button data-drum="tom" data-trigger="t" data-note="8" data-color="#5d9c59">
                     <div class="drum-name">Tom</div>
                     <div class="trigger">t</div>
                     <div class="note">8</div>
                 </button>
-                <button data-drum="crash" data-trigger="c" data-note="9">
-                    <div class="drum-name">Cymbal</div>
+                <button data-drum="cowb" data-trigger="c" data-note="11" data-color="#3ab0ff">
+                    <div class="drum-name">Cow Bell</div>
                     <div class="trigger">f</div>
-                    <div class="note">9</div>
+                    <div class="note">11</div>
                 </button>
-                <button data-drum="clap" data-trigger="c" data-note="10">
+                <button data-drum="clap" data-trigger="c" data-note="10" data-color="#6f1ab6">
                     <div class="drum-name">Clap</div>
                     <div class="trigger">c</div>
                     <div class="note">10</div>
@@ -110,35 +114,35 @@ tags: interactive
                     </div>
                     <canvas></canvas>
                 </div>
-                <div class="track" data-drum="snare1" data-note="2" data-name="snare">
+                <div class="track" data-drum="snare" data-note="2" data-name="snare">
                 <div class="track-controls">
                         <button class="record-button" title="Toggle Record"><i class="fas fa-circle"></i></button>
                         <button class="mute-button" title="Toggle Mute"><i class="fas fa-volume-up"></i></button>
                         <button class="trash-button" title="Clear Track"><i class="fas fa-trash"></i></button>
                         <button class="lock-button" title="Toggle Lock"><i class="fas fa-lock-open"></i></button>
                     </div><canvas></canvas></div>
-                <div class="track" data-drum="closedHat" data-note="4" data-name="hat">
+                <div class="track" data-drum="hat" data-note="4" data-name="hat">
                 <div class="track-controls">
                         <button class="record-button" title="Toggle Record"><i class="fas fa-circle"></i></button>
                         <button class="mute-button" title="Toggle Mute"><i class="fas fa-volume-up"></i></button>
                         <button class="trash-button" title="Clear Track"><i class="fas fa-trash"></i></button>
                         <button class="lock-button" title="Toggle Lock"><i class="fas fa-lock-open"></i></button>
                     </div><canvas></canvas></div>
-                <div class="track" data-drum="openHat" data-note="5" data-name="open_hat">
+                <div class="track" data-drum="ohat" data-note="5" data-name="open_hat">
                 <div class="track-controls">
                         <button class="record-button" title="Toggle Record"><i class="fas fa-circle"></i></button>
                         <button class="mute-button" title="Toggle Mute"><i class="fas fa-volume-up"></i></button>
                         <button class="trash-button" title="Clear Track"><i class="fas fa-trash"></i></button>
                         <button class="lock-button" title="Toggle Lock"><i class="fas fa-lock-open"></i></button>
                     </div><canvas></canvas></div>
-                <div class="track" data-drum="floorTom" data-note="8" data-name="tom">
+                <div class="track" data-drum="tom" data-note="8" data-name="tom">
                 <div class="track-controls">
                         <button class="record-button" title="Toggle Record"><i class="fas fa-circle"></i></button>
                         <button class="mute-button" title="Toggle Mute"><i class="fas fa-volume-up"></i></button>
                         <button class="trash-button" title="Clear Track"><i class="fas fa-trash"></i></button>
                         <button class="lock-button" title="Toggle Lock"><i class="fas fa-lock-open"></i></button>
                     </div><canvas></canvas></div>
-                <div class="track" data-drum="crash" data-note="9" data-name="crash">
+                <div class="track" data-drum="cowb" data-note="11" data-name="crash">
                 <div class="track-controls">
                         <button class="record-button" title="Toggle Record"><i class="fas fa-circle"></i></button>
                         <button class="mute-button" title="Toggle Mute"><i class="fas fa-volume-up"></i></button>
