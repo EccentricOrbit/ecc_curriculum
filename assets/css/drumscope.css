@@ -62,6 +62,15 @@ body {
   font-family: var(--main-font);
 }
 
+.headline {
+  text-align: center;
+}
+
+#headline-canvas {
+  background-color: transparent;
+  width: 100%;
+}
+
 .tracks {
   display: flex;
 }
@@ -202,25 +211,25 @@ nav.controls {
   background-color: #6f1ab6;
   background-image: url("/images/drums/clap.svg");
 }
-.drum-pads button[data-drum="closedHat"] {
+.drum-pads button[data-drum="hat"] {
   background-color: #ffcd4b;
   background-image: url("/images/drums/hat.svg");
 }
-.drum-pads button[data-drum="openHat"] {
+.drum-pads button[data-drum="ohat"] {
   background-color: #fde767;
   background-image: url("/images/drums/open-hat.svg");
 }
-.drum-pads button[data-drum="floorTom"] {
+.drum-pads button[data-drum="tom"] {
   background-color: #5d9c59;
   background-image: url("/images/drums/tom.svg");
 }
 
-.drum-pads button[data-drum="snare1"] {
+.drum-pads button[data-drum="snare"] {
   background-color: #fd841f;
   background-image: url("/images/drums/snare.svg");
 }
 
-.drum-pads button[data-drum="crash"] {
+.drum-pads button[data-drum="cowb"] {
   background-color: #3ab0ff;
   background-image: url("/images/drums/open-hat.svg");
 }

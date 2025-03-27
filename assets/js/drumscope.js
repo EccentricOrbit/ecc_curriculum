@@ -331,6 +331,7 @@ class DrumScope {
             this.loadAudioBuffer(drum);
             e.addEventListener('pointerdown', (evt) => {
                 this.playSound(drum);
+                this._drawBigSound(drum);
             });
             e.addEventListener('pointerenter', (evt) => {
                 if (evt.buttons > 0) {
@@ -343,6 +344,7 @@ class DrumScope {
                 if (e.getAttribute("data-trigger") === key.key || e.getAttribute("data-note") === key.key) {
                     const drum = e.getAttribute("data-drum");
                     this.playSound(drum);
+                    this._drawBigSound(drum);
                     e.classList.add('clicked');
                 }
             });
@@ -350,6 +352,7 @@ class DrumScope {
         document.addEventListener('keyup', (key) => {
             document.querySelectorAll(".drum-pads button").forEach((e) => {
                 e.classList.remove('clicked');
+                clearBigSound();
             });
         });
     }
@@ -359,7 +362,7 @@ class DrumScope {
         if (this.sounds[name]) return this.sounds[name];
         if (this.context != null) {
             try {
-                const path = "/sounds/voices/rock-drums/" + name + ".wav";
+                const path = "/sounds/voices/linndrum/" + name + ".wav";
                 let response = await fetch(path);
                 let abuff = await response.arrayBuffer();
                 let buffer = await this.context.decodeAudioData(abuff);
@@ -394,6 +397,15 @@ class DrumScope {
         }
     }
 
+
+    _drawBigSound(drum) {
+        const sound = this.getAudioBuffer(drum);
+        const pad = document.querySelector(`.drum-pads button[data-drum="${drum}"`);
+        const bg = pad.getAttribute("data-color");
+        if (sound) drawBigSound(sound, bg);
+    }
+
+
     //----------------------------------------------------------
     // Fired when midi devices are added or removed. The 
     // parameter passed is a MIDIConnectionEvent.
@@ -420,8 +432,10 @@ class DrumScope {
                     const drum = e.getAttribute("data-drum");
                     if (cmd === 8) {
                         e.classList.remove('clicked');
+                        clearBigSound();
                     } else {
                         this.playSound(drum, velocity);
+                        this._drawBigSound(drum);
                         e.classList.add('clicked');
                     }
                 }
@@ -921,6 +935,45 @@ class AudioTrack {
     }
 }
 
+
+function drawBigSound(buffer, bg) {
+    const canvas = document.getElementById('headline-canvas');
+    const c = canvas.getContext('2d');
+    const w = canvas.width;
+    const h = canvas.height;
+    const p = 0.75;
+    const d = buffer.getChannelData(0);
+    const sps = buffer.sampleRate;       // samples per second
+    const bps = 90.0;  // beats per second
+    const pps = w * 1.75;        // pixels per second 
+    const spp = sps / pps;              // samples per pixel
+    c.save();
+    {
+        c.lineWidth = 2;
+        c.fillStyle = bg;
+        c.fillRect(0, 0, w, h);
+        c.strokeStyle = "white";
+        c.lineCap = "round";
+        c.beginPath();
+        let x = 0.0, y = 0.0, s = 50;
+        c.moveTo(s, h/2);
+        for (let i = 0; i < d.length; i += 8) {
+            y = h/2 - h/2 * d[i] * p;
+            x = s + i / spp;
+            c.lineTo(x, y);
+        }
+        c.stroke();
+    }
+    c.restore();
+}
+
+function clearBigSound() {
+    const canvas = document.getElementById('headline-canvas');
+    const c = canvas.getContext('2d');
+    const w = canvas.width;
+    const h = canvas.height;
+    c.clearRect(0, 0, w, h);
+}
 
 
 function bindSpinnerButton(button, spinAction, pressAction, releaseAction) {
