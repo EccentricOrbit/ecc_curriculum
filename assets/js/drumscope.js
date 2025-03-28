@@ -832,9 +832,9 @@ class AudioTrack {
                     code += `rewind(${(playhead - hit.beat).toFixed(2)})\n`;
                 }
                 if (hit.velocity !== 100) {
-                    code += `playNote(${this.drum}, beats=0.5, velocity=${hit.velocity})\n`;
+                    code += `playNote(${this.name}, beats=0.5, velocity=${hit.velocity})\n`;
                 } else {
-                    code += `playNote(${this.drum}, beats=0.5)\n`;
+                    code += `playNote(${this.name}, beats=0.5)\n`;
                 }
                 playhead = hit.beat + 0.5;
             }

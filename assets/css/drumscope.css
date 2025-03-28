@@ -64,6 +64,7 @@ body {
 
 .headline {
   text-align: center;
+  padding: 0 1.7rem;
 }
 
 #headline-canvas {
@@ -83,7 +84,7 @@ nav.controls {
   background-color: #eee;
   border-bottom: 1px solid #0004;
   box-shadow: 3px 3px 5px #0002;
-  margin-bottom: 2.5rem;
+  /*margin-bottom: 2.5rem;*/
 }
 
 .controls .expander {
