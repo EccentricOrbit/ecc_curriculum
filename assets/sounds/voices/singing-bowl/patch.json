@@ -1,0 +1,62 @@
+{
+    "patch_id": 62,
+    "generators": 100,
+    "instrument": "piano",
+    "min-note": 36,
+    "max-note": 108,
+    "focus-octave": 3,
+    "key-range": 17,
+    "created": "2022-02-20 17:49:59.525",
+    "description": "",
+    "format": "tunepad-patch",
+    "version": "2.0",
+    "modified": "2022-03-08 21:54:04.494",
+    "name": "Singing Bowl",
+    "source": "https://www.pianobook.co.uk/packs/sl-singing-bowl/",
+    "author": "https://www.pianobook.co.uk/profile/destinys-agent/",
+    "credit": "Audio source: www.pianobook.co.uk/packs/sl-singing-bowl",
+    "license": "Public Domain",
+    "nodes": [
+        {
+            "A": 0,
+            "D": 0.1,
+            "R": 0.75,
+            "S": 1,
+            "a shape": 4,
+            "cx": 128.969566345215,
+            "cy": 225.42063839674,
+            "d shape": 2,
+            "id": 0,
+            "level": 0.0,
+            "r shape": 2,
+            "type": "out"
+        },
+        {
+            "cx": -263.892395019531,
+            "cy": 161.388278961182,
+            "detune": 0,
+            "detune-mod": 20,
+            "id": 1,
+            "playback": 1,
+            "playback-mod": 0.15,
+            "sample-pack": "singing-bowl",
+            "samples": [
+                {
+                    "sample": "61noteDb4",
+                    "step": 61
+                }
+            ],
+            "type": "sample"
+        }
+    ],
+    "parameters": [ ],
+    "routing": [
+        {
+            "dest": 0,
+            "id": 1,
+            "level": 0,
+            "source": 1,
+            "type": "audio"
+        }
+    ]
+}
