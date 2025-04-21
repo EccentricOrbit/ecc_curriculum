@@ -16,6 +16,7 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({ "assets/images" : "images" });
     eleventyConfig.addPassthroughCopy({ "assets/python" : "python" });
     eleventyConfig.addPassthroughCopy({ "assets/webfonts" : "webfonts" });
+    eleventyConfig.addPassthroughCopy({ "assets/three" : "three" });
 
     eleventyConfig.on('eleventy.after', () => {
         execSync(`npx pagefind --site _site --glob \"**/*.html\"`, { encoding: 'utf-8' })
