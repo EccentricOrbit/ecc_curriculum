@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 	</head>
 	<body>
-		<audio autoplay="true" loop="true" id="pad-audio">
+		<audio loop="true" id="pad-audio">
 			<source src="/sounds/pads/plenitude.wav" type="audio/wav">
 			Your browser does not support the audio tag.
 		</audio>
@@ -321,8 +321,16 @@
 				document.onkeyup = keyUp;
 
 				document.getElementById('pad-audio').volume = 0.3;
+
+				document.addEventListener('click', startDrone);
 			}
 
+			function startDrone() {
+				document.removeEventListener('click', startDrone);
+				const audio = document.getElementById('pad-audio');
+				audio.loop = true;
+				audio.play();
+			}
 
 			function initWater() {
 
