@@ -1,0 +1,133 @@
+{
+    "version": "2.0",
+    "patch_id" : 228,
+    "description": "",
+    "format": "tunepad-patch",
+    "instrument": "drums",
+    "created": "2022-02-26 22:37:11.894",
+    "modified": "2022-03-08 11:17:12.789",
+    "name": "LinnDrum",
+    "source": "https://www.drumkito.com/sample-packs/linndrum-sample-pack/",
+    "author": "majortom@muc.de",
+    "credit": "Audio source: www.drumkito.com",
+    "nodes": [
+        {
+            "A": 0,
+            "D": 0.1,
+            "R": 0.15,
+            "S": 1,
+            "a shape": 4,
+            "cx": 70,
+            "cy": 0,
+            "d shape": 2,
+            "id": 0,
+            "level": 0,
+            "r shape": 2,
+            "type": "out"
+        },
+        {
+            "cx": -29.5000019073486,
+            "cy": -4.76837158203125e-7,
+            "detune": 0,
+            "detune-mod": 20,
+            "id": 2,
+            "playback": 1,
+            "playback-mod": 0.15,
+            "sample-pack": "linndrum",
+            "samples": [
+                {
+                    "name": "kick",
+                    "sample": "kick",
+                    "step": 0
+                },
+                {
+                    "name": "clap",
+                    "sample": "clap",
+                    "step": 1
+                },
+                {
+                    "name": "snare",
+                    "sample": "sd",
+                    "step": 2
+                },
+                {
+                    "name": "snare",
+                    "sample": "sdh",
+                    "step": 3
+                },
+                {
+                    "name": "hat",
+                    "sample": "chhs",
+                    "step": 4
+                },
+                {
+                    "name": "tom",
+                    "sample": "tomh",
+                    "step": 5
+                },
+                {
+                    "name": "tom",
+                    "sample": "tom",
+                    "step": 6
+                },
+                {
+                    "name": "tom",
+                    "sample": "toml",
+                    "step": 7
+                },
+                {
+                    "name": "conga",
+                    "sample": "congalll",
+                    "step": 8
+                },
+                {
+                    "name": "conga",
+                    "sample": "congall",
+                    "step": 9
+                },
+                {
+                    "name": "conga",
+                    "sample": "congal",
+                    "step": 10
+                },
+                {
+                    "name": "conga",
+                    "sample": "conga",
+                    "step": 11
+                },
+                {
+                    "name": "conga",
+                    "sample": "congah",
+                    "step": 12
+                },
+                {
+                    "name": "conga",
+                    "sample": "congahh",
+                    "step": 13
+                },
+                {
+                    "name": "cow bell",
+                    "sample": "cowb",
+                    "step": 14
+                },
+
+                {
+                    "name": "tamb",
+                    "sample": "tamb",
+                    "step": 15
+                }
+            ],
+            "type": "drums"
+        }
+    ],
+    "parameters": [],
+    "routing": [
+        {
+            "dest": 0,
+            "id": 1,
+            "level": 0,
+            "source": 2,
+            "type": "audio"
+        }
+    ]
+}
