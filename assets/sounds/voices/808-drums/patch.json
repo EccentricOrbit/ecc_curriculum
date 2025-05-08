@@ -1,13 +1,14 @@
 {
     "uid": "c97d3010-879e-11ec-9ee5-914948458fe3",
     "version": "2.0",
-    "id": 11,
+    "patch_id": 11,
     "description": "Roland 808 drum machine",
     "format": "tunepad-patch",
     "instrument": "drums",
     "created": "2022-02-06 16:44:48.593",
     "modified": "2022-03-08 11:15:49.079",
-    "name": "808 Drumkit",
+    "name": "808 Drums",
+    "credit": "Audio source: www.drumkito.com",
     "nodes": [
         {
             "A": 0,
@@ -51,7 +52,7 @@
                     "step": 4
                 },
                 {
-                    "name": "hat",
+                    "name": "open hat",
                     "sample": "oh",
                     "step": 5
                 },
@@ -94,6 +95,16 @@
                     "name": "rimshot",
                     "sample": "rs",
                     "step": 13
+                },
+                {
+                    "name": "crash",
+                    "sample": "cymb",
+                    "step": 14
+                },
+                {
+                    "name": "hat",
+                    "sample": "ch",
+                    "step": 15
                 }
             ],
             "type": "drums"
