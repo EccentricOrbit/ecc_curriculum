@@ -1057,3 +1057,18 @@ a.more-info:hover {
         margin-bottom: -85px;
     }
 }
+
+
+tunepad-cell-list {
+    display: flex;
+    flex-direction: column;
+}
+
+tunepad-cell {
+    max-width: 700px;
+    margin-bottom: 2rem;
+}
+
+tunepad-cell::part(cell-menu) {
+    display: none;
+}
