@@ -19,7 +19,8 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy({ "assets/three" : "three" });
 
     eleventyConfig.on('eleventy.after', () => {
-        execSync(`npx pagefind --site _site --glob \"**/*.html\"`, { encoding: 'utf-8' })
+        execSync(`npx pagefind --site _site --glob \"**/*.html\"`, { encoding: 'utf-8' });
+        execSync("sed -i '' 's_/assets/_/_g' assets/js/tunepad.min.js");
     });
 
     // limit filter
