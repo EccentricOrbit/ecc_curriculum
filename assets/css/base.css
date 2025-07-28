@@ -1066,7 +1066,8 @@ tunepad-cell-list {
 
 tunepad-cell {
     max-width: 700px;
-    margin-bottom: 2rem;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 tunepad-cell::part(cell-menu) {
