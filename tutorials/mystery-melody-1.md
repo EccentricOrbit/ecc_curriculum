@@ -24,7 +24,7 @@ That means Python can't understand what you typed.
 # How do I fix syntax errors?
 Here's a quick example where Python is confused because we wrote `playnote` (with a lowercase “n”) instead of `playNote` (with an uppercase “N”). Try changing the code on line 5 and then pressing the PLAY button to hear how it sounds. 
 
-<tunepad-cell patch="808-drums" name="Bass Drums" uuid="bass-drums" timeline="hidden" theme="light" class="tutorial">
+<tunepad-cell patch="808-drums" name="Bass Drums" uuid="bass-drums" timeline="hidden" theme="light" class="tutorial" show-instrument="false">
 /# play four kick drum sounds
 /playNote(1)
 /playNote(1)
@@ -37,7 +37,7 @@ Here's a quick example where Python is confused because we wrote `playnote` (wit
 This code has a syntax error on line 4 where there's a missing comma between the number 4 and the word `beats`. 
 Try adding a comma and playing this cell with the first one.
 
-<tunepad-cell patch="808-drums" name="Offbeat Hats" uuid="hats" timeline="hidden" theme="light" class="tutorial">
+<tunepad-cell patch="808-drums" name="Offbeat Hats" uuid="hats" timeline="hidden" theme="light" class="tutorial" show-instrument="false">
 /# play four hi-hat sounds using a loop
 /for i in range(4):
 /    rest(0.5)
@@ -49,7 +49,7 @@ Try adding a comma and playing this cell with the first one.
 This code has **lots** of problems! Use the red error marker to find and fix all of the syntax errors to reveal the hidden mystery melody.
 Press PLAY when you're done.
 
-<tunepad-cell patch="marimba" name='Melody' uuid='melody' instrument="piano" timeline="hidden" theme="light" class="tutorial" autocompile="true">
+<tunepad-cell patch="marimba" name='Melody' uuid='melody' instrument="piano" timeline="hidden" theme="light" class="tutorial" autocompile="true" show-instrument="false">
 /# there's something wrong with my code :( :(
 /playNote(50)
 /playNote(52)
