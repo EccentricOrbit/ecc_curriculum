@@ -1,0 +1,102 @@
+---
+layout: layouts/playground.njk
+tags: [ ]
+category: Activity
+title: "Harmonizer"
+description: Practice writing Python code play chords
+level: Beginner
+time: 30 minutes
+license: by-nc-sa
+splash: /images/splash/chords-splash.jpg
+---
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Music&display=swap');
+    h1 {
+        padding: 0;
+        margin: 0;
+    }
+</style>
+<tunepad-project name="Harmonizer" tempo="90" voices="/sounds/voices2">
+
+<nav class="left-menu">
+    <div class="tunepad-logo"></div>
+</nav>
+
+
+<tunepad-block-menu>
+        
+<h1>Chords</h1>
+<tunepad-block code="playNote($0)" color="rgb(192, 105, 202)">
+    play
+    <div class="param" data-menu="chord">[60, 64, 67]</div>
+</tunepad-block>
+<tunepad-block code="playNote($0, beats = $1)" color="rgb(192, 105, 202)">
+    play
+    <div class="param" data-menu="chord">[60, 64, 67]</div> for
+    <div class="param" data-menu="notes">4</div> beats
+</tunepad-block>
+
+<h1>Notes</h1>
+<tunepad-block code="playNote($0)">
+    play note
+    <div class="param" data-menu="pitch">60</div>
+</tunepad-block>
+<tunepad-block code="playNote($0, beats = $1)">
+    play note
+    <div class="param" data-menu="pitch">60</div> for 
+    <div class="param" data-menu="notes">1</div> beats
+</tunepad-block>
+<tunepad-block code="rest($0)">
+    rest for <div class="param" data-menu="rests">1</div> beats
+</tunepad-block>
+
+
+<h1>Repeat</h1>
+<tunepad-block code="for i in range($0):\n\t" color="rgb(245, 175, 65)">
+    repeat <div class="param" data-type="int" contenteditable="plaintext-only">8</div> times
+</tunepad-block>
+<tunepad-block code="for i in range($0, $1):\n\t" color="rgb(245, 175, 65)">
+    count from 
+    <div class="param" data-type="int" contenteditable="plaintext-only">0</div> to
+    <div class="param" data-type="int" contenteditable="plaintext-only">16</div>
+</tunepad-block>
+
+
+<h1>Playhead</h1>
+
+<tunepad-block code="rewind($0)" color="rgb(115, 175, 210)">
+    rewind <div class="param" data-type="int" contenteditable="plaintext-only">1</div> beats
+</tunepad-block>
+
+<tunepad-block code="fastForward($0)" color="rgb(115, 175, 210)">
+    fast forward <div class="param" data-type="int" contenteditable="plaintext-only">1</div> beats
+</tunepad-block>
+
+<tunepad-block code="moveTo($0)" color="rgb(115, 175, 210)">
+    move to beat <div class="param" data-type="int" contenteditable="plaintext-only">0</div>
+</tunepad-block>
+
+</tunepad-block-menu>
+
+<tunepad-cell-list>
+<h1>Harmonzer</h1>
+
+<ul>
+    <li>TunePad uses <b>lists</b> of numbers to represent different chords.</li>
+    <li>In this activity, you'll code your own chord <code>playNote</code> with lists of notes.</li>
+    <li>You can drag the chord blocks into the Python code to help you get started.</li>
+</ul>
+
+
+<tunepad-cell patch="grand-piano" name="Harmony" uuid="harmony" timeline="score" theme="light" class="tutorial" autocompile="true">
+/# play a C major chord for four beats
+/playNote([60, 64, 67], beats = 4)
+/
+/
+/
+/
+</tunepad-cell>
+
+</tunepad-cell-list>
+</tunepad-project>
