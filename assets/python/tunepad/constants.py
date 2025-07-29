@@ -56,8 +56,6 @@ TRIPLET_NOTE = 1/3
 SEXTUPLET_NOTE = 1/6
 ```
 """
-from . import *
-
 
 DOUBLE_WHOLE_NOTE = 8.0
 WHOLE_NOTE = 4.0

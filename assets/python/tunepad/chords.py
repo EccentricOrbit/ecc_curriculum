@@ -9,7 +9,7 @@ from tunepad.chords import *
 """
 #from boilerplate import * # TESTING: only include this line when running tests
 from . import * # TESTING: comment out this line when testing
-from tunepad import *
+#from tunepad import *
 
 key = 'C'
 
