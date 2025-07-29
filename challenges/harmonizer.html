@@ -80,7 +80,7 @@ splash: /images/splash/chords-splash.jpg
 </tunepad-block-menu>
 
 <tunepad-cell-list>
-<h1>Harmonzer</h1>
+<h1>Harmonizer</h1>
 
 <ul>
     <li>TunePad uses <b>lists</b> of numbers to represent different chords.</li>
@@ -89,10 +89,31 @@ splash: /images/splash/chords-splash.jpg
 </ul>
 
 
-<tunepad-cell patch="grand-piano" name="Harmony" uuid="harmony" timeline="score" theme="light" class="tutorial" autocompile="true">
+<tunepad-cell patch="grand-piano" name="Harmony" uuid="slow" timeline="score" theme="light" class="tutorial" autocompile="true">
 /# play a C major chord for four beats
 /playNote([60, 64, 67], beats = 4)
 /
+/
+/
+/
+</tunepad-cell>
+
+
+<tunepad-cell patch="grand-piano" name="Rhythm" uuid="repeated" timeline="score" theme="light" class="tutorial" autocompile="true">
+/# play a C major chord in a loop
+/for i in range(8):
+/    playNote([60, 64, 67], beats = 0.5)
+/
+/
+/
+</tunepad-cell>
+
+
+
+<tunepad-cell patch="grand-piano" name="Arpeggio" uuid="arp" timeline="score" theme="light" class="tutorial" autocompile="true">
+/# play a C major 7 chord in a loop
+/for note in [ 60, 64, 67, 71, 72, 71, 67, 64 ]:
+/    playNote(note, beats = 0.5)
 /
 /
 /
