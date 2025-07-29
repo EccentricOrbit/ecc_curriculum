@@ -8,22 +8,145 @@
     <meta name="description" content="{{ description }}">
     <link rel="icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="/css/base.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.5.0/prism-coldark-cold.min.css">
     <title>{{ title }}</title>
-    <script src="/js/prism.js"></script>
     <script src="/js/tunepad.min.js"></script>
-    <script src="/js/tunepad-codemirror.min.js"></script>
     <style>
-        main {
-            margin: 1rem 2rem;
-            display: block;
-        }
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--body-font);
+    margin: 0;
+    overscroll-behavior: none;
+    /*background-color: #88660410;*/
+    position: relative;
+}
+
+main {
+    padding: 0;
+    background-image: none;
+    display: flex;
+    margin: 0;
+}
+tunepad-project-menu::part(tabs) {
+    display: none;
+}
+
+tunepad-project {
+    display: flex;
+    flex: 1;
+    box-sizing: border-box;
+    height: 100vh;
+    overflow: hidden;
+}
+
+tunepad-cell {
+    display: block;
+    margin-bottom: 2em;
+}
+
+tunepad-cell.minimal {
+    display: none;
+}
+
+tunepad-cell.minimal.active {
+    display: block;
+}
+
+
+tunepad-block-menu {
+    display: block;
+    max-width: 300px;
+    min-width: 300px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100vh;
+    margin-left: 65px;
+}
+
+tunepad-cell-list {
+    flex: 1;
+    padding: 2rem 5rem;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.context-menu-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #0005;
+    opacity: 0;
+    transition: opacity 150ms;
+    z-index: 1000;
+}
+.context-menu-overlay.show {
+    opacity: 1;
+}
+
+dialog {
+    border: none;
+    outline: none;
+    min-width: 300px;
+    min-height: 300px;
+    border-radius: 8px;
+    box-shadow: 5px 5px 5px #0003;
+    margin: 100px auto;
+}
+/*tunepad-cell::part(cell-menu) { display: none; }*/
+/* tunepad-cell::part(theme-button) { display: none; } */
+
+
+.left-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 65px;
+    background-color: #414251;
+    display: flex;
+    z-index: 950;
+    flex-direction: column;
+    user-select: none;
+    transition: 0.175s all;
+}
+
+.side-button {
+    position: relative;
+    height: 55px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: #eee;
+    line-height: 100px;
+    margin-top: 2rem;
+    font-size: 90%;
+}
+
+.side-button:hover {
+    color: white;
+}
+
+.tunepad-logo {
+    width: 65px;
+    height: 55px;
+    margin-top: 2px;
+    /* margin-bottom: 30px; */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 140%;
+    background-image: url(/assets/images/logo_light.svg);
+}
     </style>
     {% endblock %}
 </head>
 <body>
     <main>
-
         <!-- CONTENT -->
         {% block body %}
         {{ content | safe }}
