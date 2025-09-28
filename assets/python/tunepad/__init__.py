@@ -10,11 +10,11 @@ import sys, traceback
 beats_per_measure = 4
 home_key = 'C'
 
+
 _playhead = 0.0     # gets advanced for every playNote and rest
 _tunepad_trace = [] # trace is stored here for tunepad to generate audio
 _trace_id = 0       # helps with debugging and generating sheet music to group notes into chords
 _voice_id = 0       # helps generate sheet music. updates every time _moveTo is called
-
 
 
 #---------------------------------------------------------------------
