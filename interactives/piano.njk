@@ -19,15 +19,23 @@ tags: interactive
     <meta name="title" content="{{ title }}">
     <meta name="description" content="{{ description }}">
     <link rel="icon" href="/images/favicon.ico">
-    <link rel="stylesheet" href="/css/composer.css">
-    <link rel="stylesheet" href="/css/fontawesome.all.min.css">
-    <link rel="stylesheet" href="/css/prism.css">
-    <title>{{ title }}</title>
-    <script src="/js/prism.js"></script> 
     <script src="/js/tunepad.min.js"></script>
-    <script src="/js/tunepad-datastore.min.js"></script>
+    <title>{{ title }}</title>
 </head>
 <body>
-    <note-explorer patch="/sounds/voices/grand-piano/patch.json"></note-explorer>
+<tunepad-project name="Welcome to TunePad" tempo="120" time="3/4">
+<tunepad-cell-list>
+
+<tunepad-cell patch="grand-piano" name="piano" uuid="piano" timeline="score" theme="light" class="tutorial music">
+playNote(76, beats = 1/2)
+playNote(75, beats = 1/2)
+playNote(76, beats = 1/2)
+playNote(75, beats = 1/2)
+playNote(76, beats = 1/2)
+playNote(71, beats = 1/2)
+playNote(74, beats = 1/2)
+playNote(72, beats = 1/2)
+playNote(69, beats = 2)
+</tunepad-cell>
 </body>
 </html>
