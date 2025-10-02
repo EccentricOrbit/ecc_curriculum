@@ -18,7 +18,7 @@ See if you can fix all of the **syntax errors** in this project to reveal the my
 When you make a mistake writing code, you might get a syntax error. That means Python can't understand what you typed.
 A syntax error usually has a line number showing where the problem is.
 
-<tunepad-project name="Dark Side Mystery Melody" tempo="100" time="4/4" key="C major" voices="/sounds/voices2">
+<tunepad-project name="Dark Side Mystery Melody" tempo="100" time="4/4" key="C major">
 <tunepad-cell-list>
 <tunepad-cell patch="brass" name="Melody" uuid="cell0" timeline="hidden" theme="light" class="tutorial" autocompile="true" show-instrument="false">
 /# fix all the errors to reveal the mystery melody

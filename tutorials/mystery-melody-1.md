@@ -18,7 +18,7 @@ When you make a mistake writing code, you might get a syntax error.
 That means Python can't understand what you typed.
 
 
-<tunepad-project name="Mystery Melody 1" tempo="120" voices="/sounds/voices2">
+<tunepad-project name="Mystery Melody 1" tempo="120">
 <tunepad-cell-list>
 
 # How do I fix syntax errors?

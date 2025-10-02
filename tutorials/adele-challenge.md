@@ -18,7 +18,7 @@ Adele is sad because someone wrote code that looks like this for her song, *Some
 Can you think of ways to *simplify* this code? 
 How can you make it easier to read and understand?
 
-<tunepad-project name="Adele: Someone Like You" tempo="70" key="A major" voices="/sounds/voices2">
+<tunepad-project name="Adele: Someone Like You" tempo="70" key="A major">
 <tunepad-cell-list>
 <tunepad-cell patch="grand-piano" name="Right Hand Part" uuid="right_hand" timeline="hidden" theme="light" class="tutorial" show-instrument="false">
 playNote(45, beats = 0.25)

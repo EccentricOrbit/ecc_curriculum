@@ -22,7 +22,7 @@ A syntax error usually has a line number showing where the problem is.
 # How do I fix syntax errors?
 Here's a quick example of a common syntax error in a TunePad project.  
 
-<tunepad-project name="Suspenseful Mystery Melody" tempo="137" time="5/4" key="B minor" voices="/sounds/voices2">
+<tunepad-project name="Suspenseful Mystery Melody" tempo="137" time="5/4" key="B minor">
 <tunepad-cell-list>
 <tunepad-cell patch="grand-piano" name="Harmony" uuid="cell2" timeline="hidden" theme="light" class="tutorial" autocompile="false" show-instrument="false">
 /rest(5)

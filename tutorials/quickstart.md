@@ -44,7 +44,7 @@ Here's an emebedded TunePad project.
 The first cell is programmed to play five notes using a kick drum sound.
 Press the ▶ button below to hear how it sounds.
 
-<tunepad-project name="Welcome to TunePad" tempo="120" voices="/sounds/voices2">
+<tunepad-project name="Welcome to TunePad" tempo="120">
 <tunepad-cell-list>
 
 <tunepad-cell patch="rock-drums" name="Kicks" uuid="cell0" timeline="score" theme="light" class="tutorial" show-instrument="false">
