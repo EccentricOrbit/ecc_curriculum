@@ -5,9 +5,9 @@ category: Tutorial
 title: Chicago House Beat
 description: In this short warmup activity, create a Chicago House beat using Python code.
 level: Beginner
-time: 15-20 minutes
+time: 30-40 minutes
 license: by-nc-sa
-splash: /images/splash/house-splash.png
+splash: /images/splash/chicago-splash.png
 video: https://drive.google.com/file/d/1kh1PQuBkzeFNUHGiLBEbGjcIfXW7QE40/view?usp=sharing
 project: https://tunepad.com/project/67934
 audio: https://api.tunepad.com/api/projects/67934/audio/

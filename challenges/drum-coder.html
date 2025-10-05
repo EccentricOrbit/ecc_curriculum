@@ -1,0 +1,118 @@
+---
+layout: layouts/playground.njk
+tags: [ ]
+category: Activity
+title: "Drum Coder"
+description: Practice writing Python code to make an original drum beat
+level: Beginner
+time: 30 minutes
+license: by-nc-sa
+splash: /images/splash/drum-machine-splash.jpg
+---
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Music&display=swap');
+    h1 {
+        padding: 0;
+        margin: 0;
+    }
+    main {
+        padding-top: 55px;
+    }
+</style>
+<tunepad-project name="Drum Coder" tempo="120">
+<tunepad-project-menu></tunepad-project-menu>
+
+<nav class="left-menu">
+    <div class="tunepad-logo"></div>
+</nav>
+
+
+<tunepad-block-menu>
+<h1>Drum Sounds</h1>
+<tunepad-block code="playNote($0)" color="rgb(77, 174, 74)">
+    play drum
+    <div class="param" data-menu="drums">2</div>
+</tunepad-block>
+<tunepad-block code="playNote($0, beats = $1)" color="rgb(77, 174, 74)">
+    play drum
+    <div class="param" data-menu="drums">2</div> for 
+    <div class="param" data-menu="notes">1</div> beats
+</tunepad-block>
+<tunepad-block code="rest($0)" color="rgb(77, 174, 74)">
+    rest for <div class="param" data-menu="rests">1</div> beats
+</tunepad-block>
+
+<h1>Repeat</h1>
+<tunepad-block code="for i in range($0):\n\t" color="rgb(245, 175, 65)">
+    repeat <div class="param" data-type="int" contenteditable="plaintext-only">8</div> times
+</tunepad-block>
+<tunepad-block code="for i in range($0, $1):\n\t" color="rgb(245, 175, 65)">
+    count from 
+    <div class="param" data-type="int" contenteditable="plaintext-only">0</div> to
+    <div class="param" data-type="int" contenteditable="plaintext-only">16</div>
+</tunepad-block>
+
+
+<h1>Playhead</h1>
+
+<tunepad-block code="rewind($0)" color="rgb(115, 175, 210)">
+    rewind <div class="param" data-type="int" contenteditable="plaintext-only">1</div> beats
+</tunepad-block>
+
+<tunepad-block code="fastForward($0)" color="rgb(115, 175, 210)">
+    fast forward <div class="param" data-type="int" contenteditable="plaintext-only">1</div> beats
+</tunepad-block>
+
+<tunepad-block code="moveTo($0)" color="rgb(115, 175, 210)">
+    move to beat <div class="param" data-type="int" contenteditable="plaintext-only">0</div>
+</tunepad-block>
+
+</tunepad-block-menu>
+
+<tunepad-cell-list>
+<h1>Drum Code Challenge</h1>
+
+<ul>
+    <li>TunePad uses numbers to represent different notes and drum sounds.</li>
+    <li>Try clicking on each different drum to hear how it sounds.</li>
+    <li>Pay attention to the note numbers for different sounds like kick drums, snare drums, and hi-hats.</li>
+</ul>
+
+<iframe src="/interactives/drumkit/" style="width: 70%; height: auto; aspect-ratio: 20 / 13; border: none; margin: 0; display: block;"></iframe>
+<p>
+    Try changing the code in the three drum cells below to make your own original beat. <br>
+    You can play one cell at a time or play them all at the same time to hear how they sound together.
+</p>
+
+
+<tunepad-cell patch="808-drums" name="Kicks" uuid="kick" timeline="waveform" theme="light" class="tutorial" autocompile="true">
+/# play four kick drum sounds
+/playNote(1)
+/playNote(1)
+/playNote(1)
+/playNote(1)
+/
+</tunepad-cell>
+
+
+<tunepad-cell patch="808-drums" name="Snares" uuid="snare" timeline="waveform" theme="light" class="tutorial" autocompile="true">
+/# play two snare drum sounds on beats 2 and 4
+/rest(1)
+/playNote(2)
+/rest(1)
+/playNote(2)
+/
+</tunepad-cell>
+
+
+<tunepad-cell patch="808-drums" name="Hats" uuid="hats" timeline="waveform" theme="light" class="tutorial" autocompile="true">
+/# play hi-hat sounds
+/for i in range(4):
+/    rest(0.5)
+/    playNote(4, beats = 0.5)
+/
+</tunepad-cell>
+</tunepad-cell-list>
+
+</tunepad-project>

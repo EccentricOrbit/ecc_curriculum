@@ -10,33 +10,38 @@ import sys, traceback
 beats_per_measure = 4
 home_key = 'C'
 
+
 _playhead = 0.0     # gets advanced for every playNote and rest
 _tunepad_trace = [] # trace is stored here for tunepad to generate audio
-_trace_id = 0
-
+_trace_id = 0       # helps with debugging and generating sheet music to group notes into chords
+_voice_id = 0       # helps generate sheet music. updates every time _moveTo is called
 
 
 #---------------------------------------------------------------------
 # reset globals
 #---------------------------------------------------------------------
 def start_tunepad_trace():
-    global _playhead, _tunepad_trace, beats_per_measure, home_key, _trace_id
+    global _playhead, _tunepad_trace, beats_per_measure, home_key, _trace_id, _voice_id
     _playhead = 0.0
     _tunepad_trace = [ ]
     beats_per_measure = 4
     home_key = 'C'
     _trace_id = 0
+    _voice_id = 0
     sys.stdout.flush()
 
 
-def playNote(note, beats=1, velocity = 90, sustain = 0):
+def playNote(note, beats=1, pitch = 0, velocity = 90, sustain = 0):
     """
-    Play a note with a pitch value greater than 0. You can also call `playNote` with a list of 
-    notes that will be played at the same time. The optional parameter `beats` sets how long the 
-    note will last, and the optional `velocity` parameter sets how hard/loud the note sounds. 
-    Velocity can be any number between 0 and 127. The optional `sustain` parameter allows a 
-    note to ring out longer than the value given by the beats parameter. The value of the parameter 
-    is the number of beats the note should sustain in beats.
+    Play a note with a pitch value greater than 0. You can also call `playNote` with a list of
+    notes that will be played at the same time. The optional parameter `beats` sets how long the
+    note will last, and the optional `velocity` parameter sets how hard/loud the note sounds.
+    Velocity can be any number between 0 and 127. The optional `pitch` parameter
+    changes the pitch of the sound by the given number of semi-tones. For example, a pitch
+    value of 3.0 would be the same as the difference from a C to a D♯ on the piano keyboard.
+    The optional `sustain` parameter allows a note to ring out longer than the value given by
+    the beats parameter. The value of the parameter is the number of beats the note should
+    sustain in beats.
 
     Examples:
     ```python
@@ -58,7 +63,7 @@ def playNote(note, beats=1, velocity = 90, sustain = 0):
     Notes:
         You can also use `play_note()` and `play()` instead of `playNote()`.
     """
-    global _playhead, _trace_id
+    global _playhead, _trace_id, _voice_id
 
     # generate debug information for step-by-step tracing
     caller = getframeinfo(stack()[1][0])
@@ -74,6 +79,8 @@ def playNote(note, beats=1, velocity = 90, sustain = 0):
     if type(beats) not in [int, float]: raise TypeError("Invalid type for 'beats' on line {}. Must be int or float.".format(line))
     if beats < 0: raise ValueError("Invalid value for 'beats' on line {}. Beats must be non-negative int or float.".format(line))
 
+    if type(pitch) not in [int, float]: raise TypeError("Invalid type for 'pitch' on line {}. Must be int or float.".format(line))
+
     if type(velocity) not in [int, float]: raise TypeError("Invalid type for 'velocity' on line {}. Must be numeric value in range [0, 127].".format(line))
     if not(velocity >= 0 and velocity <= 127): raise ValueError("Invalid value for 'velocity' on line {}. Velocity must be numeric value in range [0, 127].".format(line))
 
@@ -85,11 +92,13 @@ def playNote(note, beats=1, velocity = 90, sustain = 0):
         raise TypeError("Invalid type for 'note' on line {}. Must be int/float or list of int/float in range [0, 127].".format(line))
 
 
-    params = { 
+    params = {
+        "pitch" : pitch,
         "velocity" : velocity, 
         "sustain" : sustain,
         "line" : line,
-        "trace" : _trace_id
+        "trace" : _trace_id,
+        "voice" : _voice_id
     }
     for n in note:
         params['note'] = n
@@ -137,7 +146,7 @@ def playSound(sound, beats=1, pitch = 0, velocity = 90, sustain = 0):
         velocity (int, float, optional): how hard/loud the note sounds
         sustain (float, optional): how long to sustain the note
     """
-    global _playhead, _trace_id
+    global _playhead, _trace_id, _voice_id
 
     # generate debug information for step-by-step tracing
     caller = getframeinfo(stack()[1][0])
@@ -174,7 +183,8 @@ def playSound(sound, beats=1, pitch = 0, velocity = 90, sustain = 0):
         "velocity" : velocity, 
         "sustain" : sustain,
         "line" : line,
-        "trace" : _trace_id
+        "trace" : _trace_id,
+        "voice" : _voice_id
     }
     for s in sound:
         params['sound'] = s
@@ -199,7 +209,7 @@ def rest(beats=1):
     rest(beats = 1.5)
     ```
     """
-    global _playhead, _trace_id
+    global _playhead, _trace_id, _voice_id
 
     # generate debug information for step-by-step tracing
     caller = getframeinfo(stack()[1][0])
@@ -207,7 +217,11 @@ def rest(beats=1):
 
     if type(beats) not in [int, float]: raise TypeError("Invalid type for 'beats' on line {}. Must be int or float.".format(line))
  
-    params = { "line" : line, "trace" : _trace_id }
+    params = {
+        "line" : line, 
+        "trace" : _trace_id,
+        "voice" : _voice_id
+    }
     _tunepad_event("rest", _playhead, duration = beats, params = params)
 
     _playhead = _check_playhead(_playhead) + beats
@@ -218,16 +232,19 @@ def rest(beats=1):
 # move the playhead to the given time (beats)
 #---------------------------------------------------------------------
 def _moveTo(beats, line):
-    global _playhead, _trace_id
+    global _playhead, _trace_id, _voice_id
 
     if type(beats) not in [int, float]: raise TypeError("Invalid type for 'beats' on line {}. Must be int or float.".format(line))
 
     beats = round(beats, 5)
     if (beats < 0): beats = 0.0
 
+    _voice_id += 1  # since this creates potentially overlapping notes, we update the voice number
+
     params = {
         "line" : line,
-        "trace" : _trace_id
+        "trace" : _trace_id,
+        "voice" : _voice_id
     }
 
     _tunepad_event("moveTo", beats, params = params)
@@ -367,6 +384,12 @@ class effect(object):
         self.beats = beats
         self.start = start
         self.values = [ ]
+        caller = getframeinfo(stack()[2][0])
+        warning(
+            'Deprecated', 
+            'The <b>' + self.name + '</b> effect is no longer supported', 
+            details = 'Please use the Tracks tab to add audio effects.',
+            line = caller.lineno)
         for arg in argv: self.values.append(arg)
 
     def __enter__(self):
@@ -385,11 +408,12 @@ class effect(object):
             else:
                 value = p
             params['values'].append(value)
-        _tunepad_event('push_fx', _playhead, params = params)
+        #_tunepad_event('push_fx', _playhead, params = params)
         return self.beats
 
     def __exit__(self, type, value, traceback):
-        _tunepad_event('pop_fx', _playhead)
+        pass
+        # _tunepad_event('pop_fx', _playhead)
 
 
 
@@ -773,6 +797,26 @@ def message(msg):
     ```
     """
     _tunepad_event("message", _playhead, params = { "message" : msg, "type" : "message" })
+
+
+#---------------------------------------------------------------------
+# generate a warning message (e.g. deprecated function calls)
+#---------------------------------------------------------------------
+def warning(name, message, details = '', line = -1):
+    """
+    Display a warning message to the user. Callers can provide an optional line number.
+    ```python
+    warning('Deprecated', 'The reverb function has been deprecated. Please use tack automation instead.')
+    ```
+    """
+    _tunepad_event("message", _playhead, params = { 
+        "message" : message,
+        "type" : "warning",
+        "name" : name,
+        "line" : line,
+        "details" : details 
+    })
+
 
 #---------------------------------------------------------------------
 # show user result of a unit test

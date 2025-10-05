@@ -1,113 +1,141 @@
 ---
-title: Learn TunePad
-description: TunePad is a free, online platform for creating digital music with Python code. This page provides learning resources including curriculum, tutorials, games, puzzles, interactive learning tools, and more. This materials is designed for learners who are new to both music and coding.
-splash: /images/splash/curriculum-splash2.png
+layout: layouts/activity.njk
+title: "Welcome to TunePad"
+description: Get started creating music with code. This guide walks through the basics of coding music with Python in TunePad
+level: Beginner
+time: 15-20 minutes
+license: by-nc-sa
+splash: /images/splash/chicago-splash.png
+date: 2025-09-28
 ---
-{% extends "layouts/base.njk" %}
-{% block header %}
-    {{ super() }}
-<style>
-    article .content-wrapper {
-        padding: 1rem 2rem 3rem 2rem;
-        background-color: #f6f6f9; 
-        margin: 0;
-    }
-    .logo-nugget {
-        background-image: url('/images/quickstart.svg');
-        width: 100px;
-        height: 100px;
-    }
-    main {
-        margin: 4rem auto 0 auto;
-    }
-    header {
-        width: 100%;
-        height: 300px;
-        background-image: url('{{ splash }}');
-        background-size: 100% auto;
-        background-position-y: bottom;
-        background-repeat: no-repeat;
-        background-size: cover;
-        margin: 0 auto;
-    }
-    .banner-text { 
-        background-color: #0003;
-    }
-</style>
-{% endblock %}
 
-{% block resources %}
-    <div class="logo-nugget"></div>
-{% endblock %}
+<h1>Welcome to TunePad</h1>
+<p>
+TunePad is an online learning platform that lets you create music with the Python programming language.
+TunePad was developed at Northwestern University with funding from the National Science Foundation.
+It's free for everyone to use, and we will never sell your personal information.
+</p>
 
-{% block banner %}
-    <div class="banner-text">
-        <h1>Welcome to TunePad!</h1>
-        <p>
-            This site provides resources for learning how to create digital music using Python code.
-            You can find TunePad curriculum, tutorials, games, puzzles, and more, all designed for 
-            learners who are new to both music and coding.
-        </p>
-    </div>
-{% endblock %}
+<h1>What is Python Programming?</h1>
+<img src="/images/python-logo.svg" alt="Python logo" style="width: 130px; float: right; position: relative; top: -2rem;">
+<ul>
+    <li><a href="https://www.python.org/" target="_blank">Python</a> is one of the most widely-used programming languages in the world.</li>
+    <li>It's easy to read and write, which makes it a popular choice for beginners.</li>
+    <li>It’s also powerful, which makes it a good choice for professionals.</li>
+    <li>Python is used for data science, artificial intelligence, web development, art, music, and video game development.</li>
+    <li>Python is a “text-based” language, which means that you type code instead of dragging blocks on the screen.</li>
+</ul>
 
-{% block body %}
+<h1>Try It</h1>
+<p>
+Here's an example of what TunePad can do.
+This Python code plays five notes using a kick drum sound.
+Press the ▶ button below to hear how it sounds.
+</p>
 
-<section style="border-bottom: 1px solid #0002;">
-    <div class="resource-box" style="text-align: center; padding-bottom: 10px;">
-        <div class="card directory" data-url="/learn/">
-            <h2>Learner Resources</h2>
-            <p>Whether you're a beginner to music, or coding, or both, find resources to 
-                start your music-making journey using Python code.</p>
-            <button><a style="text-decoration: none; color: white" href="/learn/">I'm a Student</a></button>
-        </div>
-        <div class="card directory" data-url="/teach/">
-            <h2>Educator Resources</h2>
-            <p>Find resources to teach TunePad in your classroom, camp,
-                or afterschool program. We have curriclum for elementary through high school
-                and beyond.</p>
-            <button><a style="text-decoration: none; color: white" href="/teach/">I'm an Educator</a></button>
-        </div>
-    </div>
-</section>
+<tunepad-project name="Welcome to TunePad" tempo="120">
+<tunepad-cell-list>
 
-<section class="highlights">
-    <div class="section-title">
-        <h1><a href="/learn/">Getting Started</a></h1>
-        <p>Our <a href="/learn/">getting started</a> activities are designed for beginners who are new to both music and Python programming.</p>
-    </div>
-    <div class="cards">
-        {%- for demo in collections.learn | limit(2) -%}
-        <div class="qcard" data-url="{{ demo.url }}">
-            <div class="card-image">
-                <img src="{{ demo.data.splash }}" alt="{{ demo.data.title }}">
-            </div>
-            <div class="card-info">
-                <div style="display: flex; align-items: center;">
-                    <h1 style="margin-top: 0px; width: max-content;">{{ demo.data.title }}</h1>
-                    <div class="badge">
-                        <h3 class="level-badge">{{ demo.data.level }}</h3>
-                    </div>
-                </div>
-                <br>
-                {{ demo.data.description }}
-            </div>
-            <div style="position: absolute; right: 15px; bottom: 50px;" >
-                <img src="images/Vector.png" alt="arrow pointing to the right">
-            </div>
-            {% if demo.data.audio %}
-            <button class="card-audio-button">
-                <i class="fas fa-play"></i>
-                <audio src="{{ demo.data.audio }}" class="audio-preview"></audio>
-            </button>
-            {% endif %}
-        </div>
-        {%- endfor -%}
-    </div>
-</section>
+<tunepad-cell name="kicks" uuid="kicks" theme="light" class="tutorial music" patch="rock-drums" timeline="score">
+/playNote(0)
+/playNote(0)
+/playNote(0)
+/playNote(0, beats = 0.5)
+/playNote(0, beats = 0.5)
+/
+</tunepad-cell>
+
+<h1>Adding Snare Drums</h1>
+<p>
+To make this beat more interesting, we can add layers of sound. 
+This cell adds two snare drum sounds to play on beats 2 and 4.
+Try playing this cell while also playing the kick drums at the same time.
+In TunePad all cells will synchronize together.
+</p>
+
+<tunepad-cell name="snare" uuid="snare" theme="light" class="tutorial music" patch="808-drums" show-instrument="false">
+# play two snare drums on beats 2 and 4
+rest(1)        # skip a beat
+playNote(2)    # play sound number 2 (snare drum)
+rest(1)
+playNote(2)
+/
+</tunepad-cell>
+
+<p>
+The text that comes after the hashtag symbol (#) is called a <b>comment</b>. It’s a note for human coders to help document their code. Anything that comes after the hashtag on a line is ignored by Python.
+</p>
+
+<h1>Hi-Hats</h1>
+<p>
+Let's keep layering sounds! This cell uses a <b>loop</b> in Python to add hi-hat sounds between the kicks and snares.
+</p>
+
+<tunepad-cell patch="808-drums" name="hats" uuid="hats" theme="light" class="tutorial music" show-instrument="false">
+/# play hi-hats
+/for i in range(4):
+/    rest(0.5)   # rest for half a beat
+/    playNote(4, beats = 0.25)    # play two hi-hat sounds
+/    playNote(4, beats = 0.25)    # each for 0.25 beats
+/
+</tunepad-cell>
+
+<h1>Bass!!</h1>
+<p>
+Don't forget the bass! This cell adds a simple bass line.
+</p>
+
+<tunepad-cell patch="electric-bass" name="bass" uuid="bass" timeline="waveform" theme="light" class="tutorial music" show-instrument="false">
+/playNote(33, beats = 4)
+/playNote(36, beats = 4)
+/playNote(35, beats = 4)
+/playNote(34, beats = 3)
+/playNote(34, beats = 1)
+</tunepad-cell>
 
 
+<h1>Harmony?</h1>
+<p>
+In TunePad, you can add as many cells as you want to your project and select from over 170 different instrument.
+You can change your code while the music is playing to test out different ideas live and in real time.
+</p>
 
+<tunepad-cell patch="rhodes" name="keys" uuid="keys" timeline="midi" theme="light" class="tutorial music">
+/# You can play a chord in TunePad by using a list of note values
+/playNote([57, 60, 64], beats = 4)
+/playNote([55, 60, 64], beats = 4)
+/playNote([55, 59, 62], beats = 4)
+/playNote([55, 58, 60], beats = 4)
+/
+</tunepad-cell>
+
+<h1>Arpeggios</h1>
+<p>
+To wrap this example up, let's add some arpeggios. Arpeggios are just chords played one note at a time.
+In Python we can use a for loop to experiment with different patterns of notes.
+</p>
+
+<tunepad-cell patch="jazz-bass" name="lead" uuid="lead" timeline="midi" theme="light" class="tutorial music">
+/for note in [ 57, 60, 64, 60] * 2:
+/    playNote(note, beats = 0.5)
+/
+/for note in [ 55, 60, 64, 60] * 2:
+/    playNote(note, beats = 0.5)
+/
+/for note in [ 55, 59, 62, 59] * 2:
+/    playNote(note, beats = 0.5)
+/
+/for note in [55, 58, 60, 58] * 2:
+/    playNote(note, beats = 0.5)
+/
+</tunepad-cell>
+
+<h1>What's Next?</h1>
+<p>
+Start creating your own music! Go to <a href="https://tunepad.com">tunepad.com</a> and log in with a gmail account or 
+create a new account with a different email address. Once you're logged in, click on the <b>New Project</b> button.
+You can also learn more by trying some of these resources:
+</p>
 
 <section class="highlights">
     <div class="section-title">
@@ -206,4 +234,4 @@ splash: /images/splash/curriculum-splash2.png
     <p>Ready to dig in? Read the <a href="/docs/">documentation</a> for all of the TunePad functions and modules.</p>
     <br clear="all">
 </section>
-{% endblock %}
+

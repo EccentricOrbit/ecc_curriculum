@@ -390,5 +390,16 @@ button.copy-code-button {
 
 /* prevents the iPad buttons to be stuck with the hover state */
 @media (hover: none) {
-  .instrument button:hover { color: rgba(255, 255, 255, 0.75); !important;}
+  .instrument button:hover { color: rgba(255, 255, 255, 0.75) !important;}
+}
+
+@media print {
+  .buttons { display: none; }
+  .gutter { display: none; }
+  .embed-wrapper { display: none; }
+  .drum-name { fill: black; }
+  .instrument .scroll-container { border: none; }
+  .playhead { display: none; }
+  .code-hint-container { display: none; }
+  .beat-number { fill: black; }
 }

@@ -13,8 +13,14 @@ audio: https://api.tunepad.com/api/projects/50623/audio/
 disclaimer: This puzzle is based on Someone Like You by Adele (2011), Columbia. For educational purposes only.
 ---
 # Challenge
-Adele is sad because someone wrote code that looks like this for her song, *Someone Like You*
-```python
+Adele is sad because someone wrote code that looks like this for her song, *Someone Like You*.
+
+Can you think of ways to *simplify* this code? 
+How can you make it easier to read and understand?
+
+<tunepad-project name="Adele: Someone Like You" tempo="70" key="A major">
+<tunepad-cell-list>
+<tunepad-cell patch="grand-piano" name="Right Hand Part" uuid="right_hand" timeline="hidden" theme="light" class="tutorial" show-instrument="false">
 playNote(45, beats = 0.25)
 playNote(49, beats = 0.25)
 playNote(52, beats = 0.25)
@@ -28,23 +34,74 @@ playNote(49, beats = 0.25)
 playNote(52, beats = 0.25)
 playNote(49, beats = 0.25)
 playNote(45, beats = 0.25)
+playNote(49, beats = 0.25)
+playNote(52, beats = 0.25)
+playNote(49, beats = 0.25)
+playNote(44, beats = 0.25)
+playNote(49, beats = 0.25)
+playNote(52, beats = 0.25)
+playNote(49, beats = 0.25)
+playNote(44, beats = 0.25)
+playNote(49, beats = 0.25)
+playNote(52, beats = 0.25)
+playNote(49, beats = 0.25)
+playNote(44, beats = 0.25)
+playNote(49, beats = 0.25)
+playNote(52, beats = 0.25)
+playNote(49, beats = 0.25)
+playNote(44, beats = 0.25)
+playNote(49, beats = 0.25)
+playNote(52, beats = 0.25)
+playNote(49, beats = 0.25)
+playNote(42, beats = 0.25)
+playNote(49, beats = 0.25)
+playNote(54, beats = 0.25)
+playNote(49, beats = 0.25)
+playNote(42, beats = 0.25)
+playNote(49, beats = 0.25)
+playNote(54, beats = 0.25)
+playNote(49, beats = 0.25)
+playNote(42, beats = 0.25)
+playNote(49, beats = 0.25)
+playNote(54, beats = 0.25)
+playNote(49, beats = 0.25)
+playNote(42, beats = 0.25)
+playNote(49, beats = 0.25)
+playNote(54, beats = 0.25)
+playNote(49, beats = 0.25)
+playNote(45, beats = 0.25)
+playNote(50, beats = 0.25)
+playNote(54, beats = 0.25)
+playNote(50, beats = 0.25)
+playNote(45, beats = 0.25)
+playNote(50, beats = 0.25)
+playNote(54, beats = 0.25)
+playNote(50, beats = 0.25)
+playNote(45, beats = 0.25)
+playNote(50, beats = 0.25)
+playNote(54, beats = 0.25)
+playNote(50, beats = 0.25)
+playNote(45, beats = 0.25)
+playNote(50, beats = 0.25)
+playNote(54, beats = 0.25)
+playNote(50, beats = 0.25)
+</tunepad-cell>
 
-# and on and on for over 60 lines of code!
-```
+<tunepad-cell patch="grand-piano" name="Left Hand Part" uuid="left_hand" timeline="hidden" theme="light" class="tutorial">
+playNote([45, 49, 52], beats = 4, velocity = 60)
+playNote([44, 49, 52], beats = 4, velocity = 60)
+playNote([42, 49, 54], beats = 4, velocity = 60)
+playNote([45, 50, 54], beats = 4, velocity = 60)
+</tunepad-cell>
+</tunepad-cell-list>
+</tunepad-project>
 
-* Can you think of ways to *simplify* this code? To make it easier to read and understand?
 
-# What to do
-1. Start by logging into TunePad and opening this project: <a href="{{ project }}" target="_blank">{{ project }}</a>.
-<a href="{{ project }}" target="_blank">
-<img src="/images/splash/adele-splash.jpg" alt="" width="180px" style="margin: 1rem 4rem"></a>
-
-2. Make sure to hit the **REMIX** button.
-
-3. Then try to *refactor* the code so that it sounds the same but is shorter and easier to understand.  
+# Hints
+Your goal is to try *refactor* the code so that it sounds the same but is shorter and easier to understand.  
 There's no one right way to do this, and there are many possible improvements you can make.
 
-4. If you're not familiar with *Someone Like You* by Adele, you can watch the music video here.
+If you're not familiar with *Someone Like You* by Adele, you can watch the music video here.
 
 <br>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/hLQl3WQQoQ0?si=b4HCCSVvrazshkXx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
