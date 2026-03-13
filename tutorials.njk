@@ -7,7 +7,7 @@ splash: /images/splash/tutorials-splash.jpg
 {% block body %}
 <section class="highlights">
     <div class="vcards">
-    {%- for demo in collections.tutorials -%}
+    {%- for demo in collections.tutorials | reverse -%}
         <div class="vcard" data-url="{{ demo.url }}">
             <div class="card-image">
                 <img src="{{ demo.data.splash }}" alt="{{ demo.data.title }}">
