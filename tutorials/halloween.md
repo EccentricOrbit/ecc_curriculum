@@ -12,6 +12,7 @@ splash: /images/splash/halloween-splash.jpg
 project: https://tunepad.com/project/75530
 audio: https://api.tunepad.com/api/projects/75530/audio/
 disclaimer: This tutorial is based on the Michael Myers Theme by John Carpenter from the movie Halloween (1978). For educational purposes only.
+date: 2026-03-05
 ---
 <img src="/images/five-four.png" width="250px" style="float: right; margin-right: 1rem; border: 1px solid #0005;">
 

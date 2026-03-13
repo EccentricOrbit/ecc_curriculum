@@ -10,6 +10,7 @@ license: by-nc-sa
 splash: /images/splash/tracks-splash.png
 project: https://tunepad.com/project/40743
 audio: https://api.tunepad.com/api/projects/40743/audio/
+date: 2026-03-02
 ---
 In this activity, you’ll learn how to layer audio loops together to make a full-length song using TunePad’s tracks interface. 
 

@@ -12,6 +12,7 @@ splash: /images/splash/notlikeus.png
 project: https://tunepad.com/project/100546
 audio: https://api.tunepad.com/api/projects/100546/audio/
 disclaimer: This tutorial is based on Not Like Us by Kendrick Lamar (Interscope, 2024). For educational purposes only.
+date: 2026-03-04
 ---
 
 Here's a quick tutorial to create the drum pattern to Not Like Us.

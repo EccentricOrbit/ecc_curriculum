@@ -11,7 +11,7 @@ splash: /images/splash/chicago-splash.png
 video: https://drive.google.com/file/d/1kh1PQuBkzeFNUHGiLBEbGjcIfXW7QE40/view?usp=sharing
 project: https://tunepad.com/project/67934
 audio: https://api.tunepad.com/api/projects/67934/audio/
-date: 2024-01-02
+date: 2026-03-13
 ---
 In this activity you’ll get started using TunePad by creating a short Chicago House style beat.
 You'll also practice using the `playNote` and `rest` functions in Python.

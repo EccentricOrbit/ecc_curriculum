@@ -11,6 +11,7 @@ splash: /images/splash/bassthoven-splash.png
 project: https://tunepad.com/project/36897
 audio: https://api.tunepad.com/api/projects/36897/audio/
 disclaimer: Tutorial based on Bassthoven by Kyle Exum. This project is for educational purposes.
+date: 2026-03-01
 ---
 
 # OVERVIEW

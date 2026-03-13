@@ -12,6 +12,7 @@ splash: /images/splash/interstellar-splash.png
 project: https://tunepad.com/project/68150
 audio: https://api.tunepad.com/api/projects/68150/audio/
 disclaimer: This tutorial is based on the Motion Picture Soundtrack by Hans Zimmer (2014) WaterTower Music. For educational purposes only.
+date: 2026-03-08
 ---
 
 Interstellar features a hauntingly beautiful soundtrack composed by Hans Zimmer in 2014.

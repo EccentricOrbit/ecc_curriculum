@@ -12,6 +12,7 @@ splash: /images/splash/kiss-me-more-splash.png
 project: https://tunepad.com/project/42914
 audio: https://api.tunepad.com/api/projects/42914/audio/
 disclaimer: This tutorial is based on Kiss Me More by Doja Cat (ft. SZA) (2021), RCA. For educational purposes only.
+date: 2026-03-03
 ---
 
 # STEP 1: Create a new Project

@@ -1,6 +1,6 @@
 ---
 layout: layouts/activity.njk
-tags: learn
+tags: none
 category: Tutorial
 title: Advanced Production Effects
 description: Try some of these production effects to take your music to the next level

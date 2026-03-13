@@ -11,6 +11,7 @@ splash: /images/splash/bad-bunny-splash.png
 project: https://tunepad.com/project/43861
 audio: https://api.tunepad.com/api/projects/43861/audio/
 disclaimer: This tutorial creates a beat inspired by LA CANCIÓN (J Balvin and Bad Bunny). For educational purposes only.
+date: 2026-03-11
 ---
 
 # STEP 1: Create a new Project

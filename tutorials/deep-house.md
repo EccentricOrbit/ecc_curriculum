@@ -1,6 +1,6 @@
 ---
 layout: layouts/activity.njk
-tags: [ 'tutorials', 'learn' ]
+tags: [ 'tutorials' ]
 category: Tutorial
 title: Deep House
 description: Create a simple Deep House track
@@ -8,7 +8,7 @@ level: Beginner
 time: 30-40 minutes
 license: by-nc-sa
 splash: /images/splash/cta-splash.png
-date: 2025-10-16
+date: 2026-03-06
 ---
 Deep house originated in the 1980s as a fusion of Chicago house with elements of jazz, funk, and soul.
 In this tutorial we'll experiment with layers of chords, four-on-the-floor drums, and rhythmic arpeggios.

@@ -12,6 +12,7 @@ splash: /images/splash/hedwig-splash.png
 project: https://tunepad.com/project/83275
 audio: https://api.tunepad.com/api/projects/83275/audio/
 disclaimer: This tutorial is based on Hedwig's Theme by John Williams (2001). For educational purposes only.
+date: 2026-03-12
 ---
 Are you ready for some magic? Hedwig's Theme from the Harry Potter soundtrack by John Williams is one of the most recognizable 
 melodies ever written for cinema. In this short tutorial, we'll recreate the opening phrase of the theme and 

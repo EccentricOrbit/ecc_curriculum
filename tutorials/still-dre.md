@@ -14,6 +14,7 @@ slides: https://docs.google.com/presentation/d/1uGQr4CZrCok1f5ET55KI3unJ94lXqKJc
 project: https://tunepad.com/project/44
 audio: https://api.tunepad.com/api/projects/44/audio/
 disclaimer: This tutorial is based on Still D.R.E. by Dr. Dre (ft. Snoop Dogg) (1999), Aftermath, Interscope. For educational purposes only.
+date: 2026-03-10
 ---
 
 # Step 1: Create a new Project
