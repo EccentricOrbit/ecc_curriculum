@@ -19,23 +19,34 @@ tags: interactive
     <meta name="title" content="{{ title }}">
     <meta name="description" content="{{ description }}">
     <link rel="icon" href="/images/favicon.ico">
-    <script src="/js/tunepad.min.js"></script>
+    <script src="{{ assets_server }}/assets/js/tunepad.min.js"></script>
     <title>{{ title }}</title>
 </head>
 <body>
-<tunepad-project name="Welcome to TunePad" tempo="120" time="3/4">
+<tunepad-project name="Welcome to TunePad" tempo="120" time="3/4" uuid="piano-interactive">
 <tunepad-cell-list>
 
-<tunepad-cell patch="grand-piano" name="piano" uuid="piano" timeline="score" theme="light" class="tutorial music">
-playNote(76, beats = 1/2)
-playNote(75, beats = 1/2)
-playNote(76, beats = 1/2)
-playNote(75, beats = 1/2)
-playNote(76, beats = 1/2)
-playNote(71, beats = 1/2)
-playNote(74, beats = 1/2)
-playNote(72, beats = 1/2)
-playNote(69, beats = 2)
+<tunepad-cell patch="grand-piano" name="piano" uuid="piano" timeline="score" theme="light" class="tutorial music" autocompile="true">
+play(76, beats = 1/2)
+play(75, beats = 1/2)
+play(76, beats = 1/2)
+play(75, beats = 1/2)
+play(76, beats = 1/2)
+play(71, beats = 1/2)
+play(74, beats = 1/2)
+play(72, beats = 1/2)
+play(69, beats = 2)
+/
+/
+/
+/
 </tunepad-cell>
+
+</tunepad-cell-list>
+</tunepad-project>
 </body>
+<script>
+const project = document.querySelector('tunepad-project');
+project?.recompileAll();
+</script>
 </html>
