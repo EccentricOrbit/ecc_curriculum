@@ -7,7 +7,7 @@ description: Why would you want to make music with Python code?
 level: Beginner
 time: 15-20 minutes
 license: by-nc-sa
-splash: /images/splash/welcome-splash.png
+splash: /images/splash/piano-kbd-splash.jpg
 date: 2024-01-01
 ---
 

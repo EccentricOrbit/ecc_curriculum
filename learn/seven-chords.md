@@ -7,7 +7,7 @@ description: A chord is more than one note played at the same time. There are ma
 level: Beginner
 time: 30 minutes
 license: by-nc-sa
-splash: /images/splash/chords-splash.jpg
+splash: /images/splash/chords-splash.png
 date: 2024-01-04
 ---
 # Seven Easy Chords
