@@ -9,6 +9,7 @@ time: 15 minutes
 license: by-nc-sa
 splash: /images/splash/halloween-splash.jpg
 project: https://tunepad.com/project/6241
+date: 2026-01-12
 ---
 # Try It
 See if you can fix all of the **syntax errors** to reveal the mystery melody. 

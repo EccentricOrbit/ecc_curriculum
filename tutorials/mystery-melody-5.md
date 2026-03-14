@@ -1,6 +1,6 @@
 ---
 layout: layouts/activity.njk
-tags: puzzles
+tags: none
 category: Puzzler
 title: Taylor Swift Mystery Melody
 description: See if you can fix all of the syntax errors to reveal the mystery melody!
@@ -9,6 +9,7 @@ time: 15 minutes
 license: by-nc-sa
 splash: /images/splash/ts.jpg
 project: https://tunepad.com/project/76993
+date: 2026-01-14
 ---
 # Try It
 See if you can fix all of the **syntax errors** in this project to reveal the mystery melody.  

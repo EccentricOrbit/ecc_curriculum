@@ -1,6 +1,6 @@
 ---
 layout: layouts/activity.njk
-tags: [ 'puzzles', 'learn' ]
+tags: [ 'puzzles' ]
 category: Puzzler
 title: Underwater Mystery Melody
 description: See if you can fix all of the syntax errors to reveal the mystery melody!
@@ -9,6 +9,7 @@ time: 15 minutes
 license: by-nc-sa
 splash: /images/splash/mm1-splash.png
 project: https://tunepad.com/project/29138
+date: 2026-01-10
 ---
 # Mystery Melody 
 See if you can fix all of the **syntax errors** in this project to reveal the mystery melody.  

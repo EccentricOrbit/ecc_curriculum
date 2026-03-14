@@ -9,6 +9,7 @@ time: 15 minutes
 license: by-nc-sa
 splash: /images/splash/mm3-splash.png
 project: https://tunepad.com/project/29253
+date: 2026-01-11
 ---
 # Try It
 See if you can fix all of the **syntax errors** in this project to reveal the mystery melody. 
