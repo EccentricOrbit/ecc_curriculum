@@ -1,25 +1,13 @@
 ---
+layout: layouts/collection.njk
 title: Featured Projects
-subtitle: Covers and Original Music
 description: Covers and original music composed with TunePad
 splash: /images/splash/featured-splash.png
 ---
-{% extends "layouts/collection2.njk" %}
-{% block header %}
-{{ super() }}
-<style>
-    header {
-        color: #d1c6d7;
-        padding: 8rem 0 0 3rem;
-    }
-</style>
-{% endblock %}
 {% block body %}
 
 <section class="highlights">
-    <h1>TunePad Covers</h1>
-    <p>Song covers created by the TunePad community</p>
-    <div class="vcards" id="featured-projects">
+    <div class="vcards">
         {% for proj in featured.covers %}
         <div class="vcard" data-url="{{ proj.url }}" data-target="_blank">
             <div class="card-image">
