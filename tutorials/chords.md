@@ -7,7 +7,7 @@ description: Define functions to play major and minor chords in TunePad
 level: Beginner
 time: 25 minutes
 license: by-nc-sa
-splash: /images/splash/chords-splash.jpg
+splash: /images/splash/chords-splash.png
 project: https://tunepad.com/project/76377
 audio: https://api.tunepad.com/api/projects/76377/audio/
 ---
