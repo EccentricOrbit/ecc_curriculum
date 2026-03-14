@@ -330,10 +330,10 @@ class DrumCell {
 
     generateCode() {
         if (this.velocity >= 100) {
-            return `playNote(${this.track.note}, beats = ${this.beats})\n`;
+            return `play(${this.track.note}, beats = ${this.beats})\n`;
         }
         else if (this.velocity > 0) {
-            return `playNote(${this.track.note}, beats = ${this.beats}, velocity = ${this.velocity})\n`;
+            return `play(${this.track.note}, beats = ${this.beats}, velocity = ${this.velocity})\n`;
         }
         else {
             return `rest(0.25)\n`;
