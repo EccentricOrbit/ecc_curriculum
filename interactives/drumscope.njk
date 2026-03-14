@@ -23,6 +23,9 @@ tags: interactive
     <link rel="stylesheet" href="/css/fontawesome.all.min.css">
     <link rel="stylesheet" href="/css/prism.css">
     <title>{{ title }}</title>
+    <script>
+    const ASSETS = "{{ assets_server }}";
+    </script>
     <script defer src="/js/drumscope.js"></script>
 </head>
 
@@ -68,37 +71,37 @@ tags: interactive
         <div class="timeline-manipulator">BEATS</div>
         <div class="tracks">
             <div class="drum-pads">
-                <button data-drum="kick" data-trigger="k" data-note="0" data-color="#eb455f">
+                <button data-drum="kick" data-sound="kick" data-trigger="k" data-note="0" data-color="#eb455f">
                     <div class="drum-name">Kick</div>
                     <div class="trigger">k</div>
                     <div class="note">0</div>
                 </button>
-                <button data-drum="snare" data-trigger="s" data-note="2" data-color="#fd841f">
+                <button data-drum="snare" data-sound="sd" data-trigger="s" data-note="2" data-color="#fd841f">
                     <div class="drum-name">Snare</div>
                     <div class="trigger">s</div>
                     <div class="note">2</div>
                 </button>
-                <button data-drum="hat" data-trigger="h" data-note="4" data-color="#ffcd4b">
+                <button data-drum="hat" data-sound="chh" data-trigger="h" data-note="4" data-color="#ffcd4b">
                     <div class="drum-name">Closed Hat</div>
                     <div class="trigger">h</div>
                     <div class="note">4</div>
                 </button>
-                <button data-drum="ohat" data-trigger="o" data-note="5" data-color="#fde767">
+                <button data-drum="ohat" data-sound="tamb" data-trigger="o" data-note="5" data-color="#fde767">
                     <div class="drum-name">Open Hat</div>
                     <div class="trigger">o</div>
                     <div class="note">5</div>
                 </button>
-                <button data-drum="tom" data-trigger="t" data-note="8" data-color="#5d9c59">
+                <button data-drum="tom" data-sound="tom" data-trigger="t" data-note="8" data-color="#5d9c59">
                     <div class="drum-name">Tom</div>
                     <div class="trigger">t</div>
                     <div class="note">8</div>
                 </button>
-                <button data-drum="cowb" data-trigger="c" data-note="11" data-color="#3ab0ff">
+                <button data-drum="cowb" data-sound="cowb" data-trigger="c" data-note="11" data-color="#3ab0ff">
                     <div class="drum-name">Cow Bell</div>
                     <div class="trigger">f</div>
                     <div class="note">11</div>
                 </button>
-                <button data-drum="clap" data-trigger="c" data-note="10" data-color="#6f1ab6">
+                <button data-drum="clap" data-sound="clap" data-trigger="c" data-note="10" data-color="#6f1ab6">
                     <div class="drum-name">Clap</div>
                     <div class="trigger">c</div>
                     <div class="note">10</div>
