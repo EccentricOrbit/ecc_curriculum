@@ -1,8 +1,10 @@
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const { execSync } = require('child_process');
-
+require('dotenv').config();
 
 module.exports = function(eleventyConfig) {
+
+    eleventyConfig.addGlobalData('assets_server', process.env.ASSETS_SERVER);
 
     eleventyConfig.addPlugin(syntaxHighlight, {
         alwaysWrapLineHighlights: true,
@@ -20,7 +22,7 @@ module.exports = function(eleventyConfig) {
 
     eleventyConfig.on('eleventy.after', () => {
         execSync(`npx pagefind --site _site --glob \"**/*.html\"`, { encoding: 'utf-8' });
-        execSync("sed -i '' 's_/assets/_/_g' assets/js/tunepad.min.js");
+        //execSync("sed -i '' 's_/assets/_/_g' assets/js/tunepad.min.js");
     });
 
     // limit filter
