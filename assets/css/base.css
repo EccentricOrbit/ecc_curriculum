@@ -1,11 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Inter:wght@100..900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&display=swap');
 :root {
     --pagefind-ui-scale: 0.7 !important;
-    --theme-color: #37425F; /* old purple #791791; */
+    /* --theme-color: #37425F; /* old purple #791791; */
+    --theme-color: #5f538e;
     font-size: 14px;
     --body-font: 'Inter', sans-serif;
-    --header-font: "Inter", sans-serif;
+    --header-font: "Aleo", serif;
 }
 * {
     box-sizing: border-box;
@@ -34,9 +35,13 @@ nav.top-nav {
 }
 
 .top-nav .logo {
-    width: 4.5rem;
-    min-width: 4.5rem;
-    margin-right: 1rem;
+    width: 4.2rem;
+    min-width: 4.2rem;
+    margin-right: 1.5rem;
+    align-self: center;
+}
+.top-nav .logo img {
+    display: block;
 }
 
 .top-nav .top-menu-wrapper {
@@ -48,6 +53,7 @@ nav.top-nav {
 .top-menu-wrapper h1 {
     font-family: var(--header-font);
     margin: 0 1rem 0.5rem 0;
+    font-weight: 700;
 }
 .top-menu-wrapper h1 a {
     color: black;
@@ -215,6 +221,7 @@ header .title-container {
     vertical-align: top;
     display: inline-block;
     width: 100%;
+    text-align: left;
 }
 
 .logo-nugget {
@@ -232,7 +239,7 @@ h1.page-title {
     font-family: var(--header-font);
     font-size: 20pt;
     margin: 0.5rem 0;
-    text-align: center;
+    text-align: left;
 }
 
 h2.page-subtitle {
@@ -240,7 +247,7 @@ h2.page-subtitle {
     font-size: 16px;
     margin: 0 0 0.5rem 0;
     font-weight: normal;
-    text-align: center;
+    text-align: left;
 }
 
 aside.disclaimer {
@@ -269,10 +276,10 @@ main h3 {
 .info-box {
     border-top: 1px solid #0005;
     border-bottom: 1px solid #0005;
-    margin: 2rem;
+    margin: 2rem 0;
     display: flex;
     text-align: left;
-    padding: 0.5em 1.5em;
+    padding: 0.5em 0;
     flex-wrap: wrap;
 }
 .info-box div {
@@ -282,9 +289,8 @@ main h3 {
 
 .resource-box {
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin: 1rem 1rem 2rem 1rem;
+    margin: 1rem 1rem 2rem 0;
 }
 
 .resource-box button,
@@ -421,6 +427,7 @@ article .content h1 {
     font-size: 22px;
     margin-top: 2rem;
     margin-bottom: 0.25rem;
+    font-weight: 600;
 }
 article .content h1:first-child {
     margin-top: 1rem;
@@ -445,7 +452,7 @@ article p {
     margin-top: 0;
     font-size: 15px;
     max-width: 900px;
-    line-height: 180%;
+    line-height: 160%;
 }
 article p code, article li code {
     color: var(--theme-color);
@@ -453,7 +460,7 @@ article p code, article li code {
 }
 article li {
     font-size: 15px;
-    line-height: 180%;
+    line-height: 160%;
 }
 
 article img {
@@ -492,7 +499,6 @@ article table td, article table th {
 }
 
 section .highlights {
-    border-bottom: 1px solid #0002;
     padding: 30px 0px;
 }
 
@@ -968,8 +974,8 @@ a.more-info {
     text-align: right;
     vertical-align: center;
     text-decoration: none;
-    color: black;
-    font-weight: bold;
+    color: var(--theme-color);
+    font-weight: 600;
 }
 a.more-info:hover {
     text-decoration: underline;
