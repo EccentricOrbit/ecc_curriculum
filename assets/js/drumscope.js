@@ -145,7 +145,7 @@ class DrumScope {
     }
 
     async loadMetronomeSound() {
-        const response = await fetch("/sounds/voices/metronome/metronome.wav");
+        const response = await fetch(ASSETS + "/assets/sounds/voices/shot-drums/click.wav");
         const arrayBuffer = await response.arrayBuffer();
         this.metronomeSound = await this.context.decodeAudioData(arrayBuffer);
     }
@@ -328,7 +328,7 @@ class DrumScope {
     initDrumPads() {
         document.querySelectorAll(".drum-pads button").forEach((e) => {
             const drum = e.getAttribute("data-drum");
-            this.loadAudioBuffer(drum);
+            this.loadAudioBuffer(drum, e.getAttribute("data-sound"));
             e.addEventListener('pointerdown', (evt) => {
                 this.playSound(drum);
                 this._drawBigSound(drum);
@@ -358,16 +358,16 @@ class DrumScope {
     }
 
     /// asynchronously loads a sound from the given URL and uses name as the hash key
-    async  loadAudioBuffer(name) {
+    async  loadAudioBuffer(name, file) {
         if (this.sounds[name]) return this.sounds[name];
         if (this.context != null) {
             try {
-                const path = "/sounds/voices/linndrum/" + name + ".wav";
+                const path = ASSETS + "/assets/sounds/voices/linndrum/" + file + ".wav";
                 let response = await fetch(path);
                 let abuff = await response.arrayBuffer();
                 let buffer = await this.context.decodeAudioData(abuff);
                 this.sounds[name] = buffer;
-                console.log("Loaded " + name + ".wav");
+                console.log("Loaded " + file + ".wav");
                 return buffer;
             }
             catch (e) {
