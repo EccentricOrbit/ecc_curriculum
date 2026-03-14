@@ -1,6 +1,6 @@
 ---
 layout: layouts/activity.njk
-tags: learn
+tags: none
 category: Activity
 title: "Voice Leading Tutorial"
 subtitle: Create a simple chord progression with Python
@@ -44,6 +44,10 @@ V: E major (notes 64, 68, 71)
 vi: F minor (notes 66, 69, 73)
 
 IV: D major (notes 62, 66, 69)
+
+
+
+
 
 <iframe src="{{ project1 }}?embedded=true" class="tunepad-iframe" scrolling="no" style="height: 900px; width: 350px"></iframe>
 
