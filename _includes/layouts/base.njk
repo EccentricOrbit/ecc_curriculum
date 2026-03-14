@@ -20,7 +20,7 @@
         <link href="/pagefind/pagefind-ui.css" rel="stylesheet">
         <title>{{ title }}</title>
         <script src="/js/prism.js"></script>
-        <script src="/js/tunepad.min.js"></script>
+        <script src="{{ assets_server }}/assets/js/tunepad.min.js"></script>
         <script>
             function showMenu() {
                 document.querySelector(".top-menu").classList.toggle('visible');
@@ -29,7 +29,6 @@
         {% endblock %}
     </head>
   <body class="line-numbers">
-    {{ page.url }}
     <nav class="top-nav">
         <a class="logo" title="Learn TunePad" href="/" aria-label="Home">
             <img src="/images/learn-logo-small.svg" alt="Learn TunePad" width="100%">
@@ -37,8 +36,12 @@
         <div class="top-menu-wrapper">
             <h1><a href="/" aria-label="Home">Learn&nbsp;TunePad</a></h1>
             <ul class="top-menu">
+            <!--
                 <li><a href="/learn/"{% if page.url == "/learn/" %} class="selected"{% endif %}>Learn</a></li>
                 <li><a href="/teach/"{% if page.url == "/teach/" %} class="selected"{% endif %}>Teach</a></li>
+            -->
+                <li><a href="/"{% if page.url == "/" %} class="selected"{% endif %}>Quick Start</a></li>
+                <li><a href="/learn/"{% if page.url == "/learn/" %} class="selected"{% endif %}>Learn</a></li>
                 <li><a href="/tutorials/"{% if page.url == "/tutorials/" %} class="selected"{% endif %}>Tutorials</a></li>
                 <li><a href="/featured/"{% if page.url == "/featured/" %} class="selected"{% endif %}>Featured</a></li>
                 <li><a href="/interactives/"{% if page.url == "/interactives/" %} class="selected"{% endif %}>Interactives</a></li>
@@ -120,29 +123,6 @@
                 </section>
             </div>
 
-            <nav class="prev-next">
-                {% if prevURL %}
-                <a href="{{ prevURL }}">
-                    <i class="fas fa-arrow-left"></i>
-                    <div class="stacker">
-                        <h3>Back</h3>
-                        {{ prevTitle }}
-                    </div>
-                </a>
-                </div>
-                {% endif %}
-                <div class="spacer"></div>
-                {% if nextURL %}
-                <a href="{{ nextURL }}">
-                    <div class="stacker">
-                        <h3>Next</h3>
-                        {{ nextTitle }}
-                    </div>
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-                {% endif %}
-            </nav>
-
 
             <!--  FOOTER -->
             <div class="footer-wrapper">
@@ -194,6 +174,13 @@
                 playPausePreview(el);
             });
         });
+
+        initProject();
+
+        function initProject() {
+            const project = document.querySelector('tunepad-project');
+            project?.recompileAll();
+        }
 
         function playPreview(audio, icon) {
             icon.classList.remove("fa-play");
