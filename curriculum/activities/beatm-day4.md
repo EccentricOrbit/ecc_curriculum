@@ -102,7 +102,7 @@ In this activity, you'll practice using lists and variables to make a Bad Bunny-
 In music a chord is more than one note played at the same time. 
 There are many, many chords to choose from, but here are seven easy chords to get you started.
 <a href="/learn/seven-chords" style="margin: 2rem; display: block;" target="_blank">
-<img src="/images/splash/chords-splash.jpg" style="margin: 0.5rem 0" alt="Bad Bunny" width="400">Open Seven Chords Activity</a>
+<img src="/images/splash/chords-splash.png" style="margin: 0.5rem 0" alt="Bad Bunny" width="400">Open Seven Chords Activity</a>
 
 # Same four chords!
 
