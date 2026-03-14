@@ -1,7 +1,7 @@
 ---
 layout: layouts/activity.njk
-title: "Welcome to TunePad"
-description: Get started creating music with code. This guide walks through the basics of coding music with Python in TunePad
+title: "TunePad Quick Start Guide"
+description: Get started creating music with code! This guide walks through the basics of coding music with Python in TunePad
 level: Beginner
 time: 15-20 minutes
 license: by-nc-sa
@@ -9,41 +9,46 @@ splash: /images/splash/chicago-splash.png
 date: 2025-09-28
 ---
 
-<h1>Welcome to TunePad</h1>
+<h1>What is TunePad?</h1>
 <p>
-TunePad is an online learning platform that lets you create music with the Python programming language.
-TunePad was developed at Northwestern University with funding from the National Science Foundation.
-It's free for everyone to use, and we will never sell your personal information.
+TunePad is a free learning platform for creating music using the Python programming language.
+It was developed at Northwestern University with funding from the National Science Foundation.
+TunePad is free for everyone to use, and we will never sell or share your personal information.
 </p>
 
 <h1>What is Python Programming?</h1>
 <img src="/images/python-logo.svg" alt="Python logo" style="width: 130px; float: right; position: relative; top: -2rem;">
 <ul>
     <li><a href="https://www.python.org/" target="_blank">Python</a> is one of the most widely-used programming languages in the world.</li>
-    <li>It's easy to read and write, which makes it a popular choice for beginners.</li>
+    <li>Python is easy to read and write, which makes it a popular choice for beginners.</li>
     <li>It’s also powerful, which makes it a good choice for professionals.</li>
-    <li>Python is used for data science, artificial intelligence, web development, art, music, and video game development.</li>
+    <li>Python is used for data science, artificial intelligence, web development, art, music, video game development, and more.</li>
     <li>Python is a “text-based” language, which means that you type code instead of dragging blocks on the screen.</li>
 </ul>
 
-<h1>Try It</h1>
+<h1>Try It!</h1>
 <p>
 Here's an example of what TunePad can do.
 This Python code plays five notes using a kick drum sound.
 Press the ▶ button below to hear how it sounds.
 </p>
 
-<tunepad-project name="Welcome to TunePad" tempo="120">
+<tunepad-project name="Welcome to TunePad" tempo="120" uuid="quickstart">
 <tunepad-cell-list>
 
-<tunepad-cell name="kicks" uuid="kicks" theme="light" class="tutorial music" patch="rock-drums" timeline="score">
-/playNote(0)
-/playNote(0)
-/playNote(0)
-/playNote(0, beats = 0.5)
-/playNote(0, beats = 0.5)
+<tunepad-cell name="kicks" uuid="kicks" theme="light" class="tutorial music" patch="rock-drums" timeline="none" autocompile="true">
+/play(0)
+/play(0)
+/play(0)
+/play(0, beats = 0.5)
+/play(0, beats = 0.5)
 /
 </tunepad-cell>
+
+<p>
+You use the <code>play</code> function to play a specific note or drum sound. Each drum sound has its own number
+that you can see on the drum pad below the Python code.
+</p>
 
 <h1>Adding Snare Drums</h1>
 <p>
@@ -53,12 +58,12 @@ Try playing this cell while also playing the kick drums at the same time.
 In TunePad all cells will synchronize together.
 </p>
 
-<tunepad-cell name="snare" uuid="snare" theme="light" class="tutorial music" patch="808-drums" show-instrument="false">
+<tunepad-cell name="snare" uuid="snare" theme="light" class="tutorial music" patch="808-drums" autocompile="true">
 # play two snare drums on beats 2 and 4
 rest(1)        # skip a beat
-playNote(2)    # play sound number 2 (snare drum)
+play(2)    # play sound number 2 (snare drum)
 rest(1)
-playNote(2)
+play(2)
 /
 </tunepad-cell>
 
@@ -68,29 +73,32 @@ The text that comes after the hashtag symbol (#) is called a <b>comment</b>. It�
 
 <h1>Hi-Hats</h1>
 <p>
-Let's keep layering sounds! This cell uses a <b>loop</b> in Python to add hi-hat sounds between the kicks and snares.
+Let's keep layering sounds! This cell uses a <b>loop</b> in Python to add a run of 16 hi-hat sounds.
 </p>
 
-<tunepad-cell patch="808-drums" name="hats" uuid="hats" theme="light" class="tutorial music" show-instrument="false">
-/# play hi-hats
-/for i in range(4):
-/    rest(0.5)   # rest for half a beat
-/    playNote(4, beats = 0.25)    # play two hi-hat sounds
-/    playNote(4, beats = 0.25)    # each for 0.25 beats
+<tunepad-cell patch="808-drums" name="hats" uuid="hats" theme="light" class="tutorial music" show-instrument="false" autocompile="true">
+/# play 16 hi-hats in a row
+/for i in range(16):
+/    play(4, beats = 0.25)
+/
+/
+/
 /
 </tunepad-cell>
 
-<h1>Bass!!</h1>
+<h1>Bass!</h1>
 <p>
 Don't forget the bass! This cell adds a simple bass line.
 </p>
 
-<tunepad-cell patch="electric-bass" name="bass" uuid="bass" timeline="waveform" theme="light" class="tutorial music" show-instrument="false">
-/playNote(33, beats = 4)
-/playNote(36, beats = 4)
-/playNote(35, beats = 4)
-/playNote(34, beats = 3)
-/playNote(34, beats = 1)
+<tunepad-cell patch="electric-bass" name="bass" uuid="bass" timeline="waveform" theme="light" class="tutorial music" show-instrument="false" autocompile="true">
+/play(33, beats = 4)
+/play(36, beats = 4)
+/play(35, beats = 4)
+/play(34, beats = 3)
+/play(34, beats = 1)
+/
+/
 </tunepad-cell>
 
 
@@ -100,12 +108,12 @@ In TunePad, you can add as many cells as you want to your project and select fro
 You can change your code while the music is playing to test out different ideas live and in real time.
 </p>
 
-<tunepad-cell patch="rhodes" name="keys" uuid="keys" timeline="midi" theme="light" class="tutorial music">
+<tunepad-cell patch="rhodes" name="keys" uuid="keys" timeline="midi" theme="light" class="tutorial music" autocompile="true">
 /# You can play a chord in TunePad by using a list of note values
-/playNote([57, 60, 64], beats = 4)
-/playNote([55, 60, 64], beats = 4)
-/playNote([55, 59, 62], beats = 4)
-/playNote([55, 58, 60], beats = 4)
+/play([57, 60, 64], beats = 4)
+/play([55, 60, 64], beats = 4)
+/play([55, 59, 62], beats = 4)
+/play([55, 58, 60], beats = 4)
 /
 </tunepad-cell>
 
@@ -115,18 +123,18 @@ To wrap this example up, let's add some arpeggios. Arpeggios are just chords pla
 In Python we can use a for loop to experiment with different patterns of notes.
 </p>
 
-<tunepad-cell patch="jazz-bass" name="lead" uuid="lead" timeline="midi" theme="light" class="tutorial music">
+<tunepad-cell patch="jazz-bass" name="lead" uuid="lead" timeline="midi" theme="light" class="tutorial music" autocompile="true">
 /for note in [ 57, 60, 64, 60] * 2:
-/    playNote(note, beats = 0.5)
+/    play(note, beats = 0.5)
 /
 /for note in [ 55, 60, 64, 60] * 2:
-/    playNote(note, beats = 0.5)
+/    play(note, beats = 0.5)
 /
 /for note in [ 55, 59, 62, 59] * 2:
-/    playNote(note, beats = 0.5)
+/    play(note, beats = 0.5)
 /
 /for note in [55, 58, 60, 58] * 2:
-/    playNote(note, beats = 0.5)
+/    play(note, beats = 0.5)
 /
 </tunepad-cell>
 
@@ -144,7 +152,7 @@ You can also learn more by trying some of these resources:
     </div>
     <a class="more-info" href="/tutorials/">Browse all {{ collections.tutorials.length }} tutorials &#8680;</a>
     <div class="cards">
-        {%- for demo in collections.tutorials | limit(4) -%}
+        {%- for demo in collections.tutorials | reverse | limit(4) -%}
         <div class="vcard" data-url="{{ demo.url }}">
             <div class="card-image">
                 <img src="{{ demo.data.splash }}" alt="{{ demo.data.title }}">
