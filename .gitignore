@@ -6,5 +6,5 @@ _data/featured.json
 .DS_Store
 .cache
 __pycache__
-
+.env
 tutorials/good-intentions.md
