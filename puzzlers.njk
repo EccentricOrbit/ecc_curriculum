@@ -5,9 +5,9 @@ description: Challenge yourself with these interactive games and puzzles that wi
 splash: /images/splash/puzzlers-splash.png
 ---
 {% block body %}
-<div class="cards">
+<div class="vcards">
 {%- for demo in collections.puzzles -%}
-    <div class="card" data-url="{{ demo.url }}">
+    <div class="vcard" data-url="{{ demo.url }}">
         <div class="card-image">
             <img src="{{ demo.data.splash }}" alt="{{ demo.data.title }}">
         </div>
