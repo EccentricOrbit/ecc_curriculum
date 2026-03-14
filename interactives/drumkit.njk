@@ -530,13 +530,13 @@ function animateDrum(name) {
         "crash" : "# Crash Cymbal"
     };
     const drum_commands = {
-        "snare1" : "playNote(2, beats = 1)",
-        "floorTom" : "playNote(8, beats = 1)",
-        "closedHat" : "playNote(4, beats = 1)",
-        "midTom" : "playNote(7, beats = 1)",
-        "highTom" : "playNote(6, beats = 1)",
-        "kick" : "playNote(0, beats = 1)",
-        "crash" : "playNote(9, beats = 1)"
+        "snare1" : "play(2, beats = 1)",
+        "floorTom" : "play(8, beats = 1)",
+        "closedHat" : "play(4, beats = 1)",
+        "midTom" : "play(7, beats = 1)",
+        "highTom" : "play(6, beats = 1)",
+        "kick" : "play(0, beats = 1)",
+        "crash" : "play(9, beats = 1)"
     };
 
     playDrumSound(name);
@@ -565,7 +565,7 @@ function playDrumSound(name) {
 }
 
 function loadDrumSound(name) {
-    let url = "/sounds/voices/rock-drums/" + name + ".wav";
+    let url = "{{ assets_server }}/assets/sounds/voices/rock-drums/" + name + ".wav";
     let request = new XMLHttpRequest();
     request.open('GET', url, true);
     request.responseType = 'arraybuffer';
